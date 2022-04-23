@@ -1,0 +1,4 @@
+[Test]
+    int = 5
+    siz = {x=2,y=1}
+    txt = "abc"
