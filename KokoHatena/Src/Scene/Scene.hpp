@@ -16,3 +16,6 @@ struct ShareData
 {
 
 };
+
+// シーン管理クラス
+using MyApp = SceneManager<SceneName, ShareData>;

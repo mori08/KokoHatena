@@ -102,6 +102,12 @@
     <Filter Include="Src\Scene">
       <UniqueIdentifier>{f6d50983-4973-4990-ae7a-e73820f60cab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData">
+      <UniqueIdentifier>{8d006ea2-8aa6-4373-927e-8d6a68315649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Scene\TitleScene">
+      <UniqueIdentifier>{6a00779e-5249-4939-a60e-d43ff52aecf7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -385,6 +391,9 @@
     <ClCompile Include="Src\MyLibrary\MyLibrary.cpp">
       <Filter>Src\MyLibrary</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp">
+      <Filter>Src\Scene\TitleScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -395,6 +404,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\Scene.hpp">
       <Filter>Src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp">
+      <Filter>Src\Scene\TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
