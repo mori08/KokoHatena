@@ -239,6 +239,7 @@
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp" />
     <ClInclude Include="Src\MyLibrary\MyLibrary.hpp" />
+    <ClInclude Include="Src\Scene\Scene.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -99,6 +99,9 @@
     <Filter Include="Src\MyLibrary">
       <UniqueIdentifier>{8de12dbe-6a33-48c1-a77d-b54526df8aaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Scene">
+      <UniqueIdentifier>{f6d50983-4973-4990-ae7a-e73820f60cab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -389,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="Src\MyLibrary\MyLibrary.hpp">
       <Filter>Src\MyLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\Scene.hpp">
+      <Filter>Src\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
