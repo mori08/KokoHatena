@@ -232,12 +232,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\ButtonSet\ButtonSet.cpp" />
     <ClCompile Include="Src\Config\Config.cpp" />
     <ClCompile Include="Src\Main.cpp" />
     <ClCompile Include="Src\MyLibrary\MyLibrary.cpp" />
     <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
+    <ClInclude Include="Src\ButtonSet\Button\Button.hpp" />
     <ClInclude Include="Src\Config\Config.hpp" />
     <ClInclude Include="Src\MyLibrary\MyLibrary.hpp" />
     <ClInclude Include="Src\Scene\Scene.hpp" />
