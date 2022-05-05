@@ -238,6 +238,8 @@
     <ClCompile Include="Src\MyLibrary\MyLibrary.cpp" />
     <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp" />
     <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
+    <ClCompile Include="Src\ShareData\RecordManager\RecordManager.cpp" />
+    <ClCompile Include="Src\ShareData\RecordManager\Record\Record.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
@@ -247,6 +249,8 @@
     <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp" />
     <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp" />
+    <ClInclude Include="Src\ShareData\RecordManager\RecordManager.hpp" />
+    <ClInclude Include="Src\ShareData\RecordManager\Record\Record.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
