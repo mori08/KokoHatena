@@ -1,6 +1,8 @@
 ﻿#include"MyLibrary/MyLibrary.hpp"
 #include"Config/Config.hpp"
 
+#include"Scene/TitleScene/TitleScene.hpp"
+
 using namespace Kokoha;
 
 void Main()
@@ -16,8 +18,14 @@ void Main()
 		FontAsset::Register(ToString(i), i, Typeface::Medium);
 	}
 
+	// シーン
+	MyApp sceneManager;
+	sceneManager.add<Kokoha::TitleScene>(SceneName::TITLE);
+
 	while (System::Update())
 	{
+		sceneManager.update();
+
 		showFPS();
 	}
 }

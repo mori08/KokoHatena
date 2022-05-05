@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Siv3D.hpp>
+#include "../ButtonSet/Button/Button.hpp"
 
 namespace Kokoha
 {
@@ -91,6 +91,16 @@ namespace Kokoha
 			instance().m_toml[name][U"y1"].get<double>(),
 			instance().m_toml[name][U"x2"].get<double>(),
 			instance().m_toml[name][U"y2"].get<double>()
+		);
+	}
+
+	template<>
+	inline Button Config::get(const String& name)
+	{
+		return Button
+		(
+			instance().m_toml[name][U"name"].getString(),
+			instance().get<Rect>(name + U".region")
 		);
 	}
 

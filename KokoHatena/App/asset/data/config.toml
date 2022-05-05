@@ -1,3 +1,17 @@
 [Window]
     size = {x=800, y= 600}
     name = "55?"
+
+[TitleScene]
+    cursorMoveRate = 0.005
+    logoPos        = {x=400, y=200}
+    buttonSize     = {x=150, y=30}
+    [TitleScene.NewGameButton]
+        name = "はじめから"
+        region = {x=325,y=375,w=150,h=30}
+    [TitleScene.LoadGameButton]
+        name = "つづきから"
+        region = {x=325,y=435,w=150,h=30}
+    [TitleScene.ExitGameButton]
+        name = "やめる"
+        region = {x=325,y=495,w=150,h=30}
