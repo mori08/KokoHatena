@@ -1,9 +1,22 @@
 #include "TitleScene.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
+#include "../../MyPixelShader/MyPixelShader.hpp"
 #include "../../Config/Config.hpp"
 
 namespace
 {
+	/*
+	* 定数バッファ (PS_1)
+	* RGBのずれ
+	*/
+	struct Shift
+	{
+		Float2 g_rShift;
+		Float2 g_gShift;
+		Float2 g_bShift;
+		Float2 unusedB = {};
+	};
+
 	// ボタンサイズ
 	const Size& buttonSize()
 	{
@@ -100,13 +113,40 @@ namespace Kokoha
 
 	void TitleScene::draw() const
 	{
-		static const Point LOGO_POS = Config::get<Point>(U"TitleScene.logoPos");
-
 		Scene::Rect().draw(MyBlack);
 
-		// ロゴの描画
-		TextureAsset(U"Logo").drawAt(LOGO_POS);
+		drawLogo();
 
+		drawButton();
+	}
+
+	void TitleScene::drawLogo() const
+	{
+		// ロゴを描画する座標
+		static const Point LOGO_POS = Config::get<Point>(U"TitleScene.logoPos");
+		// シフトの頻度
+		static const double SHIFT_FREQUENCY = Config::get<double>(U"TitleScene.shiftFrequency");
+		// シフトの量
+		static const double SHIFT_LENGTH = Config::get<double>(U"TitleScene.shiftLength");
+
+		{
+			// 定数バッファの設定
+			ConstantBuffer<Shift> cb;
+			cb->g_rShift = makeShift(SHIFT_FREQUENCY, SHIFT_LENGTH);
+			cb->g_gShift = makeShift(SHIFT_FREQUENCY, SHIFT_LENGTH);
+			cb->g_bShift = makeShift(SHIFT_FREQUENCY, SHIFT_LENGTH);
+			Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
+
+			// シェーダの開始
+			ScopedCustomShader2D shader(MyPixelShader::get(U"TitleLogo"));
+
+			// ロゴの描画
+			TextureAsset(U"Logo").drawAt(LOGO_POS);
+		}
+	}
+
+	void TitleScene::drawButton() const
+	{
 		// カーソルの描画
 		getRectFromCenter
 		(
@@ -129,5 +169,12 @@ namespace Kokoha
 			FontAsset(U"20")(button.first)
 				.drawAt(button.second.getRegion().center(), color);
 		}
+	}
+
+	Float2 TitleScene::makeShift(double frequency, double shift)
+	{
+		return randomFrequency(frequency)
+			? Float2(Random(-shift, shift), Random(-shift, shift))
+			: Float2::Zero();
 	}
 }

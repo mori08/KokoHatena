@@ -6,6 +6,8 @@
     cursorMoveRate = 0.005
     logoPos        = {x=400, y=200}
     buttonSize     = {x=150, y=30}
+    shiftFrequency = 0.4
+    shiftLength    = 0.025
     [TitleScene.NewGameButton]
         name = "はじめから"
         region = {x=325,y=375,w=150,h=30}

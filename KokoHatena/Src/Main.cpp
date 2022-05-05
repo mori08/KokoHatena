@@ -1,4 +1,5 @@
 ﻿#include"MyLibrary/MyLibrary.hpp"
+#include"MyPixelShader/MyPixelShader.hpp"
 #include"Config/Config.hpp"
 
 #include"Scene/TitleScene/TitleScene.hpp"
@@ -13,6 +14,7 @@ void Main()
 
 	// アセット管理
 	registerAsset(U"asset/");
+	Kokoha::MyPixelShader::loadPixelShader();
 	for (int32 i = 10; i <= 40; ++i) 
 	{
 		FontAsset::Register(ToString(i), i, Typeface::Medium);

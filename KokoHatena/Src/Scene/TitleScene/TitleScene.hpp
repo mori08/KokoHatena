@@ -34,5 +34,25 @@ namespace Kokoha
 
 		void draw() const override;
 
+	private:
+
+		/// <summary>
+		/// ロゴの描画
+		/// </summary>
+		void drawLogo() const;
+
+		/// <summary>
+		/// ボタンの描画
+		/// </summary>
+		void drawButton() const;
+
+		/// <summary>
+		/// シェーダ時に使用するシフトのベクトル
+		/// </summary>
+		/// <param name="frequency"> 頻度         </param>
+		/// <param name="shift"    > ずれの大きさ </param>
+		/// <returns> シフトのベクトル </returns>
+		static Float2 makeShift(double frequency, double shift);
+
 	};
 }
