@@ -3,6 +3,7 @@
 #include"Config/Config.hpp"
 
 #include"Scene/TitleScene/TitleScene.hpp"
+#include"Scene/LoadScene/LoadScene.hpp"
 
 using namespace Kokoha;
 

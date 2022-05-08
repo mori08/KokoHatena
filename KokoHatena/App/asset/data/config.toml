@@ -17,3 +17,11 @@
     [TitleScene.ExitGameButton]
         name = "やめる"
         region = {x=325,y=495,w=150,h=30}
+
+[LoadScene]
+    loadingCircle      = {x=660,y=545,r=11}
+    loadingArcThicness = 2.0
+    loadingArcLength   = 5.0
+    smallCircleNum     = 10
+    textPos            = {x=690,y=530}
+    maxDotNum          = 4
