@@ -65,7 +65,7 @@ namespace Kokoha
 		m_buttonSet.setSelectedButton(loadGameButton().getName());
 
 		m_buttonSet.setOnClickFunc(newGameButton().getName(), []() { Print << U"NewGameボタンが押された"; });
-		m_buttonSet.setOnClickFunc(loadGameButton().getName(), []() { Print << U"LoadGameボタンが押された"; });
+		m_buttonSet.setOnClickFunc(loadGameButton().getName(), [this]() { changeScene(SceneName::LOAD); });
 		m_buttonSet.setOnClickFunc(exitGameButton().getName(), []() { Print << U"ExitGameボタンが押された"; });
 	}
 

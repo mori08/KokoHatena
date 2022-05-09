@@ -1,0 +1,14 @@
+[[Record]] # テスト用フラグ
+name    = "TestFlag"
+digit   = 1
+default = 0
+[[Record]] # テスト用数値
+name    = "TestValue"
+digit   = 3
+default = 5
+
+
+[[Record]] # ゲーム内の日付
+name    = "Date"
+digit   = 5
+default = 0

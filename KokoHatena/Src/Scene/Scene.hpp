@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <Siv3D.hpp>
+#include"../ShareData/RecordManager/RecordManager.hpp"
 
 
 // シーンの名前
@@ -13,9 +13,17 @@ enum class SceneName
 
 
 // シーンで共有されるデータ
-struct ShareData
+
+namespace Kokoha
 {
-};
+	class ShareData
+	{
+	public:
+
+		RecordManager record;
+
+	};
+}
 
 // シーン管理クラス
-using MyApp = SceneManager<SceneName, ShareData>;
+using MyApp = SceneManager<SceneName, Kokoha::ShareData>;

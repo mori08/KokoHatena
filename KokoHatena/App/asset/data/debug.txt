@@ -1,0 +1,7 @@
+﻿
+[ D ]
+   0 < [Date]
+
+[ T ]
+   0 < [TestFlag]
+   5 < [TestValue]

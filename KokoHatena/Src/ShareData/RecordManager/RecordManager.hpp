@@ -21,21 +21,15 @@ namespace Kokoha
 
 	private:
 
-		// 桁数の合計
-		const int32 m_totalDigit;
-
 		// レコードのマップ
 		std::map<String, Record> m_recordMap;
 
-	private:
+		// 桁数の合計
+		const int32 m_totalDigit;
+
+	public:
 
 		RecordManager();
-
-		/// <summary>
-		/// m_recordMapに必要となるRecordを全て登録
-		/// </summary>
-		/// <returns> 合計桁数 </returns>
-		int32 setAllRecordToMap();
 
 		/// <summary>
 		/// セーブデータ用ファイルからロード
@@ -73,7 +67,6 @@ namespace Kokoha
 		void writeDebugText() const
 		{
 #ifdef _DEBUG
-			if (!Key0.down()) { return; }
 			TextWriter writer(U"asset/data/debug.txt");
 			char32 initChar = U'z';
 			for (const auto& record : m_recordMap)
@@ -90,6 +83,12 @@ namespace Kokoha
 		}
 
 	private:
+
+		/// <summary>
+		/// m_recordMapに必要となるRecordを全て登録
+		/// </summary>
+		/// <returns> 合計桁数 </returns>
+		int32 setAllRecordToMap();
 
 		/// <summary>
 		/// レコードの暗号化

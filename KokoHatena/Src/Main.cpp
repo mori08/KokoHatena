@@ -3,7 +3,7 @@
 #include"Config/Config.hpp"
 
 #include"Scene/TitleScene/TitleScene.hpp"
-#include"Scene/LoadScene/LoadScene.hpp"
+#include"Scene/LoadScene/LoadRecordScene/LoadRecordScene.hpp"
 
 using namespace Kokoha;
 
@@ -23,7 +23,8 @@ void Main()
 
 	// シーン
 	MyApp sceneManager;
-	sceneManager.add<Kokoha::TitleScene>(SceneName::TITLE);
+	sceneManager.add<Kokoha::TitleScene>     (SceneName::TITLE);
+	sceneManager.add<Kokoha::LoadRecordScene>(SceneName::LOAD);
 
 	while (System::Update())
 	{
