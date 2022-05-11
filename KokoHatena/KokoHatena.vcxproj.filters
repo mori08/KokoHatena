@@ -129,6 +129,9 @@
     <Filter Include="Src\Scene\LoadScene\LoadRecordScene">
       <UniqueIdentifier>{960d1356-bf93-45db-a140-e2cec3b7e6e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Scene\DesktopScene">
+      <UniqueIdentifier>{4e53a442-6ff0-4632-b453-8bd36d2bd76f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -433,6 +436,9 @@
     <ClCompile Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.cpp">
       <Filter>Src\Scene\LoadScene\LoadRecordScene</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Scene\DesktopScene\DesktopScene.cpp">
+      <Filter>Src\Scene\DesktopScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -467,6 +473,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.hpp">
       <Filter>Src\Scene\LoadScene\LoadRecordScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\DesktopScene\DesktopScene.hpp">
+      <Filter>Src\Scene\DesktopScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,8 +7,9 @@
 // シーンの名前
 enum class SceneName
 {
-	TITLE, // タイトル
-	LOAD,  // ロード
+	TITLE,   // TitleScene
+	LOAD,    // RecordLoadScene
+	DESKTOP, // DesktopScene
 };
 
 

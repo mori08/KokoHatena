@@ -18,7 +18,7 @@ namespace Kokoha
 
 				recordManager.writeDebugText();
 
-				return SceneName::TITLE;
+				return SceneName::DESKTOP;
 			}
 		);
 	}
