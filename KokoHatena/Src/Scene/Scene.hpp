@@ -17,7 +17,7 @@ enum class SceneName
 
 namespace Kokoha
 {
-	class ShareData
+	class SceneShareData
 	{
 	public:
 
@@ -27,4 +27,4 @@ namespace Kokoha
 }
 
 // シーン管理クラス
-using MyApp = SceneManager<SceneName, Kokoha::ShareData>;
+using MyApp = SceneManager<SceneName, Kokoha::SceneShareData>;

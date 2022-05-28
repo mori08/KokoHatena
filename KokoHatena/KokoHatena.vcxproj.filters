@@ -102,9 +102,6 @@
     <Filter Include="Src\Scene">
       <UniqueIdentifier>{f6d50983-4973-4990-ae7a-e73820f60cab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData">
-      <UniqueIdentifier>{8d006ea2-8aa6-4373-927e-8d6a68315649}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Scene\TitleScene">
       <UniqueIdentifier>{6a00779e-5249-4939-a60e-d43ff52aecf7}</UniqueIdentifier>
     </Filter>
@@ -117,12 +114,6 @@
     <Filter Include="Src\MyPixelShader">
       <UniqueIdentifier>{c0322369-36e2-40c4-bd11-692c5616f805}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\RecordManager">
-      <UniqueIdentifier>{9a4b5899-4ec9-42c4-b1c7-5d012604f2e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\RecordManager\Record">
-      <UniqueIdentifier>{e9737859-cbc0-483d-92ae-4bf5983e1670}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Scene\LoadScene">
       <UniqueIdentifier>{4bac304d-8e89-435d-b0ec-e1a3f41466ca}</UniqueIdentifier>
     </Filter>
@@ -131,6 +122,21 @@
     </Filter>
     <Filter Include="Src\Scene\DesktopScene">
       <UniqueIdentifier>{4e53a442-6ff0-4632-b453-8bd36d2bd76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneShareData">
+      <UniqueIdentifier>{8d006ea2-8aa6-4373-927e-8d6a68315649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneShareData\RecordManager">
+      <UniqueIdentifier>{9a4b5899-4ec9-42c4-b1c7-5d012604f2e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneShareData\RecordManager\Record">
+      <UniqueIdentifier>{e9737859-cbc0-483d-92ae-4bf5983e1670}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneShareData\BoardManager">
+      <UniqueIdentifier>{8c448e92-033f-48b7-b8b8-6d65b29691a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\SceneShareData\BoardManager\Board">
+      <UniqueIdentifier>{27e9c5dc-089e-4de5-86b6-dcc8fbf4bd55}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -425,10 +431,10 @@
       <Filter>Src\MyPixelShader</Filter>
     </ClCompile>
     <ClCompile Include="Src\ShareData\RecordManager\Record\Record.cpp">
-      <Filter>Src\ShareData\RecordManager\Record</Filter>
+      <Filter>Src\SceneShareData\RecordManager\Record</Filter>
     </ClCompile>
     <ClCompile Include="Src\ShareData\RecordManager\RecordManager.cpp">
-      <Filter>Src\ShareData\RecordManager</Filter>
+      <Filter>Src\SceneShareData\RecordManager</Filter>
     </ClCompile>
     <ClCompile Include="Src\Scene\LoadScene\LoadScene.cpp">
       <Filter>Src\Scene\LoadScene</Filter>
@@ -438,6 +444,9 @@
     </ClCompile>
     <ClCompile Include="Src\Scene\DesktopScene\DesktopScene.cpp">
       <Filter>Src\Scene\DesktopScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board.cpp">
+      <Filter>Src\SceneShareData\BoardManager\Board</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -463,10 +472,10 @@
       <Filter>Src\MyPixelShader</Filter>
     </ClInclude>
     <ClInclude Include="Src\ShareData\RecordManager\Record\Record.hpp">
-      <Filter>Src\ShareData\RecordManager\Record</Filter>
+      <Filter>Src\SceneShareData\RecordManager\Record</Filter>
     </ClInclude>
     <ClInclude Include="Src\ShareData\RecordManager\RecordManager.hpp">
-      <Filter>Src\ShareData\RecordManager</Filter>
+      <Filter>Src\SceneShareData\RecordManager</Filter>
     </ClInclude>
     <ClInclude Include="Src\Scene\LoadScene\LoadScene.hpp">
       <Filter>Src\Scene\LoadScene</Filter>
@@ -476,6 +485,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\DesktopScene\DesktopScene.hpp">
       <Filter>Src\Scene\DesktopScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board.hpp">
+      <Filter>Src\SceneShareData\BoardManager\Board</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
