@@ -1,4 +1,6 @@
 #include "Board.hpp"
+#include "../../Config/Config.hpp"
+#include "../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
@@ -7,6 +9,7 @@ namespace Kokoha
 		, m_name(name)
 		, m_pos(Scene::Center() - size/2) // 画面中心に表示
 		, m_size(size)
+		, m_render(size)
 	{
 
 	}
@@ -23,6 +26,26 @@ namespace Kokoha
 
 	void Board::draw() const
 	{
-		drawInBoard();
+		// フレームの太さ
+		static const double FRAME_THICKNESS = Config::get<double>(U"Board.frameThickness");
+
+		// レンダーテクスチャーのクリア
+		m_render.clear(MyBlack);
+
+		// レンダーテクスチャーを使って Rect(m_pos, m_size) に描画
+		{
+			ScopedRenderTarget2D target(m_render);
+
+			// ボード内の描画
+			drawInBoard();
+
+			// フレームの描画
+			Rect(Point::Zero(), m_size).drawFrame(FRAME_THICKNESS, 0, MyWhite);
+		}
+
+		// レンダーテクスチャの描画
+		Graphics2D::Flush();
+		m_render.resolve();
+		m_render.draw(m_pos);
 	}
 }

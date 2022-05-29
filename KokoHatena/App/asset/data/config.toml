@@ -25,3 +25,6 @@
     smallCircleNum     = 10
     textPos            = {x=690,y=530}
     maxDotNum          = 4
+
+[Board]
+    frameThickness = 2

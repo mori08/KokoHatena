@@ -34,6 +34,9 @@ namespace Kokoha
 		// サイズ
 		const Size m_size;
 
+		// レンダーテクスチャー（ボード内の描画）
+		const MSRenderTexture m_render;
+
 	public:
 
 		Board(Role role, const String& name, const Size& size);
