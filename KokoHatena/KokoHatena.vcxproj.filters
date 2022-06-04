@@ -445,7 +445,7 @@
     <ClCompile Include="Src\Scene\DesktopScene\DesktopScene.cpp">
       <Filter>Src\Scene\DesktopScene</Filter>
     </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board.cpp">
+    <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp">
       <Filter>Src\SceneShareData\BoardManager\Board</Filter>
     </ClCompile>
   </ItemGroup>
@@ -486,7 +486,7 @@
     <ClInclude Include="Src\Scene\DesktopScene\DesktopScene.hpp">
       <Filter>Src\Scene\DesktopScene</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board.hpp">
+    <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp">
       <Filter>Src\SceneShareData\BoardManager\Board</Filter>
     </ClInclude>
   </ItemGroup>

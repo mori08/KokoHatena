@@ -75,7 +75,27 @@ namespace Kokoha
 		/// <summary>
 		/// 各ボード固有の描画処理
 		/// </summary>
-		virtual void drawInBoard() const { Circle(0, 0, 200).draw(); };
+		virtual void drawInBoard() const {};
+
+	protected:
+
+		/// <summary>
+		/// ボード内のマウス座標の取得
+		/// </summary>
+		/// <returns> ボード内のマウス座標 </returns>
+		Point cursorPosInBoard() const
+		{
+			return Cursor::Pos() - m_pos;
+		}
+
+		/// <summary>
+		/// ボード内のマウス座標の取得
+		/// </summary>
+		/// <returns> ボード内のマウス座標 </returns>
+		Vec2 cursorPosFInBoard() const
+		{
+			return Cursor::PosF() - m_pos;
+		}
 
 	};
 }

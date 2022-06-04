@@ -1,6 +1,7 @@
 #pragma once
 
-#include"../Scene.hpp"
+#include "../Scene.hpp"
+#include "../../ShareData/BoardManager/Board.hpp"
 
 namespace Kokoha
 {
@@ -11,6 +12,8 @@ namespace Kokoha
 	class DesktopScene : public MyApp::Scene
 	{
 	private:
+
+		Board m_board;
 
 	public:
 

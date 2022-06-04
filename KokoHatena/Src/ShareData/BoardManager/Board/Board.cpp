@@ -28,6 +28,8 @@ namespace Kokoha
 
 	void Board::input()
 	{
+
+
 		inputInBoard();
 	}
 
