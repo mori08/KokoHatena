@@ -75,7 +75,7 @@ namespace Kokoha
 		/// <summary>
 		/// 各ボード固有の描画処理
 		/// </summary>
-		virtual void drawInBoard() const {};
+		virtual void drawInBoard() const { Circle(0, 0, 200).draw(); };
 
 	};
 }

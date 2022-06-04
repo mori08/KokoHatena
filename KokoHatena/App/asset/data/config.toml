@@ -22,9 +22,10 @@
     loadingCircle      = {x=660,y=545,r=11}
     loadingArcThicness = 2.0
     loadingArcLength   = 5.0
-    smallCircleNum     = 10
+    smallCircleNum     = 8
     textPos            = {x=690,y=530}
     maxDotNum          = 4
 
 [Board]
-    frameThickness = 2
+    frameThickness     = 2
+    controlFrameHeight = 24
