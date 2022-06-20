@@ -1,6 +1,6 @@
 #include "Board.hpp"
-#include "../../Config/Config.hpp"
-#include "../../MyLibrary/MyLibrary.hpp"
+#include "../../../Config/Config.hpp"
+#include "../../../MyLibrary/MyLibrary.hpp"
 
 namespace 
 {
@@ -28,7 +28,7 @@ namespace Kokoha
 
 	void Board::input()
 	{
-
+		movePosByCursor();
 
 		inputInBoard();
 	}
@@ -61,5 +61,33 @@ namespace Kokoha
 		Rect(m_pos, m_size).drawFrame(FRAME_THICKNESS, 0, MyWhite);
 		// ÉtÉåÅ[ÉÄè„ïîÇÃëÄçÏî’
 		Rect(m_pos, m_size.x, controlFrameHeight()).draw(MyWhite);
+	}
+
+	Vec2 Board::cursorPosFInBoard() const
+	{
+		return Cursor::PosF() - m_pos - Point::Down(controlFrameHeight());
+	}
+
+	void Board::movePosByCursor()
+	{
+		ClearPrint();
+		Print << m_optMovePos;
+
+		if (MouseL.up())
+		{
+			m_optMovePos = none;
+			return;
+		}
+
+		if (Rect(m_pos, m_size.x, controlFrameHeight()).leftClicked())
+		{
+			m_optMovePos = Cursor::Pos() - m_pos;
+		}
+
+		if (!m_optMovePos) { return; }
+
+		m_pos = Cursor::Pos() - m_optMovePos.value();
+		m_pos.x = Clamp(m_pos.x, 0, Scene::Size().x - m_size.x);
+		m_pos.y = Clamp(m_pos.y, 0, Scene::Size().y - m_size.y);
 	}
 }

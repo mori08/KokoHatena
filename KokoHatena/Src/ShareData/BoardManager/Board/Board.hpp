@@ -37,6 +37,9 @@ namespace Kokoha
 		// レンダーテクスチャー（ボード内の描画）
 		const MSRenderTexture m_render;
 
+		// 座標移動時の基準座標 (noneのとき移動しない)
+		Optional<Point> m_optMovePos;
+
 	public:
 
 		Board(Role role, const String& name, const Size& size);
@@ -85,17 +88,21 @@ namespace Kokoha
 		/// <returns> ボード内のマウス座標 </returns>
 		Point cursorPosInBoard() const
 		{
-			return Cursor::Pos() - m_pos;
+			return cursorPosFInBoard().asPoint();
 		}
 
 		/// <summary>
 		/// ボード内のマウス座標の取得
 		/// </summary>
 		/// <returns> ボード内のマウス座標 </returns>
-		Vec2 cursorPosFInBoard() const
-		{
-			return Cursor::PosF() - m_pos;
-		}
+		Vec2 cursorPosFInBoard() const;
+
+	private:
+
+		/// <summary>
+		/// カーソルで座標を移動する
+		/// </summary>
+		void movePosByCursor();
 
 	};
 }
