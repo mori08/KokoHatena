@@ -13,6 +13,8 @@ namespace Kokoha
 	{
 	private:
 
+		Board m_board;
+
 	public:
 
 		DesktopScene(const InitData& init);

@@ -16,6 +16,6 @@ namespace Kokoha
 
 	void DesktopScene::draw() const
 	{
-
+		m_board.draw();
 	}
 }
