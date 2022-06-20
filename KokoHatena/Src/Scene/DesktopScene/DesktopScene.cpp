@@ -4,6 +4,7 @@ namespace Kokoha
 {
 	DesktopScene::DesktopScene(const InitData& init)
 		: IScene(init)
+		, m_board(Board::Role::MAIL, U"Test", Size(200,200))
 	{
 
 	}
@@ -15,6 +16,6 @@ namespace Kokoha
 
 	void DesktopScene::draw() const
 	{
-
+		m_board.draw();
 	}
 }
