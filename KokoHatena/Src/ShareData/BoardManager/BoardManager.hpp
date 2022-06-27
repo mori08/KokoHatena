@@ -12,11 +12,23 @@ namespace Kokoha
 	{
 	private:
 
+		// ボードのリスト
 		std::list<Board> m_boardList;
 
 	public:
 
 		BoardManager();
 
+	public:
+
+		/// <summary>
+		/// 更新
+		/// </summary>
+		void update();
+
+		/// <summary>
+		/// 描画
+		/// </summary>
+		void draw() const;
 	};
 }
