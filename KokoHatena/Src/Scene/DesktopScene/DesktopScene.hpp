@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Scene.hpp"
-#include "../../ShareData/BoardManager/Board.hpp"
+#include "../../ShareData/BoardManager/Board/Board.hpp"
 
 namespace Kokoha
 {
