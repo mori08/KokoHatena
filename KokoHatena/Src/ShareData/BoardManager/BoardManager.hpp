@@ -1,5 +1,6 @@
 #pragma once
 #include"Board/Board.hpp"
+#include"../RecordManager/RecordManager.hpp"
 
 namespace Kokoha
 {
@@ -20,6 +21,12 @@ namespace Kokoha
 		BoardManager();
 
 	public:
+
+		/// <summary>
+		/// Record‚©‚ç
+		/// </summary>
+		/// <param name="recordManager"></param>
+		void load(RecordManager& recordManager);
 
 		/// <summary>
 		/// XV

@@ -6,10 +6,11 @@ namespace Kokoha
 		: LoadScene(init)
 	{
 		RecordManager& recordManager = getData().record;
+		BoardManager& boardManager = getData().board;
 
 		setLoadThread
 		(
-			[&recordManager]()
+			[&recordManager, &boardManager]()
 			{
 				const RecordManager::LoadResult loadResult = recordManager.load();
 
@@ -17,6 +18,9 @@ namespace Kokoha
 				if (loadResult == RecordManager::LoadResult::ERROR) { return SceneName::TITLE; }
 
 				recordManager.writeDebugText();
+
+				// 各レコードに合わせてManagerの読み込みを行う
+				boardManager.load(recordManager);
 
 				return SceneName::DESKTOP;
 			}
