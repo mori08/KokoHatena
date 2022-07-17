@@ -11,10 +11,6 @@ namespace Kokoha
 	/// </summary>
 	class DesktopScene : public MyApp::Scene
 	{
-	private:
-
-		Board m_board;
-
 	public:
 
 		DesktopScene(const InitData& init);
