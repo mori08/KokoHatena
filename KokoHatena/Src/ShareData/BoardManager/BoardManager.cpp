@@ -7,6 +7,11 @@ namespace Kokoha
 
 	}
 
+	void BoardManager::load(RecordManager&)
+	{
+		
+	}
+
 	void BoardManager::update()
 	{
 		// 先頭ボードの入力を受け付ける

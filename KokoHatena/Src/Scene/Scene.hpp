@@ -2,6 +2,7 @@
 
 
 #include"../ShareData/RecordManager/RecordManager.hpp"
+#include"../ShareData/BoardManager/BoardManager.hpp"
 
 
 // ƒV[ƒ“‚Ì–¼‘O
@@ -22,6 +23,7 @@ namespace Kokoha
 	public:
 
 		RecordManager record;
+		BoardManager board;
 
 	};
 }
