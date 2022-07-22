@@ -20,6 +20,10 @@ namespace Kokoha
 			ACCESS,   // アクセス（パズルアクション部分）
 		};
 
+
+		// 他ボードに対してのデータ送信
+		using BoardRequest = const std::pair<Role, String>;
+
 	private:
 
 		// 種類
@@ -49,9 +53,19 @@ namespace Kokoha
 	public:
 
 		/// <summary>
+		/// ボードの種類の取得
+		/// </summary>
+		/// <returns> ボードの種類 </returns>
+		const Role& role() const
+		{
+			return m_role;
+		}
+
+		/// <summary>
 		/// 入力
 		/// </summary>
-		void input();
+		/// <returns> ボードへの命令 </returns>
+		const BoardRequest& input();
 
 		/// <summary>
 		/// 更新
@@ -68,7 +82,7 @@ namespace Kokoha
 		/// <summary>
 		/// 各ボード固有の入力処理
 		/// </summary>
-		virtual void inputInBoard() {};
+		virtual const BoardRequest& inputInBoard() {};
 
 		/// <summary>
 		/// 各ボード固有の更新処理

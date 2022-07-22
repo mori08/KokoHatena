@@ -26,11 +26,11 @@ namespace Kokoha
 		
 	}
 
-	void Board::input()
+	const Board::BoardRequest& Board::input()
 	{
 		movePosByCursor();
 
-		inputInBoard();
+		return inputInBoard();
 	}
 
 	void Board::update()
