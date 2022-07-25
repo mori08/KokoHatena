@@ -16,9 +16,6 @@ namespace Kokoha
 		// ボードのリスト
 		std::list<Board> m_boardList;
 
-		// ボード間での命令
-		Optional<Board::BoardRequest> m_boardRequest;
-
 	public:
 
 		BoardManager();
@@ -40,5 +37,8 @@ namespace Kokoha
 		/// 描画
 		/// </summary>
 		void draw() const;
+
+	private:
+
 	};
 }

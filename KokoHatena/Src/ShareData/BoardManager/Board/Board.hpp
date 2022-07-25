@@ -22,7 +22,7 @@ namespace Kokoha
 
 
 		// 他ボードに対してのデータ送信
-		using BoardRequest = const std::pair<Role, String>;
+		using BoardRequest = Optional<const std::pair<Role, String>>;
 
 	private:
 
@@ -77,12 +77,18 @@ namespace Kokoha
 		/// </summary>
 		void draw() const;
 
+		/// <summary>
+		/// 他ボードからデータの受信
+		/// </summary>
+		/// <param name="requestText"> データとなる文字列 </param>
+		virtual void receiveRequest(const String& requestText) const {}
+
 	protected:
 
 		/// <summary>
 		/// 各ボード固有の入力処理
 		/// </summary>
-		virtual const BoardRequest& inputInBoard() {};
+		virtual const BoardRequest& inputInBoard() { return none; };
 
 		/// <summary>
 		/// 各ボード固有の更新処理
