@@ -37,5 +37,8 @@ namespace Kokoha
 		/// •`‰æ
 		/// </summary>
 		void draw() const;
+
+	private:
+
 	};
 }

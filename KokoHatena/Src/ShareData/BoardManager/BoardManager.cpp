@@ -17,7 +17,7 @@ namespace Kokoha
 		// 先頭ボードの入力を受け付ける
 		if (!m_boardList.empty())
 		{
-			m_boardList.front().input();
+			const auto& boardRequest = m_boardList.front().input();
 		}
 
 		// 表示中のボードの更新
