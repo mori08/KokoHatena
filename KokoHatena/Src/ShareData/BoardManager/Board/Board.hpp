@@ -20,6 +20,15 @@ namespace Kokoha
 			ACCESS,   // アクセス（パズルアクション部分）
 		};
 
+		/// <summary>
+		/// 状態
+		/// </summary>
+		enum class State
+		{
+			IS_DISPLAYED, // 表示中
+			IS_HIDING,    // 非表示
+			NONE,         // 利用不可
+		};
 
 		// 他ボードに対してのデータ送信
 		using BoardRequest = Optional<const std::pair<Role, String>>;
@@ -28,6 +37,9 @@ namespace Kokoha
 
 		// 種類
 		const Role m_role;
+
+		// 状態
+		State m_state;
 
 		// 名前
 		const String m_name;
@@ -59,6 +71,31 @@ namespace Kokoha
 		const Role& role() const
 		{
 			return m_role;
+		}
+
+		/// <summary>
+		/// ボードの状態の取得
+		/// </summary>
+		/// <returns> ボードの状態 </returns>
+		const State& state() const
+		{
+			return m_state;
+		}
+
+		/// <summary>
+		/// ボードを表示する状態へ変更
+		/// </summary>
+		void display()
+		{
+			m_state = State::IS_DISPLAYED;
+		}
+
+		/// <summary>
+		/// ボードを非表示にする状態へ変更
+		/// </summary>
+		void hide()
+		{
+			m_state = State::IS_HIDING;
 		}
 
 		/// <summary>
