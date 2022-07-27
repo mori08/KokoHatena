@@ -14,7 +14,7 @@ namespace Kokoha
 	private:
 
 		// ボードのリスト
-		std::list<Board> m_boardList;
+		std::list<std::unique_ptr<Board>> m_boardList;
 
 	public:
 
@@ -39,6 +39,13 @@ namespace Kokoha
 		void draw() const;
 
 	private:
+
+		/// <summary>
+		/// ボードを先頭に表示
+		/// </summary>
+		/// <param name="role"> ボードの種類 </param>
+		/// <param name="requestText"> 開いたときrequestを投げる </param>
+		void displayBoard(const Board::Role& role, const String& requestText = U"");
 
 	};
 }
