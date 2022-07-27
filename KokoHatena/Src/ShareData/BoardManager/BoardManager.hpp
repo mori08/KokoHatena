@@ -14,7 +14,7 @@ namespace Kokoha
 	private:
 
 		// ボードのリスト
-		std::list<Board> m_boardList;
+		std::list<std::unique_ptr<Board>> m_boardList;
 
 	public:
 
@@ -39,6 +39,25 @@ namespace Kokoha
 		void draw() const;
 
 	private:
+
+		/// <summary>
+		/// Board::Roleに対応したボードのイテレータを取得
+		/// </summary>
+		/// <param name="role"> ボードの種類 </param>
+		std::list<std::unique_ptr<Board>>::iterator findBoardItr(const Board::Role& role);
+
+		/// <summary>
+		/// ボードを先頭に表示
+		/// </summary>
+		/// <param name="role"> ボードの種類 </param>
+		/// <param name="requestText"> 開いたときrequestを投げる </param>
+		void displayBoard(const Board::Role& role, const String& requestText = U"");
+
+		/// <summary>
+		/// ボードを末尾に移動させ非表示
+		/// </summary>
+		/// <param name="role"> ボードの種類 </param>
+		void hideBoard(const Board::Role& role);
 
 	};
 }
