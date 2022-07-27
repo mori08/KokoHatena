@@ -36,19 +36,19 @@ namespace Kokoha
 		}
 	}
 
+	std::list<std::unique_ptr<Board>>::iterator BoardManager::findBoardItr(const Board::Role& role)
+	{
+		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
+		{
+			if ((*itr)->role() == role) { return itr; }
+		}
+		return m_boardList.end();
+	}
+
 	void BoardManager::displayBoard(const Board::Role& role, const String& requestText)
 	{
 		// 先頭に移動させるイテレータ
-		auto boardItr = m_boardList.end();
-
-		// 指定したロールのボードのイテレータの探索
-		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
-		{
-			if ((*itr)->role() == role)
-			{
-				boardItr = itr; break;
-			}
-		}
+		auto boardItr = findBoardItr(role);
 
 		// ボードが見つからないときエラー
 		if (boardItr == m_boardList.end())
