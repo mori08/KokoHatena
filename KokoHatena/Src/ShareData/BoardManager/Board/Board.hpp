@@ -102,7 +102,7 @@ namespace Kokoha
 		/// 入力
 		/// </summary>
 		/// <returns> ボードへの命令 </returns>
-		const BoardRequest& input();
+		BoardRequest input();
 
 		/// <summary>
 		/// 更新
@@ -118,14 +118,14 @@ namespace Kokoha
 		/// 他ボードからデータの受信
 		/// </summary>
 		/// <param name="requestText"> データとなる文字列 </param>
-		virtual void receiveRequest(const String& requestText) const {}
+		virtual void receiveRequest(const String& requestText) const = 0;
 
 	protected:
 
 		/// <summary>
 		/// 各ボード固有の入力処理
 		/// </summary>
-		virtual const BoardRequest& inputInBoard() { return none; };
+		virtual BoardRequest inputInBoard() { return none; };
 
 		/// <summary>
 		/// 各ボード固有の更新処理

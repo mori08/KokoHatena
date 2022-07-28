@@ -26,7 +26,7 @@ namespace Kokoha
 		
 	}
 
-	const Board::BoardRequest& Board::input()
+	Board::BoardRequest Board::input()
 	{
 		movePosByCursor();
 

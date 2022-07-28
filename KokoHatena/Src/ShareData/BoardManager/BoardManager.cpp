@@ -63,6 +63,9 @@ namespace Kokoha
 
 		// 先頭のボードの状態をIS_DISPLAYEDに変更
 		m_boardList.front()->display();
+
+		// 先頭のボードの状態に命令を出す
+		m_boardList.front()->receiveRequest(requestText);
 	}
 
 	void BoardManager::hideBoard(const Board::Role& role)
