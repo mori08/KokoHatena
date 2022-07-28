@@ -16,12 +16,13 @@ namespace
 
 namespace Kokoha
 {
-	Board::Board(Role role, const String& name, const Size& size)
+	Board::Board(const Role& role, const String& configName, const State& state)
 		: m_role(role)
-		, m_name(name)
-		, m_pos(Scene::Center() - size/2) // 画面中心に表示
-		, m_size(size + Point::Down(controlFrameHeight()))
-		, m_render(size)
+		, m_state(state)
+		, m_name(Config::get<String>(configName + U".name"))
+		, m_size(Config::get<Size>  (configName + U".size") + Point::Down(controlFrameHeight()))
+		, m_pos(Scene::Center() - m_size/2) // 画面中心に表示
+		, m_render(m_size)
 	{
 		
 	}
@@ -70,9 +71,6 @@ namespace Kokoha
 
 	void Board::movePosByCursor()
 	{
-		ClearPrint();
-		Print << m_optMovePos;
-
 		if (MouseL.up())
 		{
 			m_optMovePos = none;

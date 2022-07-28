@@ -1,4 +1,5 @@
 #include"BoardManager.hpp"
+#include"Board/MailBoard/MailBoard.hpp"
 
 namespace Kokoha
 {
@@ -9,7 +10,9 @@ namespace Kokoha
 
 	void BoardManager::load(RecordManager&)
 	{
-		
+		m_boardList.clear();
+
+		m_boardList.emplace_back(std::make_unique<MailBoard>());
 	}
 
 	void BoardManager::update()

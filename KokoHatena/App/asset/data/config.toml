@@ -29,3 +29,7 @@
 [Board]
     frameThickness     = 2
     controlFrameHeight = 24
+
+[MessageBoard]
+    name = "メッセージ"
+    size = {x=400,y=400}

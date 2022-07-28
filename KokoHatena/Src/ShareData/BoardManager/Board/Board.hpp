@@ -15,7 +15,7 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			MAIL,     // メール
+			MESSAGE,  // メール
 			SECURITY, // セキュリティ
 			ACCESS,   // アクセス（パズルアクション部分）
 		};
@@ -44,11 +44,11 @@ namespace Kokoha
 		// 名前
 		const String m_name;
 
-		// 左上の座標
-		Point m_pos;
-
 		// サイズ
 		const Size m_size;
+
+		// 左上の座標
+		Point m_pos;
 
 		// レンダーテクスチャー（ボード内の描画）
 		const MSRenderTexture m_render;
@@ -58,7 +58,10 @@ namespace Kokoha
 
 	public:
 
-		Board(Role role, const String& name, const Size& size);
+		/// <param name="role"> 種類(役割) </param>
+		/// <param name="configName"> configファイルでの名前 </param>
+		/// <param name="state"> 初期状態 </param>
+		Board(const Role& role, const String& configName, const State& state);
 
 		virtual ~Board() = default;
 
@@ -118,24 +121,24 @@ namespace Kokoha
 		/// 他ボードからデータの受信
 		/// </summary>
 		/// <param name="requestText"> データとなる文字列 </param>
-		virtual void receiveRequest(const String& requestText) const = 0;
+		virtual void receiveRequest(const String& requestText) = 0;
 
 	protected:
 
 		/// <summary>
 		/// 各ボード固有の入力処理
 		/// </summary>
-		virtual BoardRequest inputInBoard() { return none; };
+		virtual BoardRequest inputInBoard() = 0;
 
 		/// <summary>
 		/// 各ボード固有の更新処理
 		/// </summary>
-		virtual void updateInBoard() {};
+		virtual void updateInBoard() =0 ;
 
 		/// <summary>
 		/// 各ボード固有の描画処理
 		/// </summary>
-		virtual void drawInBoard() const {};
+		virtual void drawInBoard() const = 0;
 
 	protected:
 
