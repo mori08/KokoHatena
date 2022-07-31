@@ -236,6 +236,8 @@
     <ClCompile Include="Src\Config\Config.cpp" />
     <ClCompile Include="Src\Main.cpp" />
     <ClCompile Include="Src\MyLibrary\MyLibrary.cpp" />
+    <ClCompile Include="Src\MyLibrary\SliceTexture\Animation\Animation.cpp" />
+    <ClCompile Include="Src\MyLibrary\SliceTexture\SliceTexture.cpp" />
     <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp" />
     <ClCompile Include="Src\Scene\DesktopScene\DesktopScene.cpp" />
     <ClCompile Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.cpp" />
@@ -251,7 +253,10 @@
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp" />
     <ClInclude Include="Src\Config\Config.hpp" />
+    <ClInclude Include="Src\MyLibrary\Linearly\Linearly.hpp" />
     <ClInclude Include="Src\MyLibrary\MyLibrary.hpp" />
+    <ClInclude Include="Src\MyLibrary\SliceTexture\Animation\Animation.hpp" />
+    <ClInclude Include="Src\MyLibrary\SliceTexture\SliceTexture.hpp" />
     <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp" />
     <ClInclude Include="Src\Scene\DesktopScene\DesktopScene.hpp" />
     <ClInclude Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.hpp" />
