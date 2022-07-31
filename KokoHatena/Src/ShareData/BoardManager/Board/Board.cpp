@@ -64,6 +64,8 @@ namespace Kokoha
 	{
 		// フレームの太さ
 		static const double FRAME_THICKNESS = Config::get<double>(U"Board.frameThickness");
+		// 名前を描画する座標
+		static const Point NAME_POS = Config::get<Point>(U"Board.namePos");
 
 		// レンダーテクスチャーのクリア
 		m_render.clear(MyBlack);
@@ -83,6 +85,8 @@ namespace Kokoha
 		Rect(m_pos, m_size).drawFrame(FRAME_THICKNESS, 0, MyWhite);
 		// フレーム上部の操作盤
 		Rect(m_pos, m_size.x, controlFrameHeight()).draw(MyWhite);
+		TextureAsset(U"Small" + m_iconTextureName).draw(m_pos);
+		FontAsset(U"15")(m_name).draw(m_pos + NAME_POS, MyBlack);
 	}
 
 	Vec2 Board::cursorPosFInBoard() const
