@@ -138,6 +138,18 @@
     <Filter Include="Src\SceneShareData\BoardManager\Board">
       <UniqueIdentifier>{27e9c5dc-089e-4de5-86b6-dcc8fbf4bd55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\SceneShareData\BoardManager\Board\MailBoard">
+      <UniqueIdentifier>{bd8d836d-a1e7-419e-b227-dc7cd6557ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\MyLibrary\Linearly">
+      <UniqueIdentifier>{a5cc5f06-7662-4eb4-bfe5-81f65e0c87a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\MyLibrary\SliceTexture">
+      <UniqueIdentifier>{a6002c5c-ee54-4dc8-aba9-b5b2a4fd24a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\MyLibrary\SliceTexture\Animation">
+      <UniqueIdentifier>{a818f821-15ca-4708-a121-ea9b67345d5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -451,6 +463,15 @@
     <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp">
       <Filter>Src\SceneShareData\BoardManager</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.cpp">
+      <Filter>Src\SceneShareData\BoardManager\Board\MailBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MyLibrary\SliceTexture\Animation\Animation.cpp">
+      <Filter>Src\MyLibrary\SliceTexture\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MyLibrary\SliceTexture\SliceTexture.cpp">
+      <Filter>Src\MyLibrary\SliceTexture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -494,6 +515,18 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp">
       <Filter>Src\SceneShareData\BoardManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.hpp">
+      <Filter>Src\SceneShareData\BoardManager\Board\MailBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\MyLibrary\Linearly\Linearly.hpp">
+      <Filter>Src\MyLibrary\Linearly</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\MyLibrary\SliceTexture\SliceTexture.hpp">
+      <Filter>Src\MyLibrary\SliceTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\MyLibrary\SliceTexture\Animation\Animation.hpp">
+      <Filter>Src\MyLibrary\SliceTexture\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

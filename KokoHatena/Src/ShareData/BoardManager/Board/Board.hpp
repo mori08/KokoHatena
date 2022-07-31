@@ -1,5 +1,5 @@
 #pragma once
-#include<Siv3D.hpp>
+#include"../../../MyLibrary/SliceTexture/SliceTexture.hpp"
 
 namespace Kokoha
 {
@@ -15,7 +15,7 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			MAIL,     // メール
+			MESSAGE,  // メール
 			SECURITY, // セキュリティ
 			ACCESS,   // アクセス（パズルアクション部分）
 		};
@@ -44,11 +44,11 @@ namespace Kokoha
 		// 名前
 		const String m_name;
 
-		// 左上の座標
-		Point m_pos;
-
 		// サイズ
 		const Size m_size;
+
+		// 左上の座標
+		Point m_pos;
 
 		// レンダーテクスチャー（ボード内の描画）
 		const MSRenderTexture m_render;
@@ -56,9 +56,18 @@ namespace Kokoha
 		// 座標移動時の基準座標 (noneのとき移動しない)
 		Optional<Point> m_optMovePos;
 
+		// アイコン画像の名前
+		String m_iconTextureName;
+
+		// アイコンの表示順(-1だと非表示)
+		const int32 m_iconOrder;
+
 	public:
 
-		Board(Role role, const String& name, const Size& size);
+		/// <param name="role"> 種類(役割) </param>
+		/// <param name="configName"> configファイルでの名前 </param>
+		/// <param name="state"> 初期状態 </param>
+		Board(const Role& role, const String& configName, const State& state);
 
 		virtual ~Board() = default;
 
@@ -99,10 +108,26 @@ namespace Kokoha
 		}
 
 		/// <summary>
+		/// アイコンがクリックされたか
+		/// </summary>
+		/// <returns> 
+		/// 以下の条件を全て満たすとき true , それ以外の場合false
+		/// * アイコンがクリックされた
+		/// * m_stateがNONEでない
+		/// * m_iconOrderが-1でない
+		/// </returns>
+		bool onIconClicked() const;
+
+		/// <summary>
+		/// アイコンの描画
+		/// </summary>
+		void drawIcon() const;
+
+		/// <summary>
 		/// 入力
 		/// </summary>
 		/// <returns> ボードへの命令 </returns>
-		const BoardRequest& input();
+		BoardRequest input();
 
 		/// <summary>
 		/// 更新
@@ -118,24 +143,24 @@ namespace Kokoha
 		/// 他ボードからデータの受信
 		/// </summary>
 		/// <param name="requestText"> データとなる文字列 </param>
-		virtual void receiveRequest(const String& requestText) const {}
+		virtual void receiveRequest(const String& requestText) = 0;
 
 	protected:
 
 		/// <summary>
 		/// 各ボード固有の入力処理
 		/// </summary>
-		virtual const BoardRequest& inputInBoard() { return none; };
+		virtual BoardRequest inputInBoard() = 0;
 
 		/// <summary>
 		/// 各ボード固有の更新処理
 		/// </summary>
-		virtual void updateInBoard() {};
+		virtual void updateInBoard() = 0;
 
 		/// <summary>
 		/// 各ボード固有の描画処理
 		/// </summary>
-		virtual void drawInBoard() const {};
+		virtual void drawInBoard() const = 0;
 
 	protected:
 
@@ -160,6 +185,12 @@ namespace Kokoha
 		/// カーソルで座標を移動する
 		/// </summary>
 		void movePosByCursor();
+
+		/// <summary>
+		/// アイコンの範囲の取得
+		/// </summary>
+		/// <returns> アイコンの範囲の長方形 </returns>
+		const Rect getIconRect() const;
 
 	};
 }

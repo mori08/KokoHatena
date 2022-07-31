@@ -236,6 +236,8 @@
     <ClCompile Include="Src\Config\Config.cpp" />
     <ClCompile Include="Src\Main.cpp" />
     <ClCompile Include="Src\MyLibrary\MyLibrary.cpp" />
+    <ClCompile Include="Src\MyLibrary\SliceTexture\Animation\Animation.cpp" />
+    <ClCompile Include="Src\MyLibrary\SliceTexture\SliceTexture.cpp" />
     <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp" />
     <ClCompile Include="Src\Scene\DesktopScene\DesktopScene.cpp" />
     <ClCompile Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.cpp" />
@@ -243,6 +245,7 @@
     <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.cpp" />
     <ClCompile Include="Src\ShareData\RecordManager\RecordManager.cpp" />
     <ClCompile Include="Src\ShareData\RecordManager\Record\Record.cpp" />
   </ItemGroup>
@@ -250,7 +253,10 @@
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp" />
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp" />
     <ClInclude Include="Src\Config\Config.hpp" />
+    <ClInclude Include="Src\MyLibrary\Linearly\Linearly.hpp" />
     <ClInclude Include="Src\MyLibrary\MyLibrary.hpp" />
+    <ClInclude Include="Src\MyLibrary\SliceTexture\Animation\Animation.hpp" />
+    <ClInclude Include="Src\MyLibrary\SliceTexture\SliceTexture.hpp" />
     <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp" />
     <ClInclude Include="Src\Scene\DesktopScene\DesktopScene.hpp" />
     <ClInclude Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.hpp" />
@@ -259,6 +265,7 @@
     <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.hpp" />
     <ClInclude Include="Src\ShareData\RecordManager\RecordManager.hpp" />
     <ClInclude Include="Src\ShareData\RecordManager\Record\Record.hpp" />
   </ItemGroup>

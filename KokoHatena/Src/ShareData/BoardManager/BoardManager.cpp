@@ -1,4 +1,7 @@
 #include"BoardManager.hpp"
+#include"Board/MailBoard/MailBoard.hpp"
+#include"../../Config/Config.hpp"
+#include"../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
@@ -9,7 +12,9 @@ namespace Kokoha
 
 	void BoardManager::load(RecordManager&)
 	{
-		
+		m_boardList.clear();
+
+		m_boardList.emplace_back(std::make_unique<MailBoard>());
 	}
 
 	void BoardManager::update()
@@ -33,6 +38,16 @@ namespace Kokoha
 		for (const auto& board : m_boardList)
 		{
 			board->draw();
+		}
+
+		// アイコンの描画
+		static const int32 ICON_BAR_HEIGHT = Config::get<int32>(U"Board.iconSize.y");
+		const Rect iconBar(0, Scene::Height() - ICON_BAR_HEIGHT, Scene::Width(), ICON_BAR_HEIGHT);
+		iconBar.draw(MyBlack);
+		iconBar.drawFrame(0, 2, MyWhite);
+		for (const auto& board : m_boardList)
+		{
+			board->drawIcon();
 		}
 	}
 
@@ -63,6 +78,9 @@ namespace Kokoha
 
 		// 先頭のボードの状態をIS_DISPLAYEDに変更
 		m_boardList.front()->display();
+
+		// 先頭のボードの状態に命令を出す
+		m_boardList.front()->receiveRequest(requestText);
 	}
 
 	void BoardManager::hideBoard(const Board::Role& role)

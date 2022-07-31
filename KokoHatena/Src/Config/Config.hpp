@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../ButtonSet/Button/Button.hpp"
+#include "../MyLibrary/SliceTexture/Animation/Animation.hpp"
 
 namespace Kokoha
 {
@@ -104,4 +105,19 @@ namespace Kokoha
 		);
 	}
 
+	template<>
+	inline Animation Config::get(const String& name)
+	{
+		PosOrder posOrder;
+		for (const auto& obj : instance().m_toml[name][U"posOrder"].tableArrayView())
+		{
+			std::pair<double, Point> timePos;
+			timePos.first = obj[U"t"].get<double>();
+			timePos.second.x = obj[U"x"].get<int32>();
+			timePos.second.y = obj[U"y"].get<int32>();
+			posOrder << timePos;
+		}
+		bool loop = instance().m_toml[name][U"loop"].get<bool>();
+		return std::move(Animation(posOrder, loop));
+	}
 }
