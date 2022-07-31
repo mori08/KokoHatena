@@ -31,16 +31,6 @@
     controlFrameHeight = 30
     namePos            = {x=35,y=4}
     iconSize           = {x=60,y=60}
-    [Board.iconDisplayAnim]
-        posOrder = [
-            {t=0,x=0,y=0}
-        ]
-        loop = false
-    [Board.iconHideAnim]
-        posOrder = [
-            {t=0,x=1,y=0}
-        ]
-        loop = false
 
 [MailBoard]
     name = "メール"

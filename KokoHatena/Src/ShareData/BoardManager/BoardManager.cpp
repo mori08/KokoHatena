@@ -1,5 +1,7 @@
 #include"BoardManager.hpp"
 #include"Board/MailBoard/MailBoard.hpp"
+#include"../../Config/Config.hpp"
+#include"../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
@@ -39,6 +41,10 @@ namespace Kokoha
 		}
 
 		// ƒAƒCƒRƒ“‚Ì•`‰æ
+		static const int32 ICON_BAR_HEIGHT = Config::get<int32>(U"Board.iconSize.y");
+		const Rect iconBar(0, Scene::Height() - ICON_BAR_HEIGHT, Scene::Width(), ICON_BAR_HEIGHT);
+		iconBar.draw(MyBlack);
+		iconBar.drawFrame(0, 2, MyWhite);
 		for (const auto& board : m_boardList)
 		{
 			board->drawIcon();
