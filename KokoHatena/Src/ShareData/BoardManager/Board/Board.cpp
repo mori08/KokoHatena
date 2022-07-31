@@ -26,8 +26,27 @@ namespace Kokoha
 		, m_iconTextureName(configName)
 		, m_iconOrder(Config::get<int32>(configName + U".iconOrder") )
 	{
-		
 	}
+
+
+	bool Board::onIconClicked() const
+	{
+		return m_state != State::NONE
+			&& m_iconOrder >= 0
+			&& getIconRect().leftClicked();
+	}
+
+	void Board::drawIcon() const
+	{
+		if (m_iconOrder < 0 || m_state == State::NONE) { return; }
+
+		const Rect iconRect = getIconRect();
+		
+		TextureAsset(m_iconTextureName)
+			(0, (m_state == State::IS_DISPLAYED) * iconRect.h, iconRect.size)
+			.drawAt(iconRect.center());
+	}
+
 
 	Board::BoardRequest Board::input()
 	{
@@ -91,14 +110,14 @@ namespace Kokoha
 		m_pos.y = Clamp(m_pos.y, 0, Scene::Size().y - m_size.y);
 	}
 
-	Rect Board::iconRect() const
+	const Rect Board::getIconRect() const
 	{
 		// アイコンのサイズ
 		static const Size iconSize = Config::get<Size>(U"Board.iconSize");
 
 		return Rect(
 			m_iconOrder*iconSize.x,
-			-iconSize.y,
+			Scene::Height() - iconSize.y,
 			iconSize
 		);
 	}

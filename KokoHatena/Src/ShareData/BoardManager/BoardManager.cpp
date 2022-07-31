@@ -32,6 +32,12 @@ namespace Kokoha
 
 	void BoardManager::draw() const
 	{
+		// アイコンの描画
+		for (const auto& board : m_boardList)
+		{
+			board->drawIcon();
+		}
+
 		// 表示中のボードの描画
 		for (const auto& board : m_boardList)
 		{

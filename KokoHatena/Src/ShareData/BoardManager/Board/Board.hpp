@@ -1,5 +1,5 @@
 #pragma once
-#include<Siv3D.hpp>
+#include"../../../MyLibrary/SliceTexture/SliceTexture.hpp"
 
 namespace Kokoha
 {
@@ -57,7 +57,7 @@ namespace Kokoha
 		Optional<Point> m_optMovePos;
 
 		// アイコン画像の名前
-		const String m_iconTextureName;
+		String m_iconTextureName;
 
 		// アイコンの表示順(-1だと非表示)
 		const int32 m_iconOrder;
@@ -106,6 +106,22 @@ namespace Kokoha
 		{
 			m_state = State::IS_HIDING;
 		}
+
+		/// <summary>
+		/// アイコンがクリックされたか
+		/// </summary>
+		/// <returns> 
+		/// 以下の条件を全て満たすとき true , それ以外の場合false
+		/// * アイコンがクリックされた
+		/// * m_stateがNONEでない
+		/// * m_iconOrderが-1でない
+		/// </returns>
+		bool onIconClicked() const;
+
+		/// <summary>
+		/// アイコンの描画
+		/// </summary>
+		void drawIcon() const;
 
 		/// <summary>
 		/// 入力
@@ -174,7 +190,7 @@ namespace Kokoha
 		/// アイコンの範囲の取得
 		/// </summary>
 		/// <returns> アイコンの範囲の長方形 </returns>
-		Rect iconRect() const;
+		const Rect getIconRect() const;
 
 	};
 }
