@@ -23,6 +23,8 @@ namespace Kokoha
 		, m_size(Config::get<Size>  (configName + U".size") + Point::Down(controlFrameHeight()))
 		, m_pos(Scene::Center() - m_size/2) // 画面中心に表示
 		, m_render(m_size)
+		, m_iconTextureName(configName)
+		, m_iconOrder(Config::get<int32>(configName + U".iconOrder") )
 	{
 		
 	}
@@ -87,5 +89,17 @@ namespace Kokoha
 		m_pos = Cursor::Pos() - m_optMovePos.value();
 		m_pos.x = Clamp(m_pos.x, 0, Scene::Size().x - m_size.x);
 		m_pos.y = Clamp(m_pos.y, 0, Scene::Size().y - m_size.y);
+	}
+
+	Rect Board::iconRect() const
+	{
+		// アイコンのサイズ
+		static const Size iconSize = Config::get<Size>(U"Board.iconSize");
+
+		return Rect(
+			m_iconOrder*iconSize.x,
+			-iconSize.y,
+			iconSize
+		);
 	}
 }

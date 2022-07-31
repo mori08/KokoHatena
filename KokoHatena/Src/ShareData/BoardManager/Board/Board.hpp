@@ -56,6 +56,12 @@ namespace Kokoha
 		// 座標移動時の基準座標 (noneのとき移動しない)
 		Optional<Point> m_optMovePos;
 
+		// アイコン画像の名前
+		const String m_iconTextureName;
+
+		// アイコンの表示順(-1だと非表示)
+		const int32 m_iconOrder;
+
 	public:
 
 		/// <param name="role"> 種類(役割) </param>
@@ -133,7 +139,7 @@ namespace Kokoha
 		/// <summary>
 		/// 各ボード固有の更新処理
 		/// </summary>
-		virtual void updateInBoard() =0 ;
+		virtual void updateInBoard() = 0;
 
 		/// <summary>
 		/// 各ボード固有の描画処理
@@ -163,6 +169,12 @@ namespace Kokoha
 		/// カーソルで座標を移動する
 		/// </summary>
 		void movePosByCursor();
+
+		/// <summary>
+		/// アイコンの範囲の取得
+		/// </summary>
+		/// <returns> アイコンの範囲の長方形 </returns>
+		Rect iconRect() const;
 
 	};
 }

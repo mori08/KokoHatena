@@ -29,7 +29,9 @@
 [Board]
     frameThickness     = 2
     controlFrameHeight = 24
+    iconSize           = {x=60,y=60}
 
-[MessageBoard]
-    name = "メッセージ"
+[MailBoard]
+    name = "メール"
     size = {x=400,y=400}
+    iconOrder = 0
