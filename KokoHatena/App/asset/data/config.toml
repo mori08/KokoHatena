@@ -36,3 +36,8 @@
     name = "メール"
     size = {x=400,y=400}
     iconOrder = 0
+
+[AccessBoard]
+    name = "アクセス"
+    size = {x=400,y=300}
+    iconOrder = 1
