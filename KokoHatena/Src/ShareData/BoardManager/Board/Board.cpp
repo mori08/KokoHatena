@@ -36,6 +36,13 @@ namespace Kokoha
 			&& getIconRect().leftClicked();
 	}
 
+	bool Board::mouseLeftDown() const
+	{
+		return m_state == State::IS_DISPLAYED
+			&& Rect(m_pos, m_size + Point::Down(controlFrameHeight())).leftClicked()
+			&& Cursor::Pos().y < Scene::Height() - getIconRect().h;
+	}
+
 	void Board::drawIcon() const
 	{
 		if (m_iconOrder < 0 || m_state == State::NONE) { return; }

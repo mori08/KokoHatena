@@ -119,6 +119,14 @@ namespace Kokoha
 		bool onIconClicked() const;
 
 		/// <summary>
+		/// ボードがクリックされたか
+		/// </summary>
+		/// <returns>
+		/// m_stateがDISPLAYED かつ ボードがクリックされたとき true , そうでないとき false
+		/// </returns>
+		bool mouseLeftDown() const;
+
+		/// <summary>
 		/// アイコンの描画
 		/// </summary>
 		void drawIcon() const;

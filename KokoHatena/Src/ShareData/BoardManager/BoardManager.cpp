@@ -39,6 +39,15 @@ namespace Kokoha
 			break;
 		}
 
+		for (const auto& boardPtr: m_boardList)
+		{
+			if (!boardPtr->mouseLeftDown()) { continue; }
+
+			displayBoard(boardPtr->role());
+
+			break;
+		}
+
 		// 先頭ボードの入力を受け付ける
 		if (!m_boardList.empty())
 		{
