@@ -131,7 +131,7 @@ namespace Kokoha
 		static const Size iconSize = Config::get<Size>(U"Board.iconSize");
 
 		return Rect(
-			m_iconOrder*iconSize.x,
+			m_iconOrder * iconSize.x,
 			Scene::Height() - iconSize.y,
 			iconSize
 		);

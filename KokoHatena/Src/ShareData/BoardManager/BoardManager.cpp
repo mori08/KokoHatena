@@ -39,6 +39,7 @@ namespace Kokoha
 			break;
 		}
 
+		// ボードをクリックしたとき先頭へ移動させる
 		for (const auto& boardPtr: m_boardList)
 		{
 			if (!boardPtr->mouseLeftDown()) { continue; }
@@ -49,9 +50,14 @@ namespace Kokoha
 		}
 
 		// 先頭ボードの入力を受け付ける
-		if (!m_boardList.empty())
+		if (!m_boardList.empty() && m_boardList.front()->state() == Board::State::IS_DISPLAYED)
 		{
 			const auto& boardRequest = m_boardList.front()->input();
+			
+			if (boardRequest) // ボードへ命令を送る
+			{
+				displayBoard(boardRequest->first, boardRequest->second);
+			}
 		}
 
 		// 表示中のボードの更新
@@ -88,7 +94,8 @@ namespace Kokoha
 		{
 			if ((*itr)->role() == role) { return itr; }
 		}
-		return m_boardList.end();
+
+		throw Error(U"Faild to find Board");
 	}
 
 	void BoardManager::displayBoard(const Board::Role& role, const String& requestText)

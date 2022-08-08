@@ -15,7 +15,7 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			MESSAGE,  // メール
+			MAIL,     // メール
 			SECURITY, // セキュリティ
 			ACCESS,   // アクセス（パズルアクション部分）
 		};
@@ -186,6 +186,12 @@ namespace Kokoha
 		/// </summary>
 		/// <returns> ボード内のマウス座標 </returns>
 		Vec2 cursorPosFInBoard() const;
+
+		
+		static const std::pair<Role, String> makeRequest(Role role, const String& text)
+		{
+			return std::pair<Role, String>(role, text);
+		}
 
 	private:
 
