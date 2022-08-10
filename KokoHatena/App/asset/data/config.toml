@@ -31,6 +31,7 @@
     controlFrameHeight = 30
     namePos            = {x=35,y=4}
     iconSize           = {x=60,y=60}
+    hideButtonSize     = {x=30,y=30}
 
 [MailBoard]
     name = "メール"

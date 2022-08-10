@@ -206,5 +206,11 @@ namespace Kokoha
 		/// <returns> アイコンの範囲の長方形 </returns>
 		const Rect getIconRect() const;
 
+		/// <summary>
+		/// 非表示ボタンの範囲を示す長方形の取得
+		/// </summary>
+		/// <returns> 非表示ボタンの範囲 </returns>
+		const Rect hideButtonRect() const;
+
 	};
 }

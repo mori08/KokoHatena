@@ -97,6 +97,7 @@ namespace Kokoha
 		// フレーム上部の操作盤
 		Rect(m_pos, m_size.x, controlFrameHeight()).draw(MyWhite);
 		TextureAsset(U"Small" + m_iconTextureName).draw(m_pos);
+		TextureAsset(U"HideButton").draw(m_pos + hideButtonRect().pos);
 		FontAsset(U"15")(m_name).draw(m_pos + NAME_POS, MyBlack);
 	}
 
@@ -134,6 +135,18 @@ namespace Kokoha
 			m_iconOrder * iconSize.x,
 			Scene::Height() - iconSize.y,
 			iconSize
+		);
+	}
+
+	const Rect Board::hideButtonRect() const
+	{
+		// アイコンのサイズ
+		static const Size buttonSize = Config::get<Size>(U"Board.hideButtonSize");
+
+		return Rect(
+			m_size.x - buttonSize.x,
+			0,
+			buttonSize
 		);
 	}
 }
