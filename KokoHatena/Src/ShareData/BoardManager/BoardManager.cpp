@@ -56,7 +56,14 @@ namespace Kokoha
 			
 			if (boardRequest) // ボードへ命令を送る
 			{
-				displayBoard(boardRequest->first, boardRequest->second);
+				if (boardRequest->second == U"hide") // 非表示の命令の場合
+				{
+					hideBoard(boardRequest->first);
+				}
+				else
+				{
+					displayBoard(boardRequest->first, boardRequest->second);
+				}
 			}
 		}
 
@@ -69,7 +76,9 @@ namespace Kokoha
 
 	void BoardManager::draw() const
 	{
-		Scene::Rect().draw(Palette::Gray);
+		// 背景の表示
+		static const ColorF BACKGROUND_COLOR = Config::get<ColorF>(U"DesktopScene.backgroundColor");
+		Scene::Rect().draw(BACKGROUND_COLOR);
 
 		// 表示中のボードの描画
 		for (auto itr = m_boardList.rbegin(); itr != m_boardList.rend(); ++itr)

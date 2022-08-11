@@ -57,6 +57,11 @@ namespace Kokoha
 
 	Board::BoardRequest Board::input()
 	{
+		if (hideButtonRect().movedBy(m_pos).leftClicked())
+		{
+			return makeRequest(m_role, U"hide");
+		}
+			
 		movePosByCursor();
 
 		return inputInBoard();

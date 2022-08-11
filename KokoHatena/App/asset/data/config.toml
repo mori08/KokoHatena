@@ -26,6 +26,9 @@
     textPos            = {x=690,y=530}
     maxDotNum          = 4
 
+[DesktopScene]
+    backgroundColor = {rgb=0.2}
+
 [Board]
     frameThickness     = 2
     controlFrameHeight = 30
