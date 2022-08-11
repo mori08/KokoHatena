@@ -4,7 +4,7 @@
 namespace Kokoha
 {
 	MailBoard::MailBoard()
-		: Board(Role::MESSAGE
+		: Board(Role::MAIL
 			, U"MailBoard"
 			, State::IS_HIDING
 		)

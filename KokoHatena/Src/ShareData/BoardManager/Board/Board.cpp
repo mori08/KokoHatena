@@ -20,7 +20,7 @@ namespace Kokoha
 		: m_role(role)
 		, m_state(state)
 		, m_name(Config::get<String>(configName + U".name"))
-		, m_size(Config::get<Size>  (configName + U".size") + Point::Down(controlFrameHeight()))
+		, m_size(Config::get<Size>  (configName + U".size"))
 		, m_pos(Scene::Center() - m_size/2) // 画面中心に表示
 		, m_render(m_size)
 		, m_iconTextureName(configName)
@@ -34,6 +34,13 @@ namespace Kokoha
 		return m_state != State::NONE
 			&& m_iconOrder >= 0
 			&& getIconRect().leftClicked();
+	}
+
+	bool Board::mouseLeftDown() const
+	{
+		return m_state == State::IS_DISPLAYED
+			&& Rect(m_pos, m_size + Point::Down(controlFrameHeight())).leftClicked()
+			&& Cursor::Pos().y < Scene::Height() - getIconRect().h;
 	}
 
 	void Board::drawIcon() const
@@ -50,6 +57,11 @@ namespace Kokoha
 
 	Board::BoardRequest Board::input()
 	{
+		if (hideButtonRect().movedBy(m_pos).leftClicked())
+		{
+			return makeRequest(m_role, U"hide");
+		}
+			
 		movePosByCursor();
 
 		return inputInBoard();
@@ -57,11 +69,15 @@ namespace Kokoha
 
 	void Board::update()
 	{
+		if (m_state != State::IS_DISPLAYED) { return; }
+
 		updateInBoard();
 	}
 
 	void Board::draw() const
 	{
+		if (m_state != State::IS_DISPLAYED) { return; }
+
 		// フレームの太さ
 		static const double FRAME_THICKNESS = Config::get<double>(U"Board.frameThickness");
 		// 名前を描画する座標
@@ -82,10 +98,11 @@ namespace Kokoha
 		m_render.draw(m_pos + Point::Down(controlFrameHeight()));
 
 		// フレームの描画
-		Rect(m_pos, m_size).drawFrame(FRAME_THICKNESS, 0, MyWhite);
+		Rect(m_pos, m_size + Point::Down(controlFrameHeight())).drawFrame(FRAME_THICKNESS, 0, MyWhite);
 		// フレーム上部の操作盤
 		Rect(m_pos, m_size.x, controlFrameHeight()).draw(MyWhite);
 		TextureAsset(U"Small" + m_iconTextureName).draw(m_pos);
+		TextureAsset(U"HideButton").draw(m_pos + hideButtonRect().pos);
 		FontAsset(U"15")(m_name).draw(m_pos + NAME_POS, MyBlack);
 	}
 
@@ -120,9 +137,21 @@ namespace Kokoha
 		static const Size iconSize = Config::get<Size>(U"Board.iconSize");
 
 		return Rect(
-			m_iconOrder*iconSize.x,
+			m_iconOrder * iconSize.x,
 			Scene::Height() - iconSize.y,
 			iconSize
+		);
+	}
+
+	const Rect Board::hideButtonRect() const
+	{
+		// アイコンのサイズ
+		static const Size buttonSize = Config::get<Size>(U"Board.hideButtonSize");
+
+		return Rect(
+			m_size.x - buttonSize.x,
+			0,
+			buttonSize
 		);
 	}
 }

@@ -1,5 +1,6 @@
 #include"BoardManager.hpp"
 #include"Board/MailBoard/MailBoard.hpp"
+#include"Board/AccessBoard/AccessBoard.hpp"
 #include"../../Config/Config.hpp"
 #include"../../MyLibrary/MyLibrary.hpp"
 
@@ -15,14 +16,55 @@ namespace Kokoha
 		m_boardList.clear();
 
 		m_boardList.emplace_back(std::make_unique<MailBoard>());
+		m_boardList.emplace_back(std::make_unique<AccessBoard>());
 	}
 
 	void BoardManager::update()
 	{
+		// アイコンを押したときの処理
+		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
+		{
+			if (!(*itr)->onIconClicked()) { continue; }
+
+			const bool isTop = (itr == m_boardList.begin() && (*itr)->state() == Board::State::IS_DISPLAYED);
+			if (isTop) // ボードが先頭で表示中のとき
+			{
+				hideBoard((*itr)->role()); // 非表示にする
+			}
+			else // ボードが先頭にないとき
+			{
+				displayBoard((*itr)->role()); // 先頭に表示する
+			}
+
+			break;
+		}
+
+		// ボードをクリックしたとき先頭へ移動させる
+		for (const auto& boardPtr: m_boardList)
+		{
+			if (!boardPtr->mouseLeftDown()) { continue; }
+
+			displayBoard(boardPtr->role());
+
+			break;
+		}
+
 		// 先頭ボードの入力を受け付ける
-		if (!m_boardList.empty())
+		if (!m_boardList.empty() && m_boardList.front()->state() == Board::State::IS_DISPLAYED)
 		{
 			const auto& boardRequest = m_boardList.front()->input();
+			
+			if (boardRequest) // ボードへ命令を送る
+			{
+				if (boardRequest->second == U"hide") // 非表示の命令の場合
+				{
+					hideBoard(boardRequest->first);
+				}
+				else
+				{
+					displayBoard(boardRequest->first, boardRequest->second);
+				}
+			}
 		}
 
 		// 表示中のボードの更新
@@ -34,10 +76,14 @@ namespace Kokoha
 
 	void BoardManager::draw() const
 	{
+		// 背景の表示
+		static const ColorF BACKGROUND_COLOR = Config::get<ColorF>(U"DesktopScene.backgroundColor");
+		Scene::Rect().draw(BACKGROUND_COLOR);
+
 		// 表示中のボードの描画
-		for (const auto& board : m_boardList)
+		for (auto itr = m_boardList.rbegin(); itr != m_boardList.rend(); ++itr)
 		{
-			board->draw();
+			(*itr)->draw();
 		}
 
 		// アイコンの描画
@@ -57,7 +103,8 @@ namespace Kokoha
 		{
 			if ((*itr)->role() == role) { return itr; }
 		}
-		return m_boardList.end();
+
+		throw Error(U"Faild to find Board");
 	}
 
 	void BoardManager::displayBoard(const Board::Role& role, const String& requestText)
@@ -100,6 +147,6 @@ namespace Kokoha
 		m_boardList.emplace_back(std::move(boardPtr));
 
 		// 末尾のボードの状態をIS_HIDINGに変更
-		m_boardList.front()->hide();
+		m_boardList.back()->hide();
 	}
 }

@@ -15,7 +15,7 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			MESSAGE,  // メール
+			MAIL,     // メール
 			SECURITY, // セキュリティ
 			ACCESS,   // アクセス（パズルアクション部分）
 		};
@@ -119,6 +119,14 @@ namespace Kokoha
 		bool onIconClicked() const;
 
 		/// <summary>
+		/// ボードがクリックされたか
+		/// </summary>
+		/// <returns>
+		/// m_stateがDISPLAYED かつ ボードがクリックされたとき true , そうでないとき false
+		/// </returns>
+		bool mouseLeftDown() const;
+
+		/// <summary>
 		/// アイコンの描画
 		/// </summary>
 		void drawIcon() const;
@@ -179,6 +187,12 @@ namespace Kokoha
 		/// <returns> ボード内のマウス座標 </returns>
 		Vec2 cursorPosFInBoard() const;
 
+		
+		static const std::pair<Role, String> makeRequest(Role role, const String& text)
+		{
+			return std::pair<Role, String>(role, text);
+		}
+
 	private:
 
 		/// <summary>
@@ -191,6 +205,12 @@ namespace Kokoha
 		/// </summary>
 		/// <returns> アイコンの範囲の長方形 </returns>
 		const Rect getIconRect() const;
+
+		/// <summary>
+		/// 非表示ボタンの範囲を示す長方形の取得
+		/// </summary>
+		/// <returns> 非表示ボタンの範囲 </returns>
+		const Rect hideButtonRect() const;
 
 	};
 }

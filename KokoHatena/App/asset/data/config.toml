@@ -26,13 +26,22 @@
     textPos            = {x=690,y=530}
     maxDotNum          = 4
 
+[DesktopScene]
+    backgroundColor = {rgb=0.2}
+
 [Board]
     frameThickness     = 2
     controlFrameHeight = 30
     namePos            = {x=35,y=4}
     iconSize           = {x=60,y=60}
+    hideButtonSize     = {x=30,y=30}
 
 [MailBoard]
     name = "メール"
     size = {x=400,y=400}
     iconOrder = 0
+
+[AccessBoard]
+    name = "アクセス"
+    size = {x=400,y=300}
+    iconOrder = 1

@@ -150,6 +150,9 @@
     <Filter Include="Src\MyLibrary\SliceTexture\Animation">
       <UniqueIdentifier>{a818f821-15ca-4708-a121-ea9b67345d5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\SceneShareData\BoardManager\Board\AccessBoard">
+      <UniqueIdentifier>{5c495aca-bdc3-47b2-9c34-2cc67aeedb04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -472,6 +475,9 @@
     <ClCompile Include="Src\MyLibrary\SliceTexture\SliceTexture.cpp">
       <Filter>Src\MyLibrary\SliceTexture</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.cpp">
+      <Filter>Src\SceneShareData\BoardManager\Board\AccessBoard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -527,6 +533,9 @@
     </ClInclude>
     <ClInclude Include="Src\MyLibrary\SliceTexture\Animation\Animation.hpp">
       <Filter>Src\MyLibrary\SliceTexture\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.hpp">
+      <Filter>Src\SceneShareData\BoardManager\Board\AccessBoard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
