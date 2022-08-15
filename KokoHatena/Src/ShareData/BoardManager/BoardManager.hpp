@@ -1,6 +1,6 @@
 #pragma once
 #include"Board/Board.hpp"
-#include"../RecordManager/RecordManager.hpp"
+#include"../RecordSet/RecordSet.hpp"
 
 namespace Kokoha
 {
@@ -25,8 +25,8 @@ namespace Kokoha
 		/// <summary>
 		/// Recordから
 		/// </summary>
-		/// <param name="recordManager"></param>
-		void load(RecordManager& recordManager);
+		/// <param name="recordSet"> セーブデータ </param>
+		void load(RecordSet& recordSet);
 
 		/// <summary>
 		/// 更新
