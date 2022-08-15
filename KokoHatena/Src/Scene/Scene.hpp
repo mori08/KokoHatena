@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include"../ShareData/RecordManager/RecordManager.hpp"
 #include"../ShareData/BoardManager/BoardManager.hpp"
 
 
@@ -22,7 +21,6 @@ namespace Kokoha
 	{
 	public:
 
-		RecordManager record;
 		BoardManager board;
 
 	};

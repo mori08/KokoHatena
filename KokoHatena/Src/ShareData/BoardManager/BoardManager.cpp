@@ -11,7 +11,7 @@ namespace Kokoha
 
 	}
 
-	void BoardManager::load(RecordManager&)
+	void BoardManager::load(RecordSet&)
 	{
 		m_boardList.clear();
 
