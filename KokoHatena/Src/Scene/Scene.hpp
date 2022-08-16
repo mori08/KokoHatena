@@ -2,6 +2,7 @@
 
 
 #include"../ShareData/BoardManager/BoardManager.hpp"
+#include"../ShareData/RecordSet/RecordSet.hpp"
 
 
 // シーンの名前
@@ -21,7 +22,14 @@ namespace Kokoha
 	{
 	public:
 
+		// ボードの管理
 		BoardManager board;
+		
+		// セーブデータと対応するRecordSetのリスト
+		std::list<RecordSet> recordSetList;
+
+		// Boardに対応させたRecord
+		RecordSet nowRecordSet;
 
 	};
 }

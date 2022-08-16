@@ -10,13 +10,15 @@ namespace Kokoha
 	/// </summary>
 	class RecordSet
 	{
+	public:
+
+		// レコードを保存するファイル名
+		static const String FILE_NAME;
+
 	private:
 
 		// Recordのマップ
 		std::map<String, Record> m_recordMap;
-
-		// 読み込みに失敗しているとき true , そうでないとき false
-		bool m_isError;
 
 	public:
 
@@ -26,16 +28,16 @@ namespace Kokoha
 		RecordSet();
 
 		/// <summary>
-		/// 文字列を復号しRecordに設定
+		/// 暗号文を復号し、フラグのリストに格納する
 		/// </summary>
-		/// <param name="text"></param>
-		RecordSet(const String& str);
+		/// <param name="str"> 暗号化された文字列 </param>
+		static Optional<RecordSet> decryption(const String& str);
 
 		/// <summary>
-		/// 文字列への変換
+		/// レコードの暗号化
 		/// </summary>
-		/// <returns> エラーなら none , そうでないなら暗号化した文字列 </returns>
-		Optional<String> toString() const;
+		/// <returns> 暗号化した文字列 </returns>
+		String encryption() const;
 
 		/// <summary>
 		/// レコードの設定
@@ -63,18 +65,6 @@ namespace Kokoha
 		/// </summary>
 		/// <returns> 初期値を格納したRecordのマップ </returns>
 		const std::map<String, Record>& getDefaultRecordMap() const;
-
-		/// <summary>
-		/// レコードの暗号化
-		/// </summary>
-		/// <returns> 暗号化した </returns>
-		String encryption() const;
-
-		/// <summary>
-		/// 暗号文を復号し、フラグのリストに格納する
-		/// </summary>
-		/// <param name="str"></param>
-		void decryption(const String& str);
 
 	};
 }
