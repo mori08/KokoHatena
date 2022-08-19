@@ -44,7 +44,14 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="name"> 名前 </param>
 		/// <param name="value"> 変更後の値 </param>
-		void setRecord(const String& name, int32 value);
+		/// <returns> *this </returns>
+		RecordSet& setRecord(const String& name, int32 value);
+
+		/// <summary>
+		/// レコードに現在の時刻を設定する
+		/// </summary>
+		/// <returns> *this </returns>
+		RecordSet& setRecordTime();
 
 		/// <summary>
 		/// レコードの取得

@@ -22,6 +22,7 @@ namespace Kokoha
 	RecordSet::RecordSet()
 		: m_recordMap(getDefaultRecordMap())
 	{
+		setRecordTime();
 	}
 
 	String RecordSet::encryption() const
@@ -142,7 +143,7 @@ namespace Kokoha
 		return rtn;
 	}
 
-	void RecordSet::setRecord(const String& name, int32 value)
+	RecordSet& RecordSet::setRecord(const String& name, int32 value)
 	{
 		if (!m_recordMap.count(name))
 		{
@@ -150,6 +151,21 @@ namespace Kokoha
 		}
 
 		m_recordMap.find(name)->second.set(value);
+
+		return *this;
+	}
+
+	RecordSet& RecordSet::setRecordTime()
+	{
+		const DateTime t = DateTime::Now();
+
+		setRecord(U"RecordYear"  , t.year % 100); // îNÇÕ2åÖÇ…í≤êÆ
+		setRecord(U"RecordMonth" , t.month);
+		setRecord(U"RecordDate"  , t.day);
+		setRecord(U"RecordHour"  , t.hour);
+		setRecord(U"RecordMinute", t.minute);
+
+		return *this;
 	}
 
 	int32 RecordSet::getRecord(const String& name) const
