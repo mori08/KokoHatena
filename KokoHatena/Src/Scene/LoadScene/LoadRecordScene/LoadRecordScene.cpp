@@ -14,7 +14,7 @@ namespace Kokoha
 				TextReader reader(RecordSet::FILE_NAME);
 
 				// ファイルが存在しないとき -> リストが空のまま終了
-				if (!reader) { return SceneName::DESKTOP; }
+				if (!reader) { return SceneName::SELECT_LOAD_RECORD; }
 
 				// 1行ずつRecordSetに変換する
 				while (Optional<String> line = reader.readLine())
@@ -25,7 +25,7 @@ namespace Kokoha
 					}
 				}
 
-				return SceneName::DESKTOP;
+				return SceneName::SELECT_LOAD_RECORD;
 			}
 		);
 	}

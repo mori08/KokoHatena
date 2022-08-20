@@ -26,6 +26,14 @@
     textPos            = {x=690,y=530}
     maxDotNum          = 4
 
+[SelectRecordScene]
+    drawPos = {x=300,y=50}
+
+[RecordSet]
+    drawSize    = {x=400,y=100}
+    timeCodePos = {x=20,y=10}
+    frameWith   = 8
+
 [DesktopScene]
     backgroundColor = {rgb=0.2}
 

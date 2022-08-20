@@ -20,6 +20,9 @@ namespace Kokoha
 		// Recordのマップ
 		std::map<String, Record> m_recordMap;
 
+		// 時間を表す文字列
+		String m_timeCode;
+
 	public:
 
 		/// <summary>
@@ -59,6 +62,12 @@ namespace Kokoha
 		/// <param name="name"> 名前 </param>
 		/// <returns> レコードの値 </returns>
 		int32 getRecord(const String& name) const;
+
+		/// <summary>
+		/// 描画
+		/// </summary>
+		/// <param name="pos"> 座標 </param>
+		void draw(const Point& pos) const;
 
 		/// <summary>
 		/// テキストファイルにレコードの内容を書き込み

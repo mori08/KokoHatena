@@ -8,7 +8,7 @@ namespace Kokoha
 	/// RecordSetを選択するシーン
 	/// 選択したRecordSetをどうするかは派生クラスで決定する
 	/// </summary>
-	class SelectRecordScene : MyApp::Scene
+	class SelectRecordScene : public MyApp::Scene
 	{
 	private:
 

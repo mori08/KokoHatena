@@ -20,6 +20,6 @@ digit   = 6
 default = 0
 
 [[Record]] # ゲーム内の経過日数
-name    = "Date"
+name    = "Day"
 digit   = 5
 default = 0
