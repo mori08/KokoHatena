@@ -29,6 +29,13 @@
 [SelectRecordScene]
     drawPos = {x=300,y=50}
 
+[RecordBox]
+    size          = {x=400,y=100}
+    textFirstPos  = {x= 20,y=10}
+    textSecondPos = {x=180,y=60}
+    frameWith     = 8
+    posMoveRate   = 0.005
+
 [RecordSet]
     drawSize    = {x=400,y=100}
     timeCodePos = {x=20,y=10}

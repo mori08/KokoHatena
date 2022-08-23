@@ -190,30 +190,6 @@ namespace Kokoha
 		return m_recordMap.find(name)->second.get();
 	}
 
-	void RecordSet::draw(const Point& pos) const
-	{
-		// 描画するサイズ
-		static const Size DRAW_SIZE = Config::get<Size>(U"RecordSet.drawSize");
-		// m_timeCodeを表示する文字列
-		static const Point TIME_CODE_POS = Config::get<Point>(U"RecordSet.timeCodePos");
-		// 左右の枠の厚さ
-		static const int32 FRAME_WIDTH = Config::get<int32>(U"RecordSet.frameWith");
-
-		FontAsset(U"20")(m_timeCode).draw(pos + TIME_CODE_POS);
-
-		// 左側のフレーム
-		Rect(
-			pos + Point::Left(FRAME_WIDTH / 2),
-			FRAME_WIDTH, DRAW_SIZE.y
-		).draw(MyWhite);
-
-		// 右側のフレーム
-		Rect(
-			pos + Point::Left(FRAME_WIDTH / 2 - DRAW_SIZE.x),
-			FRAME_WIDTH, DRAW_SIZE.y
-		).draw(MyWhite);
-	}
-
 	void RecordSet::writeDebugText() const
 	{
 #ifdef _DEBUG

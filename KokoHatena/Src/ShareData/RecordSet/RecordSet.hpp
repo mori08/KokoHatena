@@ -64,12 +64,6 @@ namespace Kokoha
 		int32 getRecord(const String& name) const;
 
 		/// <summary>
-		/// 描画
-		/// </summary>
-		/// <param name="pos"> 座標 </param>
-		void draw(const Point& pos) const;
-
-		/// <summary>
 		/// テキストファイルにレコードの内容を書き込み
 		/// </summary>
 		void writeDebugText() const;

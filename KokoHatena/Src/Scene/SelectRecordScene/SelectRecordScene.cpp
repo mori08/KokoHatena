@@ -10,16 +10,11 @@ namespace Kokoha
 
 	void SelectRecordScene::update()
 	{
-
 	}
 
 	void SelectRecordScene::draw() const
 	{
 		// ï`âÊÇ∑ÇÈç¿ïW
 		static const Point DRAW_POS = Config::get<Point>(U"SelectRecordScene.drawPos");
-
-		static RecordSet recordSet = RecordSet().setRecordTime();
-
-		recordSet.draw(DRAW_POS);
 	}
 }
