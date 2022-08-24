@@ -46,8 +46,10 @@ namespace Kokoha
 		/// </summary>
 		void draw() const;
 
-	private:
-
+		/// <summary>
+		/// 描画する範囲（サイズ）の取得
+		/// </summary>
+		/// <returns> 描画する範囲 </returns>
 		static const Size& getSize();
 
 	};

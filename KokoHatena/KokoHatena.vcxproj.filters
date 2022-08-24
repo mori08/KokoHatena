@@ -159,6 +159,9 @@
     <Filter Include="Src\Scene\SelectRecordScene\RecordBox">
       <UniqueIdentifier>{6a5a4c1d-1434-4834-8fd2-de76d3bdbfbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Scene\SelectRecordScene\SelectLoadRecordScene">
+      <UniqueIdentifier>{05f61fdf-a089-4043-90cd-4ca36b1b4ace}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -490,6 +493,9 @@
     <ClCompile Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.cpp">
       <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Scene\SelectRecordScene\SelectLoadRecordScene\SelectLoadRecordScene.cpp">
+      <Filter>Src\Scene\SelectRecordScene\SelectLoadRecordScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -554,6 +560,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.hpp">
       <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\SelectRecordScene\SelectLoadRecordScene\SelectLoadRecordScene.hpp">
+      <Filter>Src\Scene\SelectRecordScene\SelectLoadRecordScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

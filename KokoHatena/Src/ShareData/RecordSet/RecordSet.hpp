@@ -64,6 +64,15 @@ namespace Kokoha
 		int32 getRecord(const String& name) const;
 
 		/// <summary>
+		/// レコードの記録時間を示す文字列の取得
+		/// </summary>
+		/// <returns> レコードの記録時間を示す文字列 </returns>
+		const String& getTimeCode() const
+		{
+			return m_timeCode;
+		}
+
+		/// <summary>
 		/// テキストファイルにレコードの内容を書き込み
 		/// </summary>
 		void writeDebugText() const;

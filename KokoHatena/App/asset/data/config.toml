@@ -27,7 +27,8 @@
     maxDotNum          = 4
 
 [SelectRecordScene]
-    drawPos = {x=300,y=50}
+    drawPos        = {x=300,y=50}
+    recordBoxSpace = 35
 
 [RecordBox]
     size          = {x=400,y=100}
