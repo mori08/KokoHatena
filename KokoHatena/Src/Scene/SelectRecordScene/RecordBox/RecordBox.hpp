@@ -25,15 +25,20 @@ namespace Kokoha
 
 	public:
 
-		/// <param name="pos"> 座標 </param>
 		/// <param name="onSelected"> 選択されたときの処理 </param>
 		/// <param name="itr"> RecordSetのイテレータ </param>
-		RecordBox(const Vec2& pos, std::function<void()> onSelected, const std::pair<String, String>& textPair);
+		RecordBox(std::function<void()> onSelected, const std::pair<String, String>& textPair);
 
 		/// <summary>
 		/// 更新
 		/// </summary>
 		void update();
+
+		/// <summary>
+		/// 座標の移動先を設定
+		/// </summary>
+		/// <param name="index"> 表示する順番 </param>
+		void setGoalPos(const int32 index);
 
 		/// <summary>
 		/// 座標の移動先を設定

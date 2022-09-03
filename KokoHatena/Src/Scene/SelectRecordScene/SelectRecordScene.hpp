@@ -6,31 +6,49 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// RecordSetを選択するシーン
-	/// 選択したRecordSetをどうするかは派生クラスで決定する
+	/// RecordBoxを選択するシーン
+	/// 選択したRecordSetをどうするかは派生クラスで決定される
 	/// </summary>
 	class SelectRecordScene : public MyApp::Scene
 	{
 	protected:
 
+		// このシーンの説明文
+		const String m_explanation;
+
+		// RecordBoxのリスト
 		std::list<RecordBox> m_recordBoxList;
+
+		// 画面内の一番上に表示するRecordBoxのイテレータ
+		std::list<RecordBox>::iterator m_topBoxItr;
 
 	public:
 
-		SelectRecordScene(const InitData& init);
+		/// <summary>
+		/// RecordBoxを選択するシーン
+		/// </summary>
+		/// <param name="recordBox"> 一番上に表示するRecordBox </param>
+		/// <param name="recordFunc"> RecordSetに対応する処理 </param>
+		/// <param name="explanation"> シーンの説明文 </param>
+		SelectRecordScene(
+			const InitData& init, 
+			const RecordBox& recordBox, 
+			std::function<void(const RecordSet&)> recordFunc, 
+			const String& explanation);
+
+	protected:
 
 		virtual void update() override;
 
 		virtual void draw() const override;
+	};
 
-	protected:
-
-		/// <summary>
-		/// RecordBoxを表示する座標を取得する
-		/// </summary>
-		/// <param name="index"> RecordBoxを表示する順序 </param>
-		/// <returns> RecordBoxを表示する座標 </returns>
-		static Vec2 getRecordBoxPos(int32 index);
-
+	/// <summary>
+	/// ロードするRecordSetを登録する
+	/// </summary>
+	class SelectLoadRecordScene : public SelectRecordScene
+	{
+	public:
+		SelectLoadRecordScene(const InitData& init);
 	};
 }

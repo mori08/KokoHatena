@@ -5,7 +5,7 @@
 #include"Scene/TitleScene/TitleScene.hpp"
 #include"Scene/DesktopScene/DesktopScene.hpp"
 #include"Scene/LoadScene/LoadRecordScene/LoadRecordScene.hpp"
-#include"Scene/SelectRecordScene/SelectLoadRecordScene/SelectLoadRecordScene.hpp"
+#include"Scene/SelectRecordScene/SelectRecordScene.hpp"
 
 using namespace Kokoha;
 

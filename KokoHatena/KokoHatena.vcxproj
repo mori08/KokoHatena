@@ -243,7 +243,6 @@
     <ClCompile Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.cpp" />
     <ClCompile Include="Src\Scene\LoadScene\LoadScene.cpp" />
     <ClCompile Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.cpp" />
-    <ClCompile Include="Src\Scene\SelectRecordScene\SelectLoadRecordScene\SelectLoadRecordScene.cpp" />
     <ClCompile Include="Src\Scene\SelectRecordScene\SelectRecordScene.cpp" />
     <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp" />
@@ -267,7 +266,6 @@
     <ClInclude Include="Src\Scene\LoadScene\LoadScene.hpp" />
     <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.hpp" />
-    <ClInclude Include="Src\Scene\SelectRecordScene\SelectLoadRecordScene\SelectLoadRecordScene.hpp" />
     <ClInclude Include="Src\Scene\SelectRecordScene\SelectRecordScene.hpp" />
     <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp" />

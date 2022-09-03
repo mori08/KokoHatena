@@ -4,13 +4,14 @@
 
 namespace Kokoha
 {
-	RecordBox::RecordBox(const Vec2& pos, std::function<void()> onSelected, const std::pair<String, String>& textPair)
-		: m_pos(pos)
-		, m_goal(pos)
-		, m_onSelected(onSelected)
+	RecordBox::RecordBox(std::function<void()> onSelected, const std::pair<String, String>& textPair)
+		: m_onSelected(onSelected)
 		, m_textPair(textPair)
 	{
-
+		// âÊñ ì‡ÇÃRecordBoxÇÃç¿ïWÇÃàÍî‘è„
+		static const Point DRAW_POS = Config::get<Point>(U"SelectRecordScene.drawPos");
+		m_pos.x = DRAW_POS.x;
+		m_pos.y = Scene::Height();
 	}
 
 	void RecordBox::update()
@@ -23,6 +24,33 @@ namespace Kokoha
 		{
 			m_onSelected();
 		}
+	}
+
+	void RecordBox::setGoalPos(const int32 index)
+	{
+		// âÊñ ì‡ÇÃRecordBoxÇÃç¿ïWÇÃàÍî‘è„
+		static const Point DRAW_POS = Config::get<Point>(U"SelectRecordScene.drawPos");
+		// RecordBoxÇÃ
+		static const int32 DRAW_SPACE = Config::get<int32>(U"SelectRecordScene.recordBoxSpace");
+
+		// âÊñ è„ë§Ç…âBÇ∑
+		if (index < 0)
+		{
+			setGoalPos(Vec2(DRAW_POS.x, -DRAW_SPACE - RecordBox::getSize().y));
+			return;
+		}
+
+		const Vec2 pos = DRAW_POS + index * Vec2::Down(DRAW_SPACE + RecordBox::getSize().y);
+
+		// âÊñ â∫ë§Ç…âBÇ∑
+		if (pos.y + getSize().y > Scene::Height())
+		{
+			setGoalPos(Vec2(DRAW_POS.x, Scene::Height() + DRAW_SPACE));
+			return;
+		}
+
+		// âÊñ ì‡Ç…ï\é¶
+		setGoalPos(pos);
 	}
 
 	void RecordBox::setGoalPos(const Vec2& pos)
