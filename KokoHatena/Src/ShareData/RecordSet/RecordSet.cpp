@@ -142,6 +142,8 @@ namespace Kokoha
 		{
 			record.second.setValueFromDecryption(dataList);
 		}
+		rtn.setTimeCode();
+
 		return rtn;
 	}
 
@@ -167,15 +169,7 @@ namespace Kokoha
 		setRecord(U"RecordHour"  , t.hour    );
 		setRecord(U"RecordMinute", t.minute  );
 
-		// 2Œ…‚Å•¶š—ñ‰»(1Œ…‚Ì”’l‚Ìê‡‚Í0‚Å–„‚ß‚é)
-		constexpr std::pair<int32, char32> PADDING = { 2,U'0' };
-
-		m_timeCode
-			= Pad(getRecord(U"RecordYear"  ), PADDING) + U":"
-			+ Pad(getRecord(U"RecordMonth" ), PADDING) + U":"
-			+ Pad(getRecord(U"RecordDate"  ), PADDING) + U":"
-			+ Pad(getRecord(U"RecordHour"  ), PADDING) + U":"
-			+ Pad(getRecord(U"RecordMinute"), PADDING);
+		setTimeCode();
 
 		return *this;
 	}
@@ -206,6 +200,19 @@ namespace Kokoha
 		}
 		writer.close();
 #endif // _DEBUG
+	}
+
+	void RecordSet::setTimeCode()
+	{
+		// 2Œ…‚Å•¶š—ñ‰»(1Œ…‚Ì”’l‚Ìê‡‚Í0‚Å–„‚ß‚é)
+		constexpr std::pair<int32, char32> PADDING = { 2,U'0' };
+
+		m_timeCode
+			= Pad(getRecord(U"RecordYear"  ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordMonth" ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordDate"  ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordHour"  ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordMinute"), PADDING);
 	}
 
 	const std::map<String, Record>& RecordSet::getDefaultRecordMap() const

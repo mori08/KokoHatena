@@ -14,6 +14,9 @@ namespace Kokoha
 		// 座標
 		Vec2 m_pos;
 
+		// 幅
+		double m_width;
+
 		// 座標の移動先
 		Vec2 m_goal;
 
@@ -49,13 +52,15 @@ namespace Kokoha
 		/// <summary>
 		/// 描画
 		/// </summary>
-		void draw() const;
+		/// <param name="index"> 表示する順番 </param>
+		void draw(int32 index) const;
+
+	private:
 
 		/// <summary>
-		/// 描画する範囲（サイズ）の取得
+		/// 幅の更新
 		/// </summary>
-		/// <returns> 描画する範囲 </returns>
-		static const Size& getSize();
+		void updateWidth();
 
 	};
 }

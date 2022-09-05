@@ -80,6 +80,11 @@ namespace Kokoha
 	private:
 
 		/// <summary>
+		/// レコードの記録時間を示す文字列
+		/// </summary>
+		void setTimeCode();
+
+		/// <summary>
 		/// 初期値を格納したRecordのマップを取得（初回のみTOMLファイルの読み込み）
 		/// </summary>
 		/// <returns> 初期値を格納したRecordのマップ </returns>

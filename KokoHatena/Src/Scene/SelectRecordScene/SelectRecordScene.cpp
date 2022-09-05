@@ -56,9 +56,11 @@ namespace Kokoha
 	{		
 		FontAsset(U"15")(m_explanation).draw();
 
+		int32 index = 0;
+
 		for (const auto& recordBox : m_recordBoxList)
 		{
-			recordBox.draw();
+			recordBox.draw(index++);
 		}
 	}
 

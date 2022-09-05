@@ -31,11 +31,16 @@
     recordBoxSpace = 35
 
 [RecordBox]
-    size          = {x=400,y=100}
-    textFirstPos  = {x= 20,y=10}
-    textSecondPos = {x=180,y=60}
+    height        = 100
+    hideWidth     = 0
+    displayWidth  = 200
+    overWidth     = 300
+    textFilePos   = {x=20,y= 0}
+    textFirstPos  = {x=20,y=20}
+    textSecondPos = {x=20,y=60}
     frameWith     = 8
-    posMoveRate   = 0.005
+    posMoveRate   = 0.001
+    backColor     = {rgb=0.2}
 
 [RecordSet]
     drawSize    = {x=400,y=100}
