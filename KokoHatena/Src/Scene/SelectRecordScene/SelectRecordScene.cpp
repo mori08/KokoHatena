@@ -3,9 +3,10 @@
 
 namespace Kokoha
 {
-	SelectRecordScene::SelectRecordScene(const InitData& init, const RecordBox& recordBox, std::function<void(const RecordSet& recordSet)> recordFunc, const String& explanation)
+	SelectRecordScene::SelectRecordScene(const InitData& init, const RecordBox& recordBox, std::function<void(const RecordSet& recordSet)> recordFunc, const String& explanation, SceneName sceneName)
 		: IScene(init)
 		, m_explanation(explanation)
+		, m_sceneName(sceneName)
 	{
 		// 先頭にRecordBoxに追加
 		m_recordBoxList.emplace_back(recordBox);
@@ -35,7 +36,10 @@ namespace Kokoha
 
 			// RecordBoxの更新
 			itr->setGoalPos(recordBoxIndex);
-			itr->update();
+			if (itr->update())
+			{
+				changeScene(m_sceneName);
+			}
 		}
 
 		// 一番上のRecordBoxを1つ先へ
@@ -69,7 +73,8 @@ namespace Kokoha
 			init,
 			RecordBox([this]() {getData().nowRecordSet = RecordSet(); }, { U"",U"はじめから" }),
 			[this](const RecordSet& recordSet) { getData().nowRecordSet = recordSet; },
-			U"ロードするデータを選択してください"
+			U"ロードするデータを選択してください",
+			SceneName::TITLE
 		)
 	{
 

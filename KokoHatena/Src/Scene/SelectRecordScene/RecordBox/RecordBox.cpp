@@ -55,6 +55,16 @@ namespace Kokoha
 		return rtn;
 	}
 
+	/// <summary>
+	/// 選択用のボタンの長方形
+	/// </summary>
+	/// <returns></returns>
+	const RectF& getButtonRect()
+	{
+		static const RectF rtn = Config::get<RectF>(U"RecordBox.button");
+		return rtn;
+	}
+
 	RecordBox::RecordBox(std::function<void()> onSelected, const std::pair<String, String>& textPair)
 		: m_width(0)
 		, m_onSelected(onSelected)
@@ -67,13 +77,21 @@ namespace Kokoha
 		m_pos.y = Scene::Height();
 	}
 
-	void RecordBox::update()
+	bool RecordBox::update()
 	{
 		// 座標の更新
 		static const double MOVE_RATE_POS = Config::get<double>(U"RecordBox.posMoveRate");
 		internalDividingPoint(m_pos, m_goal, MOVE_RATE_POS);
 
 		updateWidth();
+
+		if (m_width > getButtonRect().tr().x && getButtonRect().movedBy(m_pos).leftClicked())
+		{
+			m_onSelected();
+			return true;
+		}
+
+		return false;
 	}
 
 	void RecordBox::setGoalPos(const int32 index)
@@ -119,15 +137,24 @@ namespace Kokoha
 		// 左右の枠の厚さ
 		static const double FRAME_WIDTH = Config::get<int32>(U"RecordBox.frameWith");
 		// 背景に描画する座標
-		static ColorF BACK_COLOR = Config::get<ColorF>(U"RecordBox.backColor");
+		static const ColorF BACK_COLOR = Config::get<ColorF>(U"RecordBox.backColor");
 
 		// 背景
 		RectF(m_pos, m_width, getHeight()).draw(BACK_COLOR);
 
-		// m_textPairの描画
+		// テキスト
 		FontAsset(U"18")(U"File " + ToString(index)).draw(m_pos + TEXT_FILE_POS);
 		FontAsset(U"12")(m_textPair.first ).draw(m_pos + TEXT_FIRST_POS );
 		FontAsset(U"20")(m_textPair.second).draw(m_pos + TEXT_SECOND_POS);
+
+		// ボタン
+		const Rect button = getButtonRect().movedBy(m_pos).draw(MyBlack);
+		button.draw(MyBlack);
+		if (m_width > getButtonRect().tr().x && button.mouseOver())
+		{
+			static const RectF buttonLight = Config::get<RectF>(U"RecordBox.buttonLight");
+			buttonLight.movedBy(m_pos).draw(BACK_COLOR);
+		}
 
 		// 左側のフレーム
 		RectF(
@@ -144,18 +171,24 @@ namespace Kokoha
 
 	void RecordBox::updateWidth()
 	{
-		double goalWidth = getHideWidth();
+		double goalWidth = 0;
 
-		// 画面内
-		if (m_goal.y > 0 && m_goal.y < Scene::Height())
+		// 画面外
+		if (m_goal.y < 0 || m_goal.y > Scene::Height())
 		{
-			goalWidth = getDisplayWidth();
+			goalWidth = getHideWidth();
 		}
 
 		// マウスをオーバーしている
-		if (RectF(m_goal, m_width, getHeight()).mouseOver())
+		else if (RectF(m_goal, m_width, getHeight()).mouseOver())
 		{
 			goalWidth = getOverWidth();
+		}
+
+		// 画面内
+		else
+		{
+			goalWidth = getDisplayWidth();
 		}
 
 		// 幅の更新

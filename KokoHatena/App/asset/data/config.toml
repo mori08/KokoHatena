@@ -1,5 +1,5 @@
 [Window]
-    size = {x=800, y= 600}
+    size = {x=800, y=600}
     name = "55?"
 
 [TitleScene]
@@ -41,6 +41,8 @@
     frameWith     = 8
     posMoveRate   = 0.001
     backColor     = {rgb=0.2}
+    button        = {x=211,y=15,w=70,h=70}
+    buttonLight   = {x=214,y=18,w=64,h=64}
 
 [RecordSet]
     drawSize    = {x=400,y=100}

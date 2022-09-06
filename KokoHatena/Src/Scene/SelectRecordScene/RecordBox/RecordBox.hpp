@@ -35,7 +35,8 @@ namespace Kokoha
 		/// <summary>
 		/// 更新
 		/// </summary>
-		void update();
+		/// <returns> 選択されたとき true , そうでないとき false </returns>
+		bool update();
 
 		/// <summary>
 		/// 座標の移動先を設定
