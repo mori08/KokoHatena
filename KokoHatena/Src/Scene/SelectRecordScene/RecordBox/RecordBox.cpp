@@ -183,7 +183,7 @@ namespace Kokoha
 		}
 
 		// マウスをオーバーしている
-		else if (RectF(m_goal, m_width, getHeight()).mouseOver())
+		else if (RectF(m_pos, m_width, getHeight()).mouseOver())
 		{
 			goalWidth = getOverWidth();
 		}

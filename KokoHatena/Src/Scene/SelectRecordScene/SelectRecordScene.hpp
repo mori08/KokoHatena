@@ -25,6 +25,9 @@ namespace Kokoha
 		// RecordBoxを選択した場合に遷移するシーン
 		const SceneName m_sceneName;
 
+		// スクロールバーを表示するy座標
+		double m_scrollBarPosY;
+
 		// マウスホイールでのスクロール時のクールタイム
 		double m_wheel;
 

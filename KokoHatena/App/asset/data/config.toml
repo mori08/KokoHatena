@@ -27,9 +27,15 @@
     maxDotNum          = 4
 
 [SelectRecordScene]
-    drawPos        = {x=300,y=50}
-    recordBoxSpace = 35
-    wheelTime      = 0.1
+    drawPos           = {x=300,y=50}
+    recordBoxSpace    = 35
+    wheelTime         = 0.1
+    scrollBarPosX     = 250
+    scrollBarWidth    = 20
+    scrollBarSize     = {x=2,y=500}
+    scrollBarMoveRate = 0.001
+    wheelRate         = 1
+    barRate           = 10     
 
 [RecordBox]
     height        = 100
