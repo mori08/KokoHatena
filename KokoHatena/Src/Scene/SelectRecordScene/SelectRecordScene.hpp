@@ -25,6 +25,9 @@ namespace Kokoha
 		// RecordBoxを選択した場合に遷移するシーン
 		const SceneName m_sceneName;
 
+		// マウスホイールでのスクロール時のクールタイム
+		double m_wheel;
+
 	public:
 
 		/// <summary>
@@ -46,6 +49,14 @@ namespace Kokoha
 		virtual void update() override;
 
 		virtual void draw() const override;
+
+	private:
+
+		/// <summary>
+		/// スクロールホイールでのRecordBoxの移動
+		/// </summary>
+		void scrollWheel();
+
 	};
 
 	/// <summary>

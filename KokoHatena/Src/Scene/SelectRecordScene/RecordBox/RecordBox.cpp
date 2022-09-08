@@ -156,6 +156,9 @@ namespace Kokoha
 			buttonLight.movedBy(m_pos).draw(BACK_COLOR);
 		}
 
+		// ¶‘¤‚ğ‰B‚·
+		RectF(m_pos + Vec2::Right(m_width), getOverWidth(), getHeight()).draw(MyBlack);
+
 		// ¶‘¤‚ÌƒtƒŒ[ƒ€
 		RectF(
 			m_pos + Vec2::Left(FRAME_WIDTH / 2),

@@ -29,6 +29,7 @@
 [SelectRecordScene]
     drawPos        = {x=300,y=50}
     recordBoxSpace = 35
+    wheelTime      = 0.1
 
 [RecordBox]
     height        = 100

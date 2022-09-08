@@ -7,6 +7,7 @@ namespace Kokoha
 		: IScene(init)
 		, m_explanation(explanation)
 		, m_sceneName(sceneName)
+		, m_wheel(0)
 	{
 		// æ“ª‚ÉRecordBox‚É’Ç‰Á
 		m_recordBoxList.emplace_back(recordBox);
@@ -42,18 +43,7 @@ namespace Kokoha
 			}
 		}
 
-		// ˆê”Ôã‚ÌRecordBox‚ð1‚Âæ‚Ö
-		if (KeyW.down())
-		{
-			if (m_topBoxItr != m_recordBoxList.begin()) { --m_topBoxItr; }
-		}
-
-		// ˆê”Ôã‚ÌRecordBox‚ð1‚ÂŒã‚Ö
-		if (KeyS.down())
-		{
-			++m_topBoxItr;
-			if (m_topBoxItr == m_recordBoxList.end()) { --m_topBoxItr; }
-		}
+		scrollWheel();
 	}
 
 	void SelectRecordScene::draw() const
@@ -65,6 +55,24 @@ namespace Kokoha
 		for (const auto& recordBox : m_recordBoxList)
 		{
 			recordBox.draw(index++);
+		}
+	}
+
+	void SelectRecordScene::scrollWheel()
+	{
+		m_wheel += Mouse::Wheel();
+
+		while (m_wheel > 1)
+		{
+			++m_topBoxItr;
+			if (m_topBoxItr == m_recordBoxList.end()) { --m_topBoxItr; }
+			--m_wheel;
+		}
+
+		while (m_wheel < -1)
+		{
+			if (m_topBoxItr != m_recordBoxList.begin()) { --m_topBoxItr; }
+			++m_wheel;
 		}
 	}
 
