@@ -64,11 +64,6 @@ namespace Kokoha
 			scrollBarGoalY,
 			SCROLL_BAR_MOVE_RATE
 		);
-
-		ClearPrint();
-		Print << U"";
-		Print << U"クリック : " << (MouseL.pressed() ? U"1" : U"");
-		Print << U"ホイール : " << (Mouse::Wheel()==0 ? String(U"") : ToString(Mouse::Wheel()));
 	}
 
 	void SelectRecordScene::draw() const

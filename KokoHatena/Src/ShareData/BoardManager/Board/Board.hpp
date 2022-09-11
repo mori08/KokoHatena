@@ -62,6 +62,9 @@ namespace Kokoha
 		// アイコンの表示順(-1だと非表示)
 		const int32 m_iconOrder;
 
+		// ボードから保存するレコード
+		std::unordered_map<String, uint32> m_saveRecord;
+
 	public:
 
 		/// <param name="role"> 種類(役割) </param>
@@ -153,6 +156,15 @@ namespace Kokoha
 		/// <param name="requestText"> データとなる文字列 </param>
 		virtual void receiveRequest(const String& requestText) = 0;
 
+		/// <summary>
+		/// ボードへの保存用レコードの取得
+		/// </summary>
+		/// <returns> ボードへの保存用レコード </returns>
+		const std::unordered_map<String, uint32>& getSaveRecord() const
+		{
+			return m_saveRecord;
+		}
+
 	protected:
 
 		/// <summary>
@@ -187,10 +199,26 @@ namespace Kokoha
 		/// <returns> ボード内のマウス座標 </returns>
 		Vec2 cursorPosFInBoard() const;
 
-		
+		/// <summary>
+		/// 他ボードへのリクエストの作成
+		/// </summary>
+		/// <param name="role"> 送信先のボード </param>
+		/// <param name="text"> 送信するデータ </param>
+		/// <returns> 他ボードへのリクエスト </returns>
 		static const std::pair<Role, String> makeRequest(Role role, const String& text)
 		{
 			return std::pair<Role, String>(role, text);
+		}
+
+		/// <summary>
+		/// レコードに書き込みを行う
+		/// </summary>
+		/// <param name="name"> 名前 </param>
+		/// <param name="value"> 値 </param>
+		/// <remarks> inputInBoard関数でのみ使用 </remarks>
+		void setRecord(const String& name, uint32 value)
+		{
+			m_saveRecord[name] = value;
 		}
 
 	private:
