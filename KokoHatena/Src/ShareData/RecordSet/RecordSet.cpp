@@ -147,7 +147,7 @@ namespace Kokoha
 		return rtn;
 	}
 
-	RecordSet& RecordSet::setRecord(const String& name, int32 value)
+	RecordSet& RecordSet::setRecord(const String& name, uint32 value)
 	{
 		if (!m_recordMap.count(name))
 		{
@@ -174,7 +174,7 @@ namespace Kokoha
 		return *this;
 	}
 
-	int32 RecordSet::getRecord(const String& name) const
+	uint32 RecordSet::getRecord(const String& name) const
 	{
 		if (!m_recordMap.count(name))
 		{
