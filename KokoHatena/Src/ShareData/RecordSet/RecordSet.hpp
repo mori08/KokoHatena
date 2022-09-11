@@ -10,13 +10,18 @@ namespace Kokoha
 	/// </summary>
 	class RecordSet
 	{
+	public:
+
+		// レコードを保存するファイル名
+		static const String FILE_NAME;
+
 	private:
 
 		// Recordのマップ
 		std::map<String, Record> m_recordMap;
 
-		// 読み込みに失敗しているとき true , そうでないとき false
-		bool m_isError;
+		// 時間を表す文字列
+		String m_timeCode;
 
 	public:
 
@@ -26,23 +31,30 @@ namespace Kokoha
 		RecordSet();
 
 		/// <summary>
-		/// 文字列を復号しRecordに設定
+		/// 暗号文を復号し、フラグのリストに格納する
 		/// </summary>
-		/// <param name="text"></param>
-		RecordSet(const String& str);
+		/// <param name="str"> 暗号化された文字列 </param>
+		static Optional<RecordSet> decryption(const String& str);
 
 		/// <summary>
-		/// 文字列への変換
+		/// レコードの暗号化
 		/// </summary>
-		/// <returns> エラーなら none , そうでないなら暗号化した文字列 </returns>
-		Optional<String> toString() const;
+		/// <returns> 暗号化した文字列 </returns>
+		String encryption() const;
 
 		/// <summary>
 		/// レコードの設定
 		/// </summary>
 		/// <param name="name"> 名前 </param>
 		/// <param name="value"> 変更後の値 </param>
-		void setRecord(const String& name, int32 value);
+		/// <returns> *this </returns>
+		RecordSet& setRecord(const String& name, int32 value);
+
+		/// <summary>
+		/// レコードに現在の時刻を設定する
+		/// </summary>
+		/// <returns> *this </returns>
+		RecordSet& setRecordTime();
 
 		/// <summary>
 		/// レコードの取得
@@ -52,6 +64,15 @@ namespace Kokoha
 		int32 getRecord(const String& name) const;
 
 		/// <summary>
+		/// レコードの記録時間を示す文字列の取得
+		/// </summary>
+		/// <returns> レコードの記録時間を示す文字列 </returns>
+		const String& getTimeCode() const
+		{
+			return m_timeCode;
+		}
+
+		/// <summary>
 		/// テキストファイルにレコードの内容を書き込み
 		/// </summary>
 		void writeDebugText() const;
@@ -59,22 +80,15 @@ namespace Kokoha
 	private:
 
 		/// <summary>
+		/// レコードの記録時間を示す文字列
+		/// </summary>
+		void setTimeCode();
+
+		/// <summary>
 		/// 初期値を格納したRecordのマップを取得（初回のみTOMLファイルの読み込み）
 		/// </summary>
 		/// <returns> 初期値を格納したRecordのマップ </returns>
 		const std::map<String, Record>& getDefaultRecordMap() const;
-
-		/// <summary>
-		/// レコードの暗号化
-		/// </summary>
-		/// <returns> 暗号化した </returns>
-		String encryption() const;
-
-		/// <summary>
-		/// 暗号文を復号し、フラグのリストに格納する
-		/// </summary>
-		/// <param name="str"></param>
-		void decryption(const String& str);
 
 	};
 }

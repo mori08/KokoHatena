@@ -1,10 +1,9 @@
 #include "RecordSet.hpp"
+#include "../../Config/Config.hpp"
+#include "../../MyLibrary/MyLibrary.hpp"
 
 namespace
 {
-	// レコードを保存するファイル名
-	const String RECORD_TEXT_NAME = U"YOUR_RECORD.txt";
-
 	constexpr int32 BASE    = 0x10;        // 暗号化の基準になる値(何進数で暗号化するか)
 	constexpr int32 MUL     = BASE - 1;    // 掛け算のときのかける数
 	constexpr int32 HALF    = BASE / 2;    // 基準値の半分
@@ -20,87 +19,12 @@ namespace
 
 namespace Kokoha
 {
+	const String RecordSet::FILE_NAME = U"YOUR_RECORD";
+
 	RecordSet::RecordSet()
 		: m_recordMap(getDefaultRecordMap())
-		, m_isError(false)
 	{
-	}
-
-	RecordSet::RecordSet(const String& str)
-		: m_recordMap(getDefaultRecordMap())
-	{
-		decryption(str);
-	}
-
-	Optional<String> RecordSet::toString() const
-	{
-		if (m_isError) { return none; }
-		return encryption();
-	}
-
-	void RecordSet::setRecord(const String& name, int32 value)
-	{
-		if (!m_recordMap.count(name) || m_isError)
-		{
-			throw Error(U"Faild to find [" + name + U"] record");
-		}
-
-		m_recordMap.find(name)->second.set(value);
-	}
-
-	int32 RecordSet::getRecord(const String& name) const
-	{
-		if (!m_recordMap.count(name) || m_isError)
-		{
-			throw Error(U"Faild to find [" + name + U"] record");
-		}
-
-		return m_recordMap.find(name)->second.get();
-	}
-
-	void RecordSet::writeDebugText() const
-	{
-#ifdef _DEBUG
-		TextWriter writer(U"asset/data/debug.txt");
-		char32 initChar = U'z';
-		for (const auto& record : m_recordMap)
-		{
-			if (record.first[0] != initChar)
-			{
-				initChar = record.first[0];
-				writer.writeln(String(U"\n[ ") + initChar + U" ]");
-			}
-			writer.writeln(Pad(ToString(record.second.get()), { 4,U' ' }) + U" < [" + record.first + U"]");
-		}
-		writer.close();
-#endif // _DEBUG
-	}
-
-	const std::map<String, Record>& RecordSet::getDefaultRecordMap() const
-	{
-		// 一度TOMLファイルを読み込んだらtrueにする
-		static bool isReady = false;
-		// Recordのマップ
-		static std::map<String, Record> defaultMap;
-
-		if (isReady) { return defaultMap; }
-
-		// Recordについてのtomlファイル
-		const TOMLReader m_toml(U"asset/data/record.toml");
-		totalDigit = 0;
-
-		for (const auto& obj : m_toml[U"Record"].tableArrayView())
-		{
-			defaultMap.try_emplace
-			(
-				obj[U"name"].getString(),
-				std::move(Record(obj[U"digit"].get<int32>(), obj[U"default"].get<int32>()))
-			);
-
-			totalDigit += obj[U"digit"].get<int32>();
-		}
-		isReady = true;
-		return defaultMap;
+		setRecordTime();
 	}
 
 	String RecordSet::encryption() const
@@ -152,11 +76,10 @@ namespace Kokoha
 		return rtn;
 	}
 
-	void RecordSet::decryption(const String& str)
+	Optional<RecordSet> RecordSet::decryption(const String& str)
 	{
 		// 復号用のリスト
 		std::list<int32> dataList;
-		m_isError = true;
 
 		// 文字列 -> 整数値の配列
 		for (size_t i = 0; i < str.length(); i += ONE_DATA_LENGTH)
@@ -164,7 +87,7 @@ namespace Kokoha
 			auto data = ParseIntOpt<int32>(str.substr(i, ONE_DATA_LENGTH), Arg::radix = BASE);
 			if (!data)
 			{
-				return; // 変換できないとき失敗
+				return none; // 変換できないとき失敗
 			}
 			dataList.emplace_back(*data);
 		}
@@ -181,7 +104,7 @@ namespace Kokoha
 		// 先頭・末尾の鍵を削除
 		if (*dataList.begin() != *dataList.rbegin())
 		{
-			return; // 鍵が一致しないとき失敗
+			return none; // 鍵が一致しないとき失敗
 		}
 		dataList.pop_front();
 		dataList.pop_back();
@@ -189,7 +112,7 @@ namespace Kokoha
 		// サイズ と レコードの合計桁数 が一致しているか確認
 		if (dataList.size() != totalDigit)
 		{
-			return; // 一致しないとき失敗
+			return none; // 一致しないとき失敗
 		}
 
 		// 全てを0xFで割る
@@ -197,12 +120,12 @@ namespace Kokoha
 		{
 			if (data % MUL != 0)
 			{
-				return; // 割り切れないとき失敗
+				return none; // 割り切れないとき失敗
 			}
 			data /= MUL;
 			if (data <= 0x0 || data > BASE)
 			{
-				return; // [0x1,0x10]の範囲にないとき失敗
+				return none; // [0x1,0x10]の範囲にないとき失敗
 			}
 		}
 
@@ -214,11 +137,108 @@ namespace Kokoha
 		}
 
 		// レコードに格納
-		for (auto& record : m_recordMap)
+		RecordSet rtn;
+		for (auto& record : rtn.m_recordMap)
 		{
 			record.second.setValueFromDecryption(dataList);
 		}
+		rtn.setTimeCode();
 
-		m_isError = false;
+		return rtn;
+	}
+
+	RecordSet& RecordSet::setRecord(const String& name, int32 value)
+	{
+		if (!m_recordMap.count(name))
+		{
+			throw Error(U"Faild to find [" + name + U"] record");
+		}
+
+		m_recordMap.find(name)->second.set(value);
+
+		return *this;
+	}
+
+	RecordSet& RecordSet::setRecordTime()
+	{
+		const DateTime t = DateTime::Now();
+
+		setRecord(U"RecordYear"  , t.year%100); // 年は2桁に調整
+		setRecord(U"RecordMonth" , t.month   );
+		setRecord(U"RecordDate"  , t.day     );
+		setRecord(U"RecordHour"  , t.hour    );
+		setRecord(U"RecordMinute", t.minute  );
+
+		setTimeCode();
+
+		return *this;
+	}
+
+	int32 RecordSet::getRecord(const String& name) const
+	{
+		if (!m_recordMap.count(name))
+		{
+			throw Error(U"Faild to find [" + name + U"] record");
+		}
+
+		return m_recordMap.find(name)->second.get();
+	}
+
+	void RecordSet::writeDebugText() const
+	{
+#ifdef _DEBUG
+		TextWriter writer(U"asset/data/debug.txt");
+		char32 initChar = U'z';
+		for (const auto& record : m_recordMap)
+		{
+			if (record.first[0] != initChar)
+			{
+				initChar = record.first[0];
+				writer.writeln(String(U"\n[ ") + initChar + U" ]");
+			}
+			writer.writeln(Pad(ToString(record.second.get()), { 4,U' ' }) + U" < [" + record.first + U"]");
+		}
+		writer.close();
+#endif // _DEBUG
+	}
+
+	void RecordSet::setTimeCode()
+	{
+		// 2桁で文字列化(1桁の数値の場合は0で埋める)
+		constexpr std::pair<int32, char32> PADDING = { 2,U'0' };
+
+		m_timeCode
+			= Pad(getRecord(U"RecordYear"  ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordMonth" ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordDate"  ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordHour"  ), PADDING) + U":"
+			+ Pad(getRecord(U"RecordMinute"), PADDING);
+	}
+
+	const std::map<String, Record>& RecordSet::getDefaultRecordMap() const
+	{
+		// 一度TOMLファイルを読み込んだらtrueにする
+		static bool isReady = false;
+		// Recordのマップ
+		static std::map<String, Record> defaultMap;
+
+		if (isReady) { return defaultMap; }
+
+		// Recordについてのtomlファイル
+		const TOMLReader m_toml(U"asset/data/record.toml");
+		totalDigit = 0;
+
+		for (const auto& obj : m_toml[U"Record"].tableArrayView())
+		{
+			defaultMap.try_emplace
+			(
+				obj[U"name"].getString(),
+				std::move(Record(obj[U"digit"].get<int32>(), obj[U"default"].get<int32>()))
+			);
+
+			totalDigit += obj[U"digit"].get<int32>();
+		}
+		isReady = true;
+		return defaultMap;
 	}
 }

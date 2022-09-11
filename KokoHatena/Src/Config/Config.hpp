@@ -62,6 +62,17 @@ namespace Kokoha
 	}
 
 	template<>
+	inline RectF Config::get(const String& name)
+	{
+		return RectF(
+			instance().m_toml[name][U"x"].get<double>(),
+			instance().m_toml[name][U"y"].get<double>(),
+			instance().m_toml[name][U"w"].get<double>(),
+			instance().m_toml[name][U"h"].get<double>()
+		);
+	}
+
+	template<>
 	inline ColorF Config::get(const String& name)
 	{
 		ColorF color(instance().m_toml[name][U"rgb"].getOr<double>(0.0));

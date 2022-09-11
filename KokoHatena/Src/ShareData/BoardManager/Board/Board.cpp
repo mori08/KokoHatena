@@ -61,6 +61,8 @@ namespace Kokoha
 		{
 			return makeRequest(m_role, U"hide");
 		}
+
+		m_saveRecord.clear();
 			
 		movePosByCursor();
 

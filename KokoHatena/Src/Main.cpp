@@ -3,8 +3,9 @@
 #include"Config/Config.hpp"
 
 #include"Scene/TitleScene/TitleScene.hpp"
-#include"Scene/LoadScene/LoadRecordScene/LoadRecordScene.hpp"
 #include"Scene/DesktopScene/DesktopScene.hpp"
+#include"Scene/LoadScene/LoadRecordScene/LoadRecordScene.hpp"
+#include"Scene/SelectRecordScene/SelectRecordScene.hpp"
 
 using namespace Kokoha;
 
@@ -27,9 +28,10 @@ void Main()
 
 	// シーン
 	MyApp sceneManager;
-	sceneManager.add<Kokoha::TitleScene>     (SceneName::TITLE);
-	sceneManager.add<Kokoha::LoadRecordScene>(SceneName::LOAD);
-	sceneManager.add<Kokoha::DesktopScene>   (SceneName::DESKTOP);
+	sceneManager.add<Kokoha::TitleScene>           (SceneName::TITLE);
+	sceneManager.add<Kokoha::DesktopScene>         (SceneName::DESKTOP);
+	sceneManager.add<Kokoha::LoadRecordScene>      (SceneName::LOAD_RECORD);
+	sceneManager.add<Kokoha::SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
 
 	while (System::Update())
 	{

@@ -153,6 +153,15 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard">
       <UniqueIdentifier>{5c495aca-bdc3-47b2-9c34-2cc67aeedb04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Scene\SelectRecordScene">
+      <UniqueIdentifier>{4ae317d1-9b1e-485e-8f92-6a1407456dd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Scene\SelectRecordScene\RecordBox">
+      <UniqueIdentifier>{6a5a4c1d-1434-4834-8fd2-de76d3bdbfbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Scene\LoadScene\LoadBoardScene">
+      <UniqueIdentifier>{eb06f105-3b63-4924-8a1d-788e23426f6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -478,6 +487,15 @@
     <ClCompile Include="Src\ShareData\RecordSet\RecordSet.cpp">
       <Filter>Src\ShareData\RecordSet</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Scene\SelectRecordScene\SelectRecordScene.cpp">
+      <Filter>Src\Scene\SelectRecordScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.cpp">
+      <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\LoadScene\LoadBoardScene\LoadBoardScene.cpp">
+      <Filter>Src\Scene\LoadScene\LoadBoardScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -536,6 +554,15 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\RecordSet\RecordSet.hpp">
       <Filter>Src\ShareData\RecordSet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\SelectRecordScene\SelectRecordScene.hpp">
+      <Filter>Src\Scene\SelectRecordScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.hpp">
+      <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\LoadScene\LoadBoardScene\LoadBoardScene.hpp">
+      <Filter>Src\Scene\LoadScene\LoadBoardScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

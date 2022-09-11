@@ -1,5 +1,5 @@
 [Window]
-    size = {x=800, y= 600}
+    size = {x=800, y=600}
     name = "55?"
 
 [TitleScene]
@@ -25,6 +25,36 @@
     smallCircleNum     = 8
     textPos            = {x=690,y=530}
     maxDotNum          = 4
+
+[SelectRecordScene]
+    drawPos           = {x=300,y=50}
+    recordBoxSpace    = 35
+    wheelTime         = 0.1
+    scrollBarPosX     = 250
+    scrollBarWidth    = 20
+    scrollBarSize     = {x=2,y=500}
+    scrollBarMoveRate = 0.001
+    wheelRate         = 1
+    barRate           = 10     
+
+[RecordBox]
+    height        = 100
+    hideWidth     = 0
+    displayWidth  = 200
+    overWidth     = 300
+    textFilePos   = {x=20,y= 0}
+    textFirstPos  = {x=20,y=20}
+    textSecondPos = {x=20,y=60}
+    frameWith     = 8
+    posMoveRate   = 0.001
+    backColor     = {rgb=0.2}
+    button        = {x=211,y=15,w=70,h=70}
+    buttonLight   = {x=214,y=18,w=64,h=64}
+
+[RecordSet]
+    drawSize    = {x=400,y=100}
+    timeCodePos = {x=20,y=10}
+    frameWith   = 8
 
 [DesktopScene]
     backgroundColor = {rgb=0.2}

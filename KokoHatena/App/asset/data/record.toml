@@ -1,14 +1,25 @@
-[[Record]] # テスト用フラグ
-name    = "TestFlag"
-digit   = 1
+[[Record]] # 年（セーブデータ用）
+name    = "RecordYear"
+digit   = 7
 default = 0
-[[Record]] # テスト用数値
-name    = "TestValue"
-digit   = 3
-default = 5
+[[Record]] # 月（セーブデータ用）
+name    = "RecordMonth"
+digit   = 4
+default = 1
+[[Record]] # 日（セーブデータ用）
+name    = "RecordDate"
+digit   = 5
+default = 1
+[[Record]] # 時（セーブデータ用）
+name    = "RecordHour"
+digit   = 5
+default = 0
+[[Record]] # 分（セーブデータ用）
+name    = "RecordMinute"
+digit   = 6
+default = 0
 
-
-[[Record]] # ゲーム内の日付
-name    = "Date"
+[[Record]] # ゲーム内の経過日数
+name    = "Day"
 digit   = 5
 default = 0

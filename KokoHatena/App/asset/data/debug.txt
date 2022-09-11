@@ -2,6 +2,9 @@
 [ D ]
    0 < [Date]
 
-[ T ]
-   0 < [TestFlag]
-   5 < [TestValue]
+[ R ]
+  19 < [RecordDate]
+  11 < [RecordHour]
+  22 < [RecordMinute]
+   8 < [RecordMonth]
+  22 < [RecordYear]
