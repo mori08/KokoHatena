@@ -138,7 +138,7 @@ namespace Kokoha
 			RecordBox([this]() {getData().nowRecordSet = RecordSet(); }, { U"",U"はじめから" }),
 			[this](const RecordSet& recordSet) { getData().nowRecordSet = recordSet; },
 			U"ロードするデータを選択してください",
-			SceneName::TITLE
+			SceneName::LOAD_BOARD
 		)
 	{
 

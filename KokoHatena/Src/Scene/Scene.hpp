@@ -11,6 +11,7 @@ enum class SceneName
 	TITLE,              // タイトル画面
 	DESKTOP,            // デスクトップ画面
 	LOAD_RECORD,        // テキストファイルを読み込んでRecordを生成
+	LOAD_BOARD,         // Recordを読み込んでBoardを生成
 	SELECT_LOAD_RECORD, // ロードするRecordSetを選択
 };
 

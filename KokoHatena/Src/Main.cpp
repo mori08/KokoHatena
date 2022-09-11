@@ -5,6 +5,7 @@
 #include"Scene/TitleScene/TitleScene.hpp"
 #include"Scene/DesktopScene/DesktopScene.hpp"
 #include"Scene/LoadScene/LoadRecordScene/LoadRecordScene.hpp"
+#include"Scene/LoadScene/LoadBoardScene/LoadBoardScene.hpp"
 #include"Scene/SelectRecordScene/SelectRecordScene.hpp"
 
 using namespace Kokoha;
@@ -31,6 +32,7 @@ void Main()
 	sceneManager.add<Kokoha::TitleScene>           (SceneName::TITLE);
 	sceneManager.add<Kokoha::DesktopScene>         (SceneName::DESKTOP);
 	sceneManager.add<Kokoha::LoadRecordScene>      (SceneName::LOAD_RECORD);
+	sceneManager.add<Kokoha::LoadBoardScene>       (SceneName::LOAD_BOARD);
 	sceneManager.add<Kokoha::SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
 
 	while (System::Update())
