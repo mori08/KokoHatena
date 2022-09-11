@@ -11,7 +11,7 @@ namespace Kokoha
 
 	}
 
-	void BoardManager::load(RecordSet&)
+	void BoardManager::load(const RecordSet&)
 	{
 		m_boardList.clear();
 
@@ -19,7 +19,7 @@ namespace Kokoha
 		m_boardList.emplace_back(std::make_unique<AccessBoard>());
 	}
 
-	void BoardManager::update()
+	void BoardManager::update(RecordSet& recordSet)
 	{
 		// アイコンを押したときの処理
 		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
@@ -53,8 +53,15 @@ namespace Kokoha
 		if (!m_boardList.empty() && m_boardList.front()->state() == Board::State::IS_DISPLAYED)
 		{
 			const auto& boardRequest = m_boardList.front()->input();
-			
-			if (boardRequest) // ボードへ命令を送る
+
+			// レコードへの書き込み
+			for (const auto& record : m_boardList.front()->getSaveRecord())
+			{
+				recordSet.setRecord(record.first, record.second);
+			}
+
+			// 他ボードへ命令を送る
+			if (boardRequest)
 			{
 				if (boardRequest->second == U"hide") // 非表示の命令の場合
 				{

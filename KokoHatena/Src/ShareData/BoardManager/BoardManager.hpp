@@ -26,12 +26,13 @@ namespace Kokoha
 		/// Recordから
 		/// </summary>
 		/// <param name="recordSet"> セーブデータ </param>
-		void load(RecordSet& recordSet);
+		void load(const RecordSet& recordSet);
 
 		/// <summary>
 		/// 更新
 		/// </summary>
-		void update();
+		/// <param name="recordSet"> セーブデータ </param>
+		void update(RecordSet& recordSet);
 
 		/// <summary>
 		/// 描画

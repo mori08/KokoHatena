@@ -63,7 +63,7 @@ namespace Kokoha
 		const int32 m_iconOrder;
 
 		// ボードから保存するレコード
-		std::unordered_map<String, uint32> m_saveRecord;
+		std::unordered_map<String, int32> m_saveRecord;
 
 	public:
 
@@ -160,7 +160,7 @@ namespace Kokoha
 		/// ボードへの保存用レコードの取得
 		/// </summary>
 		/// <returns> ボードへの保存用レコード </returns>
-		const std::unordered_map<String, uint32>& getSaveRecord() const
+		const std::unordered_map<String, int32>& getSaveRecord() const
 		{
 			return m_saveRecord;
 		}
@@ -216,7 +216,7 @@ namespace Kokoha
 		/// <param name="name"> 名前 </param>
 		/// <param name="value"> 値 </param>
 		/// <remarks> inputInBoard関数でのみ使用 </remarks>
-		void setRecord(const String& name, uint32 value)
+		void setRecord(const String& name, int32 value)
 		{
 			m_saveRecord[name] = value;
 		}

@@ -21,7 +21,7 @@ namespace Kokoha
 		const int32 m_defaultValue;
 
 		// ’l
-		uint32 m_value;
+		int32 m_value;
 
 	public:
 

@@ -48,7 +48,7 @@ namespace Kokoha
 		/// <param name="name"> 名前 </param>
 		/// <param name="value"> 変更後の値 </param>
 		/// <returns> *this </returns>
-		RecordSet& setRecord(const String& name, int32 value);
+		RecordSet& setRecord(const String& name, uint32 value);
 
 		/// <summary>
 		/// レコードに現在の時刻を設定する
@@ -61,7 +61,7 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="name"> 名前 </param>
 		/// <returns> レコードの値 </returns>
-		int32 getRecord(const String& name) const;
+		uint32 getRecord(const String& name) const;
 
 		/// <summary>
 		/// レコードの記録時間を示す文字列の取得
