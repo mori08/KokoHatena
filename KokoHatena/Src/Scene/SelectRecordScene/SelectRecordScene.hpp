@@ -43,9 +43,10 @@ namespace Kokoha
 		SelectRecordScene(
 			const InitData& init, 
 			const RecordBox& recordBox, 
-			std::function<void(const RecordSet&)> recordFunc, 
+			std::function<void(RecordSet&)> recordFunc, 
 			const String& explanation,
-			SceneName sceneName);
+			SceneName sceneName
+		);
 
 	protected:
 
@@ -63,11 +64,20 @@ namespace Kokoha
 	};
 
 	/// <summary>
-	/// ロードするRecordSetを登録する
+	/// ロードするRecordSetを選択する
 	/// </summary>
 	class SelectLoadRecordScene : public SelectRecordScene
 	{
 	public:
 		SelectLoadRecordScene(const InitData& init);
+	};
+
+	/// <summary>
+	/// セーブするRecordSetを選択する
+	/// </summary>
+	class SelectSaveRecordScene : public SelectRecordScene
+	{
+	public:
+		SelectSaveRecordScene(const InitData& init);
 	};
 }

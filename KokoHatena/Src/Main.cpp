@@ -34,6 +34,7 @@ void Main()
 	sceneManager.add<Kokoha::LoadRecordScene>      (SceneName::LOAD_RECORD);
 	sceneManager.add<Kokoha::LoadBoardScene>       (SceneName::LOAD_BOARD);
 	sceneManager.add<Kokoha::SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
+	sceneManager.add<Kokoha::SelectSaveRecordScene>(SceneName::SELECT_SAVE_RECORD);
 
 	while (System::Update())
 	{

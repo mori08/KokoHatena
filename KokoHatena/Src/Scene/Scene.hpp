@@ -13,6 +13,7 @@ enum class SceneName
 	LOAD_RECORD,        // テキストファイルを読み込んでRecordを生成
 	LOAD_BOARD,         // Recordを読み込んでBoardを生成
 	SELECT_LOAD_RECORD, // ロードするRecordSetを選択
+	SELECT_SAVE_RECORD, // セーブするRecordSetを選択
 };
 
 
