@@ -156,7 +156,7 @@ namespace Kokoha
 			RecordBox([this]() { getData().recordSetList.emplace_front(getData().nowRecordSet); }, { U"",U"新しいデータ" }),
 			[this](RecordSet& recordSet) { recordSet = getData().nowRecordSet; },
 			U"セーブするデータを選択してください",
-			SceneName::DESKTOP
+			SceneName::SAVE_RECORD
 		)
 	{
 	}
