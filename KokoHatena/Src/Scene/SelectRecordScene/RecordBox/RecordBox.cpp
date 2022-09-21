@@ -143,12 +143,14 @@ namespace Kokoha
 		RectF(m_pos, m_width, getHeight()).draw(BACK_COLOR);
 
 		// テキスト
-		FontAsset(U"18")(U"File " + ToString(index)).draw(m_pos + TEXT_FILE_POS);
+		if (index != 0) {
+			FontAsset(U"18")(U"File " + ToString(index)).draw(m_pos + TEXT_FILE_POS);
+		}
 		FontAsset(U"12")(m_textPair.first ).draw(m_pos + TEXT_FIRST_POS );
 		FontAsset(U"20")(m_textPair.second).draw(m_pos + TEXT_SECOND_POS);
 
 		// ボタン
-		const Rect button = getButtonRect().movedBy(m_pos).draw(MyBlack);
+		const RectF button = getButtonRect().movedBy(m_pos).draw(MyBlack);
 		button.draw(MyBlack);
 		if (m_width > getButtonRect().tr().x && button.mouseOver())
 		{

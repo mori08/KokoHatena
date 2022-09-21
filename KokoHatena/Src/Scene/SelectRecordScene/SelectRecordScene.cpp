@@ -4,18 +4,21 @@
 
 namespace Kokoha
 {
-	SelectRecordScene::SelectRecordScene(const InitData& init, const RecordBox& recordBox, std::function<void(const RecordSet& recordSet)> recordFunc, const String& explanation, SceneName sceneName)
+	SelectRecordScene::SelectRecordScene(
+		const InitData& init,
+		const RecordBox& recordBox,
+		std::function<void(RecordSet& recordSet)> recordFunc,
+		const String& explanation, 
+		SceneName sceneName
+	)
 		: IScene(init)
 		, m_explanation(explanation)
 		, m_sceneName(sceneName)
 		, m_scrollBarPosY(Scene::Center().y)
 		, m_wheel(0)
 	{
-		// 先頭にRecordBoxに追加
-		m_recordBoxList.emplace_back(recordBox);
-
 		// RecordSetに対応する
-		for (const auto& recordSet : getData().recordSetList)
+		for (auto& recordSet : getData().recordSetList)
 		{
 			m_recordBoxList.emplace_back
 			(
@@ -23,6 +26,9 @@ namespace Kokoha
 				std::pair<String, String>(recordSet.getTimeCode(), U"Day" + ToString(recordSet.getRecord(U"Day")))
 			);
 		}
+
+		// 先頭にRecordBoxに追加
+		m_recordBoxList.emplace_back(recordBox);
 
 		m_topBoxItr = m_recordBoxList.begin();
 	}
@@ -70,11 +76,12 @@ namespace Kokoha
 	{		
 		FontAsset(U"15")(m_explanation).draw();
 
-		int32 index = 0;
+		// 描画するファイル番号
+		int32 index = static_cast<int32>(m_recordBoxList.size());
 
 		for (const auto& recordBox : m_recordBoxList)
 		{
-			recordBox.draw(index++);
+			recordBox.draw(--index);
 		}
 
 		// スクロールバーのx座標
@@ -136,11 +143,21 @@ namespace Kokoha
 		: SelectRecordScene(
 			init,
 			RecordBox([this]() {getData().nowRecordSet = RecordSet(); }, { U"",U"はじめから" }),
-			[this](const RecordSet& recordSet) { getData().nowRecordSet = recordSet; },
+			[this](RecordSet& recordSet) { getData().nowRecordSet = recordSet; },
 			U"ロードするデータを選択してください",
-			SceneName::TITLE
+			SceneName::LOAD_BOARD
 		)
 	{
+	}
 
+	SelectSaveRecordScene::SelectSaveRecordScene(const InitData& init)
+		: SelectRecordScene(
+			init,
+			RecordBox([this]() { getData().recordSetList.emplace_front(getData().nowRecordSet); }, { U"",U"新しいデータ" }),
+			[this](RecordSet& recordSet) { recordSet = getData().nowRecordSet; },
+			U"セーブするデータを選択してください",
+			SceneName::SAVE_RECORD
+		)
+	{
 	}
 }

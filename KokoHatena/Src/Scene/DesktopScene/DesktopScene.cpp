@@ -10,7 +10,7 @@ namespace Kokoha
 
 	void DesktopScene::update()
 	{
-		getData().board.update(getData().board);
+		getData().board.update(getData().nowRecordSet);
 	}
 
 	void DesktopScene::draw() const
