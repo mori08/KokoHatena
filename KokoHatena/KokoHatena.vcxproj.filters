@@ -147,9 +147,6 @@
     <Filter Include="Src\ShareData\BoardManager\Board">
       <UniqueIdentifier>{27e9c5dc-089e-4de5-86b6-dcc8fbf4bd55}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\MailBoard">
-      <UniqueIdentifier>{bd8d836d-a1e7-419e-b227-dc7cd6557ef3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard">
       <UniqueIdentifier>{5c495aca-bdc3-47b2-9c34-2cc67aeedb04}</UniqueIdentifier>
     </Filter>
@@ -164,6 +161,9 @@
     </Filter>
     <Filter Include="Src\Scene\LoadScene\SaveRecordScene">
       <UniqueIdentifier>{5db13d3c-58fd-4d6b-bbcb-01d471058e47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard">
+      <UniqueIdentifier>{bd8d836d-a1e7-419e-b227-dc7cd6557ef3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -472,9 +472,6 @@
     <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp">
       <Filter>Src\ShareData\BoardManager</Filter>
     </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\MailBoard</Filter>
-    </ClCompile>
     <ClCompile Include="Src\MyLibrary\SliceTexture\Animation\Animation.cpp">
       <Filter>Src\MyLibrary\SliceTexture\Animation</Filter>
     </ClCompile>
@@ -501,6 +498,9 @@
     </ClCompile>
     <ClCompile Include="Src\Scene\LoadScene\SaveRecordScene\SaveRecordScene.cpp">
       <Filter>Src\Scene\LoadScene\SaveRecordScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -540,9 +540,6 @@
     <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp">
       <Filter>Src\ShareData\BoardManager</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\MailBoard</Filter>
-    </ClInclude>
     <ClInclude Include="Src\MyLibrary\Linearly\Linearly.hpp">
       <Filter>Src\MyLibrary\Linearly</Filter>
     </ClInclude>
@@ -572,6 +569,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\LoadScene\SaveRecordScene\SaveRecordScene.hpp">
       <Filter>Src\Scene\LoadScene\SaveRecordScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

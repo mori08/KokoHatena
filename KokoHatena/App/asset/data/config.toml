@@ -66,8 +66,8 @@
     iconSize           = {x=60,y=60}
     hideButtonSize     = {x=30,y=30}
 
-[MailBoard]
-    name = "メール"
+[MessageBoard]
+    name = "メッセージ"
     size = {x=400,y=400}
     iconOrder = 0
 

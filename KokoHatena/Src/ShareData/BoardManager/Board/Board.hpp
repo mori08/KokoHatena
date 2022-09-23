@@ -15,7 +15,7 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			MAIL,     // メール
+			MESSAGE,  // メッセージ
 			SECURITY, // セキュリティ
 			ACCESS,   // アクセス（パズルアクション部分）
 		};

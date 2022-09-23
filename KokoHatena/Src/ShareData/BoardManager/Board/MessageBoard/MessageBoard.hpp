@@ -3,11 +3,11 @@
 
 namespace Kokoha
 {
-	class MailBoard : public Board
+	class MessageBoard : public Board
 	{
 	public:
 
-		MailBoard();
+		MessageBoard();
 
 	private:
 

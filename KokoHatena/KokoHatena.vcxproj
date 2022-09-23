@@ -250,7 +250,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
-    <ClCompile Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp" />
     <ClCompile Include="Src\ShareData\RecordSet\RecordSet.cpp" />
     <ClCompile Include="Src\ShareData\RecordSet\Record\Record.cpp" />
   </ItemGroup>
@@ -275,7 +275,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp" />
-    <ClInclude Include="Src\ShareData\BoardManager\Board\MailBoard\MailBoard.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.hpp" />
     <ClInclude Include="Src\ShareData\RecordSet\RecordSet.hpp" />
     <ClInclude Include="Src\ShareData\RecordSet\Record\Record.hpp" />
   </ItemGroup>
