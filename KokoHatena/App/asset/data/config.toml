@@ -70,6 +70,11 @@
     name = "メッセージ"
     size = {x=400,y=400}
     iconOrder = 0
+    speakerNameList = ["上司", "同僚", "教授"]
+    speakerNamePos  = {x=10,y=0}
+    talkPageRect      = {x=100,y=0,w=300,h=400}
+    talkPageColor     = {rgb=0.5}
+    talkPageThickness = 2
 
 [AccessBoard]
     name = "アクセス"

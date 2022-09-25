@@ -5,6 +5,11 @@ namespace Kokoha
 {
 	class MessageBoard : public Board
 	{
+	private:
+
+		// ˜b‚µ‘ŠŽè‚ÌƒŠƒXƒg
+		Array<String> m_speakerNameList;
+
 	public:
 
 		MessageBoard();
@@ -18,6 +23,10 @@ namespace Kokoha
 		void updateInBoard() override;
 
 		void drawInBoard() const override;
+
+	private:
+
+		static Point getSpeakerNamePos(int32 index);
 
 	};
 }
