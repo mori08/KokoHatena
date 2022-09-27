@@ -185,6 +185,15 @@ namespace Kokoha
 	protected:
 
 		/// <summary>
+		/// ボードのサイズを取得
+		/// </summary>
+		/// <returns> サイズ </returns>
+		const Size& size() const
+		{
+			return m_size;
+		}
+
+		/// <summary>
 		/// ボード内のマウス座標の取得
 		/// </summary>
 		/// <returns> ボード内のマウス座標 </returns>

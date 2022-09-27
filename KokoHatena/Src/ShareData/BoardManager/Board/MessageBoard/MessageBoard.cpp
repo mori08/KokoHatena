@@ -9,8 +9,10 @@ namespace Kokoha
 			, U"MessageBoard"
 			, State::IS_HIDING
 		)
+		, m_selectedSpeakerName(none)
 	{
-		m_speakerNameList = Config::getArray<String>(U"MessageBoard.speakerNameList");
+		static const Array<String> SPEAKER_NAME_LIST = Config::getArray<String>(U"MessageBoard.speakerNameList");
+		m_speakerNameList = SPEAKER_NAME_LIST;
 	}
 
 	void MessageBoard::receiveRequest(const String&)
@@ -20,6 +22,15 @@ namespace Kokoha
 
 	Board::BoardRequest MessageBoard::inputInBoard()
 	{
+		// 話し相手の選択
+		for (size_t index : Range(0, m_speakerNameList.size() - 1))
+		{
+			if (MouseL.down() && getSpeakerNameRect((int32)index).contains(cursorPosInBoard()))
+			{
+				m_selectedSpeakerName = m_speakerNameList[index];
+			}
+		}
+
 		return none;
 	}
 
@@ -29,8 +40,7 @@ namespace Kokoha
 
 	void MessageBoard::drawInBoard() const
 	{
-		// 右側の会話画面の範囲
-		static const Rect TALK_PAGE_RECT = Config::get<Rect>(U"MessageBoard.talkPageRect");
+		static const Point SPEAKER_NAME_POS = Config::get<Point>(U"MessageBoard.speakerNamePos");
 		// 会話画面の範囲を描画する太さ
 		static const double TALK_PAGE_THICKNESS = Config::get<double>(U"MessageBoard.talkPageThickness");
 		// 会話画面の範囲を描画する色
@@ -38,20 +48,34 @@ namespace Kokoha
 
 		for (size_t index : Range(0, m_speakerNameList.size() - 1))
 		{
-			FontAsset(U"20")(m_speakerNameList[index]).draw(getSpeakerNamePos((int32)index), MyWhite);
+			const Rect rect = getSpeakerNameRect((int32)index);
+
+			if (rect.contains(cursorPosInBoard()))
+			{
+				rect.draw(TALK_PAGE_COLOR);
+			}
+
+			FontAsset(U"20")(m_speakerNameList[index]).draw(rect.pos + SPEAKER_NAME_POS, MyWhite);
 		}
 
-		TALK_PAGE_RECT.drawFrame(TALK_PAGE_THICKNESS, 0, TALK_PAGE_COLOR);
+		Rect(
+			getSpeakerNameRect(0).w,
+			0,
+			size().x - getSpeakerNameRect(0).w,
+			size().y
+		).drawFrame(TALK_PAGE_THICKNESS, 0, TALK_PAGE_COLOR);
 	}
 
-	Point MessageBoard::getSpeakerNamePos(int32 index)
+	Rect MessageBoard::getSpeakerNameRect(int32 index)
 	{
-		// 一番上の名前の座標
-		static const Point SPEAKER_NAME_POS = Config::get<Point>(U"MessageBoard.speakerNamePos");
-		
-		return
-			SPEAKER_NAME_POS
-			+ Point::Down(index * FontAsset(U"20").height());
+		// 幅
+		static const int32 SPEAKER_NAME_WIDTH = Config::get<int32>(U"MessageBoard.speakerNameWidth");
+
+		return Rect(
+			Point::Down(index * FontAsset(U"20").height()),
+			SPEAKER_NAME_WIDTH,
+			FontAsset(U"20").height()
+		);
 	}
 
 }

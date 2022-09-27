@@ -10,6 +10,9 @@ namespace Kokoha
 		// 話し相手のリスト
 		Array<String> m_speakerNameList;
 
+		// 選択中の話し相手 (何も選択していないときは none)
+		Optional<String> m_selectedSpeakerName;
+
 	public:
 
 		MessageBoard();
@@ -26,7 +29,12 @@ namespace Kokoha
 
 	private:
 
-		static Point getSpeakerNamePos(int32 index);
+		/// <summary>
+		/// 話し相手を表示する範囲
+		/// </summary>
+		/// <param name="index"> 番号 </param>
+		/// <returns> 話し相手を表示する </returns>
+		static Rect getSpeakerNameRect(int32 index);
 
 	};
 }
