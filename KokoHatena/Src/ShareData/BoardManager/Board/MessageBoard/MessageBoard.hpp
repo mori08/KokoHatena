@@ -1,5 +1,6 @@
 #pragma once
 #include"../Board.hpp"
+#include"EventPlayer/EventPlayer.hpp"
 
 namespace Kokoha
 {
@@ -12,6 +13,8 @@ namespace Kokoha
 
 		// ‘I‘ð’†‚Ì˜b‚µ‘ŠŽè (‰½‚à‘I‘ð‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚Í none)
 		Optional<String> m_selectedSpeakerName;
+
+		std::unordered_map<String, EventPlayer> m_eventPlayerMap;
 
 	public:
 
