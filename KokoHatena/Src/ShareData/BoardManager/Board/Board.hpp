@@ -15,7 +15,7 @@ namespace Kokoha
 		/// </summary>
 		enum class Role
 		{
-			MAIL,     // メール
+			MESSAGE,  // メッセージ
 			SECURITY, // セキュリティ
 			ACCESS,   // アクセス（パズルアクション部分）
 		};
@@ -183,6 +183,15 @@ namespace Kokoha
 		virtual void drawInBoard() const = 0;
 
 	protected:
+
+		/// <summary>
+		/// ボードのサイズを取得
+		/// </summary>
+		/// <returns> サイズ </returns>
+		const Size& size() const
+		{
+			return m_size;
+		}
 
 		/// <summary>
 		/// ボード内のマウス座標の取得

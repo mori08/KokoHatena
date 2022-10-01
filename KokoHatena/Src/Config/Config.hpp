@@ -33,6 +33,9 @@ namespace Kokoha
 		template<typename Type>
 		static Type get(const String& name);
 
+		template<typename Type>
+		static Array<Type> getArray(const String& name);
+
 	};
 
 	template<typename Type>
@@ -130,5 +133,16 @@ namespace Kokoha
 		}
 		bool loop = instance().m_toml[name][U"loop"].get<bool>();
 		return std::move(Animation(posOrder, loop));
+	}
+
+	template<typename Type>
+	inline Array<Type> Config::getArray(const String& name)
+	{
+		Array<Type> rtn;
+		for (const auto& elem : instance().m_toml[name].arrayView())
+		{
+			rtn << elem.get<Type>();
+		}
+		return rtn;
 	}
 }

@@ -1,5 +1,5 @@
 #include"BoardManager.hpp"
-#include"Board/MailBoard/MailBoard.hpp"
+#include"Board/MessageBoard/MessageBoard.hpp"
 #include"Board/AccessBoard/AccessBoard.hpp"
 #include"../../Config/Config.hpp"
 #include"../../MyLibrary/MyLibrary.hpp"
@@ -15,7 +15,7 @@ namespace Kokoha
 	{
 		m_boardList.clear();
 
-		m_boardList.emplace_back(std::make_unique<MailBoard>());
+		m_boardList.emplace_back(std::make_unique<MessageBoard>());
 		m_boardList.emplace_back(std::make_unique<AccessBoard>());
 	}
 
