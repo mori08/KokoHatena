@@ -168,6 +168,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer">
       <UniqueIdentifier>{f4508b36-9424-4bfc-a758-61d9d12299c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject">
+      <UniqueIdentifier>{3d26752b-f639-486e-904d-b54655d97bb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -578,6 +581,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.hpp">
       <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
