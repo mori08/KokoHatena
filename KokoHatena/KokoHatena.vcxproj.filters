@@ -508,6 +508,9 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp">
       <Filter>Src\ShareData\BoardManager\Board\MessageBoard</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">

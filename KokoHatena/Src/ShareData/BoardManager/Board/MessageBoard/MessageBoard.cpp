@@ -17,7 +17,7 @@ namespace Kokoha
 		for (const auto& speakerName : m_speakerNameList)
 		{
 			// TODO: Record‚Ì“à—e‚É‰‚¶‚ÄEventPlayer‚É‰Šú‰»
-			m_eventPlayerMap.try_emplace(speakerName, EventPlayer());
+			m_eventPlayerMap.try_emplace(speakerName, EventPlayer(U"eventFile.toml",Size::Zero()));
 		}
 	}
 
