@@ -1,5 +1,6 @@
 #pragma once
 #include"../../../MyLibrary/SliceTexture/SliceTexture.hpp"
+#include"../../../Scene/SceneName.hpp"
 
 namespace Kokoha
 {
@@ -30,8 +31,22 @@ namespace Kokoha
 			NONE,         // 利用不可
 		};
 
-		// 他ボードに対してのデータ送信
-		using BoardRequest = Optional<const std::pair<Role, String>>;
+		/// <summary>
+		/// 外部へ送信するデータ
+		/// </summary>
+		class Request
+		{
+		public:
+
+			// 他ボードへの命令
+			std::list<std::pair<Role, String>> toBoard;
+
+			// Recordへの書き込み
+			std::unordered_map<String, int32> toRecord;
+
+			// Scene遷移
+			Optional<SceneName> toScene = none;
+		};
 
 	private:
 
@@ -61,9 +76,6 @@ namespace Kokoha
 
 		// アイコンの表示順(-1だと非表示)
 		const int32 m_iconOrder;
-
-		// ボードから保存するレコード
-		std::unordered_map<String, int32> m_saveRecord;
 
 	public:
 
@@ -137,13 +149,14 @@ namespace Kokoha
 		/// <summary>
 		/// 入力
 		/// </summary>
-		/// <returns> ボードへの命令 </returns>
-		BoardRequest input();
+		/// <returns> true のときボードを閉じる </returns>
+		bool input();
 
 		/// <summary>
 		/// 更新
 		/// </summary>
-		void update();
+		/// <param name="request"> ボード外部への命令 </param>
+		void update(Request& request);
 
 		/// <summary>
 		/// 描画
@@ -156,26 +169,17 @@ namespace Kokoha
 		/// <param name="requestText"> データとなる文字列 </param>
 		virtual void receiveRequest(const String& requestText) = 0;
 
-		/// <summary>
-		/// ボードへの保存用レコードの取得
-		/// </summary>
-		/// <returns> ボードへの保存用レコード </returns>
-		const std::unordered_map<String, int32>& getSaveRecord() const
-		{
-			return m_saveRecord;
-		}
-
 	protected:
 
 		/// <summary>
 		/// 各ボード固有の入力処理
 		/// </summary>
-		virtual BoardRequest inputInBoard() = 0;
+		virtual void inputInBoard() = 0;
 
 		/// <summary>
 		/// 各ボード固有の更新処理
 		/// </summary>
-		virtual void updateInBoard() = 0;
+		virtual void updateInBoard(Request& request) = 0;
 
 		/// <summary>
 		/// 各ボード固有の描画処理
@@ -207,28 +211,6 @@ namespace Kokoha
 		/// </summary>
 		/// <returns> ボード内のマウス座標 </returns>
 		Vec2 cursorPosFInBoard() const;
-
-		/// <summary>
-		/// 他ボードへのリクエストの作成
-		/// </summary>
-		/// <param name="role"> 送信先のボード </param>
-		/// <param name="text"> 送信するデータ </param>
-		/// <returns> 他ボードへのリクエスト </returns>
-		static const std::pair<Role, String> makeRequest(Role role, const String& text)
-		{
-			return std::pair<Role, String>(role, text);
-		}
-
-		/// <summary>
-		/// レコードに書き込みを行う
-		/// </summary>
-		/// <param name="name"> 名前 </param>
-		/// <param name="value"> 値 </param>
-		/// <remarks> inputInBoard関数でのみ使用 </remarks>
-		void setRecord(const String& name, int32 value)
-		{
-			m_saveRecord[name] = value;
-		}
 
 	private:
 

@@ -14,12 +14,11 @@ namespace Kokoha
 	{
 	}
 
-	Board::BoardRequest AccessBoard::inputInBoard()
+	void AccessBoard::inputInBoard()
 	{
-		return none;
 	}
 
-	void AccessBoard::updateInBoard()
+	void AccessBoard::updateInBoard(Request& request)
 	{
 	}
 

@@ -26,7 +26,7 @@ namespace Kokoha
 
 	}
 
-	Board::BoardRequest MessageBoard::inputInBoard()
+	void MessageBoard::inputInBoard()
 	{
 		// ˜b‚µ‘ŠŽè‚Ì‘I‘ð
 		for (size_t index : Range(0, m_speakerNameList.size() - 1))
@@ -36,11 +36,9 @@ namespace Kokoha
 				m_selectedSpeakerName = m_speakerNameList[index];
 			}
 		}
-
-		return none;
 	}
 
-	void MessageBoard::updateInBoard()
+	void MessageBoard::updateInBoard(Request&)
 	{
 	}
 

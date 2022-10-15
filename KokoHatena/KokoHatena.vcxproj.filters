@@ -585,5 +585,8 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Scene\SceneName.hpp">
+      <Filter>Src\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

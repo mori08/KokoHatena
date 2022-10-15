@@ -1,6 +1,7 @@
 #pragma once
 #include"Board/Board.hpp"
 #include"../RecordSet/RecordSet.hpp"
+#include"../../Scene/SceneName.hpp"
 
 namespace Kokoha
 {
@@ -32,7 +33,7 @@ namespace Kokoha
 		/// 更新
 		/// </summary>
 		/// <param name="recordSet"> セーブデータ </param>
-		void update(RecordSet& recordSet);
+		Optional<SceneName> update(RecordSet& recordSet);
 
 		/// <summary>
 		/// 描画

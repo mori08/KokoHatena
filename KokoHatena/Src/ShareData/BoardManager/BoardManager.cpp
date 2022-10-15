@@ -19,7 +19,7 @@ namespace Kokoha
 		m_boardList.emplace_back(std::make_unique<AccessBoard>());
 	}
 
-	void BoardManager::update(RecordSet& recordSet)
+	Optional<SceneName> BoardManager::update(RecordSet& recordSet)
 	{
 		// アイコンを押したときの処理
 		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
@@ -50,35 +50,42 @@ namespace Kokoha
 		}
 
 		// 先頭ボードの入力を受け付ける
-		if (!m_boardList.empty() && m_boardList.front()->state() == Board::State::IS_DISPLAYED)
+		if (true 
+			&& !m_boardList.empty()
+			&& m_boardList.front()->state() == Board::State::IS_DISPLAYED
+			&& m_boardList.front()->input())
 		{
-			const auto& boardRequest = m_boardList.front()->input();
-
-			// レコードへの書き込み
-			for (const auto& record : m_boardList.front()->getSaveRecord())
-			{
-				recordSet.setRecord(record.first, record.second);
-			}
-
-			// 他ボードへ命令を送る
-			if (boardRequest)
-			{
-				if (boardRequest->second == U"hide") // 非表示の命令の場合
-				{
-					hideBoard(boardRequest->first);
-				}
-				else
-				{
-					displayBoard(boardRequest->first, boardRequest->second);
-				}
-			}
+			// inputの戻り値がtrueのときBoardを隠す
+			hideBoard(m_boardList.front()->role());
 		}
 
 		// 表示中のボードの更新
+		std::list<std::pair<Board::Role, String>> boardRequestList; // 他Boardへの命令のリスト
 		for (auto& board : m_boardList)
 		{
-			board->update();
+			Board::Request request; // Boardから外部へのリクエスト
+			board->update(request);
+
+			// Board
+			boardRequestList.merge(request.toBoard);
+
+			// Record
+			for (const std::pair<String, int32>& record : request.toRecord) 
+			{ 
+				recordSet.setRecord(record.first, record.second); 
+			}
+
+			// Scene
+			if (Optional<SceneName> sceneName = request.toScene) { return sceneName.value(); }
 		}
+		
+		// 他ボードへの命令
+		for (const std::pair<Board::Role, String>& boardRequest : boardRequestList)
+		{
+			displayBoard(boardRequest.first, boardRequest.second);
+		}
+
+		return none;
 	}
 
 	void BoardManager::draw() const

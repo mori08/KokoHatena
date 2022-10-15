@@ -269,6 +269,7 @@
     <ClInclude Include="Src\Scene\LoadScene\LoadScene.hpp" />
     <ClInclude Include="Src\Scene\LoadScene\SaveRecordScene\SaveRecordScene.hpp" />
     <ClInclude Include="Src\Scene\Scene.hpp" />
+    <ClInclude Include="Src\Scene\SceneName.hpp" />
     <ClInclude Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.hpp" />
     <ClInclude Include="Src\Scene\SelectRecordScene\SelectRecordScene.hpp" />
     <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp" />
