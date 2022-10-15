@@ -55,25 +55,25 @@ namespace Kokoha
 	}
 
 
-	Board::BoardRequest Board::input()
+	bool Board::input()
 	{
 		if (hideButtonRect().movedBy(m_pos).leftClicked())
 		{
-			return makeRequest(m_role, U"hide");
+			return true;
 		}
-
-		m_saveRecord.clear();
 			
 		movePosByCursor();
 
-		return inputInBoard();
+		inputInBoard();
+
+		return false;
 	}
 
-	void Board::update()
+	void Board::update(Board::Request& request)
 	{
 		if (m_state != State::IS_DISPLAYED) { return; }
 
-		updateInBoard();
+		updateInBoard(request);
 	}
 
 	void Board::draw() const

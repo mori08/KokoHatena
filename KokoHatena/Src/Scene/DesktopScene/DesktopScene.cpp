@@ -10,7 +10,10 @@ namespace Kokoha
 
 	void DesktopScene::update()
 	{
-		getData().board.update(getData().nowRecordSet);
+		if (Optional<SceneName> sceneName = getData().board.update(getData().nowRecordSet))
+		{
+			changeScene(sceneName.value());
+		}
 	}
 
 	void DesktopScene::draw() const
