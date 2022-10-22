@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EventObject/EventObject.hpp"
+#include "../../BoardConst.hpp"
 
 namespace Kokoha
 {
@@ -9,6 +10,11 @@ namespace Kokoha
 	/// </summary>
 	class EventPlayer
 	{
+	private:
+
+		// EventObjectのshared_ptr
+		using ObjectPtr = std::shared_ptr<EventObject>;
+
 	private:
 
 		// 描画範囲
@@ -23,8 +29,17 @@ namespace Kokoha
 		// イベントのTOMLファイル
 		const TOMLReader m_eventToml;
 
+		// 文字列からイベントへの紐づけ
+		std::unordered_map<String, std::function<void(const TOMLValue&)>> m_eventMap;
+
+		// 文字列からオブジェクトの作成への紐づけ
+		std::unordered_map<String, std::function<ObjectPtr(const TOMLValue&)>> m_generateObjectMap;
+
 		// オブジェクトのリスト
-		std::map<String, std::unique_ptr<EventObject>> m_objectList;
+		std::map<String, ObjectPtr> m_objectList;
+
+		// 待ち状態のオブジェクト
+		std::list<ObjectPtr> m_waitingObject;
 
 	public:
 
@@ -33,15 +48,33 @@ namespace Kokoha
 		EventPlayer(const String& eventFileName, const Size& drawSize);
 
 		/// <summary>
+		/// 入力
+		/// </summary>
+		void input();
+
+		/// <summary>
 		/// 更新
 		/// </summary>
-		void update();
+		/// <param name=boardRequest"> ボードへのリクエスト </param>
+		void update(BoardRequest& boardRequest);
 
 		/// <summary>
 		/// 描画
 		/// </summary>
 		/// <param name="drawPos"> 描画座標 </param>
 		void draw(const Point& drawPos) const;
+
+	private:
+
+		/// <summary>
+		/// イベントの登録
+		/// </summary>
+		void setEventMap();
+
+		/// <summary>
+		/// オブジェクトの生成の関数の登録
+		/// </summary>
+		void setGenerateObjectMap();
 
 	};
 }

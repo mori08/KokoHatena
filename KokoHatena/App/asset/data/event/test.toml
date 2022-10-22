@@ -1,0 +1,5 @@
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "test"
+    param = {x=0,y=0}
