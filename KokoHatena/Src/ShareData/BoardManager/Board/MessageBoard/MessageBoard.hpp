@@ -14,6 +14,7 @@ namespace Kokoha
 		// 選択中の話し相手 (何も選択していないときは none)
 		Optional<String> m_selectedSpeakerName;
 
+		// 話し相手ごとのEventPlayer
 		std::unordered_map<String, EventPlayer> m_eventPlayerMap;
 
 	public:

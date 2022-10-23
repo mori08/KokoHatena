@@ -29,9 +29,6 @@ namespace Kokoha
 		// イベントのTOMLファイル
 		const TOMLReader m_eventToml;
 
-		// 文字列からイベントへの紐づけ
-		std::unordered_map<String, std::function<void(const TOMLValue&)>> m_eventMap;
-
 		// 文字列からオブジェクトの作成への紐づけ
 		std::unordered_map<String, std::function<ObjectPtr(const TOMLValue&)>> m_generateObjectMap;
 
@@ -67,9 +64,10 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// イベントの登録
+		/// イベントの実行
 		/// </summary>
-		void setEventMap();
+		/// <param name="nowEvent"> 現在読み込み中のイベント </param>
+		void playEvent(const TOMLValue& nowEvent);
 
 		/// <summary>
 		/// オブジェクトの生成の関数の登録

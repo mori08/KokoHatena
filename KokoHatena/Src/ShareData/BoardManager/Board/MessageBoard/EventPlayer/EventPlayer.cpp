@@ -8,17 +8,19 @@ namespace Kokoha
 		: m_render(drawSize)
 		, m_eventToml(eventFileName)
 	{
-		setEventMap();
 		setGenerateObjectMap();
 
 		// TODO イベント初期化処理を走らせる
 		m_now = m_eventToml[U"init"].tableArrayView().begin();
 		m_end = m_eventToml[U"init"].tableArrayView().end();
 
-		while (m_now != m_end)
+		// 初期化
+		TOMLTableArrayIterator init_now = m_now;
+		TOMLTableArrayIterator init_end = m_end;
+		while (init_now != init_end)
 		{
-			m_eventMap[(*m_now)[U"event"].getString()](*m_now);
-			++m_now;
+			playEvent(*init_now);
+			++init_now;
 		}
 	}
 
@@ -44,13 +46,19 @@ namespace Kokoha
 		{
 			m_waitingObject.pop_front();
 		}
-
+		
 		// イベントの進行
 		if (m_now != m_end && m_waitingObject.empty())
 		{
-			m_eventMap[(*m_now)[U"event"].getString()](*m_now);
+			const String eventName = (*m_now)[U"event"].getString();
+			
+			playEvent(*m_now);
+
 			++m_now;
 		}
+
+		ClearPrint();
+		Print << m_objectList.size();
 	}
 
 	void EventPlayer::draw(const Point& drawPos) const
@@ -74,27 +82,49 @@ namespace Kokoha
 		m_render.draw(drawPos);
 	}
 
-	void EventPlayer::setEventMap()
+	void EventPlayer::playEvent(const TOMLValue& nowEvent)
 	{
+		const String eventName = nowEvent[U"event"].getString(); // イベント名
+
 		// オブジェクトの生成
-		m_eventMap[U"object"] = [this](const TOMLValue& object)
+		if (eventName == U"object")
 		{
-			const String type = object[U"type"].getString();
-			const String name = object[U"name"].getString();
-			const TOMLValue param = object[U"param"];
+			const String type = nowEvent[U"type"].getString();
+			const String name = nowEvent[U"name"].getString();
+			const TOMLValue param = nowEvent[U"param"];
 
 			if (!m_generateObjectMap.count(type))
 			{
-				throw Error(U"EventPlayer: object: 存在しないtypeが指定されている");
+				throw Error(U"EventPlayer: object: 存在しないtype[" + type + U"]が指定されている");
 			}
 
 			if (m_objectList.count(name))
 			{
-				throw Error(U"EventPlayer: object: 既に存在するnameが指定されている");
+				throw Error(U"EventPlayer: object: 既に存在するname[" + name + U"]が指定されている");
 			}
 
 			m_objectList[name] = m_generateObjectMap[type](param);
-		};
+
+			return;
+		}
+
+		// 別イベント群への遷移
+		if (eventName == U"jamp")
+		{
+			const String to = nowEvent[U"to"].getString();
+
+			if (!m_eventToml[to].isTableArray())
+			{
+				throw Error(U"EventPlayer: jamp: 指定された遷移先[" + to + U"]は存在しない");
+			}
+
+			m_now = m_eventToml[to].tableArrayView().begin();
+			m_end = m_eventToml[to].tableArrayView().end();
+
+			return;
+		}
+
+		throw Error(U"EventPlayer: event[" + eventName + U"]は存在しない");
 	}
 
 	void EventPlayer::setGenerateObjectMap()
