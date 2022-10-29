@@ -13,3 +13,9 @@
     type = "texture"
     name = "test2"
     param = {log="test2"}
+
+[[test]]
+    event = "act"
+    name = "test1"
+    [test.param]
+        text = "act"

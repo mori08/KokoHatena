@@ -56,9 +56,6 @@ namespace Kokoha
 
 			++m_now;
 		}
-
-		ClearPrint();
-		Print << m_objectList.size();
 	}
 
 	void EventPlayer::draw(const Point& drawPos) const
@@ -104,6 +101,24 @@ namespace Kokoha
 			}
 
 			m_objectList[name] = m_generateObjectMap[type](param);
+
+			return;
+		}
+
+		if (eventName == U"act")
+		{
+			const String name = nowEvent[U"name"].getString();
+			const TOMLValue param = nowEvent[U"param"];
+			
+			if (!m_objectList.count(name))
+			{
+				throw Error(U"EventPlayer: act: ‘¶Ý‚µ‚È‚¢object‚Ìname[" + name + U"]‚ªŽw’è‚³‚ê‚Ä‚¢‚é");
+			}
+
+			const ObjectPtr objectPtr = m_objectList[name];
+			
+			objectPtr->receive(param);
+			m_waitingObject.emplace_back(objectPtr);
 
 			return;
 		}
