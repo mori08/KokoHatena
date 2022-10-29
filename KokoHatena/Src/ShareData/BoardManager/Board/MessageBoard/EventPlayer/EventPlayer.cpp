@@ -42,13 +42,13 @@ namespace Kokoha
 		}
 
 		// オブジェクトの待ち状態の解消
-		while (!m_waitingObject.empty() && !m_waitingObject.front()->wait())
+		while (!m_waitingObjectList.empty() && !m_waitingObjectList.front()->wait())
 		{
-			m_waitingObject.pop_front();
+			m_waitingObjectList.pop_front();
 		}
 		
 		// イベントの進行
-		if (m_now != m_end && m_waitingObject.empty())
+		if (m_now != m_end && m_waitingObjectList.empty())
 		{
 			const String eventName = (*m_now)[U"event"].getString();
 			
@@ -118,7 +118,7 @@ namespace Kokoha
 			const ObjectPtr objectPtr = m_objectList[name];
 			
 			objectPtr->receive(param);
-			m_waitingObject.emplace_back(objectPtr);
+			m_waitingObjectList.emplace_back(objectPtr);
 
 			return;
 		}
@@ -127,14 +127,23 @@ namespace Kokoha
 		if (eventName == U"jamp")
 		{
 			const String to = nowEvent[U"to"].getString();
+			const String flag = nowEvent[U"flag"].getString();
 
 			if (!m_eventToml[to].isTableArray())
 			{
-				throw Error(U"EventPlayer: jamp: 指定された遷移先[" + to + U"]は存在しない");
+				throw Error(U"EventPlayer: jamp: 指定された遷移先to[" + to + U"]は存在しない");
 			}
 
-			m_now = m_eventToml[to].tableArrayView().begin();
-			m_end = m_eventToml[to].tableArrayView().end();
+			if (flag != U"" && !m_jampFlagMap.count(flag))
+			{
+				throw Error(U"EventPlayer: jamp: 指定されたflag[" + flag + U"]は存在しない");
+			}
+
+			if (flag == U"" || m_jampFlagMap[flag])
+			{
+				m_now = m_eventToml[to].tableArrayView().begin();
+				m_end = m_eventToml[to].tableArrayView().end();
+			}
 
 			return;
 		}

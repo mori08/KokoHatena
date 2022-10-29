@@ -36,7 +36,10 @@ namespace Kokoha
 		std::map<String, ObjectPtr> m_objectList;
 
 		// 待ち状態のオブジェクト
-		std::list<ObjectPtr> m_waitingObject;
+		std::list<ObjectPtr> m_waitingObjectList;
+
+		// 画面遷移条件のフラグのリスト
+		std::unordered_map<String, bool> m_jampFlagMap;
 
 	public:
 
