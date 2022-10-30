@@ -70,7 +70,8 @@ namespace Kokoha
 		/// イベントの実行
 		/// </summary>
 		/// <param name="nowEvent"> 現在読み込み中のイベント </param>
-		void playEvent(const TOMLValue& nowEvent);
+		/// <param name="boardRequest"> ボード外へのリクエスト </param>
+		void playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest);
 
 		/// <summary>
 		/// オブジェクトの生成の関数の登録

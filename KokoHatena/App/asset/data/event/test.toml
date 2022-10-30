@@ -9,7 +9,5 @@
     to = "test"
 
 [[test]]
-    event = "act"
-    name = "test1"
-    [test.param]
-        text = "act"
+    event = "scene"
+    scene = "title"

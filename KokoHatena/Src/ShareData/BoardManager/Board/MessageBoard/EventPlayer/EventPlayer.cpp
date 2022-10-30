@@ -19,7 +19,8 @@ namespace Kokoha
 		TOMLTableArrayIterator init_end = m_end;
 		while (init_now != init_end)
 		{
-			playEvent(*init_now);
+			BoardRequest tmp; // 仮で作成（初期化でリクエストは送らない）
+			playEvent(*init_now, tmp);
 			++init_now;
 		}
 	}
@@ -52,7 +53,7 @@ namespace Kokoha
 		{
 			const String eventName = (*m_now)[U"event"].getString();
 			
-			playEvent(*m_now);
+			playEvent(*m_now, boardRequest);
 
 			++m_now;
 		}
@@ -79,7 +80,7 @@ namespace Kokoha
 		m_render.draw(drawPos);
 	}
 
-	void EventPlayer::playEvent(const TOMLValue& nowEvent)
+	void EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
 	{
 		const String eventName = nowEvent[U"event"].getString(); // イベント名
 
@@ -105,6 +106,7 @@ namespace Kokoha
 			return;
 		}
 
+		// オブジェクトへの命令
 		if (eventName == U"act")
 		{
 			const String name = nowEvent[U"name"].getString();
@@ -144,6 +146,37 @@ namespace Kokoha
 				m_now = m_eventToml[to].tableArrayView().begin();
 				m_end = m_eventToml[to].tableArrayView().end();
 			}
+
+			return;
+		}
+
+		// 他ボードへのリクエスト
+		if (eventName == U"board")
+		{
+			const String role = nowEvent[U"role"].getString();
+			const String text = nowEvent[U"text"].getString();
+			
+			if (!BOARD_ROLE_MAP.count(role))
+			{
+				throw Error(U"EventPlayer: board: 指定されたBoardRole[" + role + U"]が存在しない");
+			}
+
+			boardRequest.toBoard.emplace_back(BOARD_ROLE_MAP.find(role)->second, text);
+
+			return;
+		}
+
+		// シーンへのリクエスト
+		if (eventName == U"scene")
+		{
+			const String scene = nowEvent[U"scene"].getString();
+
+			if (!SCENE_NAME_MAP.count(scene))
+			{
+				throw Error(U"EventPlayer: scene: 指定されたScene[" + scene + U"]は存在しない");
+			}
+
+			boardRequest.toScene = SCENE_NAME_MAP.find(scene)->second;
 
 			return;
 		}

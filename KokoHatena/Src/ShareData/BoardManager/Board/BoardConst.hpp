@@ -15,6 +15,14 @@ namespace Kokoha
 		ACCESS,   // アクセス（パズルアクション部分）
 	};
 
+	// 文字列をBoradRoleに変換する連想配列
+	static const std::unordered_map<String, BoardRole> BOARD_ROLE_MAP
+	{
+		{ U"access"  , BoardRole::ACCESS },
+		{ U"security", BoardRole::SECURITY },
+		{ U"access"  , BoardRole::ACCESS }
+	};
+
 	/// <summary>
 	/// 状態
 	/// </summary>
