@@ -3,9 +3,9 @@
 namespace Kokoha
 {
 	AccessBoard::AccessBoard()
-		: Board(Role::ACCESS
+		: Board(BoardRole::ACCESS
 			, U"AccessBoard"
-			, State::IS_HIDING
+			, BoardState::IS_HIDING
 		)
 	{
 	}
@@ -18,7 +18,7 @@ namespace Kokoha
 	{
 	}
 
-	void AccessBoard::updateInBoard(Request& request)
+	void AccessBoard::updateInBoard(BoardRequest& request)
 	{
 	}
 

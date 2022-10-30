@@ -15,7 +15,7 @@ namespace Kokoha
 
 		void inputInBoard() override;
 
-		void updateInBoard(Request& request) override;
+		void updateInBoard(BoardRequest& request) override;
 
 		void drawInBoard() const override;
 

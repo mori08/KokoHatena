@@ -23,17 +23,22 @@ namespace Kokoha
 		/// オブジェクトがイベント全体を待たせるかの条件
 		/// </summary>
 		/// <returns> true のとき待たせる , false のときイベントを進ませる </returns>
-		virtual bool wait() = 0;
+		virtual bool wait() { return false; };
+
+		/// <summary>
+		/// 入力
+		/// </summary>
+		virtual void input() {};
 
 		/// <summary>
 		/// 更新
 		/// </summary>
-		virtual void update() = 0;
+		virtual void update() {};
 
 		/// <summary>
 		/// 描画
 		/// </summary>
-		virtual void draw() const = 0;
+		virtual void draw() const {};
 
 	};
 }

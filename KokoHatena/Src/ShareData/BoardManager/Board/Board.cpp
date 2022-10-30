@@ -16,7 +16,7 @@ namespace
 
 namespace Kokoha
 {
-	Board::Board(const Role& role, const String& configName, const State& state)
+	Board::Board(const BoardRole& role, const String& configName, const BoardState& state)
 		: m_role(role)
 		, m_state(state)
 		, m_name(Config::get<String>(configName + U".name"))
@@ -31,26 +31,26 @@ namespace Kokoha
 
 	bool Board::onIconClicked() const
 	{
-		return m_state != State::NONE
+		return m_state != BoardState::NONE
 			&& m_iconOrder >= 0
 			&& getIconRect().leftClicked();
 	}
 
 	bool Board::mouseLeftDown() const
 	{
-		return m_state == State::IS_DISPLAYED
+		return m_state == BoardState::IS_DISPLAYED
 			&& Rect(m_pos, m_size + Point::Down(controlFrameHeight())).leftClicked()
 			&& Cursor::Pos().y < Scene::Height() - getIconRect().h;
 	}
 
 	void Board::drawIcon() const
 	{
-		if (m_iconOrder < 0 || m_state == State::NONE) { return; }
+		if (m_iconOrder < 0 || m_state == BoardState::NONE) { return; }
 
 		const Rect iconRect = getIconRect();
 		
 		TextureAsset(m_iconTextureName)
-			(0, (m_state == State::IS_DISPLAYED) * iconRect.h, iconRect.size)
+			(0, (m_state == BoardState::IS_DISPLAYED) * iconRect.h, iconRect.size)
 			.drawAt(iconRect.center());
 	}
 
@@ -69,16 +69,16 @@ namespace Kokoha
 		return false;
 	}
 
-	void Board::update(Board::Request& request)
+	void Board::update(BoardRequest& request)
 	{
-		if (m_state != State::IS_DISPLAYED) { return; }
+		if (m_state != BoardState::IS_DISPLAYED) { return; }
 
 		updateInBoard(request);
 	}
 
 	void Board::draw() const
 	{
-		if (m_state != State::IS_DISPLAYED) { return; }
+		if (m_state != BoardState::IS_DISPLAYED) { return; }
 
 		// ƒtƒŒ[ƒ€‚Ì‘¾‚³
 		static const double FRAME_THICKNESS = Config::get<double>(U"Board.frameThickness");

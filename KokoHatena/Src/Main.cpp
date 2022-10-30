@@ -22,7 +22,7 @@ void Main()
 
 	// アセット管理
 	registerAsset(U"asset/");
-	Kokoha::MyPixelShader::loadPixelShader();
+	MyPixelShader::loadPixelShader();
 	for (int32 i = 10; i <= 40; ++i) 
 	{
 		FontAsset::Register(ToString(i), i, Typeface::Medium);
@@ -30,13 +30,13 @@ void Main()
 
 	// シーン
 	MyApp sceneManager;
-	sceneManager.add<Kokoha::TitleScene>           (SceneName::TITLE);
-	sceneManager.add<Kokoha::DesktopScene>         (SceneName::DESKTOP);
-	sceneManager.add<Kokoha::LoadRecordScene>      (SceneName::LOAD_RECORD);
-	sceneManager.add<Kokoha::LoadBoardScene>       (SceneName::LOAD_BOARD);
-	sceneManager.add<Kokoha::SaveRecordScene>      (SceneName::SAVE_RECORD);
-	sceneManager.add<Kokoha::SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
-	sceneManager.add<Kokoha::SelectSaveRecordScene>(SceneName::SELECT_SAVE_RECORD);
+	sceneManager.add<TitleScene>           (SceneName::TITLE);
+	sceneManager.add<DesktopScene>         (SceneName::DESKTOP);
+	sceneManager.add<LoadRecordScene>      (SceneName::LOAD_RECORD);
+	sceneManager.add<LoadBoardScene>       (SceneName::LOAD_BOARD);
+	sceneManager.add<SaveRecordScene>      (SceneName::SAVE_RECORD);
+	sceneManager.add<SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
+	sceneManager.add<SelectSaveRecordScene>(SceneName::SELECT_SAVE_RECORD);
 
 	while (System::Update())
 	{

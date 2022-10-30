@@ -1,0 +1,13 @@
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "test1"
+    param = {log="test1"}
+
+[[init]]
+    event = "jamp"
+    to = "test"
+
+[[test]]
+    event = "scene"
+    scene = "title"

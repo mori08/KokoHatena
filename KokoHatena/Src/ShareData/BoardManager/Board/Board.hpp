@@ -1,6 +1,7 @@
 #pragma once
 #include"../../../MyLibrary/SliceTexture/SliceTexture.hpp"
 #include"../../../Scene/SceneName.hpp"
+#include"BoardConst.hpp"
 
 namespace Kokoha
 {
@@ -9,52 +10,13 @@ namespace Kokoha
 	/// </summary>
 	class Board
 	{
-	public:
-
-		/// <summary>
-		/// 種類（役割）
-		/// </summary>
-		enum class Role
-		{
-			MESSAGE,  // メッセージ
-			SECURITY, // セキュリティ
-			ACCESS,   // アクセス（パズルアクション部分）
-		};
-
-		/// <summary>
-		/// 状態
-		/// </summary>
-		enum class State
-		{
-			IS_DISPLAYED, // 表示中
-			IS_HIDING,    // 非表示
-			NONE,         // 利用不可
-		};
-
-		/// <summary>
-		/// 外部へ送信するデータ
-		/// </summary>
-		class Request
-		{
-		public:
-
-			// 他ボードへの命令
-			std::list<std::pair<Role, String>> toBoard;
-
-			// Recordへの書き込み
-			std::unordered_map<String, int32> toRecord;
-
-			// Scene遷移
-			Optional<SceneName> toScene = none;
-		};
-
 	private:
 
 		// 種類
-		const Role m_role;
+		const BoardRole m_role;
 
 		// 状態
-		State m_state;
+		BoardState m_state;
 
 		// 名前
 		const String m_name;
@@ -82,7 +44,7 @@ namespace Kokoha
 		/// <param name="role"> 種類(役割) </param>
 		/// <param name="configName"> configファイルでの名前 </param>
 		/// <param name="state"> 初期状態 </param>
-		Board(const Role& role, const String& configName, const State& state);
+		Board(const BoardRole& role, const String& configName, const BoardState& state);
 
 		virtual ~Board() = default;
 
@@ -92,7 +54,7 @@ namespace Kokoha
 		/// ボードの種類の取得
 		/// </summary>
 		/// <returns> ボードの種類 </returns>
-		const Role& role() const
+		const BoardRole& role() const
 		{
 			return m_role;
 		}
@@ -101,7 +63,7 @@ namespace Kokoha
 		/// ボードの状態の取得
 		/// </summary>
 		/// <returns> ボードの状態 </returns>
-		const State& state() const
+		const BoardState& state() const
 		{
 			return m_state;
 		}
@@ -111,7 +73,7 @@ namespace Kokoha
 		/// </summary>
 		void display()
 		{
-			m_state = State::IS_DISPLAYED;
+			m_state = BoardState::IS_DISPLAYED;
 		}
 
 		/// <summary>
@@ -119,7 +81,7 @@ namespace Kokoha
 		/// </summary>
 		void hide()
 		{
-			m_state = State::IS_HIDING;
+			m_state = BoardState::IS_HIDING;
 		}
 
 		/// <summary>
@@ -156,7 +118,7 @@ namespace Kokoha
 		/// 更新
 		/// </summary>
 		/// <param name="request"> ボード外部への命令 </param>
-		void update(Request& request);
+		void update(BoardRequest& request);
 
 		/// <summary>
 		/// 描画
@@ -179,7 +141,7 @@ namespace Kokoha
 		/// <summary>
 		/// 各ボード固有の更新処理
 		/// </summary>
-		virtual void updateInBoard(Request& request) = 0;
+		virtual void updateInBoard(BoardRequest& request) = 0;
 
 		/// <summary>
 		/// 各ボード固有の描画処理

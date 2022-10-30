@@ -171,6 +171,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject">
       <UniqueIdentifier>{3d26752b-f639-486e-904d-b54655d97bb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject">
+      <UniqueIdentifier>{1367638f-8386-4b45-90a9-b548eeb7a3b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -508,6 +511,12 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp">
       <Filter>Src\ShareData\BoardManager\Board\MessageBoard</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -587,6 +596,12 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\SceneName.hpp">
       <Filter>Src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\BoardConst.hpp">
+      <Filter>Src\ShareData\BoardManager\Board</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

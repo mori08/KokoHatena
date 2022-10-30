@@ -5,9 +5,9 @@
 namespace Kokoha
 {
 	MessageBoard::MessageBoard()
-		: Board(Role::MESSAGE
+		: Board(BoardRole::MESSAGE
 			, U"MessageBoard"
-			, State::IS_HIDING
+			, BoardState::IS_HIDING
 		)
 		, m_selectedSpeakerName(none)
 	{
@@ -17,13 +17,21 @@ namespace Kokoha
 		for (const auto& speakerName : m_speakerNameList)
 		{
 			// TODO: Record‚Ì“à—e‚É‰ž‚¶‚ÄEventPlayer‚É‰Šú‰»
-			m_eventPlayerMap.try_emplace(speakerName, EventPlayer());
+			m_eventPlayerMap.try_emplace
+			(
+				speakerName,
+				EventPlayer
+				(
+					U"asset/data/event/test.toml", 
+					Size(size().x - getSpeakerNameRect(0).w, size().y)
+				)
+			);
 		}
 	}
 
 	void MessageBoard::receiveRequest(const String&)
 	{
-
+		
 	}
 
 	void MessageBoard::inputInBoard()
@@ -36,10 +44,19 @@ namespace Kokoha
 				m_selectedSpeakerName = m_speakerNameList[index];
 			}
 		}
+
+		if (m_selectedSpeakerName)
+		{
+			m_eventPlayerMap.find(m_selectedSpeakerName.value())->second.input();
+		}
 	}
 
-	void MessageBoard::updateInBoard(Request&)
+	void MessageBoard::updateInBoard(BoardRequest& request)
 	{
+		if (m_selectedSpeakerName)
+		{
+			m_eventPlayerMap.find(m_selectedSpeakerName.value())->second.update(request);
+		}
 	}
 
 	void MessageBoard::drawInBoard() const
@@ -60,6 +77,12 @@ namespace Kokoha
 			}
 
 			FontAsset(U"20")(m_speakerNameList[index]).draw(rect.pos + SPEAKER_NAME_POS, MyWhite);
+		}
+
+		if (m_selectedSpeakerName)
+		{
+			m_eventPlayerMap.find(m_selectedSpeakerName.value())
+				->second.draw(Point(getSpeakerNameRect(0).w, 0));
 		}
 
 		Rect(

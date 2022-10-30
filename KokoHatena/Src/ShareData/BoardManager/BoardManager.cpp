@@ -26,7 +26,7 @@ namespace Kokoha
 		{
 			if (!(*itr)->onIconClicked()) { continue; }
 
-			const bool isTop = (itr == m_boardList.begin() && (*itr)->state() == Board::State::IS_DISPLAYED);
+			const bool isTop = (itr == m_boardList.begin() && (*itr)->state() == BoardState::IS_DISPLAYED);
 			if (isTop) // ボードが先頭で表示中のとき
 			{
 				hideBoard((*itr)->role()); // 非表示にする
@@ -52,7 +52,7 @@ namespace Kokoha
 		// 先頭ボードの入力を受け付ける
 		if (true 
 			&& !m_boardList.empty()
-			&& m_boardList.front()->state() == Board::State::IS_DISPLAYED
+			&& m_boardList.front()->state() == BoardState::IS_DISPLAYED
 			&& m_boardList.front()->input())
 		{
 			// inputの戻り値がtrueのときBoardを隠す
@@ -60,10 +60,10 @@ namespace Kokoha
 		}
 
 		// 表示中のボードの更新
-		std::list<std::pair<Board::Role, String>> boardRequestList; // 他Boardへの命令のリスト
+		std::list<std::pair<BoardRole, String>> boardRequestList; // 他Boardへの命令のリスト
 		for (auto& board : m_boardList)
 		{
-			Board::Request request; // Boardから外部へのリクエスト
+			BoardRequest request; // Boardから外部へのリクエスト
 			board->update(request);
 
 			// Board
@@ -80,7 +80,7 @@ namespace Kokoha
 		}
 		
 		// 他ボードへの命令
-		for (const std::pair<Board::Role, String>& boardRequest : boardRequestList)
+		for (const std::pair<BoardRole, String>& boardRequest : boardRequestList)
 		{
 			displayBoard(boardRequest.first, boardRequest.second);
 		}
@@ -111,7 +111,7 @@ namespace Kokoha
 		}
 	}
 
-	std::list<std::unique_ptr<Board>>::iterator BoardManager::findBoardItr(const Board::Role& role)
+	std::list<std::unique_ptr<Board>>::iterator BoardManager::findBoardItr(const BoardRole& role)
 	{
 		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
 		{
@@ -121,7 +121,7 @@ namespace Kokoha
 		throw Error(U"Faild to find Board");
 	}
 
-	void BoardManager::displayBoard(const Board::Role& role, const String& requestText)
+	void BoardManager::displayBoard(const BoardRole& role, const String& requestText)
 	{
 		// 先頭に移動させるイテレータ
 		auto boardItr = findBoardItr(role);
@@ -144,7 +144,7 @@ namespace Kokoha
 		m_boardList.front()->receiveRequest(requestText);
 	}
 
-	void BoardManager::hideBoard(const Board::Role& role)
+	void BoardManager::hideBoard(const BoardRole& role)
 	{
 		// 末尾に移動させるイテレータ
 		auto boardItr = findBoardItr(role);
