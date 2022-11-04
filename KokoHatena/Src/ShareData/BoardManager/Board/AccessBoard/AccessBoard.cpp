@@ -7,6 +7,7 @@ namespace Kokoha
 			, U"AccessBoard"
 			, BoardState::IS_HIDING
 		)
+		, m_terrain(U"asset/data/test.csv")
 	{
 	}
 
@@ -18,11 +19,12 @@ namespace Kokoha
 	{
 	}
 
-	void AccessBoard::updateInBoard(BoardRequest& request)
+	void AccessBoard::updateInBoard(BoardRequest&)
 	{
 	}
 
 	void AccessBoard::drawInBoard() const
 	{
+		m_terrain.draw();
 	}
 }

@@ -15,7 +15,7 @@ namespace Kokoha
 	/// 地形データ
 	/// オブジェクトの移動と光の描画で使用 
 	/// </summary>
-	class StageData
+	class Terrain
 	{
 	public:
 
@@ -31,13 +31,19 @@ namespace Kokoha
 
 		static constexpr int32 WIDTH       = 24;           // ステージの幅(マス)
 		static constexpr int32 HEIGHT      = 18;           // ステージの高さ(マス)
-		static constexpr int32 SIZE        = WIDTH*HEIGHT; // マス数
+		static constexpr int32 N           = WIDTH*HEIGHT; // マス数
 		static constexpr int32 SQUARE_SIZE = 25;           // 1マスの1辺の長さ(ピクセル)
 
 	private:
 
 		// 地形データ
-		Array<Cell> m_terrain;
+		Array<Cell> m_cellList;
+
+		// [i][j] : i -> j への最短経路（次の目標）
+		Array<Array<int32>> m_path;
+
+		// [i][j] : i -> j への最短経路（1マスの1辺を1とした距離）
+		Array<Array<double>> m_dist;
 
 	private:
 
@@ -101,5 +107,70 @@ namespace Kokoha
 			return SQUARE_SIZE * (Vec2::One() * square + Vec2::One() / 2);
 		}
 
+	public:
+
+		/// <param name="filePath"> 地形データのCSVファイルへのパス </param>
+		Terrain(const FilePath& filePath);
+
+	private:
+
+		/// <summary>
+		/// csvファイルの読み込みと地形の設定
+		/// </summary>
+		void loadCSV(const FilePath& filePath);
+
+		/// <summary>
+		/// 経路探索
+		/// </summary>
+		void searchPath();
+
+		/// <summary>
+		/// マス1とマス2の間に直線の経路を設定
+		/// </summary>
+		/// <param name="s1"> マス1 </param>
+		/// <param name="s2"> マス2 </param>
+		void makeEdge(const Point& s1, const Point& s2);
+
+	public:
+
+		/// <summary>
+		/// 指定されたマスが通行可能か
+		/// </summary>
+		/// <param name="square"> マス座標 </param>
+		/// <returns> true のとき通行可能 , false のとき通行不可 </returns>
+		bool isWalkAble(const Point& square) const
+		{
+			return true
+				&& square.x >= 0
+				&& square.x < WIDTH
+				&& square.y >= 0
+				&& square.y < HEIGHT
+				&& m_cellList[toInteger(square)] == Cell::NONE;
+		}
+
+		/// <summary>
+		/// 指定された整数値に対応するマスが通行可能か
+		/// </summary>
+		/// <param name="integer"> 整数値 </param>
+		/// <returns> true のとき通行可能 , false のとき通行不可 </returns>
+		bool isWalkAble(int32 integer) const
+		{
+			return isWalkAble(toSquare(integer));
+		}
+
+		/// <summary>
+		/// 指定されたピクセル座標が通行可能か
+		/// </summary>
+		/// <param name="pixel"> ピクセル座標 </param>
+		/// <returns> true のとき通行可能 , false のとき通行不可 </returns>
+		bool isWalkAble(const Vec2& pixel) const
+		{
+			return isWalkAble(toSquare(pixel));
+		}
+
+		/// <summary>
+		/// 描画
+		/// </summary>
+		void draw() const;
 	};
 }
