@@ -1,10 +1,15 @@
 #pragma once
 #include"../Board.hpp"
+#include"Terrain/Terrain.hpp"
 
 namespace Kokoha
 {
 	class AccessBoard : public Board
 	{
+	private:
+
+		Terrain m_terrain;
+
 	public:
 
 		AccessBoard();

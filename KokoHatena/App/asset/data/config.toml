@@ -78,5 +78,6 @@
 
 [AccessBoard]
     name = "アクセス"
-    size = {x=400,y=300}
+    size = {x=600,y=450}
     iconOrder = 1
+    wideArea  = 50
