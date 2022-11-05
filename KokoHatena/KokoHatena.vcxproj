@@ -249,6 +249,7 @@
     <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\BoardConst.hpp" />

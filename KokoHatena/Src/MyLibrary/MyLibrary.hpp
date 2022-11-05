@@ -183,5 +183,13 @@ namespace Kokoha
 			+ Point(KeyRight.down() - KeyLeft.down(), KeyDown.down() - KeyUp.down());
 	}
 
-
+	inline String makeGuid()
+	{
+		return U""
+			+ Pad(U"{:X}"_fmt(RandomUint32()), { 8,U'0' }) + U"-"
+			+ Pad(U"{:X}"_fmt(RandomUint16()), { 4,U'0' }) + U"-"
+			+ Pad(U"{:X}"_fmt(RandomUint16()), { 4,U'0' }) + U"-"
+			+ Pad(U"{:X}"_fmt(RandomUint16()), { 4,U'0' }) + U"-"
+			+ Pad(U"{:X}"_fmt(RandomUint16()), { 4,U'0' }) + Pad(U"{:X}"_fmt(RandomUint32()), { 8,U'0' });
+	}
 }

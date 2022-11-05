@@ -1,5 +1,6 @@
 #pragma once
 #include"../Board.hpp"
+#include"AccessObject/AccessObject.hpp"
 #include"Terrain/Terrain.hpp"
 
 namespace Kokoha

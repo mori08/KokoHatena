@@ -177,6 +177,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain">
       <UniqueIdentifier>{13a3c4f9-ada6-4a43-b01b-d0e5d821afd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject">
+      <UniqueIdentifier>{f60ba0ce-18a9-4dca-a4c3-dfbc6641cc9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -523,6 +526,9 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -611,6 +617,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
