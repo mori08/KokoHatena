@@ -11,12 +11,19 @@ namespace Kokoha
 	{
 	public:
 
-		using Ptr = std::unique_ptr<AccessObject>;
-
 		enum class Type
 		{
-			PLAYER // プレイヤー
+			PLAYER, // プレイヤー
+			ENEMY,  // 敵
+			LIGHT,  // 光
+			GOAL    // ゴール
 		};
+
+		using Ptr = std::unique_ptr<AccessObject>;
+
+		using GuidToObject = std::unordered_map<String, Ptr>;
+
+		using TypeToGuidSet = std::unordered_map<Type, std::unordered_set<String>>;
 
 	protected:
 
@@ -47,6 +54,24 @@ namespace Kokoha
 		}
 
 		/// <summary>
+		/// bodyの取得
+		/// </summary>
+		/// <returns> body </returns>
+		const Circle& body() const
+		{
+			return m_body;
+		}
+
+		/// <summary>
+		/// typeの取得
+		/// </summary>
+		/// <returns> type </returns>
+		const Type& type() const
+		{
+			return m_type;
+		}
+
+		/// <summary>
 		/// 入力
 		/// </summary>
 		/// <param name="cursorPos"> カーソルの座標 </param>
@@ -62,9 +87,9 @@ namespace Kokoha
 		/// 他オブジェクトの確認
 		/// </summary>
 		/// <param name="terrain"> 地形 </param>
-		/// <param name="objectMap"> guidからオブジェクトへの連想配列 </param>
-		/// <param name="typeMap"> オブジェクトの種類からguidへの連想配列 </param>
-		virtual void checkOthers(const Terrain& terrain, const std::unordered_map<String, Ptr>& objectMap, const std::unordered_map<Type, std::list<String>>& typeMap);
+		/// <param name="guidToObject"> guidからオブジェクトへの連想配列 </param>
+		/// <param name="typeToGuidSet"> オブジェクトの種類からguidへの連想配列 </param>
+		virtual void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
 
 		/// <summary>
 		/// 描画

@@ -13,10 +13,13 @@ namespace Kokoha
 		Terrain m_terrain;
 
 		// guidからオブジェクトへの連想配列
-		std::unordered_map<String, AccessObject::Ptr> m_objectMap;
+		AccessObject::GuidToObject m_objectMap;
 
 		//  オブジェクトの種類からguidへの連想配列
-		std::unordered_map<AccessObject::Type, std::list<String>> m_typeMap;
+		AccessObject::TypeToGuidSet m_typeToGuidSet;
+
+		// 生成するオブジェクト
+		std::list<AccessObject::Ptr> m_makeObjectList;
 
 	public:
 

@@ -171,7 +171,7 @@ namespace Kokoha
 		{
 			const Point square = toSquare(i);
 			Rect(SQUARE_SIZE * square, SQUARE_SIZE)
-				.draw(isWalkAble(i) ? ColorF(MyWhite, 0.2) : MyBlack)
+				.draw(isWalkAble(i) ? ColorF(MyWhite, 0.5) : MyBlack)
 				.drawFrame(2, MyBlack);
 		}
 #endif // _DEBUG

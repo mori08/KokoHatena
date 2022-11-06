@@ -86,4 +86,7 @@
     radius = 10.0
 
 [PlayerAccessObject]
+    speed = 100
+
+[EnemyAccessObject]
     speed = 50

@@ -24,7 +24,7 @@ namespace Kokoha
 	{
 	}
 
-	void AccessObject::checkOthers(const Terrain&, const std::unordered_map<String, Ptr>&, const std::unordered_map<Type, std::list<String>>&)
+	void AccessObject::checkOthers(const Terrain&, const GuidToObject&, const TypeToGuidSet&)
 	{
 	}
 
@@ -63,7 +63,7 @@ namespace Kokoha
 
 	Vec2 AccessObject::walkToGoal(double speed, const Vec2& goal, const Terrain& terrain)
 	{
-		return goal.distanceFrom(m_body.center) < speed
+		return goal.distanceFrom(m_body.center) < speed * Scene::DeltaTime()
 			? Vec2::Zero()
 			: walk(speed * terrain.getPath(m_body.center, goal), terrain);
 	}

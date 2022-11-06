@@ -183,6 +183,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject">
       <UniqueIdentifier>{7ba3c6da-0e43-43bb-9c3a-53fc5730803a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject">
+      <UniqueIdentifier>{72d9b6aa-88d3-418d-aaa3-f517a1c046ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -535,6 +538,9 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -629,6 +635,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

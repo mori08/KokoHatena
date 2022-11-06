@@ -16,19 +16,20 @@ namespace Kokoha
 		if (KeyS.pressed()) { m_movement += Vec2::Down();  }
 		if (KeyA.pressed()) { m_movement += Vec2::Left();  }
 		if (KeyD.pressed()) { m_movement += Vec2::Right(); }
+
+		static const double SPEED = Config::get<double>(U"PlayerAccessObject.speed");
+		m_movement *= SPEED;
 	}
 
 	void PlayerAccessObject::update(const Terrain& terrain)
-	{
-		static const double SPEED = Config::get<double>(U"PlayerAccessObject.speed");
-		
-		walk(SPEED * m_movement, terrain);
+	{		
+		walk(m_movement, terrain);
 
 		m_movement = Vec2::Zero();
 	}
 
 	void PlayerAccessObject::draw() const
 	{
-		m_body.draw(MyBlack);
+		m_body.draw(Palette::Black);
 	}
 }

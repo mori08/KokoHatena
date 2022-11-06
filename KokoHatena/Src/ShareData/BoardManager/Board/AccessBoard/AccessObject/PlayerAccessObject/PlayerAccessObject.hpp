@@ -8,6 +8,7 @@ namespace Kokoha
 	{
 	private:
 
+		// input‚ÅŒˆ’è‚·‚éˆÚ“®—Ê
 		Vec2 m_movement;
 
 	public:
