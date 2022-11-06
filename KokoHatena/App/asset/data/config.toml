@@ -81,3 +81,9 @@
     size = {x=600,y=450}
     iconOrder = 1
     wideArea  = 50
+
+[AccessObject]
+    radius = 10.0
+
+[PlayerAccessObject]
+    speed = 50

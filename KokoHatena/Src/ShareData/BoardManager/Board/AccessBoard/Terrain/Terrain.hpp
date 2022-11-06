@@ -169,6 +169,14 @@ namespace Kokoha
 		}
 
 		/// <summary>
+		/// 最短経路の取得
+		/// </summary>
+		/// <param name="pixelS"> 始点（ピクセル座標） </param>
+		/// <param name="pixelT"> 終点（ピクセル座標） </param>
+		/// <returns> 経路上で最初に進む方向の単位ベクトル or Vec2::Zero() </returns>
+		Vec2 getPath(const Vec2& pixelS, const Vec2& pixelT) const;
+
+		/// <summary>
 		/// 描画
 		/// </summary>
 		void draw() const;

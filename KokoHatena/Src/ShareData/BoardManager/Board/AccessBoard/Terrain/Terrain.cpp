@@ -131,6 +131,29 @@ namespace Kokoha
 		m_dist[i2][i1] = distance;
 	}
 
+	Vec2 Terrain::getPath(const Vec2& pixelS, const Vec2& pixelT) const
+	{
+		if (!isWalkAble(pixelS) || !isWalkAble(pixelT) || (pixelS - pixelT).isZero())
+		{
+			return Vec2::Zero();
+		}
+
+		const int32 iS = toInteger(pixelS); // 始点
+		const int32 iT = toInteger(pixelT); // 終点
+		const int32 iR = m_path[iS][iT];    // 中継地点
+
+		if (iR == iT) // 直接目的地へ向かえる場合
+		{
+			return (pixelT - pixelS).normalize();
+		}
+
+		const Vec2 relay
+			= toPixel(iR)
+			+ (toPixel(m_path[iR][iT]) - toPixel(iR)).normalize() * SQUARE_SIZE / 2;
+
+		return (relay - pixelS).normalize();
+	}
+
 	void Terrain::draw() const
 	{
 		for (int32 i : Range(0, N - 1))

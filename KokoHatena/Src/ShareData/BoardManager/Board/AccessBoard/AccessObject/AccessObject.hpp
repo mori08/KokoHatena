@@ -18,7 +18,7 @@ namespace Kokoha
 			PLAYER // プレイヤー
 		};
 
-	private:
+	protected:
 
 		// オブジェクトの種類
 		const Type m_type;
@@ -33,7 +33,18 @@ namespace Kokoha
 
 		AccessObject(const Type& type, const Circle& body);
 
+		AccessObject(const Type& type, const Vec2& pos);
+
 		virtual ~AccessObject() {}
+
+		/// <summary>
+		/// guidの取得
+		/// </summary>
+		/// <returns> guid </returns>
+		const String& guid() const
+		{
+			return m_guid;
+		}
 
 		/// <summary>
 		/// 入力
@@ -70,6 +81,25 @@ namespace Kokoha
 		/// </summary>
 		/// <returns> true のとき削除 </returns>
 		virtual bool isEraseAble() const;
+
+	protected:
+
+		/// <summary>
+		/// 移動
+		/// </summary>
+		/// <param name="movement"> 移動量(/s) </param>
+		/// <param name="terrain"> 地形 </param>
+		/// <returns> 実際に移動した移動量 </returns>
+		Vec2 walk(Vec2 movement, const Terrain& terrain);
+
+		/// <summary>
+		/// 目的地への移動
+		/// </summary>
+		/// <param name="speed"> 速さ(/s) </param>
+		/// <param name="goal"> 目的地 </param>
+		/// <param name="terrain"> 地形 </param>
+		/// <returns> 実際に移動した移動量 </returns>
+		Vec2 walkToGoal(double speed, const Vec2& goal, const Terrain& terrain);
 
 	};
 }

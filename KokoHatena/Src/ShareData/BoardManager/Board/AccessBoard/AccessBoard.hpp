@@ -9,7 +9,14 @@ namespace Kokoha
 	{
 	private:
 
+		// 地形
 		Terrain m_terrain;
+
+		// guidからオブジェクトへの連想配列
+		std::unordered_map<String, AccessObject::Ptr> m_objectMap;
+
+		//  オブジェクトの種類からguidへの連想配列
+		std::unordered_map<AccessObject::Type, std::list<String>> m_typeMap;
 
 	public:
 

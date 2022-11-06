@@ -1,5 +1,6 @@
 #include "AccessObject.hpp"
 #include "../../../../../MyLibrary/MyLibrary.hpp"
+#include "../../../../../Config/Config.hpp"
 
 namespace Kokoha
 {
@@ -7,6 +8,11 @@ namespace Kokoha
 		: m_type(type)
 		, m_guid(makeGuid())
 		, m_body(body)
+	{
+	}
+
+	AccessObject::AccessObject(const Type& type, const Vec2& pos)
+		: AccessObject(type, Circle(pos, Config::get<double>(U"AccessObject.radius")))
 	{
 	}
 
@@ -33,6 +39,33 @@ namespace Kokoha
 	bool AccessObject::isEraseAble() const
 	{
 		return false;
+	}
+
+	Vec2 AccessObject::walk(Vec2 movement, const Terrain& terrain)
+	{
+		movement *= Scene::DeltaTime();
+		Vec2 rtn = Vec2::Zero();
+
+		if (terrain.isWalkAble(m_body.center.movedBy(movement.x, 0)))
+		{
+			m_body.x += movement.x;
+			rtn.x = movement.x;
+		}
+
+		if (terrain.isWalkAble(m_body.center.movedBy(0, movement.y)))
+		{
+			m_body.y += movement.y;
+			rtn.y = movement.y;
+		}
+
+		return rtn;
+	}
+
+	Vec2 AccessObject::walkToGoal(double speed, const Vec2& goal, const Terrain& terrain)
+	{
+		return goal.distanceFrom(m_body.center) < speed
+			? Vec2::Zero()
+			: walk(speed * terrain.getPath(m_body.center, goal), terrain);
 	}
 
 }
