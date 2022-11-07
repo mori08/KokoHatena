@@ -23,5 +23,7 @@ namespace Kokoha
 
 		void draw() const override;
 
+		void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+
 	};
 }

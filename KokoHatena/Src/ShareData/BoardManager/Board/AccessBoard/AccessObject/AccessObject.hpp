@@ -25,13 +25,16 @@ namespace Kokoha
 
 		using TypeToGuidSet = std::unordered_map<Type, std::unordered_set<String>>;
 
-	protected:
+	private:
 
 		// オブジェクトの種類
 		const Type m_type;
 
 		// GUID
 		const String m_guid;
+
+		// true のとき 削除する
+		bool m_isErase;
 
 		// 位置と判定用の範囲
 		Circle m_body;
@@ -43,6 +46,15 @@ namespace Kokoha
 		AccessObject(const Type& type, const Vec2& pos);
 
 		virtual ~AccessObject() {}
+
+		/// <summary>
+		/// typeの取得
+		/// </summary>
+		/// <returns> type </returns>
+		const Type& type() const
+		{
+			return m_type;
+		}
 
 		/// <summary>
 		/// guidの取得
@@ -60,15 +72,6 @@ namespace Kokoha
 		const Circle& body() const
 		{
 			return m_body;
-		}
-
-		/// <summary>
-		/// typeの取得
-		/// </summary>
-		/// <returns> type </returns>
-		const Type& type() const
-		{
-			return m_type;
 		}
 
 		/// <summary>
@@ -108,6 +111,14 @@ namespace Kokoha
 		virtual bool isEraseAble() const;
 
 	protected:
+
+		/// <summary>
+		/// このオブジェクトを削除する
+		/// </summary>
+		void erase()
+		{
+			m_isErase = true;
+		}
 
 		/// <summary>
 		/// 移動

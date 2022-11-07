@@ -17,7 +17,7 @@ namespace Kokoha
 		m_typeToGuidSet[AccessObject::Type::GOAL]   = {};
 
 		m_makeObjectList.emplace_back(std::make_unique<PlayerAccessObject>(Vec2(10, 10)));
-		m_makeObjectList.emplace_back(std::make_unique<EnemyAccessObject>(Vec2(10, 10)));
+		m_makeObjectList.emplace_back(std::make_unique<EnemyAccessObject>(Vec2(100, 100)));
 	}
 
 	void AccessBoard::receiveRequest(const String&)
@@ -53,6 +53,17 @@ namespace Kokoha
 
 			// 他オブジェクトの情報の取得
 			object.second->checkOthers(m_terrain, m_objectMap, m_typeToGuidSet);
+		}
+
+		// 削除
+		for (auto itr = m_objectMap.begin(); itr != m_objectMap.end();)
+		{
+			if (itr->second->isEraseAble())
+			{
+				m_typeToGuidSet[itr->second->type()].erase(itr->second->guid());
+				itr = m_objectMap.erase(itr);
+			}
+			else { ++itr; }
 		}
 	}
 

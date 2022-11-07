@@ -17,7 +17,7 @@ namespace Kokoha
 
 	void EnemyAccessObject::draw() const
 	{
-		m_body.drawFrame(2, Palette::Black);
+		body().drawFrame(2, Palette::Black);
 	}
 
 	void EnemyAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)

@@ -7,6 +7,7 @@ namespace Kokoha
 	AccessObject::AccessObject(const Type& type, const Circle& body)
 		: m_type(type)
 		, m_guid(makeGuid())
+		, m_isErase(false)
 		, m_body(body)
 	{
 	}
@@ -38,7 +39,7 @@ namespace Kokoha
 
 	bool AccessObject::isEraseAble() const
 	{
-		return false;
+		return m_isErase;
 	}
 
 	Vec2 AccessObject::walk(Vec2 movement, const Terrain& terrain)
