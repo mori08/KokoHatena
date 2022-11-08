@@ -1,4 +1,5 @@
 #include "PlayerAccessObject.hpp"
+#include "../LightAccessObject/LightAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
 
@@ -19,6 +20,10 @@ namespace Kokoha
 
 		static const double SPEED = Config::get<double>(U"PlayerAccessObject.speed");
 		m_movement *= SPEED;
+		if (MouseL.down())
+		{
+			makeObject(std::make_unique<LightAccessObject>(body().center));
+		}
 	}
 
 	void PlayerAccessObject::update(const Terrain& terrain)

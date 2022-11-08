@@ -186,6 +186,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject">
       <UniqueIdentifier>{72d9b6aa-88d3-418d-aaa3-f517a1c046ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject">
+      <UniqueIdentifier>{84f12c53-61af-4f58-b1d9-b4f3763e59f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -541,6 +544,9 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject\LightAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -638,6 +644,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject\LightAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

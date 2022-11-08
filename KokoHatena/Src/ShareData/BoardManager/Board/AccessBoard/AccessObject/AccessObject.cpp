@@ -29,17 +29,26 @@ namespace Kokoha
 	{
 	}
 
+	void AccessObject::addObjectList(std::list<AccessObject::Ptr>& makeObjectList)
+	{
+		while (!m_makeObjectList.empty())
+		{
+			makeObjectList.emplace_back(std::move(m_makeObjectList.front()));
+			m_makeObjectList.pop_front();
+		}
+	}
+
+	bool AccessObject::isEraseAble() const
+	{
+		return m_isErase;
+	}
+
 	void AccessObject::draw() const
 	{
 	}
 
 	void AccessObject::drawLight() const
 	{
-	}
-
-	bool AccessObject::isEraseAble() const
-	{
-		return m_isErase;
 	}
 
 	Vec2 AccessObject::walk(Vec2 movement, const Terrain& terrain)

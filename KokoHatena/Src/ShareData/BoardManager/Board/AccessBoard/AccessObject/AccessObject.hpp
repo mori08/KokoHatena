@@ -36,6 +36,9 @@ namespace Kokoha
 		// true のとき 削除する
 		bool m_isErase;
 
+		// 作成するオブジェクトのリスト
+		std::list<AccessObject::Ptr> m_makeObjectList;
+
 		// 位置と判定用の範囲
 		Circle m_body;
 		
@@ -95,6 +98,18 @@ namespace Kokoha
 		virtual void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
 
 		/// <summary>
+		/// 追加オブジェクトをオブジェクトリストに追加
+		/// </summary>
+		/// <param name="makeObjectList"> オブジェクトの作成リスト </param>
+		virtual void addObjectList(std::list<AccessObject::Ptr>& makeObjectList);
+
+		/// <summary>
+		/// 削除条件
+		/// </summary>
+		/// <returns> true のとき削除 </returns>
+		virtual bool isEraseAble() const;
+
+		/// <summary>
 		/// 描画
 		/// </summary>
 		virtual void draw() const;
@@ -104,12 +119,6 @@ namespace Kokoha
 		/// </summary>
 		virtual void drawLight() const;
 
-		/// <summary>
-		/// 削除条件
-		/// </summary>
-		/// <returns> true のとき削除 </returns>
-		virtual bool isEraseAble() const;
-
 	protected:
 
 		/// <summary>
@@ -118,6 +127,15 @@ namespace Kokoha
 		void erase()
 		{
 			m_isErase = true;
+		}
+
+		/// <summary>
+		/// 他のオブジェクトを作成する
+		/// </summary>
+		/// <param name="objectPtr"> 作成するオブジェクトのunique_ptr </param>
+		void makeObject(AccessObject::Ptr&& object)
+		{
+			m_makeObjectList.emplace_back(std::move(object));
 		}
 
 		/// <summary>
