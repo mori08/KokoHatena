@@ -1,4 +1,5 @@
 #include "LightAccessObject.hpp"
+#include "../../../../../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
@@ -7,8 +8,8 @@ namespace Kokoha
 	{
 	}
 
-	void LightAccessObject::draw() const
+	void LightAccessObject::drawLight() const
 	{
-		body().draw();
+		Circle(body().center, 100).draw(MyWhite);
 	}
 }

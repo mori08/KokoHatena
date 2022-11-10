@@ -76,8 +76,15 @@ namespace Kokoha
 
 	void AccessBoard::drawInBoard() const
 	{
+		// オブジェクトの出す光の描画
+		for (const auto& object : m_objectMap)
+		{
+			object.second->drawLight();
+		}
+
 		m_terrain.draw();
 
+		// オブジェクトの描画
 		for (const auto& object : m_objectMap)
 		{
 			object.second->draw();
