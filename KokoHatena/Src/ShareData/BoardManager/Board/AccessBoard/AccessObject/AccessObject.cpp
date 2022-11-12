@@ -49,6 +49,7 @@ namespace Kokoha
 
 	void AccessObject::drawLight() const
 	{
+		m_light.draw();
 	}
 
 	Vec2 AccessObject::walk(Vec2 movement, const Terrain& terrain)

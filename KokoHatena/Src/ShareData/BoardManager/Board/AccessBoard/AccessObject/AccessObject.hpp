@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Terrain/Terrain.hpp"
+#include "AccessLight/AccessLight.hpp"
 
 namespace Kokoha
 {
@@ -41,6 +42,9 @@ namespace Kokoha
 
 		// 位置と判定用の範囲
 		Circle m_body;
+
+		// 光
+		AccessLight m_light;
 		
 	public:
 
@@ -154,6 +158,15 @@ namespace Kokoha
 		/// <param name="terrain"> 地形 </param>
 		/// <returns> 実際に移動した移動量 </returns>
 		Vec2 walkToGoal(double speed, const Vec2& goal, const Terrain& terrain);
+
+		/// <summary>
+		/// 光
+		/// </summary>
+		/// <returns> 光の参照 </returns>
+		AccessLight& light()
+		{
+			return m_light;
+		}
 
 	};
 }

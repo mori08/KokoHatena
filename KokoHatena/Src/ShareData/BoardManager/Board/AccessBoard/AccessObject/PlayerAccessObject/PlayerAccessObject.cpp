@@ -9,6 +9,12 @@ namespace Kokoha
 		: AccessObject(Type::PLAYER, pos)
 		, m_movement(0, 0)
 	{
+		static const double LIGHT_ALPHA = Config::get<double>(U"PlayerAccessObject.lightAlpha");
+		static const double LIGHT_DISTANCE = Config::get<double>(U"PlayerAccessObject.lightDistance");
+
+		light()
+			.setDistance(LIGHT_DISTANCE)
+			.setAlpha(LIGHT_ALPHA);
 	}
 
 	void PlayerAccessObject::input(const Vec2&)
@@ -20,10 +26,6 @@ namespace Kokoha
 
 		static const double SPEED = Config::get<double>(U"PlayerAccessObject.speed");
 		m_movement *= SPEED;
-		if (MouseL.down())
-		{
-			makeObject(std::make_unique<LightAccessObject>(body().center));
-		}
 	}
 
 	void PlayerAccessObject::update(const Terrain& terrain)
@@ -31,11 +33,15 @@ namespace Kokoha
 		walk(m_movement, terrain);
 
 		m_movement = Vec2::Zero();
+
+		light()
+			.setSourcePos(body().center)
+			.update(terrain);
 	}
 
 	void PlayerAccessObject::draw() const
 	{
-		body().draw(Palette::Black);
+		body().draw(MyBlack);
 	}
 
 	void PlayerAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)

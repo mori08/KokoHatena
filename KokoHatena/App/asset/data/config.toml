@@ -87,6 +87,8 @@
 
 [PlayerAccessObject]
     speed = 100
+    lightAlpha = 0.5
+    lightDistance = 100
 
 [EnemyAccessObject]
     speed = 50
