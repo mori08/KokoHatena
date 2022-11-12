@@ -9,8 +9,11 @@ namespace Kokoha
 	{
 	private:
 
+		// ステージ名
+		const String m_stageName;
+
 		// 地形
-		Terrain m_terrain;
+		const Terrain m_terrain;
 
 		// guidからオブジェクトへの連想配列
 		AccessObject::GuidToObject m_objectMap;

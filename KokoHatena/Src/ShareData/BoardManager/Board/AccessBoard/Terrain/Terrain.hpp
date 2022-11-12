@@ -45,7 +45,7 @@ namespace Kokoha
 		// [i][j] : i -> j への最短経路（1マスの1辺を1とした距離）
 		Array<Array<double>> m_dist;
 
-	private:
+	public:
 
 		/// <summary>
 		/// マス座標を整数値に変換

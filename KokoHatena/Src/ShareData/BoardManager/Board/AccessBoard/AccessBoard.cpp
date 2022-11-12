@@ -9,15 +9,29 @@ namespace Kokoha
 			, U"AccessBoard"
 			, BoardState::IS_HIDING
 		)
-		, m_terrain(U"asset/data/test.csv")
+		, m_stageName(U"test")
+		, m_terrain(U"asset/data/stage/" + m_stageName + U".csv")
 	{
 		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
 		m_typeToGuidSet[AccessObject::Type::ENEMY]  = {};
 		m_typeToGuidSet[AccessObject::Type::LIGHT]  = {};
 		m_typeToGuidSet[AccessObject::Type::GOAL]   = {};
 
-		m_makeObjectList.emplace_back(std::make_unique<PlayerAccessObject>(Vec2(10, 10)));
-		m_makeObjectList.emplace_back(std::make_unique<EnemyAccessObject>(Vec2(100, 100)));
+		// オブジェクトの作成用のマップ
+		static std::unordered_map<String, std::function<AccessObject::Ptr(const Vec2& pos)>> makeObjectMap =
+		{
+			{U"player",[](const Vec2& pos) { return std::make_unique<PlayerAccessObject>(pos); }}
+		};
+
+		// オブジェクトの読み込み
+		const TOMLReader objectToml(U"asset/data/stage/object.toml");
+		for (const auto object : objectToml[m_stageName].tableArrayView())
+		{
+			const String type = object[U"type"].getString();
+			const Vec2   pos  = Terrain::toPixel(Point(object[U"x"].get<int32>(), object[U"y"].get<int32>()));
+
+			m_makeObjectList.emplace_back(makeObjectMap[type](pos));
+		}
 	}
 
 	void AccessBoard::receiveRequest(const String&)
