@@ -1,5 +1,6 @@
 #pragma once
 #include"../Board.hpp"
+#include"AccessObject/AccessObject.hpp"
 #include"Terrain/Terrain.hpp"
 
 namespace Kokoha
@@ -8,7 +9,20 @@ namespace Kokoha
 	{
 	private:
 
-		Terrain m_terrain;
+		// ステージ名
+		const String m_stageName;
+
+		// 地形
+		const Terrain m_terrain;
+
+		// guidからオブジェクトへの連想配列
+		AccessObject::GuidToObject m_objectMap;
+
+		//  オブジェクトの種類からguidへの連想配列
+		AccessObject::TypeToGuidSet m_typeToGuidSet;
+
+		// 生成するオブジェクト
+		std::list<AccessObject::Ptr> m_makeObjectList;
 
 	public:
 
