@@ -45,6 +45,9 @@ namespace Kokoha
 		// [i][j] : i -> j への最短経路（1マスの1辺を1とした距離）
 		Array<Array<double>> m_dist;
 
+		// 影作成用の辺
+		std::list<std::pair<Point, Point>> m_edgeList;
+
 	public:
 
 		/// <summary>
@@ -129,7 +132,12 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="s1"> マス1 </param>
 		/// <param name="s2"> マス2 </param>
-		void makeEdge(const Point& s1, const Point& s2);
+		void makeStraightPath(const Point& s1, const Point& s2);
+
+		/// <summary>
+		/// 障害物の辺の算出
+		/// </summary>
+		void searchEdge();
 
 	public:
 
@@ -175,6 +183,15 @@ namespace Kokoha
 		/// <param name="pixelT"> 終点（ピクセル座標） </param>
 		/// <returns> 経路上で最初に進む方向の単位ベクトル or Vec2::Zero() </returns>
 		Vec2 getPath(const Vec2& pixelS, const Vec2& pixelT) const;
+
+		/// <summary>
+		/// 辺のリストを取得
+		/// </summary>
+		/// <returns> 辺リスト </returns>
+		const std::list<std::pair<Point, Point>>& getEdge() const
+		{
+			return m_edgeList;
+		}
 
 		/// <summary>
 		/// 描画

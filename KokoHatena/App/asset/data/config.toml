@@ -80,15 +80,22 @@
     name = "アクセス"
     size = {x=600,y=450}
     iconOrder = 1
-    wideArea  = 50
+    wideArea  = 100
 
 [AccessObject]
     radius = 10.0
 
+[AccessLight]
+    [AccessLight.Rate]
+        distance = 0.01
+        centralAngle = 0.001
+        directionAngle = 0.01
+
 [PlayerAccessObject]
     speed = 100
     lightAlpha = 0.5
-    lightDistance = 100
+    lightArea  = 20000
+    lightSpinSpeed = 0.1
 
 [EnemyAccessObject]
     speed = 50

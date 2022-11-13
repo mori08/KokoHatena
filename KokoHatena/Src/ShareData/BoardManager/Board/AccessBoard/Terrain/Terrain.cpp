@@ -9,7 +9,9 @@ namespace Kokoha
 	{
 		loadCSV(filePath);
 
-		searchPath();
+		// searchPath();
+
+		searchEdge();
 	}
 
 	void Terrain::loadCSV(const FilePath& filePath)
@@ -49,7 +51,7 @@ namespace Kokoha
 			// 右方向のチェック
 			for (Point br = tl; isWalkAble(br); br.x++)
 			{
-				makeEdge(tl, br);
+				makeStraightPath(tl, br);
 			}
 
 			// 右下方向のチェック
@@ -60,8 +62,8 @@ namespace Kokoha
 					const int32 up = toInteger(br + Point::Up());
 					if (m_path[i][up] != up) { break; }
 
-					makeEdge(tl, br);
-					makeEdge(Point(tl.x, br.y), Point(br.x, tl.y));
+					makeStraightPath(tl, br);
+					makeStraightPath(Point(tl.x, br.y), Point(br.x, tl.y));
 
 					// 最大面積の更新
 					const int32 area = (br.x - tl.x + 1) * (br.y - tl.y + 1);
@@ -116,7 +118,7 @@ namespace Kokoha
 		}
 	}
 
-	void Terrain::makeEdge(const Point& s1, const Point& s2)
+	void Terrain::makeStraightPath(const Point& s1, const Point& s2)
 	{
 		const int32 i1 = toInteger(s1);
 		const int32 i2 = toInteger(s2);
@@ -129,6 +131,137 @@ namespace Kokoha
 		const double distance = s1.distanceFrom(s2);
 		m_dist[i1][i2] = distance;
 		m_dist[i2][i1] = distance;
+	}
+
+	void Terrain::searchEdge()
+	{
+		// 障害物上方向の辺の算出
+		for (int32 y : Range(0, HEIGHT))
+		{
+			Optional<std::pair<Point, Point>> line = none;
+
+			for (int32 x : Range(0, WIDTH - 1))
+			{
+				if (!isWalkAble(Point(x, y)) && isWalkAble(Point(x, y - 1)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!line)
+					{
+						line = std::pair<Point, Point>();
+						line->second = SQUARE_SIZE * Point(x, y);
+					}
+					line->first = SQUARE_SIZE * Point(x + 1, y);
+				}
+				else if(line)
+				{
+					// 辺がなかったときは辺の追加
+					m_edgeList.emplace_back(line.value());
+					line = none;
+				}
+			}
+
+			if (line)
+			{
+				m_edgeList.emplace_back(line.value());
+			}
+		}
+
+		// 障害物左方向の辺の算出
+		for (int32 x : Range(0, WIDTH))
+		{
+			Optional<std::pair<Point, Point>> line = none;
+
+			for (int32 y : Range(0, HEIGHT - 1))
+			{
+				if (!isWalkAble(Point(x, y)) && isWalkAble(Point(x - 1, y)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!line)
+					{
+						line = std::pair<Point, Point>();
+						line->first = SQUARE_SIZE * Point(x, y);
+					}
+					line->second = SQUARE_SIZE * Point(x, y + 1);
+				}
+				else if (line)
+				{
+					// 辺がなかったときは辺の追加
+					m_edgeList.emplace_back(line.value());
+					line = none;
+				}
+			}
+
+			if (line)
+			{
+				m_edgeList.emplace_back(line.value());
+			}
+		}
+
+		// 障害物下方向の辺の算出
+		for (int32 y : Range(-1, HEIGHT-1))
+		{
+			Optional<std::pair<Point, Point>> line = none;
+
+			for (int32 x : Range(0, WIDTH - 1))
+			{
+				if (!isWalkAble(Point(x, y)) && isWalkAble(Point(x, y + 1)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!line)
+					{
+						line = std::pair<Point, Point>();
+						line->first = SQUARE_SIZE * Point(x, y + 1);
+					}
+					line->second = SQUARE_SIZE * Point(x + 1, y + 1);
+				}
+				else if (line)
+				{
+					// 辺がなかったときは辺の追加
+					m_edgeList.emplace_back(line.value());
+					line = none;
+				}
+			}
+
+			if (line)
+			{
+				m_edgeList.emplace_back(line.value());
+			}
+		}
+
+		// 障害物右方向の辺の算出
+		for (int32 x : Range(-1, WIDTH-1))
+		{
+			Optional<std::pair<Point, Point>> line = none;
+
+			for (int32 y : Range(0, HEIGHT - 1))
+			{
+				if (!isWalkAble(Point(x, y)) && isWalkAble(Point(x + 1, y)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!line)
+					{
+						line = std::pair<Point, Point>();
+						line->second = SQUARE_SIZE * Point(x + 1, y);
+					}
+					line->first = SQUARE_SIZE * Point(x + 1, y + 1);
+				}
+				else if (line)
+				{
+					// 辺がなかったときは辺の追加
+					m_edgeList.emplace_back(line.value());
+					line = none;
+				}
+			}
+
+			if (line)
+			{
+				m_edgeList.emplace_back(line.value());
+			}
+		}
 	}
 
 	Vec2 Terrain::getPath(const Vec2& pixelS, const Vec2& pixelT) const
@@ -174,6 +307,7 @@ namespace Kokoha
 				.draw(isWalkAble(i) ? ColorF(MyWhite, 0.5) : MyBlack)
 				.drawFrame(2, MyBlack);
 		}
+
 #endif // _DEBUG
 	}
 }
