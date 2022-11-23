@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Terrain/Terrain.hpp"
+#include "PolarLine/PolarLine.hpp"
 
 namespace Kokoha
 {
@@ -9,7 +10,7 @@ namespace Kokoha
 	/// </summary>
 	class AccessLight
 	{
-	private:
+	private: // 光の条件
 
 		// true なら 点灯 , false なら 消灯
 		bool m_on;
@@ -29,7 +30,32 @@ namespace Kokoha
 		// 光の明るさ [0, 1]
 		double m_alpha;
 
-		std::list<Line> m_edgeList;
+		// 光を表す多角形
+		Polygon m_polygon;
+
+	private: // 光作成時に使用
+
+		/// <summary>
+		/// 角度ごとの行う処理
+		/// </summary>
+		class AngleEvent
+		{
+		public:
+			double angle; // 角度
+			size_t edgeId; // 辺番号
+			bool endP; // true のとき 始点 , false のとき 終点
+			AngleEvent(double a, size_t e, bool p) : angle(a), edgeId(e), endP(p) {}
+			bool operator<(const AngleEvent& another) const { return angle > another.angle; }
+		};
+
+		// 辺配列
+		Array<PolarLine> m_edgeAry;
+
+		// 辺のヒープ 最も光源に近い辺を取得できる
+		Array<size_t> m_heap;
+
+		// 辺番号 -> 木番号
+		Array<size_t> m_edgeToHeap;
 
 	public:
 
@@ -109,6 +135,52 @@ namespace Kokoha
 		/// 描画
 		/// </summary>
 		void draw() const;
+
+	private:
+
+		/// <summary>
+		/// ヒープ先頭の辺を取得
+		/// </summary>
+		/// <param name="angle"> 角度 </param>
+		/// <returns> ヒープ先頭の辺の角度に対応する点の動径 </returns>
+		double heapTopR(double angle) const;
+
+		/// <summary>
+		/// ヒープに辺を追加
+		/// </summary>
+		/// <param name="edgeId"> 辺番号 </param>
+		/// <param name="angle"> 角度 </param>
+		void addEdgeToHeap(size_t edgeId, double angle);
+
+		/// <summary>
+		/// ヒープから辺を削除
+		/// </summary>
+		/// <param name="edgeId"> 辺番号 </param>
+		/// <param name="angle"> 角度 </param>
+		void removeEdgeToHeap(size_t edgeId, double angle);
+
+		/// <summary>
+		/// 頂点を逆転がなくなるまで上へ上げる
+		/// </summary>
+		/// <param name="i"> 木番号 </param>
+		/// <param name="angle"> 角度 </param>
+		void heapUp(size_t i, double angle);
+
+		/// <summary>
+		/// 頂点を逆転がなくなるまで下へ下げる
+		/// </summary>
+		/// <param name="i"> 木番号 </param>
+		/// <param name="angle"> 角度 </param>
+		void heapDown(size_t i, double angle);
+
+		/// <summary>
+		/// 辺の比較
+		/// </summary>
+		/// <param name="id1"> 木番号1 </param>
+		/// <param name="id2"> 木番号2 </param>
+		/// <param name="angle"> 角度 </param>
+		/// <returns> 辺1が辺2より手前にある場合 true , そうでないとき false </returns>
+		bool compareEdge(size_t edgeId1, size_t edgeId2, double angle) const;
 
 	};
 }

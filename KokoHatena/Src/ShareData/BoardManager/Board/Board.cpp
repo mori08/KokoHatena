@@ -46,7 +46,7 @@ namespace Kokoha
 	void Board::drawIcon() const
 	{
 		if (m_iconOrder < 0 || m_state == BoardState::NONE) { return; }
-
+		
 		const Rect iconRect = getIconRect();
 		
 		TextureAsset(m_iconTextureName)

@@ -192,6 +192,12 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight">
       <UniqueIdentifier>{957d657a-df90-4f6d-ba9f-5205d2028c03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine">
+      <UniqueIdentifier>{2d267f45-856a-4529-bcd8-e040d449861a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos">
+      <UniqueIdentifier>{c149de10-93b9-4561-98c2-98bdb8921d94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -553,6 +559,12 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
@@ -656,6 +668,12 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
