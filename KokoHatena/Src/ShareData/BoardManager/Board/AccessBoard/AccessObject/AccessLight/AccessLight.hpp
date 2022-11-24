@@ -42,11 +42,13 @@ namespace Kokoha
 		{
 		public:
 			double angle; // 角度
-			size_t edgeId; // 辺番号
-			bool endP; // true のとき 始点 , false のとき 終点
-			AngleEvent(double a, size_t e, bool p) : angle(a), edgeId(e), endP(p) {}
+			std::function<void()> func; // 処理
+			AngleEvent(double a, std::function<void()> f) : angle(a), func(f) {}
 			bool operator<(const AngleEvent& another) const { return angle > another.angle; }
 		};
+
+		// 頂点配列
+		Array<Vec2> m_posAry;
 
 		// 辺配列
 		Array<PolarLine> m_edgeAry;
@@ -137,6 +139,24 @@ namespace Kokoha
 		void draw() const;
 
 	private:
+
+		/// <summary>
+		/// 距離がm_distanceの座標を追加
+		/// </summary>
+		/// <param name="angle"> 角度 </param>
+		void addPoint(double angle);
+
+		/// <summary>
+		/// 辺の始点の追加
+		/// </summary>
+		/// <param name="edgeId"> 辺番号 </param>
+		void addStartPoint(size_t edgeId);
+
+		/// <summary>
+		/// 辺の終点の追加
+		/// </summary>
+		/// <param name="edgeId"> 辺番号 </param>
+		void addEndPoint(size_t edgeId);
 
 		/// <summary>
 		/// ヒープ先頭の辺を取得

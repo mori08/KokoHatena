@@ -71,5 +71,4 @@ namespace Kokoha
 
 		return rtn;
 	}
-
 }

@@ -1,6 +1,12 @@
 #include "AccessLight.hpp"
 #include <queue>
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
+#include "../../../../../../Config/Config.hpp"
+
+namespace
+{
+	constexpr double EPSILON = 1e-5;
+}
 
 namespace Kokoha
 {
@@ -46,81 +52,106 @@ namespace Kokoha
 			return;
 		}
 
+		static int32 cnt = 0;
+		++cnt;
+		if (cnt % 60 == 0)
+		{
+			ClearPrint();
+			Print << U"処理時間(s)";
+		}
+		uint64 time = Time::GetMicrosec();
+
 		// 辺リストの作成
 		m_edgeAry.clear();
 		for (const std::pair<Point, Point>& edge : terrain.getEdge())
 		{
-			if (twoVecToAngle(edge.first - m_sourcePos, edge.second - edge.first) > 0)
+			PolarLine polarLine
+			(
+				PolarPos(edge.first, m_sourcePos, m_directionAngle),
+				PolarPos(edge.second, m_sourcePos, m_directionAngle)
+			);
+
+			if (polarLine.on(m_distance) && twoVecToAngle(edge.first - m_sourcePos, edge.second - edge.first) > 0)
 			{
-				m_edgeAry.emplace_back
-				(
-					PolarPos(edge.first, m_sourcePos, m_directionAngle),
-					PolarPos(edge.second, m_sourcePos, m_directionAngle)
-				);
+				m_edgeAry.emplace_back(polarLine);
 			}
+		}
+
+		if (cnt % 60 == 0)
+		{
+			Print << U"[辺リストの作成]";
+			Print << 1e-6 * (Time::GetMicrosec() - time);
+			time = Time::GetMicrosec();
 		}
 
 		// ヒープの初期化
 		m_heap.clear();
 		m_edgeToHeap = Array<size_t>(m_edgeAry.size());
 
-		// イベントキューの作成
+		// 辺のイベントを作成
 		std::priority_queue<AngleEvent> eventQueue;
 		for (size_t edgeId = 0; edgeId < m_edgeAry.size(); ++edgeId)
 		{
+			// 辺を事前に追加
 			if (m_edgeAry[edgeId].p2.a < m_edgeAry[edgeId].p1.a)
 			{
 				addEdgeToHeap(edgeId, -Math::Pi);
 			}
-			eventQueue.emplace(m_edgeAry[edgeId].p1.a, edgeId, true);
-			eventQueue.emplace(m_edgeAry[edgeId].p2.a, edgeId, false);
+
+			// 辺のイベントの作成
+			eventQueue.emplace(m_edgeAry[edgeId].p1.a, [this, edgeId]() { addStartPoint(edgeId); });
+			eventQueue.emplace(m_edgeAry[edgeId].p2.a, [this, edgeId]() { addEndPoint(edgeId);   });
+			for (const auto& angle : m_edgeAry[edgeId].a(m_distance))
+			{
+				eventQueue.emplace(angle, [this, angle]() { addPoint(angle);});
+			}
+		}
+
+		if (cnt % 60 == 0)
+		{
+			Print << U"[辺イベントの作成]";
+			Print << 1e-6 * (Time::GetMicrosec() - time);
+			time = Time::GetMicrosec();
+		}
+
+		// 円のイベントの作成
+		const int32 QUALITY = Config::get<int32>(U"AccessLight.quality");
+		for (int32 i = 0; i <= QUALITY; ++i)
+		{
+			const double angle = -Math::Pi + Math::TwoPi * i / QUALITY;
+			eventQueue.emplace(angle, [this, angle]() { addPoint(angle); });
+		}
+
+		if (cnt % 60 == 0)
+		{
+			Print << U"[円イベントの作成]";
+			Print << 1e-6 * (Time::GetMicrosec() - time);
+			time = Time::GetMicrosec();
 		}
 
 		// 頂点リストの作成
-		Array<Vec2> posAry;
+		m_posAry.clear();
 		while (!eventQueue.empty())
 		{
-			AngleEvent e = eventQueue.top();
-
-			if (e.endP) // 始点の場合
-			{
-				// 頂点の追加
-				const double minR = heapTopR(e.angle);
-				if (Abs(m_edgeAry[e.edgeId].p1.r - minR) < 1e-5)
-				{
-					posAry << m_edgeAry[e.edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
-				}
-				else if (m_edgeAry[e.edgeId].p1.r < minR)
-				{
-					posAry << PolarPos(e.angle, heapTopR(e.angle)).toOrthoPos(m_sourcePos, m_directionAngle);
-					posAry << m_edgeAry[e.edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
-				}
-
-				// 辺をヒープに追加
-				addEdgeToHeap(e.edgeId, e.angle);
-			}
-			else // 終点の場合
-			{
-				// 辺をヒープから削除
-				removeEdgeToHeap(e.edgeId, e.angle);
-
-				// 頂点の追加
-				const double minR = heapTopR(e.angle);
-				if (Abs(m_edgeAry[e.edgeId].p2.r - minR) < 1e-5)
-				{
-					posAry << m_edgeAry[e.edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle);
-				}
-				else if (m_edgeAry[e.edgeId].p2.r < minR)
-				{
-					posAry << m_edgeAry[e.edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle);
-					posAry << PolarPos(e.angle, heapTopR(e.angle)).toOrthoPos(m_sourcePos, m_directionAngle);
-				}
-			}
-
+			eventQueue.top().func();
 			eventQueue.pop();
 		}
 
-		m_polygon = Polygon(posAry);
+		if (cnt % 60 == 0)
+		{
+			Print << U"[頂点リストの作成]";
+			Print << 1e-6 * (Time::GetMicrosec() - time);
+			time = Time::GetMicrosec();
+		}
+
+		m_polygon = Polygon(m_posAry);
+
+		if (cnt % 60 == 0)
+		{
+			Print << U"[ポリゴンの作成]";
+			Print << 1e-6 * (Time::GetMicrosec() - time);
+			time = Time::GetMicrosec();
+		}
 	}
 
 	void AccessLight::draw() const
@@ -138,18 +169,66 @@ namespace Kokoha
 			direction -= Math::TwoPi;
 		}
 
-		Circle(m_sourcePos, m_distance)
-			.drawPie(
-				direction, 
-				m_centralAngle, ColorF(MyWhite, m_alpha)
-			);
-
 		m_polygon.draw(ColorF(MyWhite, m_alpha));
+	}
+
+	void AccessLight::addPoint(double angle)
+	{
+		const double minR = heapTopR(angle);
+
+		if (m_distance < minR + EPSILON)
+		{
+			m_posAry << PolarPos(angle, m_distance).toOrthoPos(m_sourcePos, m_directionAngle);
+		}
+	}
+
+	void AccessLight::addStartPoint(size_t edgeId)
+	{
+		const double a = m_edgeAry[edgeId].p1.a; // 始点の偏角
+		const double r = m_edgeAry[edgeId].p1.r; // 始点の動径
+
+		const double minR = Min(heapTopR(a), m_distance); // 光が届く距離
+
+		if (Abs(r - minR) < EPSILON)
+		{
+			m_posAry << m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
+		}
+		else if (r < minR)
+		{
+			m_posAry << PolarPos(a, minR).toOrthoPos(m_sourcePos, m_directionAngle);
+			m_posAry << m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
+		}
+
+		// 辺をヒープに追加
+		addEdgeToHeap(edgeId, a);
+	}
+
+	void AccessLight::addEndPoint(size_t edgeId)
+	{
+		const double a = m_edgeAry[edgeId].p2.a; // 終点の偏角
+		const double r = m_edgeAry[edgeId].p2.r; // 終点の動径
+
+		// 辺をヒープから削除
+		removeEdgeToHeap(edgeId, a);
+
+		const double minR = Min(heapTopR(a), m_distance); // 光が届く距離
+		
+		if (Abs(r - minR) < EPSILON)
+		{
+			m_posAry << m_edgeAry[edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle);
+		}
+		else if (r < minR)
+		{
+			m_posAry << m_edgeAry[edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle);
+			m_posAry << PolarPos(a, minR).toOrthoPos(m_sourcePos, m_directionAngle);
+		}
 	}
 
 	double AccessLight::heapTopR(double angle) const
 	{
-		return m_edgeAry[m_heap.front()].r(angle).value();
+		return m_heap.empty()
+			? m_distance
+			: m_edgeAry[m_heap.front()].r(angle).value();
 	}
 
 	void AccessLight::addEdgeToHeap(size_t edgeId, double angle)

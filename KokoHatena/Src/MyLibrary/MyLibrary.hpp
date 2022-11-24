@@ -161,6 +161,19 @@ namespace Kokoha
 	}
 
 	/// <summary>
+	/// 3つの角度が時計回りに配置されているか
+	/// </summary>
+	/// <param name="a1"> 角度1 </param>
+	/// <param name="a2"> 角度2 </param>
+	/// <param name="a3"> 角度3 </param>
+	/// <returns> 1->2->3が時計回りになっているなら true , そうでないなら false </returns>
+	inline bool clockwise(double a1, double a2, double a3)
+	{
+		const Vec2 v1 = angleToVec(a1), v2 = angleToVec(a2), v3 = angleToVec(a3);
+		return (v2 - v1).cross(v3 - v2) > 0;
+	}
+
+	/// <summary>
 	/// ベクトルがx軸となす角度を取得
 	/// </summary>
 	/// <param name="v"> ベクトル </param>
