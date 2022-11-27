@@ -16,7 +16,7 @@ namespace Kokoha
 		{
 			PLAYER, // プレイヤー
 			ENEMY,  // 敵
-			LIGHT,  // 光
+			MINION, // 手先
 			GOAL    // ゴール
 		};
 

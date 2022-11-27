@@ -47,6 +47,9 @@ namespace Kokoha
 			bool operator<(const AngleEvent& another) const { return angle > another.angle; }
 		};
 
+		// true のとき 扇型 , false のとき 円形
+		bool m_isPie;
+
 		// 頂点配列
 		Array<Vec2> m_posAry;
 
@@ -145,6 +148,12 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="angle"> 角度 </param>
 		void addPoint(double angle);
+
+		/// <summary>
+		/// 扇型の端の点の追加
+		/// </summary>
+		/// <param name="angle"> 角度 </param>
+		void addPiePoint(double angle);
 
 		/// <summary>
 		/// 辺の始点の追加

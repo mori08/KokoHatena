@@ -1,5 +1,6 @@
 #include"AccessBoard.hpp"
 #include"AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
+#include"AccessObject/MinionAccessObject/MinionAccessObject.hpp"
 #include"AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 
 namespace Kokoha
@@ -14,7 +15,7 @@ namespace Kokoha
 	{
 		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
 		m_typeToGuidSet[AccessObject::Type::ENEMY]  = {};
-		m_typeToGuidSet[AccessObject::Type::LIGHT]  = {};
+		m_typeToGuidSet[AccessObject::Type::MINION] = {};
 		m_typeToGuidSet[AccessObject::Type::GOAL]   = {};
 
 		// オブジェクトの作成用のマップ

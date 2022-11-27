@@ -1,5 +1,4 @@
 #include "PlayerAccessObject.hpp"
-#include "../LightAccessObject/LightAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
 

@@ -254,7 +254,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp" />
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject\LightAccessObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
@@ -290,7 +290,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp" />
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject\LightAccessObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp" />

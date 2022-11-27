@@ -9,7 +9,7 @@ namespace Kokoha
 	{
 		loadCSV(filePath);
 
-		// searchPath();
+		searchPath();
 
 		searchEdge();
 	}

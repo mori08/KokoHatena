@@ -52,14 +52,19 @@ namespace Kokoha
 			return;
 		}
 
-		static int32 cnt = 0;
-		++cnt;
-		if (cnt % 60 == 0)
+		if (!terrain.isWalkAble(m_sourcePos))
+		{
+			m_on = false;
+			return;
+		}
+
+		m_isPie = m_centralAngle < Math::TwoPi - EPSILON;
+
+		uint64 time = Time::GetMicrosec();
+		if (Scene::FrameCount() % 60 == 0)
 		{
 			ClearPrint();
-			Print << U"処理時間(s)";
 		}
-		uint64 time = Time::GetMicrosec();
 
 		// 辺リストの作成
 		m_edgeAry.clear();
@@ -77,10 +82,12 @@ namespace Kokoha
 			}
 		}
 
-		if (cnt % 60 == 0)
+		if (Scene::FrameCount() % 60 == 0)
 		{
 			Print << U"[辺リストの作成]";
-			Print << 1e-6 * (Time::GetMicrosec() - time);
+			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
+			Print << U"辺の数 : " << terrain.getEdge().size();
+			Print << U"辺リストのサイズ : " << m_edgeAry.size();
 			time = Time::GetMicrosec();
 		}
 
@@ -107,10 +114,11 @@ namespace Kokoha
 			}
 		}
 
-		if (cnt % 60 == 0)
+		if (Scene::FrameCount() % 60 == 0)
 		{
-			Print << U"[辺イベントの作成]";
-			Print << 1e-6 * (Time::GetMicrosec() - time);
+			Print << U"辺イベントの作成]";
+			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
+			Print << U"イベントの数 : " << eventQueue.size();
 			time = Time::GetMicrosec();
 		}
 
@@ -121,35 +129,43 @@ namespace Kokoha
 			const double angle = -Math::Pi + Math::TwoPi * i / QUALITY;
 			eventQueue.emplace(angle, [this, angle]() { addPoint(angle); });
 		}
+		if (m_isPie)
+		{
+			eventQueue.emplace(-m_centralAngle/2, [this]() { addPiePoint(-m_centralAngle/2); });
+			eventQueue.emplace(+m_centralAngle/2, [this]() { addPiePoint(+m_centralAngle/2); });
+		}
 
-		if (cnt % 60 == 0)
+		if (Scene::FrameCount() % 60 == 0)
 		{
 			Print << U"[円イベントの作成]";
-			Print << 1e-6 * (Time::GetMicrosec() - time);
+			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
+			Print << U"イベントの数 : " << eventQueue.size();
 			time = Time::GetMicrosec();
 		}
 
 		// 頂点リストの作成
 		m_posAry.clear();
+		if (m_isPie) { m_posAry.emplace_back(m_sourcePos); }
 		while (!eventQueue.empty())
 		{
 			eventQueue.top().func();
 			eventQueue.pop();
 		}
 
-		if (cnt % 60 == 0)
+		if (Scene::FrameCount() % 60 == 0)
 		{
 			Print << U"[頂点リストの作成]";
-			Print << 1e-6 * (Time::GetMicrosec() - time);
+			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
+			Print << U"頂点の数 : " << m_posAry.size();
 			time = Time::GetMicrosec();
 		}
 
 		m_polygon = Polygon(m_posAry);
 
-		if (cnt % 60 == 0)
+		if (Scene::FrameCount() % 60 == 0)
 		{
 			Print << U"[ポリゴンの作成]";
-			Print << 1e-6 * (Time::GetMicrosec() - time);
+			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
 			time = Time::GetMicrosec();
 		}
 	}
@@ -158,28 +174,36 @@ namespace Kokoha
 	{
 		if (!m_on) { return; }
 
-		double direction = m_directionAngle - m_centralAngle / 2 + Math::HalfPi;
-
-		while (direction < 0)
-		{
-			direction += Math::TwoPi;
-		}
-		while (direction > Math::TwoPi)
-		{
-			direction -= Math::TwoPi;
-		}
+		uint64 time = Time::GetMicrosec();
 
 		m_polygon.draw(ColorF(MyWhite, m_alpha));
+
+		if (Scene::FrameCount() % 60 == 0)
+		{
+			Print << U"[光の描画]";
+			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
+			time = Time::GetMicrosec();
+		}
 	}
 
 	void AccessLight::addPoint(double angle)
 	{
 		const double minR = heapTopR(angle);
 
+		if (m_isPie && !clockwise(-m_centralAngle / 2, angle, m_centralAngle / 2))
+		{
+			return;
+		}
+
 		if (m_distance < minR + EPSILON)
 		{
 			m_posAry << PolarPos(angle, m_distance).toOrthoPos(m_sourcePos, m_directionAngle);
 		}
+	}
+
+	void AccessLight::addPiePoint(double angle)
+	{
+		m_posAry << PolarPos(angle, Min(m_distance, heapTopR(angle))).toOrthoPos(m_sourcePos, m_directionAngle);
 	}
 
 	void AccessLight::addStartPoint(size_t edgeId)
@@ -189,7 +213,11 @@ namespace Kokoha
 
 		const double minR = Min(heapTopR(a), m_distance); // 光が届く距離
 
-		if (Abs(r - minR) < EPSILON)
+		if (m_isPie && !clockwise(-m_centralAngle / 2, a, m_centralAngle / 2))
+		{
+			// 扇型の外側なら頂点は追加しない
+		}
+		else if (Abs(r - minR) < EPSILON)
 		{
 			m_posAry << m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
 		}
@@ -213,7 +241,11 @@ namespace Kokoha
 
 		const double minR = Min(heapTopR(a), m_distance); // 光が届く距離
 		
-		if (Abs(r - minR) < EPSILON)
+		if (m_isPie && !clockwise(-m_centralAngle / 2, a, m_centralAngle / 2))
+		{
+			// 扇型の外側なら頂点は追加しない
+		}
+		else if (Abs(r - minR) < EPSILON)
 		{
 			m_posAry << m_edgeAry[edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle);
 		}
