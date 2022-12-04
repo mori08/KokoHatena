@@ -186,8 +186,20 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject">
       <UniqueIdentifier>{72d9b6aa-88d3-418d-aaa3-f517a1c046ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject">
-      <UniqueIdentifier>{84f12c53-61af-4f58-b1d9-b4f3763e59f2}</UniqueIdentifier>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight">
+      <UniqueIdentifier>{957d657a-df90-4f6d-ba9f-5205d2028c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine">
+      <UniqueIdentifier>{2d267f45-856a-4529-bcd8-e040d449861a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos">
+      <UniqueIdentifier>{c149de10-93b9-4561-98c2-98bdb8921d94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject">
+      <UniqueIdentifier>{078f0d0e-5f7c-46dc-894e-d1b08d6c9fb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList">
+      <UniqueIdentifier>{e2e9d945-358c-4971-9df1-414f4e7cbc9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -544,8 +556,20 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
     </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject\LightAccessObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject</Filter>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -645,8 +669,20 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject\LightAccessObject.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\LightAccessObject</Filter>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,11 +5,12 @@
 namespace Kokoha
 {
 	Terrain::Terrain(const FilePath& filePath)
-		: m_cellList(N, Cell::NONE)
 	{
 		loadCSV(filePath);
 
 		searchPath();
+
+		searchEdge();
 	}
 
 	void Terrain::loadCSV(const FilePath& filePath)
@@ -24,6 +25,7 @@ namespace Kokoha
 			// csvの内容に応じて地形データを書き換え
 			if      (cell == U"o") { m_cellList[i] = Cell::BLOCK;    }
 			else if (cell == U"x") { m_cellList[i] = Cell::SKELETON; }
+			else                   { m_cellList[i] = Cell::NONE;     }
 		}
 	}
 
@@ -38,9 +40,14 @@ namespace Kokoha
 
 		// 辺の作成
 		int32 max_area = 0;
-		m_path = Array<Array<int32>>(N);
-		for (int32 i : Range(0, N - 1)) { m_path[i] = Array<int32>(N, i); }
-		m_dist = Array<Array<double>>(N, Array<double>(N, Inf<double>));
+		for (int32 i : Range(0, N - 1))
+		{
+			for (int32 j : Range(0, N - 1))
+			{
+				m_path[i][j] = i;
+				m_dist[i][j] = Inf<double>;
+			}
+		}
 		for (int32 i : walkAbleList)
 		{
 			// 左上の座標
@@ -49,7 +56,7 @@ namespace Kokoha
 			// 右方向のチェック
 			for (Point br = tl; isWalkAble(br); br.x++)
 			{
-				makeEdge(tl, br);
+				makeStraightPath(tl, br);
 			}
 
 			// 右下方向のチェック
@@ -60,8 +67,8 @@ namespace Kokoha
 					const int32 up = toInteger(br + Point::Up());
 					if (m_path[i][up] != up) { break; }
 
-					makeEdge(tl, br);
-					makeEdge(Point(tl.x, br.y), Point(br.x, tl.y));
+					makeStraightPath(tl, br);
+					makeStraightPath(Point(tl.x, br.y), Point(br.x, tl.y));
 
 					// 最大面積の更新
 					const int32 area = (br.x - tl.x + 1) * (br.y - tl.y + 1);
@@ -71,7 +78,7 @@ namespace Kokoha
 		}
 
 		// 経路探索が必要なパス
-		Array<std::list<int32>> needPathList(N);
+		std::array<std::list<int32>, N> needPathList;
 		for (int32 i : walkAbleList)
 		{
 			for (int32 j : walkAbleList)
@@ -116,7 +123,7 @@ namespace Kokoha
 		}
 	}
 
-	void Terrain::makeEdge(const Point& s1, const Point& s2)
+	void Terrain::makeStraightPath(const Point& s1, const Point& s2)
 	{
 		const int32 i1 = toInteger(s1);
 		const int32 i2 = toInteger(s2);
@@ -129,6 +136,145 @@ namespace Kokoha
 		const double distance = s1.distanceFrom(s2);
 		m_dist[i1][i2] = distance;
 		m_dist[i2][i1] = distance;
+	}
+
+	void Terrain::searchEdge()
+	{
+		// 障害物左方向の垂直な辺の算出
+		for (int32 x : Range(0, WIDTH))
+		{
+			Optional<EdgeList::Edge> edge = none;
+
+			for (int32 y : Range(0, HEIGHT - 1))
+			{
+				if (isBlack(Point(x, y)) && !isBlack(Point(x - 1, y)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!edge)
+					{
+						edge = EdgeList::Edge();
+						edge->first = x;
+						edge->second.first = y;
+					}
+					edge->second.second = y + 1;
+				}
+				else if (edge)
+				{
+					// 辺がなかったときは辺の追加
+					m_verticalEdgeList.addEdge(edge.value());
+					edge = none;
+				}
+			}
+
+			if (edge)
+			{
+				m_verticalEdgeList.addEdge(edge.value());
+			}
+		}
+
+		// 障害物右方向の辺の算出
+		for (int32 x : Range(-1, WIDTH - 1))
+		{
+			Optional<EdgeList::Edge> edge = none;
+
+			for (int32 y : Range(0, HEIGHT - 1))
+			{
+				if (isBlack(Point(x, y)) && !isBlack(Point(x + 1, y)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!edge)
+					{
+						edge = EdgeList::Edge();
+						edge->first = x + 1;
+						edge->second.second = y;
+					}
+					edge->second.first = y + 1;
+				}
+				else if (edge)
+				{
+					// 辺がなかったときは辺の追加
+					m_verticalEdgeList.addEdge(edge.value());
+					edge = none;
+				}
+			}
+
+			if (edge)
+			{
+				m_verticalEdgeList.addEdge(edge.value());
+			}
+		}
+
+		// 障害物上方向の辺の算出
+		for (int32 y : Range(0, HEIGHT))
+		{
+			Optional<EdgeList::Edge> edge = none;
+
+			for (int32 x : Range(0, WIDTH - 1))
+			{
+				if (isBlack(Point(x, y)) && !isBlack(Point(x, y - 1)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!edge)
+					{
+						edge = EdgeList::Edge();
+						edge->first = y;
+						edge->second.second = x;
+					}
+					edge->second.first = x + 1;
+				}
+				else if(edge)
+				{
+					// 辺がなかったときは辺の追加
+					m_horizontalEdgeList.addEdge(edge.value());
+					edge = none;
+				}
+			}
+
+			if (edge)
+			{
+				m_horizontalEdgeList.addEdge(edge.value());
+			}
+		}
+
+		// 障害物下方向の辺の算出
+		for (int32 y : Range(-1, HEIGHT-1))
+		{
+			Optional<EdgeList::Edge> edge = none;
+
+			for (int32 x : Range(0, WIDTH - 1))
+			{
+				if (!isWalkAble(Point(x, y)) && isWalkAble(Point(x, y + 1)))
+				{
+					// 辺を見つけたときは端点の設定
+
+					if (!edge)
+					{
+						edge = EdgeList::Edge();
+						edge->first = y + 1;
+						edge->second.first = x;
+					}
+					edge->second.second = x + 1;
+				}
+				else if (edge)
+				{
+					// 辺がなかったときは辺の追加
+					m_horizontalEdgeList.addEdge(edge.value());
+					edge = none;
+				}
+			}
+
+			if (edge)
+			{
+				m_horizontalEdgeList.addEdge(edge.value());
+			}
+		}
+
+		// 辺のソートとイテレータの準備
+		m_verticalEdgeList.setIteratorAry(WIDTH + 1);
+		m_horizontalEdgeList.setIteratorAry(HEIGHT + 1);
 	}
 
 	Vec2 Terrain::getPath(const Vec2& pixelS, const Vec2& pixelT) const
@@ -174,6 +320,7 @@ namespace Kokoha
 				.draw(isWalkAble(i) ? ColorF(MyWhite, 0.5) : MyBlack)
 				.drawFrame(2, MyBlack);
 		}
+
 #endif // _DEBUG
 	}
 }

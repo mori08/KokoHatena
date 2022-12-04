@@ -1,5 +1,6 @@
 #include"AccessBoard.hpp"
 #include"AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
+#include"AccessObject/MinionAccessObject/MinionAccessObject.hpp"
 #include"AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 
 namespace Kokoha
@@ -14,13 +15,13 @@ namespace Kokoha
 	{
 		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
 		m_typeToGuidSet[AccessObject::Type::ENEMY]  = {};
-		m_typeToGuidSet[AccessObject::Type::LIGHT]  = {};
+		m_typeToGuidSet[AccessObject::Type::MINION] = {};
 		m_typeToGuidSet[AccessObject::Type::GOAL]   = {};
 
 		// オブジェクトの作成用のマップ
 		static std::unordered_map<String, std::function<AccessObject::Ptr(const Vec2& pos)>> makeObjectMap =
 		{
-			{U"player",[](const Vec2& pos) { return std::make_unique<PlayerAccessObject>(pos); }}
+			{U"player",[](const Vec2& pos) { return std::make_shared<PlayerAccessObject>(pos); }}
 		};
 
 		// オブジェクトの読み込み
@@ -56,10 +57,10 @@ namespace Kokoha
 		}
 		while (!m_makeObjectList.empty())
 		{
-			AccessObject::Ptr ptr = std::move(m_makeObjectList.front());
+			AccessObject::Ptr ptr = m_makeObjectList.front();
 			
 			m_typeToGuidSet[ptr->type()].insert(ptr->guid());
-			m_objectMap.try_emplace(ptr->guid(), std::move(ptr));
+			m_objectMap.try_emplace(ptr->guid(), ptr);
 
 			m_makeObjectList.pop_front();
 		}

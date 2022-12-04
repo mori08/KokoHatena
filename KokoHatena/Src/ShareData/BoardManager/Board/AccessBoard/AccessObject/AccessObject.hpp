@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Terrain/Terrain.hpp"
+#include "AccessLight/AccessLight.hpp"
 
 namespace Kokoha
 {
@@ -15,11 +16,11 @@ namespace Kokoha
 		{
 			PLAYER, // プレイヤー
 			ENEMY,  // 敵
-			LIGHT,  // 光
+			MINION, // 手先
 			GOAL    // ゴール
 		};
 
-		using Ptr = std::unique_ptr<AccessObject>;
+		using Ptr = std::shared_ptr<AccessObject>;
 
 		using GuidToObject = std::unordered_map<String, Ptr>;
 
@@ -41,6 +42,9 @@ namespace Kokoha
 
 		// 位置と判定用の範囲
 		Circle m_body;
+
+		// 光
+		AccessLight m_light;
 		
 	public:
 
@@ -154,6 +158,15 @@ namespace Kokoha
 		/// <param name="terrain"> 地形 </param>
 		/// <returns> 実際に移動した移動量 </returns>
 		Vec2 walkToGoal(double speed, const Vec2& goal, const Terrain& terrain);
+
+		/// <summary>
+		/// 光
+		/// </summary>
+		/// <returns> 光の参照 </returns>
+		AccessLight& light()
+		{
+			return m_light;
+		}
 
 	};
 }

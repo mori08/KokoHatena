@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Siv3D.hpp>
+#include "EdgeList/EdgeList.hpp"
 
 /*
 	3種類の座標を以下の表現で使い分ける.
@@ -27,7 +27,29 @@ namespace Kokoha
 			BLOCK     // 光 -> 通さない , オブジェクト -> 通さない
 		};
 
-	private:
+		// 辺
+		// 垂直な辺の場合 {x, {y1, y2}}
+		// 水平な辺の場合 {y, {x1, x2}}
+		using Edge = std::pair<int32, std::pair<int32, int32>>;
+
+		// 辺リストのイテレータ
+		using ConstItr = std::list<Edge>::const_iterator;
+
+		// 部分リスト
+		class SubList
+		{
+		private:
+			ConstItr m_beginItr, m_endItr;
+		public:
+			SubList(ConstItr beginItr, ConstItr endItr)
+				: m_beginItr(beginItr)
+				, m_endItr(endItr)
+			{}
+			ConstItr begin() const { return m_beginItr; }
+			ConstItr end() const { return m_endItr; }
+		};
+
+	public:
 
 		static constexpr int32 WIDTH       = 24;           // ステージの幅(マス)
 		static constexpr int32 HEIGHT      = 18;           // ステージの高さ(マス)
@@ -37,13 +59,19 @@ namespace Kokoha
 	private:
 
 		// 地形データ
-		Array<Cell> m_cellList;
+		std::array<Cell, N> m_cellList;
 
 		// [i][j] : i -> j への最短経路（次の目標）
-		Array<Array<int32>> m_path;
+		std::array<std::array<int32, N>, N> m_path;
 
 		// [i][j] : i -> j への最短経路（1マスの1辺を1とした距離）
-		Array<Array<double>> m_dist;
+		std::array<std::array<double, N>, N> m_dist;
+
+		// 影作成用の垂直な辺
+		EdgeList m_verticalEdgeList;
+
+		// 影作成用の水平な辺
+		EdgeList m_horizontalEdgeList;
 
 	public:
 
@@ -129,7 +157,12 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="s1"> マス1 </param>
 		/// <param name="s2"> マス2 </param>
-		void makeEdge(const Point& s1, const Point& s2);
+		void makeStraightPath(const Point& s1, const Point& s2);
+
+		/// <summary>
+		/// 障害物の辺の算出
+		/// </summary>
+		void searchEdge();
 
 	public:
 
@@ -169,12 +202,45 @@ namespace Kokoha
 		}
 
 		/// <summary>
+		/// 指定されたマスが光を通すか
+		/// </summary>
+		/// <param name="square"> マス座標 </param>
+		/// <returns> true のとき光を通さない , false のとき光を通す </returns>
+		bool isBlack(const Point square) const
+		{
+			return false
+				|| square.x < 0
+				|| square.x >= WIDTH
+				|| square.y < 0
+				|| square.y >= HEIGHT
+				|| m_cellList[toInteger(square)] == Cell::BLOCK;
+		}
+
+		/// <summary>
 		/// 最短経路の取得
 		/// </summary>
 		/// <param name="pixelS"> 始点（ピクセル座標） </param>
 		/// <param name="pixelT"> 終点（ピクセル座標） </param>
 		/// <returns> 経路上で最初に進む方向の単位ベクトル or Vec2::Zero() </returns>
 		Vec2 getPath(const Vec2& pixelS, const Vec2& pixelT) const;
+
+		/// <summary>
+		/// 垂直方向の辺を取得
+		/// </summary>
+		/// <returns> 垂直方向の辺のリスト </returns>
+		const EdgeList& getVerticalEdgeList() const
+		{
+			return m_verticalEdgeList;
+		}
+
+		/// <summary>
+		/// 水平方向の辺を取得
+		/// </summary>
+		/// <returns> 水平方向の辺を取得 </returns>
+		const EdgeList& getHorizontalEdgeList() const
+		{
+			return m_horizontalEdgeList;
+		}
 
 		/// <summary>
 		/// 描画
