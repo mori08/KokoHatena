@@ -33,7 +33,7 @@ namespace Kokoha
 	{
 		while (!m_makeObjectList.empty())
 		{
-			makeObjectList.emplace_back(std::move(m_makeObjectList.front()));
+			makeObjectList.emplace_back(m_makeObjectList.front());
 			m_makeObjectList.pop_front();
 		}
 	}

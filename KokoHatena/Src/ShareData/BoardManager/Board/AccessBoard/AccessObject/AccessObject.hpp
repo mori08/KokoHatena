@@ -20,7 +20,7 @@ namespace Kokoha
 			GOAL    // ÉSÅ[Éã
 		};
 
-		using Ptr = std::unique_ptr<AccessObject>;
+		using Ptr = std::shared_ptr<AccessObject>;
 
 		using GuidToObject = std::unordered_map<String, Ptr>;
 

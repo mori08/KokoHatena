@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Siv3D.hpp>
+#include "EdgeList/EdgeList.hpp"
 
 /*
 	3種類の座標を以下の表現で使い分ける.
@@ -27,7 +27,29 @@ namespace Kokoha
 			BLOCK     // 光 -> 通さない , オブジェクト -> 通さない
 		};
 
-	private:
+		// 辺
+		// 垂直な辺の場合 {x, {y1, y2}}
+		// 水平な辺の場合 {y, {x1, x2}}
+		using Edge = std::pair<int32, std::pair<int32, int32>>;
+
+		// 辺リストのイテレータ
+		using ConstItr = std::list<Edge>::const_iterator;
+
+		// 部分リスト
+		class SubList
+		{
+		private:
+			ConstItr m_beginItr, m_endItr;
+		public:
+			SubList(ConstItr beginItr, ConstItr endItr)
+				: m_beginItr(beginItr)
+				, m_endItr(endItr)
+			{}
+			ConstItr begin() const { return m_beginItr; }
+			ConstItr end() const { return m_endItr; }
+		};
+
+	public:
 
 		static constexpr int32 WIDTH       = 24;           // ステージの幅(マス)
 		static constexpr int32 HEIGHT      = 18;           // ステージの高さ(マス)
@@ -37,16 +59,19 @@ namespace Kokoha
 	private:
 
 		// 地形データ
-		Array<Cell> m_cellList;
+		std::array<Cell, N> m_cellList;
 
 		// [i][j] : i -> j への最短経路（次の目標）
-		Array<Array<int32>> m_path;
+		std::array<std::array<int32, N>, N> m_path;
 
 		// [i][j] : i -> j への最短経路（1マスの1辺を1とした距離）
-		Array<Array<double>> m_dist;
+		std::array<std::array<double, N>, N> m_dist;
 
-		// 影作成用の辺
-		std::list<std::pair<Point, Point>> m_edgeList;
+		// 影作成用の垂直な辺
+		EdgeList m_verticalEdgeList;
+
+		// 影作成用の水平な辺
+		EdgeList m_horizontalEdgeList;
 
 	public:
 
@@ -177,6 +202,21 @@ namespace Kokoha
 		}
 
 		/// <summary>
+		/// 指定されたマスが光を通すか
+		/// </summary>
+		/// <param name="square"> マス座標 </param>
+		/// <returns> true のとき光を通さない , false のとき光を通す </returns>
+		bool isBlack(const Point square) const
+		{
+			return false
+				|| square.x < 0
+				|| square.x >= WIDTH
+				|| square.y < 0
+				|| square.y >= HEIGHT
+				|| m_cellList[toInteger(square)] == Cell::BLOCK;
+		}
+
+		/// <summary>
 		/// 最短経路の取得
 		/// </summary>
 		/// <param name="pixelS"> 始点（ピクセル座標） </param>
@@ -185,12 +225,21 @@ namespace Kokoha
 		Vec2 getPath(const Vec2& pixelS, const Vec2& pixelT) const;
 
 		/// <summary>
-		/// 辺のリストを取得
+		/// 垂直方向の辺を取得
 		/// </summary>
-		/// <returns> 辺リスト </returns>
-		const std::list<std::pair<Point, Point>>& getEdge() const
+		/// <returns> 垂直方向の辺のリスト </returns>
+		const EdgeList& getVerticalEdgeList() const
 		{
-			return m_edgeList;
+			return m_verticalEdgeList;
+		}
+
+		/// <summary>
+		/// 水平方向の辺を取得
+		/// </summary>
+		/// <returns> 水平方向の辺を取得 </returns>
+		const EdgeList& getHorizontalEdgeList() const
+		{
+			return m_horizontalEdgeList;
 		}
 
 		/// <summary>

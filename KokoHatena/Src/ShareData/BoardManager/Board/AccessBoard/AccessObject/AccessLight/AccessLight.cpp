@@ -60,35 +60,41 @@ namespace Kokoha
 
 		m_isPie = m_centralAngle < Math::TwoPi - EPSILON;
 
-		uint64 time = Time::GetMicrosec();
-		if (Scene::FrameCount() % 60 == 0)
-		{
-			ClearPrint();
-		}
-
 		// 辺リストの作成
 		m_edgeAry.clear();
-		for (const std::pair<Point, Point>& edge : terrain.getEdge())
+		const Point tl = terrain.toSquare(m_sourcePos - m_distance * Vec2::One());
+		const Point br = terrain.toSquare(m_sourcePos + m_distance * Vec2::One());
+
+		// 垂直な辺
+		for (const auto& edge : terrain.getVerticalEdgeList().getSubList({ tl.x, br.x }))
 		{
+			const Vec2 begin = Terrain::SQUARE_SIZE * Vec2(edge.first, edge.second.first);
+			const Vec2 end   = Terrain::SQUARE_SIZE * Vec2(edge.first, edge.second.second);
 			PolarLine polarLine
 			(
-				PolarPos(edge.first, m_sourcePos, m_directionAngle),
-				PolarPos(edge.second, m_sourcePos, m_directionAngle)
+				PolarPos(begin, m_sourcePos, m_directionAngle),
+				PolarPos(end  , m_sourcePos, m_directionAngle)
 			);
-
-			if (polarLine.on(m_distance) && twoVecToAngle(edge.first - m_sourcePos, edge.second - edge.first) > 0)
+			if (polarLine.on(m_distance) && twoVecToAngle(begin - m_sourcePos, end - begin) > 0)
 			{
 				m_edgeAry.emplace_back(polarLine);
 			}
 		}
-
-		if (Scene::FrameCount() % 60 == 0)
+		
+		// 水平な辺
+		for (const auto& edge : terrain.getHorizontalEdgeList().getSubList({ tl.y, br.y }))
 		{
-			Print << U"[辺リストの作成]";
-			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
-			Print << U"辺の数 : " << terrain.getEdge().size();
-			Print << U"辺リストのサイズ : " << m_edgeAry.size();
-			time = Time::GetMicrosec();
+			const Vec2 begin = Terrain::SQUARE_SIZE * Vec2(edge.second.first , edge.first);
+			const Vec2 end   = Terrain::SQUARE_SIZE * Vec2(edge.second.second, edge.first);
+			PolarLine polarLine
+			(
+				PolarPos(begin, m_sourcePos, m_directionAngle),
+				PolarPos(end, m_sourcePos, m_directionAngle)
+			);
+			if (polarLine.on(m_distance) && twoVecToAngle(begin - m_sourcePos, end - begin) > 0)
+			{
+				m_edgeAry.emplace_back(polarLine);
+			}
 		}
 
 		// ヒープの初期化
@@ -114,14 +120,6 @@ namespace Kokoha
 			}
 		}
 
-		if (Scene::FrameCount() % 60 == 0)
-		{
-			Print << U"辺イベントの作成]";
-			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
-			Print << U"イベントの数 : " << eventQueue.size();
-			time = Time::GetMicrosec();
-		}
-
 		// 円のイベントの作成
 		const int32 QUALITY = Config::get<int32>(U"AccessLight.quality");
 		for (int32 i = 0; i <= QUALITY; ++i)
@@ -135,14 +133,6 @@ namespace Kokoha
 			eventQueue.emplace(+m_centralAngle/2, [this]() { addPiePoint(+m_centralAngle/2); });
 		}
 
-		if (Scene::FrameCount() % 60 == 0)
-		{
-			Print << U"[円イベントの作成]";
-			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
-			Print << U"イベントの数 : " << eventQueue.size();
-			time = Time::GetMicrosec();
-		}
-
 		// 頂点リストの作成
 		m_posAry.clear();
 		if (m_isPie) { m_posAry.emplace_back(m_sourcePos); }
@@ -152,38 +142,14 @@ namespace Kokoha
 			eventQueue.pop();
 		}
 
-		if (Scene::FrameCount() % 60 == 0)
-		{
-			Print << U"[頂点リストの作成]";
-			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
-			Print << U"頂点の数 : " << m_posAry.size();
-			time = Time::GetMicrosec();
-		}
-
 		m_polygon = Polygon(m_posAry);
-
-		if (Scene::FrameCount() % 60 == 0)
-		{
-			Print << U"[ポリゴンの作成]";
-			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
-			time = Time::GetMicrosec();
-		}
 	}
 
 	void AccessLight::draw() const
 	{
 		if (!m_on) { return; }
 
-		uint64 time = Time::GetMicrosec();
-
 		m_polygon.draw(ColorF(MyWhite, m_alpha));
-
-		if (Scene::FrameCount() % 60 == 0)
-		{
-			Print << U"[光の描画]";
-			Print << U"処理時間(s) : " << (Time::GetMicrosec() - time)*1e-6;
-			time = Time::GetMicrosec();
-		}
 	}
 
 	void AccessLight::addPoint(double angle)
