@@ -15,7 +15,7 @@ namespace Kokoha
 	private:
 
 		// ボードのリスト
-		std::list<std::unique_ptr<Board>> m_boardList;
+		std::list<std::shared_ptr<Board>> m_boardList;
 
 	public:
 
@@ -46,7 +46,7 @@ namespace Kokoha
 		/// Board::Roleに対応したボードのイテレータを取得
 		/// </summary>
 		/// <param name="role"> ボードの種類 </param>
-		std::list<std::unique_ptr<Board>>::iterator findBoardItr(const BoardRole& role);
+		std::list<std::shared_ptr<Board>>::iterator findBoardItr(const BoardRole& role);
 
 		/// <summary>
 		/// ボードを先頭に表示

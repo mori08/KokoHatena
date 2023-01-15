@@ -15,8 +15,8 @@ namespace Kokoha
 	{
 		m_boardList.clear();
 
-		m_boardList.emplace_back(std::make_unique<MessageBoard>());
-		m_boardList.emplace_back(std::make_unique<AccessBoard>());
+		m_boardList.emplace_back(std::make_shared<MessageBoard>());
+		m_boardList.emplace_back(std::make_shared<AccessBoard>());
 	}
 
 	Optional<SceneName> BoardManager::update(RecordSet& recordSet)
@@ -111,7 +111,7 @@ namespace Kokoha
 		}
 	}
 
-	std::list<std::unique_ptr<Board>>::iterator BoardManager::findBoardItr(const BoardRole& role)
+	std::list<std::shared_ptr<Board>>::iterator BoardManager::findBoardItr(const BoardRole& role)
 	{
 		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
 		{
@@ -133,9 +133,9 @@ namespace Kokoha
 		}
 
 		// 最前面に移動
-		auto boardPtr = std::move(*boardItr);
+		auto boardPtr = *boardItr;
 		m_boardList.erase(boardItr);
-		m_boardList.emplace_front(std::move(boardPtr));
+		m_boardList.emplace_front(boardPtr);
 
 		// 先頭のボードの状態をIS_DISPLAYEDに変更
 		m_boardList.front()->display();
@@ -156,9 +156,9 @@ namespace Kokoha
 		}
 
 		// 最前面に移動
-		auto boardPtr = std::move(*boardItr);
+		auto boardPtr = *boardItr;
 		m_boardList.erase(boardItr);
-		m_boardList.emplace_back(std::move(boardPtr));
+		m_boardList.emplace_back(boardPtr);
 
 		// 末尾のボードの状態をIS_HIDINGに変更
 		m_boardList.back()->hide();
