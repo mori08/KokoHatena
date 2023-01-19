@@ -293,6 +293,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp" />
