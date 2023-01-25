@@ -256,6 +256,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp" />

@@ -54,6 +54,15 @@ namespace Kokoha
 	}
 
 	template<>
+	inline Vec2 Config::get(const String& name)
+	{
+		return Vec2(
+			instance().m_toml[name][U"x"].get<double>(),
+			instance().m_toml[name][U"y"].get<double>()
+		);
+	}
+
+	template<>
 	inline Rect Config::get(const String& name)
 	{
 		return Rect(

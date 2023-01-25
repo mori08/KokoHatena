@@ -26,6 +26,14 @@ namespace Kokoha
 
 		using TypeToGuidSet = std::unordered_map<Type, std::unordered_set<String>>;
 
+		/// <summary>
+		/// Typeが合う先頭オブジェクトのGuidを取得
+		/// </summary>
+		/// <param name="type"> オブジェクトの種類 </param>
+		/// <param name="typeToGuidSet"> typeからguid集合への連想配列 </param>
+		/// <returns> 存在するときは guid , 集合が空のときは none </returns>
+		static Optional<String> getFrontGuid(Type type, const TypeToGuidSet& typeToGuidSet);
+
 	private:
 
 		// オブジェクトの種類
@@ -53,6 +61,10 @@ namespace Kokoha
 		AccessObject(const Type& type, const Vec2& pos);
 
 		virtual ~AccessObject() {}
+
+		static void setMakingObject(Ptr ptr, GuidToObject& objectMap, TypeToGuidSet& typeToGuidSet);
+
+	public:
 
 		/// <summary>
 		/// typeの取得

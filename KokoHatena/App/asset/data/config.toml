@@ -82,6 +82,13 @@
     iconOrder = 1
     wideArea  = 100
 
+[StartingAccessState]
+    centerPos = {x=300, y=225}
+    rate = 0.9
+    noiseDist = 60.0
+    noiseSpan = 60
+    noiseAmount = 10
+
 [AccessObject]
     radius = 10.0
 
