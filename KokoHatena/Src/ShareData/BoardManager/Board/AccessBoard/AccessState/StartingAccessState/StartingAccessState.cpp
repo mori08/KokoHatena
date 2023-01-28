@@ -1,4 +1,5 @@
 #include "StartingAccessState.hpp"
+#include "../PlayingAccessState/PlayingAccessState.hpp"
 #include "../../AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
 #include "../../../../../../Config/Config.hpp"
 
@@ -8,6 +9,7 @@ namespace Kokoha
 
 	StartingAccessState::StartingAccessState(const String& argStageName)
 		: m_noiseCount(-1)
+		, m_nextStateFlag(false)
 	{
 		stageName = argStageName;
 		setMakeObjectList();
@@ -15,6 +17,7 @@ namespace Kokoha
 
 	StartingAccessState::StartingAccessState()
 		: m_noiseCount(0)
+		, m_nextStateFlag(false)
 	{		
 		setMakeObjectList();
 	}
@@ -28,6 +31,11 @@ namespace Kokoha
 		{
 			m_noiseCount = -1; // updateで0になる
 		}
+
+		if (MouseL.down() && m_playerPos.distanceFrom(cursorPos) < NOISE_DIST)
+		{
+			m_nextStateFlag = true;
+		}
 	}
 
 	Optional<std::shared_ptr<AccessState>> StartingAccessState::update(
@@ -36,6 +44,12 @@ namespace Kokoha
 	{
 		if (!m_makeObjectList.empty())
 		{
+			objectMap.clear();
+			for (auto& guidSet : typeToGuidSet)
+			{
+				guidSet.second.clear();
+			}
+
 			for (const auto& ptr : m_makeObjectList)
 			{
 				AccessObject::setMakingObject(ptr, objectMap, typeToGuidSet);
@@ -45,10 +59,22 @@ namespace Kokoha
 
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::PLAYER])
 		{
+			// Boardの中心座標
+			static const Vec2 CENTER_POS = Config::get<Vec2>(U"StartingAccessState.centerPos");
+			// 表示する場所の比率
+			static const double RATE = Config::get<double>(U"StartingAccessState.rate");
+
 			m_playerPos = objectMap[guid]->body().center;
+			m_playerPos = RATE * m_playerPos + (1 - RATE) * CENTER_POS;;
 		}
 
 		++m_noiseCount;
+
+		if (m_nextStateFlag)
+		{
+			std::shared_ptr<AccessState> rtn = std::make_shared<PlayingAccessState>();
+			return rtn;
+		}
 
 		return none;
 	}
@@ -60,14 +86,10 @@ namespace Kokoha
 
 	void StartingAccessState::draw() const
 	{
-		// Boardの中心座標
-		static const Vec2 CENTER_POS = Config::get<Vec2>(U"StartingAccessState.centerPos");
-		// 表示する場所の比率
-		static const double RATE = Config::get<double>(U"StartingAccessState.rate");
 		// 文字を揺らす大きさ
 		static const double NOISE_AMOUNT = Config::get<double>(U"StartingAccessState.noiseAmount");
 
-		Vec2 drawPos = RATE * m_playerPos + (1 - RATE) * CENTER_POS;
+		Vec2 drawPos = m_playerPos;
 		if (m_noiseCount == 0)
 		{
 			drawPos.x += Random(-NOISE_AMOUNT, +NOISE_AMOUNT);

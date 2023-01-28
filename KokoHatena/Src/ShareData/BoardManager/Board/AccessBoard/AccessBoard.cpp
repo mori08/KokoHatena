@@ -38,7 +38,10 @@ namespace Kokoha
 
 	void AccessBoard::updateInBoard(BoardRequest&)
 	{
-		m_state->update(m_objectMap, m_typeToGuidSet);
+		if (auto stateOpt = m_state->update(m_objectMap, m_typeToGuidSet))
+		{
+			m_state = stateOpt.value();
+		}
 
 		if (m_state->isUpdatingObject())
 		{

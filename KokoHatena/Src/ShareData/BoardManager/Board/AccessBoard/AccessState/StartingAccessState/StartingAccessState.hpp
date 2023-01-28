@@ -17,6 +17,9 @@ namespace Kokoha
 		// プレイヤーのいる座標
 		Vec2 m_playerPos;
 
+		// PlayingStateへ遷移するとき true
+		bool m_nextStateFlag;
+
 		// ステージ名
 		static String stageName;
 
