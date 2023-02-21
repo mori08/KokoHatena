@@ -1,7 +1,9 @@
 #include "StartingAccessState.hpp"
 #include "../PlayingAccessState/PlayingAccessState.hpp"
 #include "../../AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
+#include "../../AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 #include "../../../../../../Config/Config.hpp"
+#include "../../../../../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
@@ -89,6 +91,8 @@ namespace Kokoha
 		// 文字を揺らす大きさ
 		static const double NOISE_AMOUNT = Config::get<double>(U"StartingAccessState.noiseAmount");
 
+		boardRect().draw(MyBlack);
+
 		Vec2 drawPos = m_playerPos;
 		if (m_noiseCount == 0)
 		{
@@ -103,7 +107,8 @@ namespace Kokoha
 		// オブジェクトの作成用のマップ
 		static std::unordered_map<String, std::function<AccessObject::Ptr(const Vec2& pos)>> makeObjectMap =
 		{
-			{U"player",[](const Vec2& pos) { return std::make_shared<PlayerAccessObject>(pos); }}
+			{U"player",[](const Vec2& pos) { return std::make_shared<PlayerAccessObject>(pos); }},
+			{U"enemy", [](const Vec2& pos) { return std::make_shared<EnemyAccessObject>(pos); }}
 		};
 
 		// オブジェクトの読み込み

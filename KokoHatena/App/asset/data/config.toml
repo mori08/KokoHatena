@@ -89,6 +89,11 @@
     noiseSpan = 60
     noiseAmount = 10
 
+[FailedAccessState]
+    changeAlphaRate = 0.01
+    failedSpeed = 16.0
+    failedWidth = 4.0
+
 [AccessObject]
     radius = 10.0
 
@@ -106,4 +111,4 @@
     lightSpinSpeed = 0.1
 
 [EnemyAccessObject]
-    speed = 50
+    speed = 10

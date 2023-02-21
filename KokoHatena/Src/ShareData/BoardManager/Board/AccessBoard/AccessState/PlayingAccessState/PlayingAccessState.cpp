@@ -1,9 +1,12 @@
 #include "PlayingAccessState.hpp"
+#include "../FailedAccessState/FailedAccessState.hpp"
+#include "../../AccessObject/MinionAccessObject/MinionAccessObject.hpp"
 
 namespace Kokoha
 {
 	void PlayingAccessState::input(const Vec2&)
 	{
+		m_isMakingMinion = MouseL.down();
 	}
 
 	Optional<std::shared_ptr<AccessState>> PlayingAccessState::update(
@@ -17,12 +20,21 @@ namespace Kokoha
 			playerBody = objectMap[guid]->body();
 		}
 		
+		// MinionAccessObjectÇÃçÏê¨
+		if (m_isMakingMinion)
+		{
+			AccessObject::Ptr ptr = std::make_shared<MinionAccessObject>(playerBody.center);
+			AccessObject::setMakingObject(ptr, objectMap, typeToGuidSet);
+		}
+		m_isMakingMinion = false;
+
 		// ÉvÉåÉCÉÑÅ[Ç™ìGÇ∆ê⁄êG
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::ENEMY])
 		{
 			if (playerBody.intersects(objectMap[guid]->body()))
 			{
-				// TODO: FailedAccessStateÇ…ëJà⁄
+				std::shared_ptr<AccessState> rtn = std::make_shared<FailedAccessState>(Terrain::toSquare(playerBody.center));
+				return rtn;
 			}
 		}
 

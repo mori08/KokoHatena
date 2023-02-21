@@ -8,6 +8,10 @@ namespace Kokoha
 	{
 	public:
 
+		virtual ~AccessState() {};
+
+	public:
+
 		/// <summary>
 		/// 入力
 		/// </summary>
@@ -34,6 +38,14 @@ namespace Kokoha
 		/// 描画
 		/// </summary>
 		virtual void draw() const = 0;
+
+	protected:
+
+		/// <summary>
+		/// ボードの範囲を示す長方形の取得
+		/// </summary>
+		/// <returns> ボードの範囲を示す長方形 </returns>
+		static const Rect& boardRect();
 
 	};
 }

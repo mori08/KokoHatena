@@ -147,8 +147,6 @@ namespace Kokoha
 
 	void AccessLight::draw() const
 	{
-		if (!m_on) { return; }
-
 		m_polygon.draw(ColorF(MyWhite, m_alpha));
 	}
 

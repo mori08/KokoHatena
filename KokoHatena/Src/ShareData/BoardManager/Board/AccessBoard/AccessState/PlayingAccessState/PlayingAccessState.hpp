@@ -11,6 +11,11 @@ namespace Kokoha
 	{
 	private:
 
+		// true ‚Ì‚Æ‚«Player‚ğì¬‚·‚é
+		bool m_isMakingMinion;
+
+	private:
+
 		void input(const Vec2& cursorPos) override;
 
 		Optional<std::shared_ptr<AccessState>> update(

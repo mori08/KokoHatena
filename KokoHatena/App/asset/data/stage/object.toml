@@ -2,3 +2,8 @@
     type = "player"
     x = 0
     y = 0
+
+[[test]]
+    type = "enemy"
+    x = 9
+    y = 9

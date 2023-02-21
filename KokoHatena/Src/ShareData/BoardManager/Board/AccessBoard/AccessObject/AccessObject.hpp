@@ -135,6 +135,15 @@ namespace Kokoha
 		/// </summary>
 		virtual void drawLight() const;
 
+		/// <summary>
+		/// 光
+		/// </summary>
+		/// <returns> 光の参照 </returns>
+		AccessLight& light()
+		{
+			return m_light;
+		}
+
 	protected:
 
 		/// <summary>
@@ -170,15 +179,6 @@ namespace Kokoha
 		/// <param name="terrain"> 地形 </param>
 		/// <returns> 実際に移動した移動量 </returns>
 		Vec2 walkToGoal(double speed, const Vec2& goal, const Terrain& terrain);
-
-		/// <summary>
-		/// 光
-		/// </summary>
-		/// <returns> 光の参照 </returns>
-		AccessLight& light()
-		{
-			return m_light;
-		}
 
 	};
 }
