@@ -4,9 +4,9 @@
 
 namespace Kokoha
 {
-	void PlayingAccessState::input(const Vec2&)
+	void PlayingAccessState::input(const Vec2& cursorPos)
 	{
-		m_isMakingMinion = MouseL.down();
+		m_isMakingMinion = MouseL.down() && boardRect().contains(cursorPos);
 	}
 
 	Optional<std::shared_ptr<AccessState>> PlayingAccessState::update(

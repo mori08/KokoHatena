@@ -118,6 +118,11 @@ namespace Kokoha
 			const String type = object[U"type"].getString();
 			const Vec2   pos = Terrain::toPixel(Point(object[U"x"].get<int32>(), object[U"y"].get<int32>()));
 
+			if (!makeObjectMap.count(type))
+			{
+				throw Error(U"Faild to make [" + type + U"] object");
+			}
+
 			m_makeObjectList.emplace_back(makeObjectMap[type](pos));
 		}
 	}
