@@ -8,10 +8,11 @@ namespace Kokoha
 	{
 		m_goal.x = Random(0.0, 600.0);
 		m_goal.y = Random(0.0, 450.0);
+		m_direction = 0;
 		light()
 			.setAlpha(0.3)
 			.setCentralAngle(Math::TwoPi)
-			.setDistance(50)
+			.setDistance(40)
 			.on();
 	}
 
@@ -29,17 +30,10 @@ namespace Kokoha
 			internalDividingPoint(m_direction, m_direction + d, 0.2);
 		}
 
-		uint64 time = Time::GetMicrosec();
 		light()
 			.setSourcePos(body().center)
 			.setDirectionAngle(m_direction)
 			.update(terrain);
-		time = Time::GetMicrosec() - time;
-
-		if (Scene::FrameCount() % 60 == 0)
-		{
-			Print << time * 1e-6;
-		}
 	}
 
 	void MinionAccessObject::draw() const

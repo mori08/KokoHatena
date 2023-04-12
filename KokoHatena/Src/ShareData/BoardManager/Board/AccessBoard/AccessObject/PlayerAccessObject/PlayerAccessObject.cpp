@@ -50,13 +50,6 @@ namespace Kokoha
 
 	void PlayerAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
-		for (const String& guid : typeToGuidSet.find(Type::ENEMY)->second)
-		{
-			if (guidToObject.find(guid)->second->body().intersects(body()))
-			{
-				erase();
-			}
-		}
 	}
 
 	void PlayerAccessObject::inputLight()

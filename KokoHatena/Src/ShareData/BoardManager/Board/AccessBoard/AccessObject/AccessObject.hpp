@@ -26,6 +26,14 @@ namespace Kokoha
 
 		using TypeToGuidSet = std::unordered_map<Type, std::unordered_set<String>>;
 
+		/// <summary>
+		/// Typeが合う先頭オブジェクトのGuidを取得
+		/// </summary>
+		/// <param name="type"> オブジェクトの種類 </param>
+		/// <param name="typeToGuidSet"> typeからguid集合への連想配列 </param>
+		/// <returns> 存在するときは guid , 集合が空のときは none </returns>
+		static Optional<String> getFrontGuid(Type type, const TypeToGuidSet& typeToGuidSet);
+
 	private:
 
 		// オブジェクトの種類
@@ -53,6 +61,10 @@ namespace Kokoha
 		AccessObject(const Type& type, const Vec2& pos);
 
 		virtual ~AccessObject() {}
+
+		static void setMakingObject(Ptr ptr, GuidToObject& objectMap, TypeToGuidSet& typeToGuidSet);
+
+	public:
 
 		/// <summary>
 		/// typeの取得
@@ -123,6 +135,15 @@ namespace Kokoha
 		/// </summary>
 		virtual void drawLight() const;
 
+		/// <summary>
+		/// 光
+		/// </summary>
+		/// <returns> 光の参照 </returns>
+		AccessLight& light()
+		{
+			return m_light;
+		}
+
 	protected:
 
 		/// <summary>
@@ -158,15 +179,6 @@ namespace Kokoha
 		/// <param name="terrain"> 地形 </param>
 		/// <returns> 実際に移動した移動量 </returns>
 		Vec2 walkToGoal(double speed, const Vec2& goal, const Terrain& terrain);
-
-		/// <summary>
-		/// 光
-		/// </summary>
-		/// <returns> 光の参照 </returns>
-		AccessLight& light()
-		{
-			return m_light;
-		}
 
 	};
 }

@@ -82,6 +82,21 @@
     iconOrder = 1
     wideArea  = 100
 
+[StartingAccessState]
+    centerPos = {x=300, y=225}
+    rate = 0.9
+    noiseDist = 60.0
+    noiseSpan = 60
+    noiseAmount = 10
+
+[FailedAccessState]
+    changeAlphaRate = 0.01
+    failedSpeed = 16.0
+    failedWidth = 4.0
+
+[SuccessAccessState]
+    changeAlphaRate = 0.02
+
 [AccessObject]
     radius = 10.0
 
@@ -99,4 +114,4 @@
     lightSpinSpeed = 0.1
 
 [EnemyAccessObject]
-    speed = 50
+    speed = 10

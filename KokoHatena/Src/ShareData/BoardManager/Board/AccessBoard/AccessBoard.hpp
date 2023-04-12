@@ -1,6 +1,7 @@
 #pragma once
 #include"../Board.hpp"
 #include"AccessObject/AccessObject.hpp"
+#include"AccessState/AccessState.hpp"
 #include"Terrain/Terrain.hpp"
 
 namespace Kokoha
@@ -20,6 +21,8 @@ namespace Kokoha
 
 		//  オブジェクトの種類からguidへの連想配列
 		AccessObject::TypeToGuidSet m_typeToGuidSet;
+
+		std::shared_ptr<AccessState> m_state;
 
 		// 生成するオブジェクト
 		std::list<AccessObject::Ptr> m_makeObjectList;
