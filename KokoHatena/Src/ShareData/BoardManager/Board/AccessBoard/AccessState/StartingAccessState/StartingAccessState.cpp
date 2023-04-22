@@ -2,6 +2,7 @@
 #include "../PlayingAccessState/PlayingAccessState.hpp"
 #include "../../AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
 #include "../../AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
+#include "../../AccessObject/GoalAccessObject/GoalAccessObject.hpp"
 #include "../../../../../../Config/Config.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 
@@ -108,7 +109,8 @@ namespace Kokoha
 		static std::unordered_map<String, std::function<AccessObject::Ptr(const Vec2& pos)>> makeObjectMap =
 		{
 			{U"player",[](const Vec2& pos) { return std::make_shared<PlayerAccessObject>(pos); }},
-			{U"enemy", [](const Vec2& pos) { return std::make_shared<EnemyAccessObject>(pos); }}
+			{U"enemy", [](const Vec2& pos) { return std::make_shared<EnemyAccessObject> (pos); }},
+			{U"goal",  [](const Vec2& pos) { return std::make_shared<GoalAccessObject>  (pos); }}
 		};
 
 		// オブジェクトの読み込み

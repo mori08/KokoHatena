@@ -1,5 +1,6 @@
 #include "PlayingAccessState.hpp"
 #include "../FailedAccessState/FailedAccessState.hpp"
+#include "../SuccessAccessState/SuccessAccessState.hpp"
 #include "../../AccessObject/MinionAccessObject/MinionAccessObject.hpp"
 
 namespace Kokoha
@@ -43,7 +44,8 @@ namespace Kokoha
 		{
 			if (playerBody.intersects(objectMap[guid]->body()))
 			{
-				// TODO: SuccessAccessState‚É‘JˆÚ
+				std::shared_ptr<AccessState> rtn = std::make_shared<SuccessAccessState>(playerBody.center);
+				return rtn;
 			}
 		}
 

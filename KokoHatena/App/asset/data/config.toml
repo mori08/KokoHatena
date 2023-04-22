@@ -96,6 +96,10 @@
 
 [SuccessAccessState]
     changeAlphaRate = 0.02
+    lightRadiusSpreadSpeed = 100
+    lightMaxRaduis = 400.0
+    lightThickness = 2.0
+    lightAlphaRate = 0.3
 
 [AccessObject]
     radius = 10.0

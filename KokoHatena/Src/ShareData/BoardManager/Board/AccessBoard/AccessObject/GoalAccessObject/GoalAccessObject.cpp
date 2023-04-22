@@ -1,4 +1,5 @@
 #include "GoalAccessObject.hpp"
+#include "../../../../../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
@@ -7,15 +8,16 @@ namespace Kokoha
 	{
 	}
 
-	void GoalAccessObject::update(const Terrain& terrain)
+	void GoalAccessObject::update(const Terrain&)
 	{
 	}
 
 	void GoalAccessObject::draw() const
 	{
+		body().drawFrame(2, MyBlack);
 	}
 
-	void GoalAccessObject::checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+	void GoalAccessObject::checkOthers(const Terrain&, const GuidToObject&, const TypeToGuidSet&)
 	{
 	}
 }
