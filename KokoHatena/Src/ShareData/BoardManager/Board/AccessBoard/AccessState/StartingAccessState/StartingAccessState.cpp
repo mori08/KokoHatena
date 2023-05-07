@@ -43,7 +43,8 @@ namespace Kokoha
 
 	Optional<std::shared_ptr<AccessState>> StartingAccessState::update(
 		AccessObject::GuidToObject& objectMap,
-		AccessObject::TypeToGuidSet& typeToGuidSet)
+		AccessObject::TypeToGuidSet& typeToGuidSet,
+		BoardRequest&)
 	{
 		if (!m_makeObjectList.empty())
 		{

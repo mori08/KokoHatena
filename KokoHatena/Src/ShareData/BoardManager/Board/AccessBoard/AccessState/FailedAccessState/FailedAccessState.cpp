@@ -16,7 +16,7 @@ namespace Kokoha
 	{
 	}
 
-	Optional<std::shared_ptr<AccessState>> FailedAccessState::update(AccessObject::GuidToObject& objectMap, AccessObject::TypeToGuidSet& typeToGuidSet)
+	Optional<std::shared_ptr<AccessState>> FailedAccessState::update(AccessObject::GuidToObject& objectMap, AccessObject::TypeToGuidSet& typeToGuidSet, BoardRequest&)
 	{
 		// バグ演出の進行する速度
 		static const double FAILED_SPEED = Config::get<double>(U"FailedAccessState.failedSpeed");

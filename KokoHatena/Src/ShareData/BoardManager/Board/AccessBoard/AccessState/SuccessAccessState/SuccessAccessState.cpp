@@ -8,6 +8,7 @@ namespace Kokoha
 		: m_playerPos(playerPos)
 		, m_lightRadius(0)
 		, m_lightAlpha(1.0)
+		, m_alreadySendRequest(false)
 	{
 	}
 
@@ -17,7 +18,8 @@ namespace Kokoha
 
 	Optional<std::shared_ptr<AccessState>> SuccessAccessState::update(
 		AccessObject::GuidToObject& objectMap,
-		AccessObject::TypeToGuidSet& typeToGuidSet)
+		AccessObject::TypeToGuidSet& typeToGuidSet,
+		BoardRequest& boardRequest)
 	{
 		// プレイヤー以外の光を消す
 		static const double CHANGE_ALPHA_RATE = Config::get<double>(U"FailedAccessState.changeAlphaRate");
@@ -45,6 +47,12 @@ namespace Kokoha
 		{
 			m_lightRadius = 0;
 			m_lightAlpha = 1.0;
+			
+			if (!m_alreadySendRequest)
+			{
+				m_alreadySendRequest = true;
+				boardRequest.toBoard.emplace_back(BoardRole::MESSAGE, U"Clear");
+			}
 		}
 
 		return none;
