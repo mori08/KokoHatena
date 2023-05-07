@@ -36,9 +36,9 @@ namespace Kokoha
 		}
 	}
 
-	void AccessBoard::updateInBoard(BoardRequest&)
+	void AccessBoard::updateInBoard(BoardRequest& boradRequest)
 	{
-		if (auto stateOpt = m_state->update(m_objectMap, m_typeToGuidSet))
+		if (auto stateOpt = m_state->update(m_objectMap, m_typeToGuidSet, boradRequest))
 		{
 			m_state = stateOpt.value();
 		}

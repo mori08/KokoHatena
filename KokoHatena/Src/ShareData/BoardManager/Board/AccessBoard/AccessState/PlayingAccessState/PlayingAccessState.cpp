@@ -12,7 +12,8 @@ namespace Kokoha
 
 	Optional<std::shared_ptr<AccessState>> PlayingAccessState::update(
 		AccessObject::GuidToObject& objectMap,
-		AccessObject::TypeToGuidSet& typeToGuidSet)
+		AccessObject::TypeToGuidSet& typeToGuidSet,
+		BoardRequest&)
 	{
 		// プレイヤーの座標の取得
 		Circle playerBody = Circle(-1e5, -1e5, 0); // 他オブジェクトと接触しない座標で初期化

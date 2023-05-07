@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../AccessObject/AccessObject.hpp"
+#include "../../BoardConst.hpp"
 
 namespace Kokoha
 {
@@ -23,10 +24,12 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="objectMap"> guidからObjectへの連想配列 </param>
 		/// <param name="typeToGuidSet"> Objectの種類からguidへの連想配列 </param>
+		/// <param name="typeToGuidSet"> AccessBoardのBoardRequest </param>
 		/// <returns> 次のAccessStateへのunique_ptr , 状態を変更しないとき none </returns>
 		virtual Optional<std::shared_ptr<AccessState>> update(
 			AccessObject::GuidToObject& objectMap, 
-			AccessObject::TypeToGuidSet& typeToGuidSet) = 0;
+			AccessObject::TypeToGuidSet& typeToGuidSet,
+			BoardRequest& boradRequest) = 0;
 
 		/// <summary>
 		/// オブジェクトを更新するか

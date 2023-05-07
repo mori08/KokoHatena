@@ -20,7 +20,8 @@ namespace Kokoha
 
 		Optional<std::shared_ptr<AccessState>> update(
 			AccessObject::GuidToObject& objectMap,
-			AccessObject::TypeToGuidSet& typeToGuidSet) override;
+			AccessObject::TypeToGuidSet& typeToGuidSet,
+			BoardRequest&) override;
 
 		bool isUpdatingObject() const override;
 
