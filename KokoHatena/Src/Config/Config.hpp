@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../ButtonSet/Button/Button.hpp"
-#include "../MyLibrary/SliceTexture/Animation/Animation.hpp"
+#include "../MyLibrary/SliceTexture/SliceTexture.hpp"
 
 namespace Kokoha
 {
@@ -126,6 +126,38 @@ namespace Kokoha
 			instance().m_toml[name][U"name"].getString(),
 			instance().get<Rect>(name + U".region")
 		);
+	}
+
+	template<>
+	inline SliceTexture Config::get(const String& name)
+	{
+		SliceTexture rtn(
+			instance().m_toml[name + U".textureName"].getString(),
+			Size(
+				instance().m_toml[name + U".size.x"].get<int32>(),
+				instance().m_toml[name + U".size.y"].get<int32>()
+			)
+		);
+
+		for (const auto& anim : instance().m_toml[name][U"anim"].tableArrayView())
+		{
+			const String animName = anim[U"name"].getString();
+
+			PosOrder posOrder;
+			for (const auto& obj : anim[U"anim"].tableArrayView())
+			{
+				std::pair<double, Point> timePos;
+				timePos.first = obj[U"t"].get<double>();
+				timePos.second.x = obj[U"x"].get<int32>();
+				timePos.second.y = obj[U"y"].get<int32>();
+				posOrder << timePos;
+			}
+			const bool loop = anim[U"loop"].get<bool>();
+
+			rtn.setAnimation(animName, Animation(posOrder, loop));
+		}
+
+		return rtn;
 	}
 
 	template<>

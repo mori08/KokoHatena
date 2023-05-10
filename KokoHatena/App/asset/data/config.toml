@@ -76,6 +76,15 @@
     talkPageColor     = {rgb=0.5}
     talkPageThickness = 2
 
+[TextureEventObject]
+    [TextureEventObject.Researcher]
+        textureName = "Researcher"
+        size = {x = 80, y = 80}
+        [[TextureEventObject.Researcher.anim]]
+            name = "wait"
+            anim = [{t=0,x=0,y=0}]
+            loop = false
+
 [AccessBoard]
     name = "アクセス"
     size = {x=600,y=450}
