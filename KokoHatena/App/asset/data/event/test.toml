@@ -1,7 +1,28 @@
 [[init]]
     event = "object"
     type = "texture"
-    name = "test1"
+    name = "obj_r"
     [init.param]
         objectKey = "Researcher"
         pos = {x=110, y=320}
+[[init]]
+    event = "jamp"
+    to = "test"
+
+[[test]]
+    event = "act"
+    name = "obj_r"
+    [test.param]
+        anim = "walkLeft"
+        move = {t=3.0, x=-100, y=0}
+[[test]]
+    event = "act"
+    name = "obj_r"
+    [test.param]
+        anim = "walkRight"
+        move = {t=3.0, x=100, y=0}
+[[test]]
+    event = "act"
+    name = "obj_r"
+    [test.param]
+        anim = "think"

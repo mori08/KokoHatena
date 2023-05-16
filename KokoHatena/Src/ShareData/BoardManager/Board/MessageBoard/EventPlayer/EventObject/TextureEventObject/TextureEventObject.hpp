@@ -36,11 +36,16 @@ namespace Kokoha
 		// 表示する画像データ
 		SliceTexture m_texture;
 
+		// EventPlayerを待ち状態にするなら true , そうでないなら false
+		bool m_isWaiting;
+
 	public:
 
 		TextureEventObject(const TOMLValue& param);
 
 		void receive(const TOMLValue& param) override;
+
+		bool wait() const override;
 
 		void update() override;
 

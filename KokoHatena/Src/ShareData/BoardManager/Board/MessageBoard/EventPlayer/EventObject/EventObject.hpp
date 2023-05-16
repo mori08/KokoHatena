@@ -23,7 +23,7 @@ namespace Kokoha
 		/// オブジェクトがイベント全体を待たせるかの条件
 		/// </summary>
 		/// <returns> true のとき待たせる , false のときイベントを進ませる </returns>
-		virtual bool wait() { return false; };
+		virtual bool wait() const { return false; };
 
 		/// <summary>
 		/// 入力
