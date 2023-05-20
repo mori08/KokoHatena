@@ -9,6 +9,8 @@ namespace Kokoha
 			Config::get<SliceTexture>(U"TextureEventObject." + param[U"objectKey"].getString())
 		)
 		, m_pos(0, tomlToPos(param[U"pos"]), tomlToPos(param[U"pos"]))
+		, m_isHidden(false)
+		, m_mirror(false)
 	{
 		
 	}
@@ -44,6 +46,16 @@ namespace Kokoha
 			);
 		}
 
+		if (auto hide = param[U"hide"].getOpt<bool>())
+		{
+			m_isHidden = hide.value();
+		}
+
+		if (auto mirror = param[U"mirror"].getOpt<bool>())
+		{
+			m_texture.mirror(mirror.value());
+		}
+
 		m_isWaiting = true;
 	}
 
@@ -65,6 +77,8 @@ namespace Kokoha
 
 	void TextureEventObject::draw() const
 	{
+		if (m_isHidden) { return; }
+
 		m_texture.getTexture().draw(m_pos.getValue());
 	}
 

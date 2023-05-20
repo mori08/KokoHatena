@@ -30,14 +30,20 @@ namespace Kokoha
 
 	private:
 
-		// 表示する座標
-		Linearly<Vec2> m_pos;
-
 		// 表示する画像データ
 		SliceTexture m_texture;
 
+		// 表示する座標
+		Linearly<Vec2> m_pos;
+
 		// EventPlayerを待ち状態にするなら true , そうでないなら false
 		bool m_isWaiting;
+
+		// 非表示のとき true , 表示するとき false
+		bool m_isHidden;
+
+		// 画像を反転するとき true
+		bool m_mirror;
 
 	public:
 
