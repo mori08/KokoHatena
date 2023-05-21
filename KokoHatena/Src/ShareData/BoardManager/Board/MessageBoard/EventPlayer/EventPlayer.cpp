@@ -4,7 +4,7 @@
 
 namespace Kokoha
 {
-	EventPlayer::EventPlayer(const String& eventFileName, const Size& drawSize)
+	EventPlayer::EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet)
 		: m_render(drawSize)
 		, m_eventToml(eventFileName)
 	{
@@ -125,6 +125,17 @@ namespace Kokoha
 			return;
 		}
 
+		// jamp時に使用するフラグの設定
+		if (eventName == U"flag")
+		{
+			const String name  = nowEvent[U"name"].getString();
+			const bool   value = nowEvent[U"value"].getOr<bool>(true);
+
+			m_jampFlagMap[name] = value;
+
+			return;
+		}
+
 		// 別イベント群への遷移
 		if (eventName == U"jamp")
 		{
@@ -136,12 +147,7 @@ namespace Kokoha
 				throw Error(U"EventPlayer: jamp: 指定された遷移先to[" + to + U"]は存在しない");
 			}
 
-			if (flag != U"" && !m_jampFlagMap.count(flag))
-			{
-				throw Error(U"EventPlayer: jamp: 指定されたflag[" + flag + U"]は存在しない");
-			}
-
-			if (flag == U"" || m_jampFlagMap[flag])
+			if (flag == U"" || (m_jampFlagMap.count(flag) && m_jampFlagMap[flag]))
 			{
 				m_now = m_eventToml[to].tableArrayView().begin();
 				m_end = m_eventToml[to].tableArrayView().end();

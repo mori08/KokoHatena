@@ -2,6 +2,7 @@
 
 #include "EventObject/EventObject.hpp"
 #include "../../BoardConst.hpp"
+#include "../../../../RecordSet/RecordSet.hpp"
 
 namespace Kokoha
 {
@@ -45,7 +46,7 @@ namespace Kokoha
 
 		/// <param name="eventFileName"> イベントのファイル名 </param>
 		/// <param name="drawSize"> 描画範囲 </param>
-		EventPlayer(const String& eventFileName, const Size& drawSize);
+		EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet);
 
 		/// <summary>
 		/// 入力
