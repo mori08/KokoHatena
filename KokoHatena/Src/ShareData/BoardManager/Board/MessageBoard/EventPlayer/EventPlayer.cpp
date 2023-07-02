@@ -1,6 +1,7 @@
 #include "EventPlayer.hpp"
 #include "EventObject/TextureEventObject/TextureEventObject.hpp"
 #include "../../../../../MyLibrary/MyLibrary.hpp"
+#include "../../../../../Config/Config.hpp"
 
 namespace Kokoha
 {
@@ -10,7 +11,7 @@ namespace Kokoha
 	{
 		setGenerateObjectMap();
 
-		// TODO イベント初期化処理を走らせる
+		// イベント初期化処理を走らせる
 		m_now = m_eventToml[U"init"].tableArrayView().begin();
 		m_end = m_eventToml[U"init"].tableArrayView().end();
 
@@ -22,6 +23,14 @@ namespace Kokoha
 			BoardRequest tmp; // 仮で作成（初期化でリクエストは送らない）
 			playEvent(*init_now, tmp);
 			++init_now;
+		}
+
+		// RecordSet のフラグの取得
+		static const Array<String> JAMP_FLAG_NAME_LIST = Config::getArray<String>(U"EventPlayer.jampFlagNameList");
+
+		for (const auto& jampFlagName : JAMP_FLAG_NAME_LIST)
+		{
+			m_jampFlagMap[jampFlagName] = (recordSet.getRecord(jampFlagName) != 0);
 		}
 	}
 
@@ -53,9 +62,10 @@ namespace Kokoha
 		{
 			const String eventName = (*m_now)[U"event"].getString();
 			
-			playEvent(*m_now, boardRequest);
-
-			++m_now;
+			if (playEvent(*m_now, boardRequest))
+			{
+				++m_now;
+			}
 		}
 	}
 
@@ -80,7 +90,7 @@ namespace Kokoha
 		m_render.draw(drawPos);
 	}
 
-	void EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
+	bool EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
 	{
 		const String eventName = nowEvent[U"event"].getString(); // イベント名
 
@@ -103,7 +113,7 @@ namespace Kokoha
 
 			m_objectList[name] = m_generateObjectMap[type](param);
 
-			return;
+			return true;
 		}
 
 		// オブジェクトへの命令
@@ -122,7 +132,7 @@ namespace Kokoha
 			objectPtr->receive(param);
 			m_waitingObjectList.emplace_back(objectPtr);
 
-			return;
+			return true;
 		}
 
 		// jamp時に使用するフラグの設定
@@ -133,7 +143,7 @@ namespace Kokoha
 
 			m_jampFlagMap[name] = value;
 
-			return;
+			return true;
 		}
 
 		// 別イベント群への遷移
@@ -141,6 +151,8 @@ namespace Kokoha
 		{
 			const String to = nowEvent[U"to"].getString();
 			const String flag = nowEvent[U"flag"].getString();
+
+			Print << to;
 
 			if (!m_eventToml[to].isTableArray())
 			{
@@ -151,9 +163,11 @@ namespace Kokoha
 			{
 				m_now = m_eventToml[to].tableArrayView().begin();
 				m_end = m_eventToml[to].tableArrayView().end();
+
+				return false;
 			}
 
-			return;
+			return true;
 		}
 
 		// 他ボードへのリクエスト
@@ -169,7 +183,7 @@ namespace Kokoha
 
 			boardRequest.toBoard.emplace_back(BOARD_ROLE_MAP.find(role)->second, text);
 
-			return;
+			return true;
 		}
 
 		// シーンへのリクエスト
@@ -184,7 +198,7 @@ namespace Kokoha
 
 			boardRequest.toScene = SCENE_NAME_MAP.find(scene)->second;
 
-			return;
+			return true;
 		}
 
 		throw Error(U"EventPlayer: event[" + eventName + U"]は存在しない");

@@ -7,29 +7,34 @@
         pos = {x=110, y=320}
 [[init]]
     event = "jamp"
-    to = "test"
+    to = "test1"
 
-[[test]]
+[[test1]]
+    event = "jamp"
+    to = "test2"
+    flag = "TestJampFlag"
+[[test1]]
     event = "act"
     name = "obj_r"
-    [test.param]
+    [test1.param]
         anim = "walkLeft"
         move = {t=3.0, x=-100, y=0}
-[[test]]
+[[test1]]
     event = "act"
     name = "obj_r"
-    [test.param]
+    [test1.param]
         anim = "walkRight"
         move = {t=3.0, x=100, y=0}
-[[test]]
+
+[[test2]]
     event = "act"
     name = "obj_r"
-    [test.param]
-        anim = "think"
-
-[[test]]
+    [test2.param]
+        anim = "walkRight"
+        move = {t=3.0, x=100, y=0}
+[[test2]]
     event = "act"
     name = "obj_r"
-    [test.param]
-        mirror = true
-
+    [test2.param]
+        anim = "walkLeft"
+        move = {t=3.0, x=-100, y=0}

@@ -4,7 +4,7 @@
 
 namespace Kokoha
 {
-	MessageBoard::MessageBoard()
+	MessageBoard::MessageBoard(const RecordSet& recordSet)
 		: Board(BoardRole::MESSAGE
 			, U"MessageBoard"
 			, BoardState::IS_HIDING
@@ -23,7 +23,8 @@ namespace Kokoha
 				EventPlayer
 				(
 					U"asset/data/event/test.toml", 
-					Size(size().x - getSpeakerNameRect(0).w, size().y)
+					Size(size().x - getSpeakerNameRect(0).w, size().y),
+					recordSet
 				)
 			);
 		}

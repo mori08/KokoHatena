@@ -23,3 +23,8 @@ default = 0
 name    = "Day"
 digit   = 5
 default = 0
+
+[[Record]] # EventPlayerのテスト用のフラグ
+name    = "TestJampFlag"
+digit   = 1
+default = 1

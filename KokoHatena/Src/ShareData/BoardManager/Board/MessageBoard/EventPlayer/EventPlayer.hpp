@@ -72,7 +72,8 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="nowEvent"> 現在読み込み中のイベント </param>
 		/// <param name="boardRequest"> ボード外へのリクエスト </param>
-		void playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest);
+		/// <returns> true のときイベントを進める , jamp以外は基本的にtrueを設定 </returns>
+		bool playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest);
 
 		/// <summary>
 		/// オブジェクトの生成の関数の登録
