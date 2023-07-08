@@ -10,31 +10,9 @@
     to = "test1"
 
 [[test1]]
-    event = "jamp"
-    to = "test2"
-    flag = "TestJampFlag"
+    event = "flag"
+    name = "TestJampFlag"
+    value = true
 [[test1]]
-    event = "act"
-    name = "obj_r"
-    [test1.param]
-        anim = "walkLeft"
-        move = {t=3.0, x=-100, y=0}
-[[test1]]
-    event = "act"
-    name = "obj_r"
-    [test1.param]
-        anim = "walkRight"
-        move = {t=3.0, x=100, y=0}
-
-[[test2]]
-    event = "act"
-    name = "obj_r"
-    [test2.param]
-        anim = "walkRight"
-        move = {t=3.0, x=100, y=0}
-[[test2]]
-    event = "act"
-    name = "obj_r"
-    [test2.param]
-        anim = "walkLeft"
-        move = {t=3.0, x=-100, y=0}
+    event = "scene"
+    scene = "selectSaveRecord"

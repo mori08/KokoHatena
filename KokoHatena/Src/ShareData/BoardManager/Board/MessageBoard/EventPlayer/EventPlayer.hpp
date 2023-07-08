@@ -39,7 +39,7 @@ namespace Kokoha
 		// 待ち状態のオブジェクト
 		std::list<ObjectPtr> m_waitingObjectList;
 
-		// 画面遷移条件のフラグのリスト
+		// 別イベントに遷移する条件のフラグのリスト
 		std::unordered_map<String, bool> m_jampFlagMap;
 
 	public:
@@ -79,6 +79,12 @@ namespace Kokoha
 		/// オブジェクトの生成の関数の登録
 		/// </summary>
 		void setGenerateObjectMap();
+
+		/// <summary>
+		/// Recordと同期するjampFlagのリストの取得
+		/// </summary>
+		/// <returns> Recordと同期するjampFlagのリスト </returns>
+		static const Array<String>& recordJampFlagNameList();
 
 	};
 }

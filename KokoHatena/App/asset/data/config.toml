@@ -77,7 +77,7 @@
     talkPageThickness = 2
 
 [EventPlayer]
-    jampFlagNameList = [
+    recordJampFlagNameList = [
         "TestJampFlag"
     ]
 

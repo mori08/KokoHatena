@@ -25,10 +25,7 @@ namespace Kokoha
 			++init_now;
 		}
 
-		// RecordSet のフラグの取得
-		static const Array<String> JAMP_FLAG_NAME_LIST = Config::getArray<String>(U"EventPlayer.jampFlagNameList");
-
-		for (const auto& jampFlagName : JAMP_FLAG_NAME_LIST)
+		for (const auto& jampFlagName : recordJampFlagNameList())
 		{
 			m_jampFlagMap[jampFlagName] = (recordSet.getRecord(jampFlagName) != 0);
 		}
@@ -152,8 +149,6 @@ namespace Kokoha
 			const String to = nowEvent[U"to"].getString();
 			const String flag = nowEvent[U"flag"].getString();
 
-			Print << to;
-
 			if (!m_eventToml[to].isTableArray())
 			{
 				throw Error(U"EventPlayer: jamp: 指定された遷移先to[" + to + U"]は存在しない");
@@ -196,6 +191,10 @@ namespace Kokoha
 				throw Error(U"EventPlayer: scene: 指定されたScene[" + scene + U"]は存在しない");
 			}
 
+			for (const auto& jampFlagName : recordJampFlagNameList())
+			{
+				boardRequest.toRecord[jampFlagName] = m_jampFlagMap[jampFlagName];
+			}
 			boardRequest.toScene = SCENE_NAME_MAP.find(scene)->second;
 
 			return true;
@@ -210,5 +209,11 @@ namespace Kokoha
 		{
 			return std::make_shared<TextureEventObject>(param);
 		};
+	}
+
+	const Array<String>& EventPlayer::recordJampFlagNameList()
+	{
+		static const Array<String> JAMP_FLAG_NAME_LIST = Config::getArray<String>(U"EventPlayer.recordJampFlagNameList");
+		return JAMP_FLAG_NAME_LIST;
 	}
 }
