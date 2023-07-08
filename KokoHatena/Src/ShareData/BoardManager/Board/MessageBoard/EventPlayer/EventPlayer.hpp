@@ -2,6 +2,7 @@
 
 #include "EventObject/EventObject.hpp"
 #include "../../BoardConst.hpp"
+#include "../../../../RecordSet/RecordSet.hpp"
 
 namespace Kokoha
 {
@@ -38,14 +39,14 @@ namespace Kokoha
 		// 待ち状態のオブジェクト
 		std::list<ObjectPtr> m_waitingObjectList;
 
-		// 画面遷移条件のフラグのリスト
+		// 別イベントに遷移する条件のフラグのリスト
 		std::unordered_map<String, bool> m_jampFlagMap;
 
 	public:
 
 		/// <param name="eventFileName"> イベントのファイル名 </param>
 		/// <param name="drawSize"> 描画範囲 </param>
-		EventPlayer(const String& eventFileName, const Size& drawSize);
+		EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet);
 
 		/// <summary>
 		/// 入力
@@ -71,12 +72,19 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="nowEvent"> 現在読み込み中のイベント </param>
 		/// <param name="boardRequest"> ボード外へのリクエスト </param>
-		void playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest);
+		/// <returns> true のときイベントを進める , jamp以外は基本的にtrueを設定 </returns>
+		bool playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest);
 
 		/// <summary>
 		/// オブジェクトの生成の関数の登録
 		/// </summary>
 		void setGenerateObjectMap();
+
+		/// <summary>
+		/// Recordと同期するjampFlagのリストの取得
+		/// </summary>
+		/// <returns> Recordと同期するjampFlagのリスト </returns>
+		static const Array<String>& recordJampFlagNameList();
 
 	};
 }

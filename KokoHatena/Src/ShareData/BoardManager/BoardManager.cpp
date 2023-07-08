@@ -11,11 +11,11 @@ namespace Kokoha
 
 	}
 
-	void BoardManager::load(const RecordSet&)
+	void BoardManager::load(const RecordSet& recordSet)
 	{
 		m_boardList.clear();
 
-		m_boardList.emplace_back(std::make_shared<MessageBoard>());
+		m_boardList.emplace_back(std::make_shared<MessageBoard>(recordSet));
 		m_boardList.emplace_back(std::make_shared<AccessBoard>());
 	}
 

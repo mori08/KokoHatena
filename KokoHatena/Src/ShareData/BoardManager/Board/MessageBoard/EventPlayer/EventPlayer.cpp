@@ -1,16 +1,17 @@
 #include "EventPlayer.hpp"
 #include "EventObject/TextureEventObject/TextureEventObject.hpp"
 #include "../../../../../MyLibrary/MyLibrary.hpp"
+#include "../../../../../Config/Config.hpp"
 
 namespace Kokoha
 {
-	EventPlayer::EventPlayer(const String& eventFileName, const Size& drawSize)
+	EventPlayer::EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet)
 		: m_render(drawSize)
 		, m_eventToml(eventFileName)
 	{
 		setGenerateObjectMap();
 
-		// TODO イベント初期化処理を走らせる
+		// イベント初期化処理を走らせる
 		m_now = m_eventToml[U"init"].tableArrayView().begin();
 		m_end = m_eventToml[U"init"].tableArrayView().end();
 
@@ -22,6 +23,11 @@ namespace Kokoha
 			BoardRequest tmp; // 仮で作成（初期化でリクエストは送らない）
 			playEvent(*init_now, tmp);
 			++init_now;
+		}
+
+		for (const auto& jampFlagName : recordJampFlagNameList())
+		{
+			m_jampFlagMap[jampFlagName] = (recordSet.getRecord(jampFlagName) != 0);
 		}
 	}
 
@@ -53,9 +59,10 @@ namespace Kokoha
 		{
 			const String eventName = (*m_now)[U"event"].getString();
 			
-			playEvent(*m_now, boardRequest);
-
-			++m_now;
+			if (playEvent(*m_now, boardRequest))
+			{
+				++m_now;
+			}
 		}
 	}
 
@@ -80,7 +87,7 @@ namespace Kokoha
 		m_render.draw(drawPos);
 	}
 
-	void EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
+	bool EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
 	{
 		const String eventName = nowEvent[U"event"].getString(); // イベント名
 
@@ -103,7 +110,7 @@ namespace Kokoha
 
 			m_objectList[name] = m_generateObjectMap[type](param);
 
-			return;
+			return true;
 		}
 
 		// オブジェクトへの命令
@@ -122,7 +129,18 @@ namespace Kokoha
 			objectPtr->receive(param);
 			m_waitingObjectList.emplace_back(objectPtr);
 
-			return;
+			return true;
+		}
+
+		// jamp時に使用するフラグの設定
+		if (eventName == U"flag")
+		{
+			const String name  = nowEvent[U"name"].getString();
+			const bool   value = nowEvent[U"value"].getOr<bool>(true);
+
+			m_jampFlagMap[name] = value;
+
+			return true;
 		}
 
 		// 別イベント群への遷移
@@ -136,18 +154,15 @@ namespace Kokoha
 				throw Error(U"EventPlayer: jamp: 指定された遷移先to[" + to + U"]は存在しない");
 			}
 
-			if (flag != U"" && !m_jampFlagMap.count(flag))
-			{
-				throw Error(U"EventPlayer: jamp: 指定されたflag[" + flag + U"]は存在しない");
-			}
-
-			if (flag == U"" || m_jampFlagMap[flag])
+			if (flag == U"" || (m_jampFlagMap.count(flag) && m_jampFlagMap[flag]))
 			{
 				m_now = m_eventToml[to].tableArrayView().begin();
 				m_end = m_eventToml[to].tableArrayView().end();
+
+				return false;
 			}
 
-			return;
+			return true;
 		}
 
 		// 他ボードへのリクエスト
@@ -163,7 +178,7 @@ namespace Kokoha
 
 			boardRequest.toBoard.emplace_back(BOARD_ROLE_MAP.find(role)->second, text);
 
-			return;
+			return true;
 		}
 
 		// シーンへのリクエスト
@@ -176,9 +191,13 @@ namespace Kokoha
 				throw Error(U"EventPlayer: scene: 指定されたScene[" + scene + U"]は存在しない");
 			}
 
+			for (const auto& jampFlagName : recordJampFlagNameList())
+			{
+				boardRequest.toRecord[jampFlagName] = m_jampFlagMap[jampFlagName];
+			}
 			boardRequest.toScene = SCENE_NAME_MAP.find(scene)->second;
 
-			return;
+			return true;
 		}
 
 		throw Error(U"EventPlayer: event[" + eventName + U"]は存在しない");
@@ -190,5 +209,11 @@ namespace Kokoha
 		{
 			return std::make_shared<TextureEventObject>(param);
 		};
+	}
+
+	const Array<String>& EventPlayer::recordJampFlagNameList()
+	{
+		static const Array<String> JAMP_FLAG_NAME_LIST = Config::getArray<String>(U"EventPlayer.recordJampFlagNameList");
+		return JAMP_FLAG_NAME_LIST;
 	}
 }

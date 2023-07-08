@@ -7,29 +7,12 @@
         pos = {x=110, y=320}
 [[init]]
     event = "jamp"
-    to = "test"
+    to = "test1"
 
-[[test]]
-    event = "act"
-    name = "obj_r"
-    [test.param]
-        anim = "walkLeft"
-        move = {t=3.0, x=-100, y=0}
-[[test]]
-    event = "act"
-    name = "obj_r"
-    [test.param]
-        anim = "walkRight"
-        move = {t=3.0, x=100, y=0}
-[[test]]
-    event = "act"
-    name = "obj_r"
-    [test.param]
-        anim = "think"
-
-[[test]]
-    event = "act"
-    name = "obj_r"
-    [test.param]
-        mirror = true
-
+[[test1]]
+    event = "flag"
+    name = "TestJampFlag"
+    value = true
+[[test1]]
+    event = "scene"
+    scene = "selectSaveRecord"

@@ -19,7 +19,7 @@ namespace Kokoha
 
 	public:
 
-		MessageBoard();
+		MessageBoard(const RecordSet& recordSet);
 
 	private:
 
