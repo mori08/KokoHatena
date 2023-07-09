@@ -11,6 +11,8 @@ namespace Kokoha
 		(
 			[&recordSetList]()
 			{
+				recordSetList.clear();
+
 				TextReader reader(RecordSet::FILE_NAME);
 
 				// ファイルが存在しないとき -> リストが空のまま終了
