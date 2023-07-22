@@ -46,6 +46,7 @@ namespace Kokoha
 		for (const auto& object : m_objectList)
 		{
 			object.second->update();
+			object.second->updateJampFlag(m_jampFlagMap);
 		}
 
 		// オブジェクトの待ち状態の解消

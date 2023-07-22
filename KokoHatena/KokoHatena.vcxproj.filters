@@ -607,6 +607,9 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Config\Config.hpp">
