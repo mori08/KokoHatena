@@ -265,6 +265,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp" />

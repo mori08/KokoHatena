@@ -9,6 +9,11 @@ namespace Kokoha
 	/// </summary>
 	class EventObject
 	{
+	protected:
+
+		// 更新したいEventPlayerの遷移フラグ
+		std::unordered_map<String, bool> m_updateJampFlagMap;
+
 	public:
 
 		virtual ~EventObject() = default;
@@ -39,6 +44,12 @@ namespace Kokoha
 		/// 描画
 		/// </summary>
 		virtual void draw() const {};
+
+		/// <summary>
+		/// EventPlayerの遷移フラグの更新
+		/// </summary>
+		/// <param name="jampFlagMap"> Event遷移フラグの連想配列 </param>
+		void updateJampFlag(std::unordered_map<String, bool>& jampFlagMap);
 
 	};
 }
