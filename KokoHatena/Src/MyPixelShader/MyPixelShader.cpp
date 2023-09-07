@@ -1,4 +1,4 @@
-#include"MyPixelShader.hpp"
+﻿#include"MyPixelShader.hpp"
 
 namespace Kokoha
 {
@@ -7,7 +7,7 @@ namespace Kokoha
 		instance().m_shaderMap.try_emplace
 		(
 			U"TitleLogo",
-			std::move(PixelShader(U"asset/shader/TitleLogoShader.hlsl", { { U"PSConstants2D", 0 }, { U"Shift", 1 } }))
+			std::move(HLSL{ U"asset/shader/TitleLogoShader.hlsl", U"PS" })
 		);
 
 		for (const auto& itr : instance().m_shaderMap)

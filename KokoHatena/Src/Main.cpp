@@ -23,18 +23,18 @@ void Main()
 	// アセット管理
 	registerAsset(U"asset/");
 	MyPixelShader::loadPixelShader();
-	for (int32 i = 10; i <= 40; ++i) 
+	for (int32 i = 10; i <= 40; ++i)
 	{
 		FontAsset::Register(ToString(i), i, Typeface::Medium);
 	}
 
 	// シーン
 	MyApp sceneManager;
-	sceneManager.add<TitleScene>           (SceneName::TITLE);
-	sceneManager.add<DesktopScene>         (SceneName::DESKTOP);
-	sceneManager.add<LoadRecordScene>      (SceneName::LOAD_RECORD);
-	sceneManager.add<LoadBoardScene>       (SceneName::LOAD_BOARD);
-	sceneManager.add<SaveRecordScene>      (SceneName::SAVE_RECORD);
+	sceneManager.add<TitleScene>(SceneName::TITLE);
+	sceneManager.add<DesktopScene>(SceneName::DESKTOP);
+	sceneManager.add<LoadRecordScene>(SceneName::LOAD_RECORD);
+	sceneManager.add<LoadBoardScene>(SceneName::LOAD_BOARD);
+	sceneManager.add<SaveRecordScene>(SceneName::SAVE_RECORD);
 	sceneManager.add<SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
 	sceneManager.add<SelectSaveRecordScene>(SceneName::SELECT_SAVE_RECORD);
 

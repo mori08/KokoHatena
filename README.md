@@ -3,6 +3,6 @@
 Kokohaの続き
 
 ## 環境
-Windows 7 SP1 / 8.1 / 10 (64-bit)  
-Visual Studio 2019 version 16.4-  
-OpenSiv3D(0.4.3)
+Windows 10 (64-bit) / Windows 11 
+Visual Studio Community 2022  
+OpenSiv3D(v0.6.11)

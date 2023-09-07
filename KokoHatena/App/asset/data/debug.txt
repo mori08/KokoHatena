@@ -1,10 +1,13 @@
 ﻿
 [ D ]
-   0 < [Date]
+   0 < [Day]
 
 [ R ]
-  19 < [RecordDate]
-  11 < [RecordHour]
-  22 < [RecordMinute]
-   8 < [RecordMonth]
-  22 < [RecordYear]
+   7 < [RecordDate]
+  22 < [RecordHour]
+  16 < [RecordMinute]
+   9 < [RecordMonth]
+  23 < [RecordYear]
+
+[ T ]
+   1 < [TestJampFlag]

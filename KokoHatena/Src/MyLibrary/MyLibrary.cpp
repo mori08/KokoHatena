@@ -1,4 +1,4 @@
-#include "MyLibrary.hpp"
+ï»¿#include "MyLibrary.hpp"
 
 
 namespace Kokoha
@@ -6,29 +6,29 @@ namespace Kokoha
 
 	void registerAsset(const String& dirName)
 	{
-		// w’è‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğ”z—ñ‚É
-		Array<FilePath> contents = FileSystem::DirectoryContents(dirName, false);
+		// æŒ‡å®šã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’é…åˆ—ã«
+		Array<FilePath> contents = FileSystem::DirectoryContents(dirName, Recursive::No);
 
 		for (const auto& content : contents)
 		{
 			String fileName = FileSystem::FileName(content);
 
-			// w’è‚³‚ê‚½ƒpƒX‚ªƒfƒBƒŒƒNƒgƒŠ‚Å‚ ‚é‚Æ‚«
+			// æŒ‡å®šã•ã‚ŒãŸãƒ‘ã‚¹ãŒãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã‚ã‚‹ã¨ã
 			if (FileSystem::IsDirectory(content))
 			{
 				registerAsset(dirName + fileName + U"/");
 			}
 
-			// w’è‚³‚ê‚½ƒpƒX‚ªƒtƒ@ƒCƒ‹‚Å‚ ‚é‚Æ‚«
+			// æŒ‡å®šã•ã‚ŒãŸãƒ‘ã‚¹ãŒãƒ•ã‚¡ã‚¤ãƒ«ã§ã‚ã‚‹ã¨ã
 			else if (FileSystem::IsFile(content))
 			{
-				// Šg’£q‚ªpng‚Ì‚Æ‚«
+				// æ‹¡å¼µå­ãŒpngã®ã¨ã
 				if (FileSystem::Extension(content) == U"png")
 				{
 					TextureAsset::Register(FileSystem::BaseName(content), dirName + fileName);
 				}
 
-				// Šg’£q‚ªmp3‚Ì‚Æ‚«
+				// æ‹¡å¼µå­ãŒmp3ã®ã¨ã
 				if (FileSystem::Extension(content) == U"mp3")
 				{
 					AudioAsset::Register(FileSystem::BaseName(content), dirName + fileName);
@@ -43,7 +43,7 @@ namespace Kokoha
 	{
 #ifdef _DEBUG
 
-		// ‚±‚ÌƒtƒŒ[ƒ€‚ÌFPS(DelataTime‚Ì‹t”)‚ğæ“¾
+		// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®FPS(DelataTimeã®é€†æ•°)ã‚’å–å¾—
 		static std::list<double> fpsList;
 		fpsList.emplace_back(1.0 / Scene::DeltaTime());
 		if (fpsList.size() > 60) { fpsList.pop_front(); }

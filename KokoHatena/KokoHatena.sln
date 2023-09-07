@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KokoHatena", "KokoHatena.vcxproj", "{2726CCD9-800B-4587-98BE-1BBF54B64139}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KokoHatena", "KokoHatena.vcxproj", "{DBBD9430-E4CA-488B-983B-A283CB1DFDDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2726CCD9-800B-4587-98BE-1BBF54B64139}.Debug|x64.ActiveCfg = Debug|x64
-		{2726CCD9-800B-4587-98BE-1BBF54B64139}.Debug|x64.Build.0 = Debug|x64
-		{2726CCD9-800B-4587-98BE-1BBF54B64139}.Release|x64.ActiveCfg = Release|x64
-		{2726CCD9-800B-4587-98BE-1BBF54B64139}.Release|x64.Build.0 = Release|x64
+		{DBBD9430-E4CA-488B-983B-A283CB1DFDDD}.Debug|x64.ActiveCfg = Debug|x64
+		{DBBD9430-E4CA-488B-983B-A283CB1DFDDD}.Debug|x64.Build.0 = Debug|x64
+		{DBBD9430-E4CA-488B-983B-A283CB1DFDDD}.Release|x64.ActiveCfg = Release|x64
+		{DBBD9430-E4CA-488B-983B-A283CB1DFDDD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1DECAA07-8F51-4277-BD6C-1933CAD1C46E}
+		SolutionGuid = {C83ED326-6CC9-4EAA-A494-4A7BD2030D65}
 	EndGlobalSection
 EndGlobal
