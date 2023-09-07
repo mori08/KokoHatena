@@ -1,4 +1,4 @@
-#include "Terrain.hpp"
+ï»¿#include "Terrain.hpp"
 #include "../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../Config/Config.hpp"
 
@@ -15,14 +15,14 @@ namespace Kokoha
 
 	void Terrain::loadCSV(const FilePath& filePath)
 	{
-		CSVData csv(filePath);
+		CSV csv(filePath);
 
 		for (int32 i : Range(0, N - 1))
 		{
 			const Point square = toSquare(i);
 			const String cell = csv[square.y][square.x];
 
-			// csv‚Ì“à—e‚É‰‚¶‚Ä’nŒ`ƒf[ƒ^‚ğ‘‚«Š·‚¦
+			// csvã®å†…å®¹ã«å¿œã˜ã¦åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆ
 			if      (cell == U"o") { m_cellList[i] = Cell::BLOCK;    }
 			else if (cell == U"x") { m_cellList[i] = Cell::SKELETON; }
 			else                   { m_cellList[i] = Cell::NONE;     }
@@ -31,14 +31,14 @@ namespace Kokoha
 
 	void Terrain::searchPath()
 	{
-		// áŠQ•¨‚Ì‚È‚¢ƒ}ƒX‚ÌƒŠƒXƒg‚Ìì¬
+		// éšœå®³ç‰©ã®ãªã„ãƒã‚¹ã®ãƒªã‚¹ãƒˆã®ä½œæˆ
 		std::list<int32> walkAbleList;
 		for (int32 i : Range(0, N - 1))
 		{
 			if (isWalkAble(i)) { walkAbleList.push_back(i); }
 		}
 
-		// •Ó‚Ìì¬
+		// è¾ºã®ä½œæˆ
 		int32 max_area = 0;
 		for (int32 i : Range(0, N - 1))
 		{
@@ -50,16 +50,16 @@ namespace Kokoha
 		}
 		for (int32 i : walkAbleList)
 		{
-			// ¶ã‚ÌÀ•W
+			// å·¦ä¸Šã®åº§æ¨™
 			Point tl = toSquare(i);
 
-			// ‰E•ûŒü‚Ìƒ`ƒFƒbƒN
+			// å³æ–¹å‘ã®ãƒã‚§ãƒƒã‚¯
 			for (Point br = tl; isWalkAble(br); br.x++)
 			{
 				makeStraightPath(tl, br);
 			}
 
-			// ‰E‰º•ûŒü‚Ìƒ`ƒFƒbƒN
+			// å³ä¸‹æ–¹å‘ã®ãƒã‚§ãƒƒã‚¯
 			for (Point bl = tl + Point::Down(); isWalkAble(bl); bl.y++)
 			{
 				for (Point br = bl; isWalkAble(br); br.x++)
@@ -70,14 +70,14 @@ namespace Kokoha
 					makeStraightPath(tl, br);
 					makeStraightPath(Point(tl.x, br.y), Point(br.x, tl.y));
 
-					// Å‘å–ÊÏ‚ÌXV
+					// æœ€å¤§é¢ç©ã®æ›´æ–°
 					const int32 area = (br.x - tl.x + 1) * (br.y - tl.y + 1);
 					if (max_area < area) { max_area = area; }
 				}
 			}
 		}
 
-		// Œo˜H’Tõ‚ª•K—v‚ÈƒpƒX
+		// çµŒè·¯æ¢ç´¢ãŒå¿…è¦ãªãƒ‘ã‚¹
 		std::array<std::list<int32>, N> needPathList;
 		for (int32 i : walkAbleList)
 		{
@@ -87,7 +87,7 @@ namespace Kokoha
 			}
 		}
 
-		// Šp‚ÌZo
+		// è§’ã®ç®—å‡º
 		static const int32 WIDE_AREA = Config::get<int32>(U"AccessBoard.wideArea");
 		static const Array<Point> CORNER_DIRECTION = { Point(+1,+1), Point(+1,-1), Point(-1,-1), Point(-1,+1) };
 		std::list<int32> cornerList;
@@ -99,14 +99,14 @@ namespace Kokoha
 			{
 				if (!isWalkAble(square + d) && isWalkAble(square + Point(d.x, 0)) && isWalkAble(square + Point(0, d.y)))
 				{
-					// Šp‚É‚È‚Á‚Ä‚¢‚é‚È‚çƒŠƒXƒg‚É’Ç‰Á
+					// è§’ã«ãªã£ã¦ã„ã‚‹ãªã‚‰ãƒªã‚¹ãƒˆã«è¿½åŠ 
 					cornerList.emplace_back(i);
 					break;
 				}
 			}
 		}
 
-		// ƒ[ƒVƒƒƒ‹ƒtƒƒCƒh
+		// ãƒ¯ãƒ¼ã‚·ãƒ£ãƒ«ãƒ•ãƒ­ã‚¤ãƒ‰
 		for (int32 k : (max_area < WIDE_AREA) ? cornerList : walkAbleList)
 		{
 			for (int32 i : walkAbleList)
@@ -128,11 +128,11 @@ namespace Kokoha
 		const int32 i1 = toInteger(s1);
 		const int32 i2 = toInteger(s2);
 
-		// Œo˜H‚Ìİ’è
+		// çµŒè·¯ã®è¨­å®š
 		m_path[i1][i2] = i2;
 		m_path[i2][i1] = i1;
 
-		// ‹——£‚Ìİ’è
+		// è·é›¢ã®è¨­å®š
 		const double distance = s1.distanceFrom(s2);
 		m_dist[i1][i2] = distance;
 		m_dist[i2][i1] = distance;
@@ -140,7 +140,7 @@ namespace Kokoha
 
 	void Terrain::searchEdge()
 	{
-		// áŠQ•¨¶•ûŒü‚Ì‚’¼‚È•Ó‚ÌZo
+		// éšœå®³ç‰©å·¦æ–¹å‘ã®å‚ç›´ãªè¾ºã®ç®—å‡º
 		for (int32 x : Range(0, WIDTH))
 		{
 			Optional<EdgeList::Edge> edge = none;
@@ -149,7 +149,7 @@ namespace Kokoha
 			{
 				if (isBlack(Point(x, y)) && !isBlack(Point(x - 1, y)))
 				{
-					// •Ó‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Í’[“_‚Ìİ’è
+					// è¾ºã‚’è¦‹ã¤ã‘ãŸã¨ãã¯ç«¯ç‚¹ã®è¨­å®š
 
 					if (!edge)
 					{
@@ -161,7 +161,7 @@ namespace Kokoha
 				}
 				else if (edge)
 				{
-					// •Ó‚ª‚È‚©‚Á‚½‚Æ‚«‚Í•Ó‚Ì’Ç‰Á
+					// è¾ºãŒãªã‹ã£ãŸã¨ãã¯è¾ºã®è¿½åŠ 
 					m_verticalEdgeList.addEdge(edge.value());
 					edge = none;
 				}
@@ -173,7 +173,7 @@ namespace Kokoha
 			}
 		}
 
-		// áŠQ•¨‰E•ûŒü‚Ì•Ó‚ÌZo
+		// éšœå®³ç‰©å³æ–¹å‘ã®è¾ºã®ç®—å‡º
 		for (int32 x : Range(-1, WIDTH - 1))
 		{
 			Optional<EdgeList::Edge> edge = none;
@@ -182,7 +182,7 @@ namespace Kokoha
 			{
 				if (isBlack(Point(x, y)) && !isBlack(Point(x + 1, y)))
 				{
-					// •Ó‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Í’[“_‚Ìİ’è
+					// è¾ºã‚’è¦‹ã¤ã‘ãŸã¨ãã¯ç«¯ç‚¹ã®è¨­å®š
 
 					if (!edge)
 					{
@@ -194,7 +194,7 @@ namespace Kokoha
 				}
 				else if (edge)
 				{
-					// •Ó‚ª‚È‚©‚Á‚½‚Æ‚«‚Í•Ó‚Ì’Ç‰Á
+					// è¾ºãŒãªã‹ã£ãŸã¨ãã¯è¾ºã®è¿½åŠ 
 					m_verticalEdgeList.addEdge(edge.value());
 					edge = none;
 				}
@@ -206,7 +206,7 @@ namespace Kokoha
 			}
 		}
 
-		// áŠQ•¨ã•ûŒü‚Ì•Ó‚ÌZo
+		// éšœå®³ç‰©ä¸Šæ–¹å‘ã®è¾ºã®ç®—å‡º
 		for (int32 y : Range(0, HEIGHT))
 		{
 			Optional<EdgeList::Edge> edge = none;
@@ -215,7 +215,7 @@ namespace Kokoha
 			{
 				if (isBlack(Point(x, y)) && !isBlack(Point(x, y - 1)))
 				{
-					// •Ó‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Í’[“_‚Ìİ’è
+					// è¾ºã‚’è¦‹ã¤ã‘ãŸã¨ãã¯ç«¯ç‚¹ã®è¨­å®š
 
 					if (!edge)
 					{
@@ -227,7 +227,7 @@ namespace Kokoha
 				}
 				else if(edge)
 				{
-					// •Ó‚ª‚È‚©‚Á‚½‚Æ‚«‚Í•Ó‚Ì’Ç‰Á
+					// è¾ºãŒãªã‹ã£ãŸã¨ãã¯è¾ºã®è¿½åŠ 
 					m_horizontalEdgeList.addEdge(edge.value());
 					edge = none;
 				}
@@ -239,7 +239,7 @@ namespace Kokoha
 			}
 		}
 
-		// áŠQ•¨‰º•ûŒü‚Ì•Ó‚ÌZo
+		// éšœå®³ç‰©ä¸‹æ–¹å‘ã®è¾ºã®ç®—å‡º
 		for (int32 y : Range(-1, HEIGHT-1))
 		{
 			Optional<EdgeList::Edge> edge = none;
@@ -248,7 +248,7 @@ namespace Kokoha
 			{
 				if (!isWalkAble(Point(x, y)) && isWalkAble(Point(x, y + 1)))
 				{
-					// •Ó‚ğŒ©‚Â‚¯‚½‚Æ‚«‚Í’[“_‚Ìİ’è
+					// è¾ºã‚’è¦‹ã¤ã‘ãŸã¨ãã¯ç«¯ç‚¹ã®è¨­å®š
 
 					if (!edge)
 					{
@@ -260,7 +260,7 @@ namespace Kokoha
 				}
 				else if (edge)
 				{
-					// •Ó‚ª‚È‚©‚Á‚½‚Æ‚«‚Í•Ó‚Ì’Ç‰Á
+					// è¾ºãŒãªã‹ã£ãŸã¨ãã¯è¾ºã®è¿½åŠ 
 					m_horizontalEdgeList.addEdge(edge.value());
 					edge = none;
 				}
@@ -272,7 +272,7 @@ namespace Kokoha
 			}
 		}
 
-		// •Ó‚Ìƒ\[ƒg‚ÆƒCƒeƒŒ[ƒ^‚Ì€”õ
+		// è¾ºã®ã‚½ãƒ¼ãƒˆã¨ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®æº–å‚™
 		m_verticalEdgeList.setIteratorAry(WIDTH + 1);
 		m_horizontalEdgeList.setIteratorAry(HEIGHT + 1);
 	}
@@ -284,11 +284,11 @@ namespace Kokoha
 			return Vec2::Zero();
 		}
 
-		const int32 iS = toInteger(pixelS); // n“_
-		const int32 iT = toInteger(pixelT); // I“_
-		const int32 iR = m_path[iS][iT];    // ’†Œp’n“_
+		const int32 iS = toInteger(pixelS); // å§‹ç‚¹
+		const int32 iT = toInteger(pixelT); // çµ‚ç‚¹
+		const int32 iR = m_path[iS][iT];    // ä¸­ç¶™åœ°ç‚¹
 
-		if (iR == iT) // ’¼Ú–Ú“I’n‚ÖŒü‚©‚¦‚éê‡
+		if (iR == iT) // ç›´æ¥ç›®çš„åœ°ã¸å‘ã‹ãˆã‚‹å ´åˆ
 		{
 			return (pixelT - pixelS).normalize();
 		}
@@ -309,7 +309,7 @@ namespace Kokoha
 			Rect(SQUARE_SIZE * square, SQUARE_SIZE).draw(MyBlack);
 		}
 
-#ifdef _DEBUG // ƒfƒoƒbƒOƒ‚[ƒh ‰æ–Ê‚ª
+#ifdef _DEBUG // ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ ç”»é¢ãŒ
 		static bool debugMode = false;
 		debugMode ^= KeyQ.down();
 		if (!debugMode) { return; }

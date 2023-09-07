@@ -1,234 +1,321 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\example">
-      <UniqueIdentifier>{8b04c3b0-3b5b-4f9a-add9-f54abc0118ed}</UniqueIdentifier>
+    <Filter Include="Resource Files\dll">
+      <UniqueIdentifier>{19e15662-4c12-4a34-ae26-f1e4c55e2ed6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\dll\soundtouch">
+      <UniqueIdentifier>{32f7e60d-8013-4bc5-97f2-ea46ff0eb44c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\engine">
-      <UniqueIdentifier>{972ca6b5-b566-47a1-b6e5-5cd538d7268c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\engine\emoji">
-      <UniqueIdentifier>{c78472e3-c4e0-4506-9bf9-9472da31c6ad}</UniqueIdentifier>
+      <UniqueIdentifier>{dd0f627e-1b27-4b22-bd33-cc62510e3a5a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\engine\font">
-      <UniqueIdentifier>{ce7c63eb-41c4-4772-8a5e-d693e6bd0941}</UniqueIdentifier>
+      <UniqueIdentifier>{7e18b547-b2a2-46d4-8735-e97fa50deb52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\engine\shader">
-      <UniqueIdentifier>{e1d14020-7d02-42c7-8b66-f3b6ad353f1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\engine\texture">
-      <UniqueIdentifier>{aae3423c-3e89-49de-a0a9-fe3b2894757f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\engine\font\fontawesome">
-      <UniqueIdentifier>{da508b0f-cfdf-4e4d-aeda-47be86a1bcb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\engine\font\mplus">
-      <UniqueIdentifier>{2902a225-0400-46b0-b372-4af9b723a698}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\engine\font\noto">
-      <UniqueIdentifier>{35772d4b-7a5b-4b92-af70-a7fde678b554}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\engine\texture\box-shadow">
-      <UniqueIdentifier>{cb012b1d-99ec-4d07-9383-ca0c0dc07cdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\engine\objdetect">
-      <UniqueIdentifier>{84ef0b75-f6af-436f-999c-73dc7a6f5bef}</UniqueIdentifier>
+      <UniqueIdentifier>{6e6c20ba-4683-4351-a296-e48fc1bd13b6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\engine\soundfont">
-      <UniqueIdentifier>{15aded12-f7a3-43d1-8511-e4ad812b7816}</UniqueIdentifier>
+      <UniqueIdentifier>{4c0a52c1-e26c-4fb0-8f66-9d159a27e1ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\engine\objdetect\haarcascade">
-      <UniqueIdentifier>{e3d7a277-272a-4561-b375-8f74e98bcfeb}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\texture">
+      <UniqueIdentifier>{c2c61b9f-26e5-4d11-af08-b440078e2859}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\nlp">
-      <UniqueIdentifier>{f79e2386-3308-4bd4-a299-cff6f0a3371d}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\font\fontawesome">
+      <UniqueIdentifier>{ab17fde8-8462-494e-83c4-a2c8282a848f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\nlp\japanese">
-      <UniqueIdentifier>{29db51bf-7ada-4ec7-bd32-8340162a8797}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\font\materialdesignicons">
+      <UniqueIdentifier>{8b14efac-ff68-46db-8547-a9449e1b81b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\nlp\japanese\jumanpp">
-      <UniqueIdentifier>{f6fe2a89-c647-48e2-bb2c-27b03b1aeced}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\font\mplus">
+      <UniqueIdentifier>{90f12eb8-452b-4c24-b387-90d6f03cf8aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\example\font">
-      <UniqueIdentifier>{e011e289-148f-4f61-b178-75bd63133a24}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\font\noto-cjk">
+      <UniqueIdentifier>{e515dda5-8ec6-467d-ad63-4473ba6a2bb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\example\font\AnnyantRoman">
-      <UniqueIdentifier>{54d1e03d-1d02-4bca-a045-a73de6bc8102}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\font\noto-emoji">
+      <UniqueIdentifier>{bf0377f2-4172-4f4c-92fa-28160e525693}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\example\font\NotoSansCJKjp">
-      <UniqueIdentifier>{ec80af61-28a4-433a-aa04-102d099f524d}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\shader\d3d11">
+      <UniqueIdentifier>{4da703f4-3907-44b1-a9c9-abe785f834e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\example\font\Pecita">
-      <UniqueIdentifier>{59c8b538-0125-4cbe-8ad8-2d327d00f708}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\shader\glsl">
+      <UniqueIdentifier>{129c7b8e-3369-41b7-ba3c-5cd490396ffb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\example\script">
-      <UniqueIdentifier>{6d671c66-2133-4626-a10a-1a199c017c5d}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\texture\box-shadow">
+      <UniqueIdentifier>{8c8c80fe-a6dc-452d-b92d-fbb22ec16326}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\example\svm">
-      <UniqueIdentifier>{efc7c679-c387-43b2-93ed-b6e6ccbcd1a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\example\shader">
-      <UniqueIdentifier>{2bcb9a5f-7580-4d6a-bd0b-1f8e16a14f36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\example\shader\2d">
-      <UniqueIdentifier>{0b9673e5-5c13-4129-84ac-1a71a27b3f31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\example\config">
-      <UniqueIdentifier>{89c12675-1e86-4726-8c52-108fd67b62e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\example\gui">
-      <UniqueIdentifier>{243acd54-757e-498e-81c4-c8164a884026}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\example\font\LogoTypeGothic">
-      <UniqueIdentifier>{b3586a98-5569-49e1-b9d6-cd80cf76ce9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\example\zip">
-      <UniqueIdentifier>{81d8d80c-f0ce-492f-8fee-c5502c31bc0e}</UniqueIdentifier>
+    <Filter Include="Resource Files\engine\font\min">
+      <UniqueIdentifier>{1b103960-f11a-4515-b4f1-f59333ce00d9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Src\Config">
-      <UniqueIdentifier>{5ee3f4b7-e53e-4dc1-a820-25ff73f29825}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\MyLibrary">
-      <UniqueIdentifier>{8de12dbe-6a33-48c1-a77d-b54526df8aaa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Scene">
-      <UniqueIdentifier>{f6d50983-4973-4990-ae7a-e73820f60cab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Scene\TitleScene">
-      <UniqueIdentifier>{6a00779e-5249-4939-a60e-d43ff52aecf7}</UniqueIdentifier>
+      <UniqueIdentifier>{5484c896-9bbc-484e-a42a-2ba67eef9908}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\ButtonSet">
-      <UniqueIdentifier>{26474676-2003-4a76-8b4b-e5eb05c47bbc}</UniqueIdentifier>
+      <UniqueIdentifier>{bd21beff-cf85-45e2-b45a-cfebf103e82a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\ButtonSet\Button">
-      <UniqueIdentifier>{a654b8a4-1fcb-4735-8ef0-07ae867556a7}</UniqueIdentifier>
+      <UniqueIdentifier>{663fe44b-5d2d-4fee-9feb-4b6ca24b834d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\MyPixelShader">
-      <UniqueIdentifier>{c0322369-36e2-40c4-bd11-692c5616f805}</UniqueIdentifier>
+    <Filter Include="Src\Config">
+      <UniqueIdentifier>{17b4736a-d5ae-4f35-aaca-5769631e2ca6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Scene\LoadScene">
-      <UniqueIdentifier>{4bac304d-8e89-435d-b0ec-e1a3f41466ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Scene\LoadScene\LoadRecordScene">
-      <UniqueIdentifier>{960d1356-bf93-45db-a140-e2cec3b7e6e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Scene\DesktopScene">
-      <UniqueIdentifier>{4e53a442-6ff0-4632-b453-8bd36d2bd76f}</UniqueIdentifier>
+    <Filter Include="Src\MyLibrary">
+      <UniqueIdentifier>{3665e888-c51d-4e67-ba01-580963e428ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\MyLibrary\Linearly">
-      <UniqueIdentifier>{a5cc5f06-7662-4eb4-bfe5-81f65e0c87a8}</UniqueIdentifier>
+      <UniqueIdentifier>{49b1064a-86a3-4f89-a0f5-66a5520110fe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\MyLibrary\SliceTexture">
-      <UniqueIdentifier>{a6002c5c-ee54-4dc8-aba9-b5b2a4fd24a3}</UniqueIdentifier>
+      <UniqueIdentifier>{4f3caa84-a635-480c-ba00-7ff10f8a8ee9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\MyLibrary\SliceTexture\Animation">
-      <UniqueIdentifier>{a818f821-15ca-4708-a121-ea9b67345d5b}</UniqueIdentifier>
+      <UniqueIdentifier>{68668729-de07-4ea8-84a1-064ff66a6e65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData">
-      <UniqueIdentifier>{8d006ea2-8aa6-4373-927e-8d6a68315649}</UniqueIdentifier>
+    <Filter Include="Src\MyPixelShader">
+      <UniqueIdentifier>{ba5bfc50-25e8-48b9-8b9c-1ae37e476e23}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\RecordSet">
-      <UniqueIdentifier>{9a4b5899-4ec9-42c4-b1c7-5d012604f2e6}</UniqueIdentifier>
+    <Filter Include="Src\Scene">
+      <UniqueIdentifier>{ae4b777a-b064-4e90-ae57-615e2da6d047}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\RecordSet\Record">
-      <UniqueIdentifier>{e9737859-cbc0-483d-92ae-4bf5983e1670}</UniqueIdentifier>
+    <Filter Include="Src\Scene\DesktopScene">
+      <UniqueIdentifier>{7e4c9a02-0a7f-4499-87bc-be587b46a378}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager">
-      <UniqueIdentifier>{8c448e92-033f-48b7-b8b8-6d65b29691a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board">
-      <UniqueIdentifier>{27e9c5dc-089e-4de5-86b6-dcc8fbf4bd55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard">
-      <UniqueIdentifier>{5c495aca-bdc3-47b2-9c34-2cc67aeedb04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Scene\SelectRecordScene">
-      <UniqueIdentifier>{4ae317d1-9b1e-485e-8f92-6a1407456dd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Scene\SelectRecordScene\RecordBox">
-      <UniqueIdentifier>{6a5a4c1d-1434-4834-8fd2-de76d3bdbfbd}</UniqueIdentifier>
+    <Filter Include="Src\Scene\LoadScene">
+      <UniqueIdentifier>{2df22e31-ae36-4ae7-90a9-f02b4f49df61}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Scene\LoadScene\LoadBoardScene">
-      <UniqueIdentifier>{eb06f105-3b63-4924-8a1d-788e23426f6b}</UniqueIdentifier>
+      <UniqueIdentifier>{9475e14f-c508-408d-bfad-d91bd4ff4e2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Scene\LoadScene\LoadRecordScene">
+      <UniqueIdentifier>{09dc5838-4395-41e9-9d3c-7e1dfa31496e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Scene\LoadScene\SaveRecordScene">
-      <UniqueIdentifier>{5db13d3c-58fd-4d6b-bbcb-01d471058e47}</UniqueIdentifier>
+      <UniqueIdentifier>{2e3b19a1-ff0f-4e3c-aa5b-1ec2d64cb0d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard">
-      <UniqueIdentifier>{bd8d836d-a1e7-419e-b227-dc7cd6557ef3}</UniqueIdentifier>
+    <Filter Include="Src\Scene\SelectRecordScene">
+      <UniqueIdentifier>{b0df4b7a-9cde-4854-9c1c-dd5e4809c797}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer">
-      <UniqueIdentifier>{f4508b36-9424-4bfc-a758-61d9d12299c5}</UniqueIdentifier>
+    <Filter Include="Src\Scene\TitleScene">
+      <UniqueIdentifier>{b0214fce-0af7-4169-947a-f0e793008e1c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject">
-      <UniqueIdentifier>{3d26752b-f639-486e-904d-b54655d97bb5}</UniqueIdentifier>
+    <Filter Include="Src\ShareData">
+      <UniqueIdentifier>{98e88790-6711-4262-b2a5-7903d28618bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject">
-      <UniqueIdentifier>{1367638f-8386-4b45-90a9-b548eeb7a3b4}</UniqueIdentifier>
+    <Filter Include="Src\ShareData\BoardManager">
+      <UniqueIdentifier>{cb6a7420-a636-40b0-b4be-bbfddc2616a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain">
-      <UniqueIdentifier>{13a3c4f9-ada6-4a43-b01b-d0e5d821afd2}</UniqueIdentifier>
+    <Filter Include="Src\ShareData\BoardManager\Board">
+      <UniqueIdentifier>{03b011c2-d149-487d-b41b-0884df400193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard">
+      <UniqueIdentifier>{b92da971-017c-483f-81ba-6af4d544f6c1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject">
-      <UniqueIdentifier>{f60ba0ce-18a9-4dca-a4c3-dfbc6641cc9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject">
-      <UniqueIdentifier>{7ba3c6da-0e43-43bb-9c3a-53fc5730803a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject">
-      <UniqueIdentifier>{72d9b6aa-88d3-418d-aaa3-f517a1c046ab}</UniqueIdentifier>
+      <UniqueIdentifier>{28903573-7b2a-42f6-8182-b95a8a9126be}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight">
-      <UniqueIdentifier>{957d657a-df90-4f6d-ba9f-5205d2028c03}</UniqueIdentifier>
+      <UniqueIdentifier>{a5c28454-bd47-408d-8577-bb21282f3f9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine">
-      <UniqueIdentifier>{2d267f45-856a-4529-bcd8-e040d449861a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos">
-      <UniqueIdentifier>{c149de10-93b9-4561-98c2-98bdb8921d94}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject">
-      <UniqueIdentifier>{078f0d0e-5f7c-46dc-894e-d1b08d6c9fb2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList">
-      <UniqueIdentifier>{e2e9d945-358c-4971-9df1-414f4e7cbc9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState">
-      <UniqueIdentifier>{f6d1f614-12fe-466f-942c-34a59d1d1ddf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState">
-      <UniqueIdentifier>{b93e7bb2-f10c-4c16-a516-ac47db7b5760}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState">
-      <UniqueIdentifier>{d7131efd-5828-47a7-816f-76faebd0b14a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState">
-      <UniqueIdentifier>{b13d181a-a4f8-4168-8c31-36558d34cd9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState">
-      <UniqueIdentifier>{bad8d6d2-4deb-4e8c-a4a4-b62b80f56e68}</UniqueIdentifier>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject">
+      <UniqueIdentifier>{6d50bd74-2a63-4ea3-bc78-bbd82457ab34}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject">
-      <UniqueIdentifier>{2fa20edb-8326-44a9-819a-0c3977cd12ee}</UniqueIdentifier>
+      <UniqueIdentifier>{b5e11183-3fea-4870-a354-070f93c6ee41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine">
+      <UniqueIdentifier>{36b90f01-4f67-4df1-be2c-23e2f093d896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos">
+      <UniqueIdentifier>{736f1e90-c9d7-4633-bbe3-b088f93296c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject">
+      <UniqueIdentifier>{049f848c-41a5-47ed-a833-f75587b419f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject">
+      <UniqueIdentifier>{83df5f47-e8ba-49b2-81b8-5e84cda3b02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState">
+      <UniqueIdentifier>{0b050122-3cf6-4cca-b9f2-f4ce475ca855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState">
+      <UniqueIdentifier>{c76708fe-aa12-449a-bf54-f85eb887e589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState">
+      <UniqueIdentifier>{082c281b-2c41-468d-907a-2dc74f81bd60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState">
+      <UniqueIdentifier>{f6ff124a-c9ee-4b28-8961-19e28375aaad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState">
+      <UniqueIdentifier>{c5255c6f-73ee-40ae-b306-a28b29a05901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain">
+      <UniqueIdentifier>{d02c4fd4-6b8f-4dd0-becb-8f7deb047a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard">
+      <UniqueIdentifier>{e172a083-18e4-4894-b135-5d6702216381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer">
+      <UniqueIdentifier>{f5312a87-a2f9-445e-9dd2-0b9bc3c121c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject">
+      <UniqueIdentifier>{187cd084-141b-40c2-83c7-cf98ea05cff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject">
+      <UniqueIdentifier>{b42acf40-a621-4f57-a514-61815121f497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList">
+      <UniqueIdentifier>{ef728576-84c5-401e-9de1-35e2f801531f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\RecordSet">
+      <UniqueIdentifier>{514b82f8-7443-4e7d-a566-b281e24b1875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\ShareData\RecordSet\Record">
+      <UniqueIdentifier>{f5902d7c-2ca3-4a10-965b-9fc5868ac4d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Scene\SelectRecordScene\RecordBox">
+      <UniqueIdentifier>{953584a2-1bc8-4aaf-a182-047890ef466c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ButtonSet\ButtonSet.cpp">
+      <Filter>Src\ButtonSet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Config\Config.cpp">
+      <Filter>Src\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MyLibrary\MyLibrary.cpp">
+      <Filter>Src\MyLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MyLibrary\SliceTexture\SliceTexture.cpp">
+      <Filter>Src\MyLibrary\SliceTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MyLibrary\SliceTexture\Animation\Animation.cpp">
+      <Filter>Src\MyLibrary\SliceTexture\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp">
+      <Filter>Src\MyPixelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\DesktopScene\DesktopScene.cpp">
+      <Filter>Src\Scene\DesktopScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\LoadScene\LoadScene.cpp">
+      <Filter>Src\Scene\LoadScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\LoadScene\LoadBoardScene\LoadBoardScene.cpp">
+      <Filter>Src\Scene\LoadScene\LoadBoardScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.cpp">
+      <Filter>Src\Scene\LoadScene\LoadRecordScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\LoadScene\SaveRecordScene\SaveRecordScene.cpp">
+      <Filter>Src\Scene\LoadScene\SaveRecordScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\SelectRecordScene\SelectRecordScene.cpp">
+      <Filter>Src\Scene\SelectRecordScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp">
+      <Filter>Src\Scene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp">
+      <Filter>Src\ShareData\BoardManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp">
+      <Filter>Src\ShareData\BoardManager\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState\SuccessAccessState.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\RecordSet\RecordSet.cpp">
+      <Filter>Src\ShareData\RecordSet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\RecordSet\Record\Record.cpp">
+      <Filter>Src\ShareData\RecordSet\Record</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.cpp">
+      <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
       <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="App\engine\texture\box-shadow\128.png">
-      <Filter>Resource Files\engine\texture\box-shadow</Filter>
-    </Image>
-    <Image Include="App\engine\texture\box-shadow\256.png">
-      <Filter>Resource Files\engine\texture\box-shadow</Filter>
     </Image>
     <Image Include="App\engine\texture\box-shadow\8.png">
       <Filter>Resource Files\engine\texture\box-shadow</Filter>
@@ -242,20 +329,11 @@
     <Image Include="App\engine\texture\box-shadow\64.png">
       <Filter>Resource Files\engine\texture\box-shadow</Filter>
     </Image>
-    <Image Include="App\example\particle.png">
-      <Filter>Resource Files\example</Filter>
+    <Image Include="App\engine\texture\box-shadow\128.png">
+      <Filter>Resource Files\engine\texture\box-shadow</Filter>
     </Image>
-    <Image Include="App\example\siv3d-kun.png">
-      <Filter>Resource Files\example</Filter>
-    </Image>
-    <Image Include="App\example\windmill.png">
-      <Filter>Resource Files\example</Filter>
-    </Image>
-    <Image Include="App\example\bay.jpg">
-      <Filter>Resource Files\example</Filter>
-    </Image>
-    <Image Include="App\example\test.gif">
-      <Filter>Resource Files\example</Filter>
+    <Image Include="App\engine\texture\box-shadow\256.png">
+      <Filter>Resource Files\engine\texture\box-shadow</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -264,20 +342,40 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App\engine\emoji\noto7_dictionary.dat">
-      <Filter>Resource Files\engine\emoji</Filter>
-    </None>
-    <None Include="App\nlp\japanese\jumanpp\LICENSE">
-      <Filter>Resource Files\nlp\japanese\jumanpp</Filter>
-    </None>
-    <None Include="App\nlp\japanese\jumanpp\README.md">
-      <Filter>Resource Files\nlp\japanese\jumanpp</Filter>
+    <Text Include="App\dll\soundtouch\COPYING.TXT">
+      <Filter>Resource Files\dll\soundtouch</Filter>
+    </Text>
+    <Text Include="App\engine\font\fontawesome\LICENSE.txt">
+      <Filter>Resource Files\engine\font\fontawesome</Filter>
+    </Text>
+    <Text Include="App\engine\soundfont\GMGSx.sf2.txt">
+      <Filter>Resource Files\engine\soundfont</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App\dll\soundtouch\SoundTouch_x64.dll">
+      <Filter>Resource Files\dll\soundtouch</Filter>
     </None>
     <None Include="App\engine\font\fontawesome\fontawesome-brands.otf.zstdcmp">
       <Filter>Resource Files\engine\font\fontawesome</Filter>
     </None>
     <None Include="App\engine\font\fontawesome\fontawesome-solid.otf.zstdcmp">
       <Filter>Resource Files\engine\font\fontawesome</Filter>
+    </None>
+    <None Include="App\engine\font\materialdesignicons\license.md">
+      <Filter>Resource Files\engine\font\materialdesignicons</Filter>
+    </None>
+    <None Include="App\engine\font\materialdesignicons\materialdesignicons-webfont.ttf.zstdcmp">
+      <Filter>Resource Files\engine\font\materialdesignicons</Filter>
+    </None>
+    <None Include="App\engine\font\mplus\mplus-1p-black.ttf.zstdcmp">
+      <Filter>Resource Files\engine\font\mplus</Filter>
+    </None>
+    <None Include="App\engine\font\mplus\mplus-1p-bold.ttf.zstdcmp">
+      <Filter>Resource Files\engine\font\mplus</Filter>
+    </None>
+    <None Include="App\engine\font\mplus\mplus-1p-heavy.ttf.zstdcmp">
+      <Filter>Resource Files\engine\font\mplus</Filter>
     </None>
     <None Include="App\engine\font\mplus\mplus-1p-light.ttf.zstdcmp">
       <Filter>Resource Files\engine\font\mplus</Filter>
@@ -294,335 +392,188 @@
     <None Include="App\engine\font\mplus\LICENSE_E">
       <Filter>Resource Files\engine\font\mplus</Filter>
     </None>
-    <None Include="App\engine\font\mplus\mplus-1p-black.ttf.zstdcmp">
-      <Filter>Resource Files\engine\font\mplus</Filter>
+    <None Include="App\engine\font\noto-cjk\LICENSE">
+      <Filter>Resource Files\engine\font\noto-cjk</Filter>
     </None>
-    <None Include="App\engine\font\mplus\mplus-1p-bold.ttf.zstdcmp">
-      <Filter>Resource Files\engine\font\mplus</Filter>
+    <None Include="App\engine\font\noto-cjk\NotoSansCJK-Regular.ttc.zstdcmp">
+      <Filter>Resource Files\engine\font\noto-cjk</Filter>
     </None>
-    <None Include="App\engine\font\mplus\mplus-1p-heavy.ttf.zstdcmp">
-      <Filter>Resource Files\engine\font\mplus</Filter>
+    <None Include="App\engine\font\noto-cjk\NotoSansJP-Regular.otf.zstdcmp">
+      <Filter>Resource Files\engine\font\noto-cjk</Filter>
     </None>
-    <None Include="App\engine\font\noto\NotoColorEmoji.ttf.zstdcmp">
-      <Filter>Resource Files\engine\font\noto</Filter>
+    <None Include="App\engine\font\noto-emoji\LICENSE">
+      <Filter>Resource Files\engine\font\noto-emoji</Filter>
     </None>
-    <None Include="App\engine\font\noto\NotoEmoji-Regular.ttf.zstdcmp">
-      <Filter>Resource Files\engine\font\noto</Filter>
+    <None Include="App\engine\font\noto-emoji\NotoColorEmoji.ttf.zstdcmp">
+      <Filter>Resource Files\engine\font\noto-emoji</Filter>
     </None>
-    <None Include="App\engine\objdetect\haarcascade\eye_eyeglasses.xml.zstdcmp">
-      <Filter>Resource Files\engine\objdetect\haarcascade</Filter>
+    <None Include="App\engine\font\noto-emoji\NotoEmoji-Regular.ttf.zstdcmp">
+      <Filter>Resource Files\engine\font\noto-emoji</Filter>
     </None>
-    <None Include="App\engine\objdetect\haarcascade\face_anime.xml.zstdcmp">
-      <Filter>Resource Files\engine\objdetect\haarcascade</Filter>
+    <None Include="App\engine\shader\d3d11\apply_srgb_curve.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
     </None>
-    <None Include="App\engine\objdetect\haarcascade\frontal_catface.xml.zstdcmp">
-      <Filter>Resource Files\engine\objdetect\haarcascade</Filter>
+    <None Include="App\engine\shader\d3d11\bitmapfont.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
     </None>
-    <None Include="App\engine\objdetect\haarcascade\frontal_face_alt2.xml.zstdcmp">
-      <Filter>Resource Files\engine\objdetect\haarcascade</Filter>
+    <None Include="App\engine\shader\d3d11\copy.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
     </None>
-    <None Include="App\engine\objdetect\haarcascade\eye.xml.zstdcmp">
-      <Filter>Resource Files\engine\objdetect\haarcascade</Filter>
+    <None Include="App\engine\shader\d3d11\forward3d.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\fullscreen_triangle.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\gaussian_blur_9.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\line3d.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\msdffont.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\msdffont_outline.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\msdffont_outlineshadow.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\msdffont_shadow.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\msdfprint.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\round_dot.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\sdffont.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\sdffont_outline.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\sdffont_outlineshadow.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\sdffont_shadow.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\shape.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\sky.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\square_dot.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\texture.ps">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\forward3d.vs">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\fullscreen_triangle.vs">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\line3d.vs">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\d3d11\sprite.vs">
+      <Filter>Resource Files\engine\shader\d3d11</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\msdffont.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\msdffont_outline.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\msdffont_outlineshadow.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\msdffont_shadow.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\msdfprint.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\round_dot.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\sdffont.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\sdffont_outline.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\sdffont_outlineshadow.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\sdffont_shadow.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\shape.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\sky.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\sprite.vert">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\square_dot.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\texture.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\apply_srgb_curve.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\bitmapfont.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\copy.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\forward3d.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\forward3d.vert">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\fullscreen_triangle.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\fullscreen_triangle.vert">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\gaussian_blur_9.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\line3d.frag">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
+    </None>
+    <None Include="App\engine\shader\glsl\line3d.vert">
+      <Filter>Resource Files\engine\shader\glsl</Filter>
     </None>
     <None Include="App\engine\soundfont\GMGSx.sf2.zstdcmp">
       <Filter>Resource Files\engine\soundfont</Filter>
     </None>
-    <None Include="App\example\font\NotoSansCJKjp\README">
-      <Filter>Resource Files\example\font\NotoSansCJKjp</Filter>
+    <None Include=".editorconfig" />
+    <None Include="App\engine\font\min\LICENSE">
+      <Filter>Resource Files\engine\font\min</Filter>
     </None>
-    <None Include="App\example\font\Pecita\LICENSE">
-      <Filter>Resource Files\example\font\Pecita</Filter>
-    </None>
-    <None Include="App\example\svm\a1a_testing">
-      <Filter>Resource Files\example\svm</Filter>
-    </None>
-    <None Include="App\example\svm\a1a_training">
-      <Filter>Resource Files\example\svm</Filter>
-    </None>
-    <None Include="App\example\test.toml">
-      <Filter>Resource Files\example</Filter>
-    </None>
-    <None Include="App\engine\shader\gaussian_blur_9.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\round_dot.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\sdf.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\shape.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\sprite.vs">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\square_dot.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\texture.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\copy.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\fullscreen_triangle_draw.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\fullscreen_triangle_draw.vs">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\fullscreen_triangle_resolve.ps">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\engine\shader\fullscreen_triangle_resolve.vs">
-      <Filter>Resource Files\engine\shader</Filter>
-    </None>
-    <None Include="App\example\shader\2d\default_shape.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\default_texture.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\game_of_life.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\grayscale.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\multi_texture_blend.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\multi_texture_mask.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\poisson_disk.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\posterize.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\rgb_shift.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\rgb_to_bgr.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\shader\2d\swirl.hlsl">
-      <Filter>Resource Files\example\shader\2d</Filter>
-    </None>
-    <None Include="App\example\config\config.csv">
-      <Filter>Resource Files\example\config</Filter>
-    </None>
-    <None Include="App\example\config\config.ini">
-      <Filter>Resource Files\example\config</Filter>
-    </None>
-    <None Include="App\example\config\config.json">
-      <Filter>Resource Files\example\config</Filter>
-    </None>
-    <None Include="App\example\config\config.toml">
-      <Filter>Resource Files\example\config</Filter>
-    </None>
-    <None Include="App\example\gui\gui.toml">
-      <Filter>Resource Files\example\gui</Filter>
-    </None>
-    <None Include="App\example\font\LogoTypeGothic\LICENSE_E">
-      <Filter>Resource Files\example\font\LogoTypeGothic</Filter>
-    </None>
-    <None Include="App\example\zip\zip_test.zip">
-      <Filter>Resource Files\example\zip</Filter>
+    <None Include="App\engine\font\min\siv3d-min.woff">
+      <Filter>Resource Files\engine\font\min</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="App\engine\font\fontawesome\LICENSE.txt">
-      <Filter>Resource Files\engine\font\fontawesome</Filter>
-    </Text>
-    <Text Include="App\engine\font\noto\LICENSE_OFL.txt">
-      <Filter>Resource Files\engine\font\noto</Filter>
-    </Text>
-    <Text Include="App\example\font\AnnyantRoman\readme.txt">
-      <Filter>Resource Files\example\font\AnnyantRoman</Filter>
-    </Text>
-    <Text Include="App\example\font\NotoSansCJKjp\LICENSE_OFL.txt">
-      <Filter>Resource Files\example\font\NotoSansCJKjp</Filter>
-    </Text>
-    <Text Include="App\example\script\paint.txt">
-      <Filter>Resource Files\example\script</Filter>
-    </Text>
-    <Text Include="App\example\script\test.txt">
-      <Filter>Resource Files\example\script</Filter>
-    </Text>
-    <Text Include="App\example\LICENSE.txt">
-      <Filter>Resource Files\example</Filter>
-    </Text>
-    <Text Include="App\example\test.txt">
-      <Filter>Resource Files\example</Filter>
-    </Text>
-    <Text Include="App\example\font\LogoTypeGothic\ReadMe_windows.txt">
-      <Filter>Resource Files\example\font\LogoTypeGothic</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="App\example\font\AnnyantRoman\AnnyantRoman.ttf">
-      <Filter>Resource Files\example\font\AnnyantRoman</Filter>
-    </Font>
-    <Font Include="App\example\font\NotoSansCJKjp\NotoSansCJKjp-Regular.otf">
-      <Filter>Resource Files\example\font\NotoSansCJKjp</Filter>
-    </Font>
-    <Font Include="App\example\font\Pecita\Pecita.otf">
-      <Filter>Resource Files\example\font\Pecita</Filter>
-    </Font>
-    <Font Include="App\example\font\LogoTypeGothic\LogoTypeGothic.otf">
-      <Filter>Resource Files\example\font\LogoTypeGothic</Filter>
-    </Font>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="App\example\shot.mp3">
-      <Filter>Resource Files\example</Filter>
-    </Media>
-    <Media Include="App\example\test.mp3">
-      <Filter>Resource Files\example</Filter>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="App\example\test.xml">
-      <Filter>Resource Files\example</Filter>
-    </Xml>
-    <Xml Include="App\example\config\config.xml">
-      <Filter>Resource Files\example\config</Filter>
-    </Xml>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Src\Main.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Config\Config.cpp">
-      <Filter>Src\Config</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\MyLibrary\MyLibrary.cpp">
-      <Filter>Src\MyLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp">
-      <Filter>Src\Scene\TitleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ButtonSet\ButtonSet.cpp">
-      <Filter>Src\ButtonSet</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\MyPixelShader\MyPixelShader.cpp">
-      <Filter>Src\MyPixelShader</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\LoadScene\LoadScene.cpp">
-      <Filter>Src\Scene\LoadScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.cpp">
-      <Filter>Src\Scene\LoadScene\LoadRecordScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\DesktopScene\DesktopScene.cpp">
-      <Filter>Src\Scene\DesktopScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp">
-      <Filter>Src\ShareData\BoardManager\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\BoardManager.cpp">
-      <Filter>Src\ShareData\BoardManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\MyLibrary\SliceTexture\Animation\Animation.cpp">
-      <Filter>Src\MyLibrary\SliceTexture\Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\MyLibrary\SliceTexture\SliceTexture.cpp">
-      <Filter>Src\MyLibrary\SliceTexture</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\RecordSet\Record\Record.cpp">
-      <Filter>Src\ShareData\RecordSet\Record</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\RecordSet\RecordSet.cpp">
-      <Filter>Src\ShareData\RecordSet</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\SelectRecordScene\SelectRecordScene.cpp">
-      <Filter>Src\Scene\SelectRecordScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.cpp">
-      <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\LoadScene\LoadBoardScene\LoadBoardScene.cpp">
-      <Filter>Src\Scene\LoadScene\LoadBoardScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Scene\LoadScene\SaveRecordScene\SaveRecordScene.cpp">
-      <Filter>Src\Scene\LoadScene\SaveRecordScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\MessageBoard</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState\SuccessAccessState.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Src\Config\Config.hpp">
-      <Filter>Src\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\MyLibrary\MyLibrary.hpp">
-      <Filter>Src\MyLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Scene\Scene.hpp">
-      <Filter>Src\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp">
-      <Filter>Src\Scene\TitleScene</Filter>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\ButtonSet\ButtonSet.hpp">
       <Filter>Src\ButtonSet</Filter>
@@ -630,23 +581,11 @@
     <ClInclude Include="Src\ButtonSet\Button\Button.hpp">
       <Filter>Src\ButtonSet\Button</Filter>
     </ClInclude>
-    <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp">
-      <Filter>Src\MyPixelShader</Filter>
+    <ClInclude Include="Src\Config\Config.hpp">
+      <Filter>Src\Config</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Scene\LoadScene\LoadScene.hpp">
-      <Filter>Src\Scene\LoadScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.hpp">
-      <Filter>Src\Scene\LoadScene\LoadRecordScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Scene\DesktopScene\DesktopScene.hpp">
-      <Filter>Src\Scene\DesktopScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp">
-      <Filter>Src\ShareData\BoardManager\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp">
-      <Filter>Src\ShareData\BoardManager</Filter>
+    <ClInclude Include="Src\MyLibrary\MyLibrary.hpp">
+      <Filter>Src\MyLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Src\MyLibrary\Linearly\Linearly.hpp">
       <Filter>Src\MyLibrary\Linearly</Filter>
@@ -657,29 +596,98 @@
     <ClInclude Include="Src\MyLibrary\SliceTexture\Animation\Animation.hpp">
       <Filter>Src\MyLibrary\SliceTexture\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard</Filter>
+    <ClInclude Include="Src\MyPixelShader\MyPixelShader.hpp">
+      <Filter>Src\MyPixelShader</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\RecordSet\Record\Record.hpp">
-      <Filter>Src\ShareData\RecordSet\Record</Filter>
+    <ClInclude Include="Src\Scene\Scene.hpp">
+      <Filter>Src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\RecordSet\RecordSet.hpp">
-      <Filter>Src\ShareData\RecordSet</Filter>
+    <ClInclude Include="Src\Scene\SceneName.hpp">
+      <Filter>Src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Scene\SelectRecordScene\SelectRecordScene.hpp">
-      <Filter>Src\Scene\SelectRecordScene</Filter>
+    <ClInclude Include="Src\Scene\DesktopScene\DesktopScene.hpp">
+      <Filter>Src\Scene\DesktopScene</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.hpp">
-      <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
+    <ClInclude Include="Src\Scene\LoadScene\LoadScene.hpp">
+      <Filter>Src\Scene\LoadScene</Filter>
     </ClInclude>
     <ClInclude Include="Src\Scene\LoadScene\LoadBoardScene\LoadBoardScene.hpp">
       <Filter>Src\Scene\LoadScene\LoadBoardScene</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Scene\LoadScene\LoadRecordScene\LoadRecordScene.hpp">
+      <Filter>Src\Scene\LoadScene\LoadRecordScene</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Scene\LoadScene\SaveRecordScene\SaveRecordScene.hpp">
       <Filter>Src\Scene\LoadScene\SaveRecordScene</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Scene\SelectRecordScene\SelectRecordScene.hpp">
+      <Filter>Src\Scene\SelectRecordScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\TitleScene\TitleScene.hpp">
+      <Filter>Src\Scene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\BoardManager.hpp">
+      <Filter>Src\ShareData\BoardManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp">
+      <Filter>Src\ShareData\BoardManager\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\BoardConst.hpp">
+      <Filter>Src\ShareData\BoardManager\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessBoard.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState\SuccessAccessState.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain</Filter>
+    </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.hpp">
       <Filter>Src\ShareData\BoardManager\Board\MessageBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList</Filter>
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.hpp">
       <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer</Filter>
@@ -687,59 +695,14 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Scene\SceneName.hpp">
-      <Filter>Src\Scene</Filter>
+    <ClInclude Include="Src\ShareData\RecordSet\RecordSet.hpp">
+      <Filter>Src\ShareData\RecordSet</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject</Filter>
+    <ClInclude Include="Src\ShareData\RecordSet\Record\Record.hpp">
+      <Filter>Src\ShareData\RecordSet\Record</Filter>
     </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\BoardConst.hpp">
-      <Filter>Src\ShareData\BoardManager\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\AccessLight.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState\SuccessAccessState.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.hpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject</Filter>
+    <ClInclude Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.hpp">
+      <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
