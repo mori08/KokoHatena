@@ -149,6 +149,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject\MessageEventObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp" />
@@ -290,6 +291,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\Board.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\BoardConst.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject\MessageEventObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.hpp" />

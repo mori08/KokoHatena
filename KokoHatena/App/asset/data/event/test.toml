@@ -8,11 +8,27 @@
 [[init]]
     event = "jamp"
     to = "test1"
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
 
 [[test1]]
     event = "flag"
     name = "TestJampFlag"
     value = true
 [[test1]]
-    event = "scene"
-    scene = "selectSaveRecord"
+    event = "act"
+    name = "ui_text"
+    [test1.param]
+        type = "message"
+        text = "test1\ntest2\nあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめも"
+        speaker = true
+    
+[[test1]]
+    event = "act"
+    name = "ui_text"
+    [test1.param]
+        type = "message"
+        text = "test1\ntest2\nあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめも"
+        speaker = false

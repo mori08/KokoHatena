@@ -1,5 +1,6 @@
-#include "EventPlayer.hpp"
+ï»¿#include "EventPlayer.hpp"
 #include "EventObject/TextureEventObject/TextureEventObject.hpp"
+#include "EventObject/MessageEventObject/MessageEventObject.hpp"
 #include "../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../Config/Config.hpp"
 
@@ -11,16 +12,16 @@ namespace Kokoha
 	{
 		setGenerateObjectMap();
 
-		// ƒCƒxƒ“ƒg‰Šú‰»ˆ—‚ğ‘–‚ç‚¹‚é
+		// ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸåŒ–å‡¦ç†ã‚’èµ°ã‚‰ã›ã‚‹
 		m_now = m_eventToml[U"init"].tableArrayView().begin();
 		m_end = m_eventToml[U"init"].tableArrayView().end();
 
-		// ‰Šú‰»
+		// åˆæœŸåŒ–
 		TOMLTableArrayIterator init_now = m_now;
 		TOMLTableArrayIterator init_end = m_end;
 		while (init_now != init_end)
 		{
-			BoardRequest tmp; // ‰¼‚Åì¬i‰Šú‰»‚ÅƒŠƒNƒGƒXƒg‚Í‘—‚ç‚È‚¢j
+			BoardRequest tmp; // ä»®ã§ä½œæˆï¼ˆåˆæœŸåŒ–ã§ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯é€ã‚‰ãªã„ï¼‰
 			playEvent(*init_now, tmp);
 			++init_now;
 		}
@@ -33,7 +34,7 @@ namespace Kokoha
 
 	void EventPlayer::input()
 	{
-		// ƒIƒuƒWƒFƒNƒg‚Ì“ü—Í
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å…¥åŠ›
 		for (const auto& object : m_objectList)
 		{
 			object.second->input();
@@ -42,20 +43,20 @@ namespace Kokoha
 
 	void EventPlayer::update(BoardRequest& boardRequest)
 	{
-		// ƒIƒuƒWƒFƒNƒg‚ÌXV
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°
 		for (const auto& object : m_objectList)
 		{
 			object.second->update();
 			object.second->updateJampFlag(m_jampFlagMap);
 		}
 
-		// ƒIƒuƒWƒFƒNƒg‚Ì‘Ò‚¿ó‘Ô‚Ì‰ğÁ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¾…ã¡çŠ¶æ…‹ã®è§£æ¶ˆ
 		while (!m_waitingObjectList.empty() && !m_waitingObjectList.front()->wait())
 		{
 			m_waitingObjectList.pop_front();
 		}
 		
-		// ƒCƒxƒ“ƒg‚Ìis
+		// ã‚¤ãƒ™ãƒ³ãƒˆã®é€²è¡Œ
 		if (m_now != m_end && m_waitingObjectList.empty())
 		{
 			const String eventName = (*m_now)[U"event"].getString();
@@ -69,14 +70,14 @@ namespace Kokoha
 
 	void EventPlayer::draw(const Point& drawPos) const
 	{
-		// ƒŒƒ“ƒ_[ƒeƒNƒXƒ`ƒƒ[‚ÌƒNƒŠƒA
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¯ãƒªã‚¢
 		m_render.clear(MyBlack);
 
-		// ƒŒƒ“ƒ_[ƒeƒNƒXƒ`ƒƒ[‚ğg‚Á‚Ä Rect(drawPos, m_render.size()) ‚É•`‰æ
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’ä½¿ã£ã¦ Rect(drawPos, m_render.size()) ã«æç”»
 		{
 			ScopedRenderTarget2D target(m_render);
 
-			// ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
 			for (const auto& object : m_objectList)
 			{
 				object.second->draw();
@@ -90,9 +91,9 @@ namespace Kokoha
 
 	bool EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
 	{
-		const String eventName = nowEvent[U"event"].getString(); // ƒCƒxƒ“ƒg–¼
+		const String eventName = nowEvent[U"event"].getString(); // ã‚¤ãƒ™ãƒ³ãƒˆå
 
-		// ƒIƒuƒWƒFƒNƒg‚Ì¶¬
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
 		if (eventName == U"object")
 		{
 			const String type = nowEvent[U"type"].getString();
@@ -101,12 +102,12 @@ namespace Kokoha
 
 			if (!m_generateObjectMap.count(type))
 			{
-				throw Error(U"EventPlayer: object: ‘¶İ‚µ‚È‚¢type[" + type + U"]‚ªw’è‚³‚ê‚Ä‚¢‚é");
+				throw Error(U"EventPlayer: object: å­˜åœ¨ã—ãªã„type[" + type + U"]ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹");
 			}
 
 			if (m_objectList.count(name))
 			{
-				throw Error(U"EventPlayer: object: Šù‚É‘¶İ‚·‚éname[" + name + U"]‚ªw’è‚³‚ê‚Ä‚¢‚é");
+				throw Error(U"EventPlayer: object: æ—¢ã«å­˜åœ¨ã™ã‚‹name[" + name + U"]ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹");
 			}
 
 			m_objectList[name] = m_generateObjectMap[type](param);
@@ -114,7 +115,7 @@ namespace Kokoha
 			return true;
 		}
 
-		// ƒIƒuƒWƒFƒNƒg‚Ö‚Ì–½—ß
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®å‘½ä»¤
 		if (eventName == U"act")
 		{
 			const String name = nowEvent[U"name"].getString();
@@ -122,7 +123,7 @@ namespace Kokoha
 			
 			if (!m_objectList.count(name))
 			{
-				throw Error(U"EventPlayer: act: ‘¶İ‚µ‚È‚¢object‚Ìname[" + name + U"]‚ªw’è‚³‚ê‚Ä‚¢‚é");
+				throw Error(U"EventPlayer: act: å­˜åœ¨ã—ãªã„objectã®name[" + name + U"]ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹");
 			}
 
 			const ObjectPtr objectPtr = m_objectList[name];
@@ -133,7 +134,7 @@ namespace Kokoha
 			return true;
 		}
 
-		// jamp‚Ég—p‚·‚éƒtƒ‰ƒO‚Ìİ’è
+		// jampæ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ©ã‚°ã®è¨­å®š
 		if (eventName == U"flag")
 		{
 			const String name  = nowEvent[U"name"].getString();
@@ -144,7 +145,7 @@ namespace Kokoha
 			return true;
 		}
 
-		// •ÊƒCƒxƒ“ƒgŒQ‚Ö‚Ì‘JˆÚ
+		// åˆ¥ã‚¤ãƒ™ãƒ³ãƒˆç¾¤ã¸ã®é·ç§»
 		if (eventName == U"jamp")
 		{
 			const String to = nowEvent[U"to"].getString();
@@ -152,7 +153,7 @@ namespace Kokoha
 
 			if (!m_eventToml[to].isTableArray())
 			{
-				throw Error(U"EventPlayer: jamp: w’è‚³‚ê‚½‘JˆÚæto[" + to + U"]‚Í‘¶İ‚µ‚È‚¢");
+				throw Error(U"EventPlayer: jamp: æŒ‡å®šã•ã‚ŒãŸé·ç§»å…ˆto[" + to + U"]ã¯å­˜åœ¨ã—ãªã„");
 			}
 
 			if (flag == U"" || (m_jampFlagMap.count(flag) && m_jampFlagMap[flag]))
@@ -166,7 +167,7 @@ namespace Kokoha
 			return true;
 		}
 
-		// ‘¼ƒ{[ƒh‚Ö‚ÌƒŠƒNƒGƒXƒg
+		// ä»–ãƒœãƒ¼ãƒ‰ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		if (eventName == U"board")
 		{
 			const String role = nowEvent[U"role"].getString();
@@ -174,7 +175,7 @@ namespace Kokoha
 			
 			if (!BOARD_ROLE_MAP.count(role))
 			{
-				throw Error(U"EventPlayer: board: w’è‚³‚ê‚½BoardRole[" + role + U"]‚ª‘¶İ‚µ‚È‚¢");
+				throw Error(U"EventPlayer: board: æŒ‡å®šã•ã‚ŒãŸBoardRole[" + role + U"]ãŒå­˜åœ¨ã—ãªã„");
 			}
 
 			boardRequest.toBoard.emplace_back(BOARD_ROLE_MAP.find(role)->second, text);
@@ -182,14 +183,14 @@ namespace Kokoha
 			return true;
 		}
 
-		// ƒV[ƒ“‚Ö‚ÌƒŠƒNƒGƒXƒg
+		// ã‚·ãƒ¼ãƒ³ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		if (eventName == U"scene")
 		{
 			const String scene = nowEvent[U"scene"].getString();
 
 			if (!SCENE_NAME_MAP.count(scene))
 			{
-				throw Error(U"EventPlayer: scene: w’è‚³‚ê‚½Scene[" + scene + U"]‚Í‘¶İ‚µ‚È‚¢");
+				throw Error(U"EventPlayer: scene: æŒ‡å®šã•ã‚ŒãŸScene[" + scene + U"]ã¯å­˜åœ¨ã—ãªã„");
 			}
 
 			for (const auto& jampFlagName : recordJampFlagNameList())
@@ -201,7 +202,7 @@ namespace Kokoha
 			return true;
 		}
 
-		throw Error(U"EventPlayer: event[" + eventName + U"]‚Í‘¶İ‚µ‚È‚¢");
+		throw Error(U"EventPlayer: event[" + eventName + U"]ã¯å­˜åœ¨ã—ãªã„");
 	}
 
 	void EventPlayer::setGenerateObjectMap()
@@ -209,6 +210,10 @@ namespace Kokoha
 		m_generateObjectMap[U"texture"] = [](const TOMLValue& param)
 		{
 			return std::make_shared<TextureEventObject>(param);
+		};
+		m_generateObjectMap[U"message"] = [](const TOMLValue& param)
+		{
+			return std::make_shared<MessageEventObject>(param);
 		};
 	}
 
