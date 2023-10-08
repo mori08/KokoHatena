@@ -8,11 +8,43 @@
 [[init]]
     event = "jamp"
     to = "test1"
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
 
 [[test1]]
     event = "flag"
     name = "TestJampFlag"
     value = true
 [[test1]]
-    event = "scene"
-    scene = "selectSaveRecord"
+    event = "act"
+    name = "ui_text"
+    [test1.param]
+        type = "message"
+        text = "test1"
+        speaker = true
+    
+[[test1]]
+    event = "act"
+    name = "ui_text"
+    [test1.param]
+        type = "select"
+        select = [
+            {text="選択肢1", flag = "flag1"},
+            {text="選択肢2", flag = "flag2"},
+            {text="選択肢3", flag = "flag3"}
+        ]
+
+[[test1]]
+    event = "jamp"
+    flag = "flag1"
+    to = "test2"
+
+[[test2]]
+    event = "act"
+    name = "ui_text"
+    [test2.param]
+        type = "message"
+        text = "選択肢1を選んだ"
+        speaker = false

@@ -1,4 +1,4 @@
-#include "MessageBoard.hpp"
+ï»¿#include "MessageBoard.hpp"
 #include "../../../../Config/Config.hpp"
 #include "../../../../MyLibrary/MyLibrary.hpp"
 
@@ -16,7 +16,7 @@ namespace Kokoha
 
 		for (const auto& speakerName : m_speakerNameList)
 		{
-			// TODO: Record‚Ì“à—e‚É‰‚¶‚ÄEventPlayer‚É‰Šú‰»
+			// TODO: Recordã®å†…å®¹ã«å¿œã˜ã¦EventPlayerã«åˆæœŸåŒ–
 			m_eventPlayerMap.try_emplace
 			(
 				speakerName,
@@ -37,7 +37,7 @@ namespace Kokoha
 
 	void MessageBoard::inputInBoard()
 	{
-		// ˜b‚µ‘Šè‚Ì‘I‘ğ
+		// è©±ã—ç›¸æ‰‹ã®é¸æŠ
 		for (size_t index : Range(0, m_speakerNameList.size() - 1))
 		{
 			if (MouseL.down() && getSpeakerNameRect((int32)index).contains(cursorPosInBoard()))
@@ -48,7 +48,8 @@ namespace Kokoha
 
 		if (m_selectedSpeakerName)
 		{
-			m_eventPlayerMap.find(m_selectedSpeakerName.value())->second.input();
+			const Vec2 cursorPos = cursorPosFInBoard() - Point(getSpeakerNameRect(0).w, 0);
+			m_eventPlayerMap.find(m_selectedSpeakerName.value())->second.input(cursorPos);
 		}
 	}
 
@@ -63,9 +64,9 @@ namespace Kokoha
 	void MessageBoard::drawInBoard() const
 	{
 		static const Point SPEAKER_NAME_POS = Config::get<Point>(U"MessageBoard.speakerNamePos");
-		// ‰ï˜b‰æ–Ê‚Ì”ÍˆÍ‚ğ•`‰æ‚·‚é‘¾‚³
+		// ä¼šè©±ç”»é¢ã®ç¯„å›²ã‚’æç”»ã™ã‚‹å¤ªã•
 		static const double TALK_PAGE_THICKNESS = Config::get<double>(U"MessageBoard.talkPageThickness");
-		// ‰ï˜b‰æ–Ê‚Ì”ÍˆÍ‚ğ•`‰æ‚·‚éF
+		// ä¼šè©±ç”»é¢ã®ç¯„å›²ã‚’æç”»ã™ã‚‹è‰²
 		static const ColorF TALK_PAGE_COLOR = Config::get<ColorF>(U"MessageBoard.talkPageColor");
 
 		for (size_t index : Range(0, m_speakerNameList.size() - 1))
@@ -96,7 +97,7 @@ namespace Kokoha
 
 	Rect MessageBoard::getSpeakerNameRect(int32 index)
 	{
-		// •
+		// å¹…
 		static const int32 SPEAKER_NAME_WIDTH = Config::get<int32>(U"MessageBoard.speakerNameWidth");
 
 		return Rect(

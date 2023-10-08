@@ -81,6 +81,17 @@
         "TestJampFlag"
     ]
 
+[MessageEventObject]
+    fontName = "15"
+    maxTextRectWidth = 180
+    widthSpread = 10
+    postX = 20
+    postY = 10
+    waitSecondPerCharCount = 0.1
+    maxPostCount = 3
+    postRectColor = {rgb=0.8}
+    textChangeAlphaRate = 0.05
+
 [TextureEventObject]
     [TextureEventObject.Researcher]
         textureName = "Researcher"

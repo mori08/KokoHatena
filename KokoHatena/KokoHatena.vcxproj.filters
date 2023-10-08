@@ -190,6 +190,9 @@
     <Filter Include="Src\Scene\SelectRecordScene\RecordBox">
       <UniqueIdentifier>{953584a2-1bc8-4aaf-a182-047890ef466c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject">
+      <UniqueIdentifier>{1ce0cd82-1f87-4e98-beb5-3de119f12689}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -311,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.cpp">
       <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject\MessageEventObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -703,6 +709,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\SelectRecordScene\RecordBox\RecordBox.hpp">
       <Filter>Src\Scene\SelectRecordScene\RecordBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject\MessageEventObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
