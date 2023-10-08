@@ -1,7 +1,11 @@
-#include "EventObject.hpp"
+﻿#include "EventObject.hpp"
 
 namespace Kokoha
 {
+	void EventObject::input(const Vec2&)
+	{
+	}
+
 	void EventObject::updateJampFlag(std::unordered_map<String, bool>& jampFlagMap)
 	{
 		for (const auto& jampFlag : m_updateJampFlagMap)

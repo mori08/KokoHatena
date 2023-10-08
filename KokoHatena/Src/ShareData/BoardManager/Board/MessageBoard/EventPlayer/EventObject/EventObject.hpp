@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Siv3D.hpp>
 
 namespace Kokoha
 {
 	/// <summary>
-	/// EventPlayer‚Å•\¦‚·‚éƒIƒuƒWƒFƒNƒg
+	/// EventPlayerã§è¡¨ç¤ºã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	/// </summary>
 	class EventObject
 	{
 	protected:
 
-		// XV‚µ‚½‚¢EventPlayer‚Ì‘JˆÚƒtƒ‰ƒO
+		// æ›´æ–°ã—ãŸã„EventPlayerã®é·ç§»ãƒ•ãƒ©ã‚°
 		std::unordered_map<String, bool> m_updateJampFlagMap;
 
 	public:
@@ -19,36 +19,37 @@ namespace Kokoha
 		virtual ~EventObject() = default;
 
 		/// <summary>
-		/// –½—ß‚ğó‚¯æ‚èó‘Ô‚ğ•Ï‰»‚³‚¹‚é
+		/// å‘½ä»¤ã‚’å—ã‘å–ã‚ŠçŠ¶æ…‹ã‚’å¤‰åŒ–ã•ã›ã‚‹
 		/// </summary>
-		/// <param name="parameter"> ƒpƒ‰ƒ[ƒ^‚Æ‚È‚étomlƒIƒuƒWƒFƒNƒg </param>
+		/// <param name="parameter"> ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ãªã‚‹tomlã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ </param>
 		virtual void receive(const TOMLValue& parameter) = 0;
 
 		/// <summary>
-		/// ƒIƒuƒWƒFƒNƒg‚ªƒCƒxƒ“ƒg‘S‘Ì‚ğ‘Ò‚½‚¹‚é‚©‚ÌğŒ
+		/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚¤ãƒ™ãƒ³ãƒˆå…¨ä½“ã‚’å¾…ãŸã›ã‚‹ã‹ã®æ¡ä»¶
 		/// </summary>
-		/// <returns> true ‚Ì‚Æ‚«‘Ò‚½‚¹‚é , false ‚Ì‚Æ‚«ƒCƒxƒ“ƒg‚ği‚Ü‚¹‚é </returns>
+		/// <returns> true ã®ã¨ãå¾…ãŸã›ã‚‹ , false ã®ã¨ãã‚¤ãƒ™ãƒ³ãƒˆã‚’é€²ã¾ã›ã‚‹ </returns>
 		virtual bool wait() const { return false; };
 
 		/// <summary>
-		/// “ü—Í
+		/// å…¥åŠ›
 		/// </summary>
-		virtual void input() {};
+		/// <param name="cursorPos"> cursorPos </param>
+		virtual void input(const Vec2& cursorPos);
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
 		virtual void update() {};
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
 		virtual void draw() const {};
 
 		/// <summary>
-		/// EventPlayer‚Ì‘JˆÚƒtƒ‰ƒO‚ÌXV
+		/// EventPlayerã®é·ç§»ãƒ•ãƒ©ã‚°ã®æ›´æ–°
 		/// </summary>
-		/// <param name="jampFlagMap"> Event‘JˆÚƒtƒ‰ƒO‚Ì˜A‘z”z—ñ </param>
+		/// <param name="jampFlagMap"> Eventé·ç§»ãƒ•ãƒ©ã‚°ã®é€£æƒ³é…åˆ— </param>
 		void updateJampFlag(std::unordered_map<String, bool>& jampFlagMap);
 
 	};

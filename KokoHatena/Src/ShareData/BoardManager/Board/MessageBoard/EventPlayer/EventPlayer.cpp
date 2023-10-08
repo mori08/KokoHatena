@@ -32,12 +32,12 @@ namespace Kokoha
 		}
 	}
 
-	void EventPlayer::input()
+	void EventPlayer::input(const Vec2& cursorPos)
 	{
 		// オブジェクトの入力
 		for (const auto& object : m_objectList)
 		{
-			object.second->input();
+			object.second->input(cursorPos);
 		}
 	}
 
@@ -92,7 +92,7 @@ namespace Kokoha
 	bool EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
 	{
 		const String eventName = nowEvent[U"event"].getString(); // イベント名
-
+		
 		// オブジェクトの生成
 		if (eventName == U"object")
 		{
@@ -120,7 +120,7 @@ namespace Kokoha
 		{
 			const String name = nowEvent[U"name"].getString();
 			const TOMLValue param = nowEvent[U"param"];
-			
+
 			if (!m_objectList.count(name))
 			{
 				throw Error(U"EventPlayer: act: 存在しないobjectのname[" + name + U"]が指定されている");

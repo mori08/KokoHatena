@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "EventObject/EventObject.hpp"
 #include "../../BoardConst.hpp"
@@ -7,83 +7,84 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒIƒuƒWƒFƒNƒg‚ÆƒCƒxƒ“ƒg‚ÌŠÇ—‚ÆÄ¶
+	/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã‚¤ãƒ™ãƒ³ãƒˆã®ç®¡ç†ã¨å†ç”Ÿ
 	/// </summary>
 	class EventPlayer
 	{
 	private:
 
-		// EventObject‚Ìshared_ptr
+		// EventObjectã®shared_ptr
 		using ObjectPtr = std::shared_ptr<EventObject>;
 
 	private:
 
-		// •`‰æ”ÍˆÍ
+		// æç”»ç¯„å›²
 		const MSRenderTexture m_render;
 
-		// “Ç’†‚ÌƒCƒxƒ“ƒg
+		// èª­è¾¼ä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆ
 		TOMLTableArrayIterator m_now;
 
-		// “Ç’†‚ÌƒCƒxƒ“ƒg‚Ìend‚ÌƒCƒeƒŒ[ƒ^
+		// èª­è¾¼ä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆã®endã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		TOMLTableArrayIterator m_end;
 
-		// ƒCƒxƒ“ƒg‚ÌTOMLƒtƒ@ƒCƒ‹
+		// ã‚¤ãƒ™ãƒ³ãƒˆã®TOMLãƒ•ã‚¡ã‚¤ãƒ«
 		const TOMLReader m_eventToml;
 
-		// •¶š—ñ‚©‚çƒIƒuƒWƒFƒNƒg‚Ìì¬‚Ö‚Ì•R‚Ã‚¯
+		// æ–‡å­—åˆ—ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã¸ã®ç´ã¥ã‘
 		std::unordered_map<String, std::function<ObjectPtr(const TOMLValue&)>> m_generateObjectMap;
 
-		// ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆ
 		std::map<String, ObjectPtr> m_objectList;
 
-		// ‘Ò‚¿ó‘Ô‚ÌƒIƒuƒWƒFƒNƒg
+		// å¾…ã¡çŠ¶æ…‹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		std::list<ObjectPtr> m_waitingObjectList;
 
-		// •ÊƒCƒxƒ“ƒg‚É‘JˆÚ‚·‚éğŒ‚Ìƒtƒ‰ƒO‚ÌƒŠƒXƒg
+		// åˆ¥ã‚¤ãƒ™ãƒ³ãƒˆã«é·ç§»ã™ã‚‹æ¡ä»¶ã®ãƒ•ãƒ©ã‚°ã®ãƒªã‚¹ãƒˆ
 		std::unordered_map<String, bool> m_jampFlagMap;
 
 	public:
 
-		/// <param name="eventFileName"> ƒCƒxƒ“ƒg‚Ìƒtƒ@ƒCƒ‹–¼ </param>
-		/// <param name="drawSize"> •`‰æ”ÍˆÍ </param>
+		/// <param name="eventFileName"> ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«å </param>
+		/// <param name="drawSize"> æç”»ç¯„å›² </param>
 		EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet);
 
 		/// <summary>
-		/// “ü—Í
+		/// å…¥åŠ›
 		/// </summary>
-		void input();
+		/// <param name="cursorPos"> ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ </cursorPos>
+		void input(const Vec2& cursorPos);
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
-		/// <param name=boardRequest"> ƒ{[ƒh‚Ö‚ÌƒŠƒNƒGƒXƒg </param>
+		/// <param name=boardRequest"> ãƒœãƒ¼ãƒ‰ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ </param>
 		void update(BoardRequest& boardRequest);
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
-		/// <param name="drawPos"> •`‰æÀ•W </param>
+		/// <param name="drawPos"> æç”»åº§æ¨™ </param>
 		void draw(const Point& drawPos) const;
 
 	private:
 
 		/// <summary>
-		/// ƒCƒxƒ“ƒg‚ÌÀs
+		/// ã‚¤ãƒ™ãƒ³ãƒˆã®å®Ÿè¡Œ
 		/// </summary>
-		/// <param name="nowEvent"> Œ»İ“Ç‚İ‚İ’†‚ÌƒCƒxƒ“ƒg </param>
-		/// <param name="boardRequest"> ƒ{[ƒhŠO‚Ö‚ÌƒŠƒNƒGƒXƒg </param>
-		/// <returns> true ‚Ì‚Æ‚«ƒCƒxƒ“ƒg‚ği‚ß‚é , jampˆÈŠO‚ÍŠî–{“I‚Étrue‚ğİ’è </returns>
+		/// <param name="nowEvent"> ç¾åœ¨èª­ã¿è¾¼ã¿ä¸­ã®ã‚¤ãƒ™ãƒ³ãƒˆ </param>
+		/// <param name="boardRequest"> ãƒœãƒ¼ãƒ‰å¤–ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ </param>
+		/// <returns> true ã®ã¨ãã‚¤ãƒ™ãƒ³ãƒˆã‚’é€²ã‚ã‚‹ , jampä»¥å¤–ã¯åŸºæœ¬çš„ã«trueã‚’è¨­å®š </returns>
 		bool playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest);
 
 		/// <summary>
-		/// ƒIƒuƒWƒFƒNƒg‚Ì¶¬‚ÌŠÖ”‚Ì“o˜^
+		/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆã®é–¢æ•°ã®ç™»éŒ²
 		/// </summary>
 		void setGenerateObjectMap();
 
 		/// <summary>
-		/// Record‚Æ“¯Šú‚·‚éjampFlag‚ÌƒŠƒXƒg‚Ìæ“¾
+		/// Recordã¨åŒæœŸã™ã‚‹jampFlagã®ãƒªã‚¹ãƒˆã®å–å¾—
 		/// </summary>
-		/// <returns> Record‚Æ“¯Šú‚·‚éjampFlag‚ÌƒŠƒXƒg </returns>
+		/// <returns> Recordã¨åŒæœŸã™ã‚‹jampFlagã®ãƒªã‚¹ãƒˆ </returns>
 		static const Array<String>& recordJampFlagNameList();
 
 	};
