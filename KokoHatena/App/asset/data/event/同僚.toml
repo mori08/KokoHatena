@@ -1,0 +1,15 @@
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "act"
+    name = "ui_text"
+    [init.param]
+        type = "message"
+        text = """
+今どこで何してる？
+研究はもういいのか？
+連絡をくれ。"""
+        speaker = false

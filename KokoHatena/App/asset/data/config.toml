@@ -70,7 +70,7 @@
     name = "メッセージ"
     size = {x=400,y=400}
     iconOrder = 0
-    speakerNameList  = ["上司", "同僚", "教授"]
+    speakerNameList  = ["教授", "上司", "同僚"]
     speakerNamePos   = {x=10,y=0}
     speakerNameWidth = 100
     talkPageColor     = {rgb=0.5}
@@ -82,7 +82,7 @@
     ]
 
 [MessageEventObject]
-    fontName = "15"
+    fontName = "13"
     maxTextRectWidth = 180
     widthSpread = 10
     postX = 20

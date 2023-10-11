@@ -1,0 +1,25 @@
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "act"
+    name = "ui_text"
+    [init.param]
+        type = "message"
+        text = """
+君の研究計画を確認させてもらった。
+これレベルでは予算が降りるとは思えない。
+やり直せ。"""
+        speaker = false
+
+[[init]]
+    event = "act"
+    name = "ui_text"
+    [init.param]
+        type = "message"
+        text = """
+分かりました。
+来月までに修正案を提出します。"""
+        speaker = true

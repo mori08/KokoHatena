@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include"../Board.hpp"
 #include"EventPlayer/EventPlayer.hpp"
 
@@ -8,14 +8,20 @@ namespace Kokoha
 	{
 	private:
 
-		// ˜b‚µ‘Šè‚ÌƒŠƒXƒg
+		// è©±ã—ç›¸æ‰‹ã®ãƒªã‚¹ãƒˆ
 		Array<String> m_speakerNameList;
 
-		// ‘I‘ğ’†‚Ì˜b‚µ‘Šè (‰½‚à‘I‘ğ‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚Í none)
+		// é¸æŠä¸­ã®è©±ã—ç›¸æ‰‹ (ä½•ã‚‚é¸æŠã—ã¦ã„ãªã„ã¨ãã¯ none)
 		Optional<String> m_selectedSpeakerName;
 
-		// ˜b‚µ‘Šè‚²‚Æ‚ÌEventPlayer
+		// è©±ã—ç›¸æ‰‹ã”ã¨ã®EventPlayer
 		std::unordered_map<String, EventPlayer> m_eventPlayerMap;
+
+		// æ—¥ä»˜
+		const int32 m_recordDay;
+
+		// æœªèª­ã®è©±è€…
+		std::set<String> m_notReadSpeakerNameSet;
 
 	public:
 
@@ -34,10 +40,10 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// ˜b‚µ‘Šè‚ğ•\¦‚·‚é”ÍˆÍ
+		/// è©±ã—ç›¸æ‰‹ã‚’è¡¨ç¤ºã™ã‚‹ç¯„å›²
 		/// </summary>
-		/// <param name="index"> ”Ô† </param>
-		/// <returns> ˜b‚µ‘Šè‚ğ•\¦‚·‚é </returns>
+		/// <param name="index"> ç•ªå· </param>
+		/// <returns> è©±ã—ç›¸æ‰‹ã‚’è¡¨ç¤ºã™ã‚‹ </returns>
 		static Rect getSpeakerNameRect(int32 index);
 
 	};

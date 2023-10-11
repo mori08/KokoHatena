@@ -1,0 +1,37 @@
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "act"
+    name = "ui_text"
+    [init.param]
+        type = "message"
+        text = """
+今、新しいロボットの研究をしている。
+ココロを持ったロボットの研究だ。
+できれば君にも手伝って欲しい。
+戻ってきてくれないか？"""
+        speaker = false
+
+[[init]]
+    event = "act"
+    name = "ui_text"
+    [init.param]
+        type = "message"
+        text = """
+すみません。
+別の研究をします。
+これ以上ココロの研究には付き合いきれません。"""
+        speaker = true
+
+[[init]]
+    event = "act"
+    name = "ui_text"
+    [init.param]
+        type = "message"
+        text = """
+そうか...
+今までありがとう。"""
+        speaker = false
