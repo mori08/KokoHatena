@@ -10,23 +10,41 @@ namespace Kokoha
 			, BoardState::IS_HIDING
 		)
 		, m_selectedSpeakerName(none)
+		, m_recordDay(recordSet.getRecord(U"Day"))
 	{
 		static const Array<String> SPEAKER_NAME_LIST = Config::getArray<String>(U"MessageBoard.speakerNameList");
 		m_speakerNameList = SPEAKER_NAME_LIST;
 
 		for (const auto& speakerName : m_speakerNameList)
 		{
-			// TODO: Recordの内容に応じてEventPlayerに初期化
 			m_eventPlayerMap.try_emplace
 			(
 				speakerName,
 				EventPlayer
 				(
-					U"asset/data/event/test.toml", 
+					U"asset/data/event/" + speakerName + U".toml",
 					Size(size().x - getSpeakerNameRect(0).w, size().y),
 					recordSet
 				)
 			);
+
+			m_notReadSpeakerNameSet.insert(speakerName);
+		}
+
+		m_eventPlayerMap.try_emplace
+		(
+			U"ロボット",
+			EventPlayer
+			(
+				U"asset/data/event/day" + ToString(m_recordDay) + U".toml",
+				Size(size().x - getSpeakerNameRect(0).w, size().y),
+				recordSet
+			)
+		);
+
+		if (m_recordDay != 0)
+		{
+			m_speakerNameList.emplace_back(U"ロボット");
 		}
 	}
 
@@ -42,7 +60,18 @@ namespace Kokoha
 		{
 			if (MouseL.down() && getSpeakerNameRect((int32)index).contains(cursorPosInBoard()))
 			{
-				m_selectedSpeakerName = m_speakerNameList[index];
+				const String speakerName = m_speakerNameList[index];
+				m_selectedSpeakerName = speakerName;
+
+				if (m_notReadSpeakerNameSet.count(speakerName))
+				{
+					m_notReadSpeakerNameSet.erase(speakerName);
+
+					if (m_recordDay == 0 && m_notReadSpeakerNameSet.empty())
+					{
+						m_speakerNameList.emplace_back(U"ロボット");
+					}
+				}
 			}
 		}
 
