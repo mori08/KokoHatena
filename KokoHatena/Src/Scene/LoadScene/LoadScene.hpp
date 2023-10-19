@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include<future>
 #include"../Scene.hpp"
@@ -11,13 +11,15 @@ namespace Kokoha
 
 		std::future<SceneName> m_loadThread;
 
+		SceneName nextSceneName;
+
 	public:
 
 		LoadScene(const InitData& init, std::function<SceneName()> loadFunc);
 
 		/// <remarks>
-		/// ‚±‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğg—p‚·‚éê‡
-		/// •K‚¸setLoadThread‚ÅŠÖ”‚ğİ’è‚·‚é‚±‚Æ
+		/// ã“ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
+		/// å¿…ãšsetLoadThreadã§é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã“ã¨
 		/// </remarks>
 		LoadScene(const InitData& init);
 
@@ -36,9 +38,9 @@ namespace Kokoha
 	protected:
 
 		/// <summary>
-		/// ƒXƒŒƒbƒh‚ÉŠÖ”‚Ìİ’è
+		/// ã‚¹ãƒ¬ãƒƒãƒ‰ã«é–¢æ•°ã®è¨­å®š
 		/// </summary>
-		/// <param name="loadFunc"> ŠÖ” </param>
+		/// <param name="loadFunc"> é–¢æ•° </param>
 		void setLoadThread(std::function<SceneName()> loadFunc);
 
 	};

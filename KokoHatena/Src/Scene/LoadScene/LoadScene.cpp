@@ -1,14 +1,30 @@
-#include"LoadScene.hpp"
+ï»¿#include"LoadScene.hpp"
 #include"../../Config/Config.hpp"
 #include"../../MyLibrary/MyLibrary.hpp"
+
+namespace
+{
+	bool debugMode()
+	{
+		const static bool rtn = Kokoha::Config::get<bool>(U"LoadScene.debugMode");
+		return rtn;
+	}
+}
 
 namespace Kokoha
 {
 	LoadScene::LoadScene(const InitData& init, std::function<SceneName()> loadFunc)
 		: IScene(init)
 	{
-		// ƒXƒŒƒbƒh‚ÌŠJn
-		m_loadThread = std::async(std::launch::async, loadFunc);
+		if (debugMode)
+		{
+			nextSceneName = loadFunc();
+		}
+		else
+		{
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–‹å§‹
+			m_loadThread = std::async(std::launch::async, loadFunc);
+		}
 	}
 
 
@@ -25,10 +41,16 @@ namespace Kokoha
 
 	void LoadScene::update()
 	{
-		// ƒXƒŒƒbƒh‚Ìó‹µ‚ÌXV
+		if (debugMode)
+		{
+			changeScene(nextSceneName);
+			return;
+		}
+
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã®çŠ¶æ³ã®æ›´æ–°
 		auto status = m_loadThread.wait_for(std::chrono::microseconds(0));
 
-		// ƒXƒŒƒbƒh‚ªI—¹‚µ‚Ä‚¢‚½‚çƒV[ƒ“‘JˆÚ
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ã¦ã„ãŸã‚‰ã‚·ãƒ¼ãƒ³é·ç§»
 		if (status != std::future_status::timeout)
 		{
 			auto sceneName = m_loadThread.get();
@@ -40,17 +62,17 @@ namespace Kokoha
 
 	void LoadScene::draw() const
 	{
-		// ‰‰o‚Ì‰~
+		// æ¼”å‡ºã®å††
 		static const Circle LOADING_CIRCLE       = Config::get<Circle>(U"LoadScene.loadingCircle");
-		// ‰‰o‚ÌŒÊ‚Ì‘¾‚³
+		// æ¼”å‡ºã®å¼§ã®å¤ªã•
 		static const double LOADING_ARC_THICNESS = Config::get<double>(U"LoadScene.loadingArcThicness");
-		// ‰‰o‚ÌŒÊ‚Ì’·‚³
+		// æ¼”å‡ºã®å¼§ã®é•·ã•
 		static const double LOADING_ARC_LENGTH   = Config::get<double>(U"LoadScene.loadingArcLength");
-		// ¬‚³‚È‰~‚ÌŒÂ”
+		// å°ã•ãªå††ã®å€‹æ•°
 		static const int32  SMALL_CIRCLE_NUM     = Config::get<int32 >(U"LoadScene.smallCircleNum");
-		// ƒeƒLƒXƒg‚ğ•\¦‚·‚éÀ•W
+		// ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹åº§æ¨™
 		static const Point  TEXT_POS             = Config::get<Point >(U"LoadScene.textPos");
-		// Loading‚ÌŒã‚É‚Â‚¯‚é . ‚Ì”‚ÌÅ‘å’l
+		// Loadingã®å¾Œã«ã¤ã‘ã‚‹ . ã®æ•°ã®æœ€å¤§å€¤
 		static const int32  MAX_DOT_NUM          = Config::get<int32 >(U"LoadScene.maxDotNum");
 
 		for (int32 i = 0; i < SMALL_CIRCLE_NUM; ++i)
@@ -81,7 +103,14 @@ namespace Kokoha
 
 	void LoadScene::setLoadThread(std::function<SceneName()> loadFunc)
 	{
-		// ƒXƒŒƒbƒh‚ÌŠJn
-		m_loadThread = std::async(std::launch::async, loadFunc);
+		if (debugMode())
+		{
+			nextSceneName = loadFunc();
+		}
+		else
+		{
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–‹å§‹
+			m_loadThread = std::async(std::launch::async, loadFunc);
+		}
 	}
 }
