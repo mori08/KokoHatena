@@ -11,22 +11,39 @@ namespace Kokoha
 		// SecurityBoardで選択できる選択肢
 		class Select
 		{
+		private:
+
+			// ボタンの範囲
+			Rect m_rect;
+
 		public:
 
 			// 選択肢として表示する文字列
-			String text;
+			const String text;
 
 			// 選択されたときにBoardへ送る命令
-			std::list<std::pair<BoardRole, String>> toBoard;
+			const std::list<std::pair<BoardRole, String>> toBoard;
 
 		public:
 
 			/// @param t text
 			/// @param b toBoard
-			Select(const String& t, std::list<std::pair<BoardRole, String>>& b)
+			Select(const String& t, const std::list<std::pair<BoardRole, String>>& b)
 				: text(t)
 				, toBoard(b)
 			{}
+
+			/// <summary> ボタンの範囲の設定 </summary>
+			/// <param name="center"> 中心座標 </param>
+			void setRect(const Point& center);
+
+			/// <summary> 描画 </summary>
+			void draw() const;
+
+			/// <summary> クリックされたか示す </summary>
+			/// <param name="cursorPos"> カーソルの座標 </param>
+			/// <returns> クリックされたとき true , そうでないとき false </returns>
+			bool clicked(const Point& cursorPos) const;
 		};
 
 	private:
@@ -36,6 +53,9 @@ namespace Kokoha
 
 		// 選択肢
 		std::list<Select> m_selectList;
+
+		// 他Boardへ送る命令
+		Optional<BoardRequest> m_requestOpt;
 
 	public:
 
