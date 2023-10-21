@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../ButtonSet/Button/Button.hpp"
 #include "../MyLibrary/SliceTexture/SliceTexture.hpp"
@@ -6,14 +6,14 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// ConfigƒNƒ‰ƒX
-	/// ’è”‚ÌŠÇ— (App/asset/data/config.toml)
+	/// Configã‚¯ãƒ©ã‚¹
+	/// å®šæ•°ã®ç®¡ç† (App/asset/data/config.toml)
 	/// </summary>
 	class Config
 	{
 	private:
 
-		// İ’èƒtƒ@ƒCƒ‹
+		// è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
 		const TOMLReader m_toml;
 
 	public:
@@ -35,6 +35,11 @@ namespace Kokoha
 
 		template<typename Type>
 		static Array<Type> getArray(const String& name);
+
+		static const TOMLValue toml()
+		{
+			return instance().m_toml;
+		}
 
 	};
 

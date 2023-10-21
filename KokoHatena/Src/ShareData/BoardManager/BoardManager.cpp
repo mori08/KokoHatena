@@ -1,6 +1,7 @@
-#include"BoardManager.hpp"
+ï»¿#include"BoardManager.hpp"
 #include"Board/MessageBoard/MessageBoard.hpp"
 #include"Board/AccessBoard/AccessBoard.hpp"
+#include"Board/SecurityBoard/SecurityBoard.hpp"
 #include"../../Config/Config.hpp"
 #include"../../MyLibrary/MyLibrary.hpp"
 
@@ -17,29 +18,30 @@ namespace Kokoha
 
 		m_boardList.emplace_back(std::make_shared<MessageBoard>(recordSet));
 		m_boardList.emplace_back(std::make_shared<AccessBoard>());
+		m_boardList.emplace_back(std::make_shared<SecurityBoard>(recordSet));
 	}
 
 	Optional<SceneName> BoardManager::update(RecordSet& recordSet)
 	{
-		// ƒAƒCƒRƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—
+		// ã‚¢ã‚¤ã‚³ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®å‡¦ç†
 		for (auto itr = m_boardList.begin(); itr != m_boardList.end(); ++itr)
 		{
 			if (!(*itr)->onIconClicked()) { continue; }
 
 			const bool isTop = (itr == m_boardList.begin() && (*itr)->state() == BoardState::IS_DISPLAYED);
-			if (isTop) // ƒ{[ƒh‚ªæ“ª‚Å•\¦’†‚Ì‚Æ‚«
+			if (isTop) // ãƒœãƒ¼ãƒ‰ãŒå…ˆé ­ã§è¡¨ç¤ºä¸­ã®ã¨ã
 			{
-				hideBoard((*itr)->role()); // ”ñ•\¦‚É‚·‚é
+				hideBoard((*itr)->role()); // éè¡¨ç¤ºã«ã™ã‚‹
 			}
-			else // ƒ{[ƒh‚ªæ“ª‚É‚È‚¢‚Æ‚«
+			else // ãƒœãƒ¼ãƒ‰ãŒå…ˆé ­ã«ãªã„ã¨ã
 			{
-				displayBoard((*itr)->role()); // æ“ª‚É•\¦‚·‚é
+				displayBoard((*itr)->role()); // å…ˆé ­ã«è¡¨ç¤ºã™ã‚‹
 			}
 
 			break;
 		}
 
-		// ƒ{[ƒh‚ğƒNƒŠƒbƒN‚µ‚½‚Æ‚«æ“ª‚ÖˆÚ“®‚³‚¹‚é
+		// ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ãŸã¨ãå…ˆé ­ã¸ç§»å‹•ã•ã›ã‚‹
 		for (const auto& boardPtr: m_boardList)
 		{
 			if (!boardPtr->mouseLeftDown()) { continue; }
@@ -49,21 +51,21 @@ namespace Kokoha
 			break;
 		}
 
-		// æ“ªƒ{[ƒh‚Ì“ü—Í‚ğó‚¯•t‚¯‚é
+		// å…ˆé ­ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã‚‹
 		if (true 
 			&& !m_boardList.empty()
 			&& m_boardList.front()->state() == BoardState::IS_DISPLAYED
 			&& m_boardList.front()->input())
 		{
-			// input‚Ì–ß‚è’l‚ªtrue‚Ì‚Æ‚«Board‚ğ‰B‚·
+			// inputã®æˆ»ã‚Šå€¤ãŒtrueã®ã¨ãBoardã‚’éš ã™
 			hideBoard(m_boardList.front()->role());
 		}
 
-		// •\¦’†‚Ìƒ{[ƒh‚ÌXV
-		std::list<std::pair<BoardRole, String>> boardRequestList; // ‘¼Board‚Ö‚Ì–½—ß‚ÌƒŠƒXƒg
+		// è¡¨ç¤ºä¸­ã®ãƒœãƒ¼ãƒ‰ã®æ›´æ–°
+		std::list<std::pair<BoardRole, String>> boardRequestList; // ä»–Boardã¸ã®å‘½ä»¤ã®ãƒªã‚¹ãƒˆ
 		for (auto& board : m_boardList)
 		{
-			BoardRequest request; // Board‚©‚çŠO•”‚Ö‚ÌƒŠƒNƒGƒXƒg
+			BoardRequest request; // Boardã‹ã‚‰å¤–éƒ¨ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 			board->update(request);
 
 			// Board
@@ -79,7 +81,7 @@ namespace Kokoha
 			if (Optional<SceneName> sceneName = request.toScene) { return sceneName.value(); }
 		}
 		
-		// ‘¼ƒ{[ƒh‚Ö‚Ì–½—ß
+		// ä»–ãƒœãƒ¼ãƒ‰ã¸ã®å‘½ä»¤
 		for (const std::pair<BoardRole, String>& boardRequest : boardRequestList)
 		{
 			displayBoard(boardRequest.first, boardRequest.second);
@@ -90,17 +92,17 @@ namespace Kokoha
 
 	void BoardManager::draw() const
 	{
-		// ”wŒi‚Ì•\¦
+		// èƒŒæ™¯ã®è¡¨ç¤º
 		static const ColorF BACKGROUND_COLOR = Config::get<ColorF>(U"DesktopScene.backgroundColor");
 		Scene::Rect().draw(BACKGROUND_COLOR);
 
-		// •\¦’†‚Ìƒ{[ƒh‚Ì•`‰æ
+		// è¡¨ç¤ºä¸­ã®ãƒœãƒ¼ãƒ‰ã®æç”»
 		for (auto itr = m_boardList.rbegin(); itr != m_boardList.rend(); ++itr)
 		{
 			(*itr)->draw();
 		}
 
-		// ƒAƒCƒRƒ“‚Ì•`‰æ
+		// ã‚¢ã‚¤ã‚³ãƒ³ã®æç”»
 		static const int32 ICON_BAR_HEIGHT = Config::get<int32>(U"Board.iconSize.y");
 		const Rect iconBar(0, Scene::Height() - ICON_BAR_HEIGHT, Scene::Width(), ICON_BAR_HEIGHT);
 		iconBar.draw(MyBlack);
@@ -123,44 +125,44 @@ namespace Kokoha
 
 	void BoardManager::displayBoard(const BoardRole& role, const String& requestText)
 	{
-		// æ“ª‚ÉˆÚ“®‚³‚¹‚éƒCƒeƒŒ[ƒ^
+		// å…ˆé ­ã«ç§»å‹•ã•ã›ã‚‹ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		auto boardItr = findBoardItr(role);
 
-		// ƒ{[ƒh‚ªŒ©‚Â‚©‚ç‚È‚¢‚Æ‚«ƒGƒ‰[
+		// ãƒœãƒ¼ãƒ‰ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã¨ãã‚¨ãƒ©ãƒ¼
 		if (boardItr == m_boardList.end())
 		{
 			throw Error(U"Faild to find Board");
 		}
 
-		// Å‘O–Ê‚ÉˆÚ“®
+		// æœ€å‰é¢ã«ç§»å‹•
 		auto boardPtr = *boardItr;
 		m_boardList.erase(boardItr);
 		m_boardList.emplace_front(boardPtr);
 
-		// æ“ª‚Ìƒ{[ƒh‚Ìó‘Ô‚ğIS_DISPLAYED‚É•ÏX
+		// å…ˆé ­ã®ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹ã‚’IS_DISPLAYEDã«å¤‰æ›´
 		m_boardList.front()->display();
 
-		// æ“ª‚Ìƒ{[ƒh‚Ìó‘Ô‚É–½—ß‚ğo‚·
+		// å…ˆé ­ã®ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹ã«å‘½ä»¤ã‚’å‡ºã™
 		m_boardList.front()->receiveRequest(requestText);
 	}
 
 	void BoardManager::hideBoard(const BoardRole& role)
 	{
-		// ––”ö‚ÉˆÚ“®‚³‚¹‚éƒCƒeƒŒ[ƒ^
+		// æœ«å°¾ã«ç§»å‹•ã•ã›ã‚‹ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		auto boardItr = findBoardItr(role);
 
-		// ƒ{[ƒh‚ªŒ©‚Â‚©‚ç‚È‚¢‚Æ‚«ƒGƒ‰[
+		// ãƒœãƒ¼ãƒ‰ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã¨ãã‚¨ãƒ©ãƒ¼
 		if (boardItr == m_boardList.end())
 		{
 			throw Error(U"Faild to find Board");
 		}
 
-		// Å‘O–Ê‚ÉˆÚ“®
+		// æœ€å‰é¢ã«ç§»å‹•
 		auto boardPtr = *boardItr;
 		m_boardList.erase(boardItr);
 		m_boardList.emplace_back(boardPtr);
 
-		// ––”ö‚Ìƒ{[ƒh‚Ìó‘Ô‚ğIS_HIDING‚É•ÏX
+		// æœ«å°¾ã®ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹ã‚’IS_HIDINGã«å¤‰æ›´
 		m_boardList.back()->hide();
 	}
 }

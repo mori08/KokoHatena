@@ -25,6 +25,7 @@
     smallCircleNum     = 8
     textPos            = {x=690,y=530}
     maxDotNum          = 4
+    debugMode          = true
 
 [SelectRecordScene]
     drawPos           = {x=300,y=50}
@@ -121,6 +122,28 @@
                 {t=0.2,x=3,y=1}
             ]
             loop = false
+
+[SecurityBoard]
+    name = "セキュリティ"
+    size = {x=400,y=100}
+    iconOrder = 2
+    textPos = {x=200, y=30}
+    selectSize = {x=90, y=30}
+    selectY = 70
+    [SecurityBoard.default]
+        text = "PCを保護しています"
+    [SecurityBoard.test]
+        text = "テスト用"
+        [[SecurityBoard.test.select]]
+            text = "はい"
+            toBoard =[
+                {role="security", request="default"}
+            ]
+        [[SecurityBoard.test.select]]
+            text = "いいえ"
+            toBoard =[
+                {role="security", request="default"}
+            ]
 
 [AccessBoard]
     name = "アクセス"
