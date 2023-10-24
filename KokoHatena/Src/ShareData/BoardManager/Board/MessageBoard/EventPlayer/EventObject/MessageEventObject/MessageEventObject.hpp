@@ -99,7 +99,7 @@ namespace Kokoha
 			// 選択肢
 			Array<Post> m_selectAry;
 
-			// jamp用のフラグ名
+			// jump用のフラグ名
 			HashTable<String, String> m_flagNameMap;
 
 			// 表示する座標

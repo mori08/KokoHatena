@@ -1,4 +1,4 @@
-#include "TitleScene.hpp"
+ï»¿#include "TitleScene.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
 #include "../../MyPixelShader/MyPixelShader.hpp"
 #include "../../Config/Config.hpp"
@@ -6,8 +6,8 @@
 namespace
 {
 	/*
-	* ’è”ƒoƒbƒtƒ@ (PS_1)
-	* RGB‚Ì‚¸‚ê
+	* å®šæ•°ãƒãƒƒãƒ•ã‚¡ (PS_1)
+	* RGBã®ãšã‚Œ
 	*/
 	struct Shift
 	{
@@ -17,7 +17,7 @@ namespace
 		Float2 unusedB = {};
 	};
 
-	// ƒ{ƒ^ƒ“ƒTƒCƒY
+	// ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 	const Size& buttonSize()
 	{
 		static const Size& size 
@@ -25,7 +25,7 @@ namespace
 		return size;
 	}
 
-	// NEWGAMEƒ{ƒ^ƒ“
+	// NEWGAMEãƒœã‚¿ãƒ³
 	const Kokoha::Button& newGameButton()
 	{
 		static const Kokoha::Button button
@@ -33,7 +33,7 @@ namespace
 		return button;
 	}
 
-	// LoadGameƒ{ƒ^ƒ“
+	// LoadGameãƒœã‚¿ãƒ³
 	const Kokoha::Button& loadGameButton()
 	{
 		static const Kokoha::Button button
@@ -41,7 +41,7 @@ namespace
 		return button;
 	}
 
-	// ExitGameƒ{ƒ^ƒ“
+	// ExitGameãƒœã‚¿ãƒ³
 	const Kokoha::Button& exitGameButton()
 	{
 		static const Kokoha::Button button
@@ -58,15 +58,15 @@ namespace Kokoha
 		, m_cursorLineLength(Scene::Size().x)
 		, m_cursorLineAlpha(0)
 	{
-		// ƒ{ƒ^ƒ“‚Ì–¼‘O
+		// ãƒœã‚¿ãƒ³ã®åå‰
 		m_buttonSet.registerButton(newGameButton());
 		m_buttonSet.registerButton(loadGameButton());
 		m_buttonSet.registerButton(exitGameButton());
 		m_buttonSet.setSelectedButton(loadGameButton().getName());
 
-		m_buttonSet.setOnClickFunc(newGameButton().getName(), []() { Print << U"NewGameƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½"; });
+		m_buttonSet.setOnClickFunc(newGameButton().getName(), []() { Print << U"NewGameãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸ"; });
 		m_buttonSet.setOnClickFunc(loadGameButton().getName(), [this]() { changeScene(SceneName::LOAD_RECORD); });
-		m_buttonSet.setOnClickFunc(exitGameButton().getName(), []() { Print << U"ExitGameƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½"; });
+		m_buttonSet.setOnClickFunc(exitGameButton().getName(), []() { Print << U"ExitGameãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸ"; });
 	}
 
 	void TitleScene::update()
@@ -83,10 +83,10 @@ namespace Kokoha
 
 	void TitleScene::updateFadeOut(double)
 	{
-		// ƒJ[ƒ\ƒ‹‚ÌˆÚ“®‚Ì”ä—¦
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®ç§»å‹•ã®æ¯”ç‡
 		static const double CURSOR_MOVE_RATE = Config::get<double>(U"TitleScene.cursorMoveRate");
 
-		// ƒJ[ƒ\ƒ‹‚Ì•‚Ì•ÏX
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®å¹…ã®å¤‰æ›´
 		internalDividingPoint
 		(
 			m_cursorWidth,
@@ -94,7 +94,7 @@ namespace Kokoha
 			CURSOR_MOVE_RATE
 		);
 
-		// ƒJ[ƒ\ƒ‹‚Ì‰¡‚Éo‚éü‚Ì’·‚³‚Ì•ÏX
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®æ¨ªã«å‡ºã‚‹ç·šã®é•·ã•ã®å¤‰æ›´
 		internalDividingPoint
 		(
 			m_cursorLineLength,
@@ -102,7 +102,7 @@ namespace Kokoha
 			CURSOR_MOVE_RATE
 		);
 
-		// ƒJ[ƒ\ƒ‹‚Ì‰¡‚Éo‚éü‚Ì•s“§–¾“x‚Ì•ÏX
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®æ¨ªã«å‡ºã‚‹ç·šã®ä¸é€æ˜åº¦ã®å¤‰æ›´
 		internalDividingPoint
 		(
 			m_cursorLineAlpha,
@@ -122,32 +122,32 @@ namespace Kokoha
 
 	void TitleScene::drawLogo() const
 	{
-		// ƒƒS‚ğ•`‰æ‚·‚éÀ•W
+		// ãƒ­ã‚´ã‚’æç”»ã™ã‚‹åº§æ¨™
 		static const Point LOGO_POS = Config::get<Point>(U"TitleScene.logoPos");
-		// ƒVƒtƒg‚Ì•p“x
+		// ã‚·ãƒ•ãƒˆã®é »åº¦
 		static const double SHIFT_FREQUENCY = Config::get<double>(U"TitleScene.shiftFrequency");
-		// ƒVƒtƒg‚Ì—Ê
+		// ã‚·ãƒ•ãƒˆã®é‡
 		static const double SHIFT_LENGTH = Config::get<double>(U"TitleScene.shiftLength");
 
 		{
-			// ’è”ƒoƒbƒtƒ@‚Ìİ’è
+			// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®è¨­å®š
 			ConstantBuffer<Shift> cb;
 			cb->g_rShift = makeShift(SHIFT_FREQUENCY, SHIFT_LENGTH);
 			cb->g_gShift = makeShift(SHIFT_FREQUENCY, SHIFT_LENGTH);
 			cb->g_bShift = makeShift(SHIFT_FREQUENCY, SHIFT_LENGTH);
 			Graphics2D::SetConstantBuffer(ShaderStage::Pixel, 1, cb);
 
-			// ƒVƒF[ƒ_‚ÌŠJn
+			// ã‚·ã‚§ãƒ¼ãƒ€ã®é–‹å§‹
 			ScopedCustomShader2D shader(MyPixelShader::get(U"TitleLogo"));
 
-			// ƒƒS‚Ì•`‰æ
+			// ãƒ­ã‚´ã®æç”»
 			TextureAsset(U"Logo").drawAt(LOGO_POS);
 		}
 	}
 
 	void TitleScene::drawButton() const
 	{
-		// ƒJ[ƒ\ƒ‹‚Ì•`‰æ
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®æç”»
 		getRectFromCenter
 		(
 			m_buttonSet.getSelectedButton().getRegion().center().asPoint(),
@@ -159,7 +159,7 @@ namespace Kokoha
 			Size((int32)m_cursorLineLength, 1)
 		).draw(ColorF(MyWhite, m_cursorLineAlpha));
 
-		// ƒ{ƒ^ƒ“‚Ì•`‰æ
+		// ãƒœã‚¿ãƒ³ã®æç”»
 		for (const auto& button : m_buttonSet.getButtonList())
 		{
 			Color color = (button.first == m_buttonSet.getSelectedButton().getName())

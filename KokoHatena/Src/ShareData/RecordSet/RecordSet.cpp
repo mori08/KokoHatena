@@ -1,19 +1,19 @@
-#include "RecordSet.hpp"
+ï»¿#include "RecordSet.hpp"
 #include "../../Config/Config.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
 
 namespace
 {
-	constexpr int32 BASE    = 0x10;        // ˆÃ†‰»‚ÌŠî€‚É‚È‚é’l(‰½i”‚ÅˆÃ†‰»‚·‚é‚©)
-	constexpr int32 MUL     = BASE - 1;    // Š|‚¯Z‚Ì‚Æ‚«‚Ì‚©‚¯‚é”
-	constexpr int32 HALF    = BASE / 2;    // Šî€’l‚Ì”¼•ª
-	constexpr int32 MOD     = BASE * BASE; // —]‚è‚ğ‚Æ‚é‚Æ‚«‚ÌŠ„‚é” 
-	constexpr int32 MAX_KEY = MOD - 1;     // Œ®‚ÌÅ‘å’l
+	constexpr int32 BASE    = 0x10;        // æš—å·åŒ–ã®åŸºæº–ã«ãªã‚‹å€¤(ä½•é€²æ•°ã§æš—å·åŒ–ã™ã‚‹ã‹)
+	constexpr int32 MUL     = BASE - 1;    // æ›ã‘ç®—ã®ã¨ãã®ã‹ã‘ã‚‹æ•°
+	constexpr int32 HALF    = BASE / 2;    // åŸºæº–å€¤ã®åŠåˆ†
+	constexpr int32 MOD     = BASE * BASE; // ä½™ã‚Šã‚’ã¨ã‚‹ã¨ãã®å‰²ã‚‹æ•° 
+	constexpr int32 MAX_KEY = MOD - 1;     // éµã®æœ€å¤§å€¤
 
-	// ˆÃ†•¶‚É‚¨‚¯‚é1ƒf[ƒ^‚Ì‚Æ‚é•¶š”
+	// æš—å·æ–‡ã«ãŠã‘ã‚‹1ãƒ‡ãƒ¼ã‚¿ã®ã¨ã‚‹æ–‡å­—æ•°
 	constexpr int32 ONE_DATA_LENGTH = 2;
 
-	// Œ…‚Ì‡Œv’l
+	// æ¡ã®åˆè¨ˆå€¤
 	int32 totalDigit = 0;
 }
 
@@ -29,36 +29,36 @@ namespace Kokoha
 
 	String RecordSet::encryption() const
 	{
-		// ˆÃ†—p‚ÌƒŠƒXƒg
+		// æš—å·ç”¨ã®ãƒªã‚¹ãƒˆ
 		std::list<int32> dataList;
 
-		// ŠeƒŒƒR[ƒh‚©‚ç 0,1 ‚ÌƒŠƒXƒg‚ğ’Ç‰Á
+		// å„ãƒ¬ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ 0,1 ã®ãƒªã‚¹ãƒˆã‚’è¿½åŠ 
 		for (const auto& record : m_recordMap)
 		{
 			record.second.addRecordToEncryptionList(dataList);
 		}
 
-		// 0 -> [0x2,0x10]‚Ì”ÍˆÍ‚Ì‹ô”
-		// 1 -> [0x1,0xF] ‚Ì”ÍˆÍ‚ÌŠï”
+		// 0 -> [0x2,0x10]ã®ç¯„å›²ã®å¶æ•°
+		// 1 -> [0x1,0xF] ã®ç¯„å›²ã®å¥‡æ•°
 		for (auto& data : dataList)
 		{
 			data = 2 * (Random(0x1, HALF)) - data;
 		}
 
-		// ‘S‚Ä‚ğ0xF‚©‚¯‚é
+		// å…¨ã¦ã‚’0xFã‹ã‘ã‚‹
 		for (auto& data : dataList)
 		{
 			data *= MUL;
 		}
 
-		// Œ®‚ğ¶¬‚·‚é 
+		// éµã‚’ç”Ÿæˆã™ã‚‹ 
 		const int32 key = Random(0x0, MAX_KEY);
 
-		// ƒŠƒXƒg‚Ìæ“ª‚Æ––”ö‚ÉŒ®‚ğ’Ç‰Á
+		// ãƒªã‚¹ãƒˆã®å…ˆé ­ã¨æœ«å°¾ã«éµã‚’è¿½åŠ 
 		dataList.emplace_front(key);
 		dataList.emplace_back(key);
 
-		// ‘O‚Ì€‚Ì’l‚ğ mod 0x100 ‚Å‰ÁZ
+		// å‰ã®é …ã®å€¤ã‚’ mod 0x100 ã§åŠ ç®—
 		int32 previousOne = 0;
 		for (auto& data : dataList)
 		{
@@ -66,7 +66,7 @@ namespace Kokoha
 			previousOne = data;
 		}
 
-		// ®”’l‚Ì”z—ñ -> •¶š—ñ
+		// æ•´æ•°å€¤ã®é…åˆ— -> æ–‡å­—åˆ—
 		String rtn;
 		for (const auto& data : dataList)
 		{
@@ -78,21 +78,21 @@ namespace Kokoha
 
 	Optional<RecordSet> RecordSet::decryption(const String& str)
 	{
-		// •œ†—p‚ÌƒŠƒXƒg
+		// å¾©å·ç”¨ã®ãƒªã‚¹ãƒˆ
 		std::list<int32> dataList;
 
-		// •¶š—ñ -> ®”’l‚Ì”z—ñ
+		// æ–‡å­—åˆ— -> æ•´æ•°å€¤ã®é…åˆ—
 		for (size_t i = 0; i < str.length(); i += ONE_DATA_LENGTH)
 		{
 			auto data = ParseIntOpt<int32>(str.substr(i, ONE_DATA_LENGTH), Arg::radix = BASE);
 			if (!data)
 			{
-				return none; // •ÏŠ·‚Å‚«‚È‚¢‚Æ‚«¸”s
+				return none; // å¤‰æ›ã§ããªã„ã¨ãå¤±æ•—
 			}
 			dataList.emplace_back(*data);
 		}
 
-		// ‘O‚Ì€‚Ì’l‚Æ mod 0x100 ‚Å Œ¸Z
+		// å‰ã®é …ã®å€¤ã¨ mod 0x100 ã§ æ¸›ç®—
 		int32 previouseOne = 0;
 		for (auto& data : dataList)
 		{
@@ -101,42 +101,42 @@ namespace Kokoha
 			previouseOne = tmp;
 		}
 
-		// æ“ªE––”ö‚ÌŒ®‚ğíœ
+		// å…ˆé ­ãƒ»æœ«å°¾ã®éµã‚’å‰Šé™¤
 		if (*dataList.begin() != *dataList.rbegin())
 		{
-			return none; // Œ®‚ªˆê’v‚µ‚È‚¢‚Æ‚«¸”s
+			return none; // éµãŒä¸€è‡´ã—ãªã„ã¨ãå¤±æ•—
 		}
 		dataList.pop_front();
 		dataList.pop_back();
 
-		// ƒTƒCƒY ‚Æ ƒŒƒR[ƒh‚Ì‡ŒvŒ…” ‚ªˆê’v‚µ‚Ä‚¢‚é‚©Šm”F
+		// ã‚µã‚¤ã‚º ã¨ ãƒ¬ã‚³ãƒ¼ãƒ‰ã®åˆè¨ˆæ¡æ•° ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ç¢ºèª
 		if (dataList.size() != totalDigit)
 		{
-			return none; // ˆê’v‚µ‚È‚¢‚Æ‚«¸”s
+			return none; // ä¸€è‡´ã—ãªã„ã¨ãå¤±æ•—
 		}
 
-		// ‘S‚Ä‚ğ0xF‚ÅŠ„‚é
+		// å…¨ã¦ã‚’0xFã§å‰²ã‚‹
 		for (auto& data : dataList)
 		{
 			if (data % MUL != 0)
 			{
-				return none; // Š„‚èØ‚ê‚È‚¢‚Æ‚«¸”s
+				return none; // å‰²ã‚Šåˆ‡ã‚Œãªã„ã¨ãå¤±æ•—
 			}
 			data /= MUL;
 			if (data <= 0x0 || data > BASE)
 			{
-				return none; // [0x1,0x10]‚Ì”ÍˆÍ‚É‚È‚¢‚Æ‚«¸”s
+				return none; // [0x1,0x10]ã®ç¯„å›²ã«ãªã„ã¨ãå¤±æ•—
 			}
 		}
 
-		// ‹ô” -> 0
-		// Šï” -> 1
+		// å¶æ•° -> 0
+		// å¥‡æ•° -> 1
 		for (auto& data : dataList)
 		{
 			data %= 2;
 		}
 
-		// ƒŒƒR[ƒh‚ÉŠi”[
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰ã«æ ¼ç´
 		RecordSet rtn;
 		for (auto& record : rtn.m_recordMap)
 		{
@@ -163,7 +163,7 @@ namespace Kokoha
 	{
 		const DateTime t = DateTime::Now();
 
-		setRecord(U"RecordYear"  , t.year%100); // ”N‚Í2Œ…‚É’²®
+		setRecord(U"RecordYear"  , t.year%100); // å¹´ã¯2æ¡ã«èª¿æ•´
 		setRecord(U"RecordMonth" , t.month   );
 		setRecord(U"RecordDate"  , t.day     );
 		setRecord(U"RecordHour"  , t.hour    );
@@ -204,7 +204,7 @@ namespace Kokoha
 
 	void RecordSet::setTimeCode()
 	{
-		// 2Œ…‚Å•¶š—ñ‰»(1Œ…‚Ì”’l‚Ìê‡‚Í0‚Å–„‚ß‚é)
+		// 2æ¡ã§æ–‡å­—åˆ—åŒ–(1æ¡ã®æ•°å€¤ã®å ´åˆã¯0ã§åŸ‹ã‚ã‚‹)
 		constexpr std::pair<int32, char32> PADDING = { 2,U'0' };
 
 		m_timeCode
@@ -217,14 +217,14 @@ namespace Kokoha
 
 	const std::map<String, Record>& RecordSet::getDefaultRecordMap() const
 	{
-		// ˆê“xTOMLƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚¾‚çtrue‚É‚·‚é
+		// ä¸€åº¦TOMLãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã ã‚‰trueã«ã™ã‚‹
 		static bool isReady = false;
-		// Record‚Ìƒ}ƒbƒv
+		// Recordã®ãƒãƒƒãƒ—
 		static std::map<String, Record> defaultMap;
 
 		if (isReady) { return defaultMap; }
 
-		// Record‚É‚Â‚¢‚Ä‚Ìtomlƒtƒ@ƒCƒ‹
+		// Recordã«ã¤ã„ã¦ã®tomlãƒ•ã‚¡ã‚¤ãƒ«
 		const TOMLReader m_toml(U"asset/data/record.toml");
 		totalDigit = 0;
 

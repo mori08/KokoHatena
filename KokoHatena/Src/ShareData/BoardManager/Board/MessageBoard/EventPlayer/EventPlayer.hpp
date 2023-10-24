@@ -40,7 +40,7 @@ namespace Kokoha
 		std::list<ObjectPtr> m_waitingObjectList;
 
 		// 別イベントに遷移する条件のフラグのリスト
-		std::unordered_map<String, bool> m_jampFlagMap;
+		std::unordered_map<String, bool> m_jumpFlagMap;
 
 	public:
 
@@ -73,7 +73,7 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="nowEvent"> 現在読み込み中のイベント </param>
 		/// <param name="boardRequest"> ボード外へのリクエスト </param>
-		/// <returns> true のときイベントを進める , jamp以外は基本的にtrueを設定 </returns>
+		/// <returns> true のときイベントを進める , jump以外は基本的にtrueを設定 </returns>
 		bool playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest);
 
 		/// <summary>
@@ -82,10 +82,10 @@ namespace Kokoha
 		void setGenerateObjectMap();
 
 		/// <summary>
-		/// Recordと同期するjampFlagのリストの取得
+		/// Recordと同期するjumpFlagのリストの取得
 		/// </summary>
-		/// <returns> Recordと同期するjampFlagのリスト </returns>
-		static const Array<String>& recordJampFlagNameList();
+		/// <returns> Recordと同期するjumpFlagのリスト </returns>
+		static const Array<String>& recordJumpFlagNameList();
 
 	};
 }

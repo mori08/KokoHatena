@@ -220,7 +220,7 @@ namespace Kokoha
 
 			if (flagNameOpt)
 			{
-				m_updateJampFlagMap[flagNameOpt.value()] = true;
+				m_updateJumpFlagMap[flagNameOpt.value()] = true;
 				m_select = none;
 			}
 		}

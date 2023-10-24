@@ -10,4 +10,4 @@
   23 < [RecordYear]
 
 [ T ]
-   1 < [TestJampFlag]
+   1 < [TestJumpFlag]
