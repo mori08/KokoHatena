@@ -1,4 +1,4 @@
-#include"LoadRecordScene.hpp"
+ï»¿#include"LoadRecordScene.hpp"
 
 namespace Kokoha
 {
@@ -6,7 +6,7 @@ namespace Kokoha
 		: LoadScene(init)
 	{
 		std::list<RecordSet>& recordSetList = getData().recordSetList;
-
+		
 		setLoadThread
 		(
 			[&recordSetList]()
@@ -15,10 +15,10 @@ namespace Kokoha
 
 				TextReader reader(RecordSet::FILE_NAME);
 
-				// ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢‚Æ‚« -> ƒŠƒXƒg‚ª‹ó‚Ì‚Ü‚ÜI—¹
+				// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„ã¨ã -> ãƒªã‚¹ãƒˆãŒç©ºã®ã¾ã¾çµ‚äº†
 				if (!reader) { return SceneName::SELECT_LOAD_RECORD; }
 
-				// 1s‚¸‚ÂRecordSet‚É•ÏŠ·‚·‚é
+				// 1è¡Œãšã¤RecordSetã«å¤‰æ›ã™ã‚‹
 				while (Optional<String> line = reader.readLine())
 				{
 					if (Optional<RecordSet> recordSetOpt = RecordSet::decryption(line.value()))

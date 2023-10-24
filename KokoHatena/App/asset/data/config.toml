@@ -78,8 +78,8 @@
     talkPageThickness = 2
 
 [EventPlayer]
-    recordJampFlagNameList = [
-        "TestJampFlag"
+    recordJumpFlagNameList = [
+        "TestJumpFlag"
     ]
 
 [MessageEventObject]

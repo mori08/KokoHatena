@@ -6,7 +6,7 @@
         objectKey = "Researcher"
         pos = {x=110, y=320}
 [[init]]
-    event = "jamp"
+    event = "jump"
     to = "test1"
 [[init]]
     event = "object"
@@ -15,7 +15,7 @@
 
 [[test1]]
     event = "flag"
-    name = "TestJampFlag"
+    name = "TestJumpFlag"
     value = true
 [[test1]]
     event = "act"
@@ -37,7 +37,7 @@
         ]
 
 [[test1]]
-    event = "jamp"
+    event = "jump"
     flag = "flag1"
     to = "test2"
 

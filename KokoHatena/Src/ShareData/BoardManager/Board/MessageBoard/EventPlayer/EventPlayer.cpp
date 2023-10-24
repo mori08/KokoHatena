@@ -26,9 +26,10 @@ namespace Kokoha
 			++init_now;
 		}
 
-		for (const auto& jampFlagName : recordJampFlagNameList())
+		for (const auto& jumpFlagName : recordJumpFlagNameList())
 		{
-			m_jampFlagMap[jampFlagName] = (recordSet.getRecord(jampFlagName) != 0);
+			const int32 jumpFlagValue = recordSet.getRecord(jumpFlagName);
+			m_jumpFlagMap[jumpFlagName] = (jumpFlagValue != 0);
 		}
 	}
 
@@ -47,7 +48,7 @@ namespace Kokoha
 		for (const auto& object : m_objectList)
 		{
 			object.second->update();
-			object.second->updateJampFlag(m_jampFlagMap);
+			object.second->updateJumpFlag(m_jumpFlagMap);
 		}
 
 		// オブジェクトの待ち状態の解消
@@ -134,29 +135,29 @@ namespace Kokoha
 			return true;
 		}
 
-		// jamp時に使用するフラグの設定
+		// jump時に使用するフラグの設定
 		if (eventName == U"flag")
 		{
 			const String name  = nowEvent[U"name"].getString();
 			const bool   value = nowEvent[U"value"].getOr<bool>(true);
 
-			m_jampFlagMap[name] = value;
+			m_jumpFlagMap[name] = value;
 
 			return true;
 		}
 
 		// 別イベント群への遷移
-		if (eventName == U"jamp")
+		if (eventName == U"jump")
 		{
 			const String to = nowEvent[U"to"].getString();
 			const String flag = nowEvent[U"flag"].getString();
 
 			if (!m_eventToml[to].isTableArray())
 			{
-				throw Error(U"EventPlayer: jamp: 指定された遷移先to[" + to + U"]は存在しない");
+				throw Error(U"EventPlayer: jump: 指定された遷移先to[" + to + U"]は存在しない");
 			}
 
-			if (flag == U"" || (m_jampFlagMap.count(flag) && m_jampFlagMap[flag]))
+			if (flag == U"" || (m_jumpFlagMap.count(flag) && m_jumpFlagMap[flag]))
 			{
 				m_now = m_eventToml[to].tableArrayView().begin();
 				m_end = m_eventToml[to].tableArrayView().end();
@@ -193,9 +194,9 @@ namespace Kokoha
 				throw Error(U"EventPlayer: scene: 指定されたScene[" + scene + U"]は存在しない");
 			}
 
-			for (const auto& jampFlagName : recordJampFlagNameList())
+			for (const auto& jumpFlagName : recordJumpFlagNameList())
 			{
-				boardRequest.toRecord[jampFlagName] = m_jampFlagMap[jampFlagName];
+				boardRequest.toRecord[jumpFlagName] = m_jumpFlagMap[jumpFlagName];
 			}
 			boardRequest.toScene = SCENE_NAME_MAP.find(scene)->second;
 
@@ -217,9 +218,9 @@ namespace Kokoha
 		};
 	}
 
-	const Array<String>& EventPlayer::recordJampFlagNameList()
+	const Array<String>& EventPlayer::recordJumpFlagNameList()
 	{
-		static const Array<String> JAMP_FLAG_NAME_LIST = Config::getArray<String>(U"EventPlayer.recordJampFlagNameList");
-		return JAMP_FLAG_NAME_LIST;
+		static const Array<String> JUMP_FLAG_NAME_LIST = Config::getArray<String>(U"EventPlayer.recordJumpFlagNameList");
+		return JUMP_FLAG_NAME_LIST;
 	}
 }

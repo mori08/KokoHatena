@@ -6,14 +6,14 @@ namespace Kokoha
 	{
 	}
 
-	void EventObject::updateJampFlag(std::unordered_map<String, bool>& jampFlagMap)
+	void EventObject::updateJumpFlag(std::unordered_map<String, bool>& jumpFlagMap)
 	{
-		for (const auto& jampFlag : m_updateJampFlagMap)
+		for (const auto& jumpFlag : m_updateJumpFlagMap)
 		{
-			const String& name = jampFlag.first;
-			const bool    flag = jampFlag.second;
-			jampFlagMap[name] = flag;
+			const String& name = jumpFlag.first;
+			const bool    flag = jumpFlag.second;
+			jumpFlagMap[name] = flag;
 		}
-		m_updateJampFlagMap.clear();
+		m_updateJumpFlagMap.clear();
 	}
 }

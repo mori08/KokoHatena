@@ -41,7 +41,7 @@ namespace Kokoha
 
 	void LoadScene::update()
 	{
-		if (debugMode)
+		if (debugMode())
 		{
 			changeScene(nextSceneName);
 			return;

@@ -25,6 +25,6 @@ digit   = 5
 default = 0
 
 [[Record]] # EventPlayerのテスト用のフラグ
-name    = "TestJampFlag"
+name    = "TestJumpFlag"
 digit   = 1
 default = 1

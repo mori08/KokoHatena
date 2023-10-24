@@ -12,7 +12,7 @@ namespace Kokoha
 	protected:
 
 		// 更新したいEventPlayerの遷移フラグ
-		std::unordered_map<String, bool> m_updateJampFlagMap;
+		std::unordered_map<String, bool> m_updateJumpFlagMap;
 
 	public:
 
@@ -49,8 +49,8 @@ namespace Kokoha
 		/// <summary>
 		/// EventPlayerの遷移フラグの更新
 		/// </summary>
-		/// <param name="jampFlagMap"> Event遷移フラグの連想配列 </param>
-		void updateJampFlag(std::unordered_map<String, bool>& jampFlagMap);
+		/// <param name="jumpFlagMap"> Event遷移フラグの連想配列 </param>
+		void updateJumpFlag(std::unordered_map<String, bool>& jumpFlagMap);
 
 	};
 }
