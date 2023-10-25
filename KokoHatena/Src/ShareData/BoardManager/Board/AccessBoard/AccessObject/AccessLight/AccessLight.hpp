@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../../Terrain/Terrain.hpp"
 #include "PolarLine/PolarLine.hpp"
@@ -6,60 +6,60 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// AccessObject‚ªŠ—L‚·‚éŒõ
+	/// AccessObjectãŒæ‰€æœ‰ã™ã‚‹å…‰
 	/// </summary>
 	class AccessLight
 	{
-	private: // Œõ‚ÌğŒ
+	private: // å…‰ã®æ¡ä»¶
 
-		// true ‚È‚ç “_“” , false ‚È‚ç Á“”
+		// true ãªã‚‰ ç‚¹ç¯ , false ãªã‚‰ æ¶ˆç¯
 		bool m_on;
 
-		// ŒõŒ¹‚Æ‚È‚é’†SÀ•W
+		// å…‰æºã¨ãªã‚‹ä¸­å¿ƒåº§æ¨™
 		Vec2 m_sourcePos;
 
-		// Œõ‚ªË‚·•ûŒü [0,2Pi]
+		// å…‰ãŒå°„ã™æ–¹å‘ [0,2Pi]
 		double m_directionAngle;
 
-		// ’†SŠp [0,2Pi]
+		// ä¸­å¿ƒè§’ [0,2Pi]
 		double m_centralAngle;
 
-		// ŒõŒ¹‚©‚ç‚ÌŒõ‚ª“Í‚­‹——£ [0, 2Pi] 
+		// å…‰æºã‹ã‚‰ã®å…‰ãŒå±Šãè·é›¢ [0, 2Pi] 
 		double m_distance;
 
-		// Œõ‚Ì–¾‚é‚³ [0, 1]
+		// å…‰ã®æ˜ã‚‹ã• [0, 1]
 		double m_alpha;
 
-		// Œõ‚ğ•\‚·‘½ŠpŒ`
+		// å…‰ã‚’è¡¨ã™å¤šè§’å½¢
 		Polygon m_polygon;
 
-	private: // Œõì¬‚Ég—p
+	private: // å…‰ä½œæˆæ™‚ã«ä½¿ç”¨
 
 		/// <summary>
-		/// Šp“x‚²‚Æ‚Ìs‚¤ˆ—
+		/// è§’åº¦ã”ã¨ã®è¡Œã†å‡¦ç†
 		/// </summary>
 		class AngleEvent
 		{
 		public:
-			double angle; // Šp“x
-			std::function<void()> func; // ˆ—
+			double angle; // è§’åº¦
+			std::function<void()> func; // å‡¦ç†
 			AngleEvent(double a, std::function<void()> f) : angle(a), func(f) {}
 			bool operator<(const AngleEvent& another) const { return angle > another.angle; }
 		};
 
-		// true ‚Ì‚Æ‚« îŒ^ , false ‚Ì‚Æ‚« ‰~Œ`
+		// true ã®ã¨ã æ‰‡å‹ , false ã®ã¨ã å††å½¢
 		bool m_isPie;
 
-		// ’¸“_”z—ñ
+		// é ‚ç‚¹é…åˆ—
 		Array<Vec2> m_posAry;
 
-		// •Ó”z—ñ
+		// è¾ºé…åˆ—
 		Array<PolarLine> m_edgeAry;
 
-		// •Ó‚Ìƒq[ƒv Å‚àŒõŒ¹‚É‹ß‚¢•Ó‚ğæ“¾‚Å‚«‚é
+		// è¾ºã®ãƒ’ãƒ¼ãƒ— æœ€ã‚‚å…‰æºã«è¿‘ã„è¾ºã‚’å–å¾—ã§ãã‚‹
 		Array<size_t> m_heap;
 
-		// •Ó”Ô† -> –Ø”Ô†
+		// è¾ºç•ªå· -> æœ¨ç•ªå·
 		Array<size_t> m_edgeToHeap;
 
 	public:
@@ -69,7 +69,7 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// “_“”‚·‚é
+		/// ç‚¹ç¯ã™ã‚‹
 		/// </summary>
 		/// <returns> *this </returns>
 		AccessLight& on()
@@ -79,7 +79,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// Á“”‚·‚é
+		/// æ¶ˆç¯ã™ã‚‹
 		/// </summary>
 		/// <returns> *this </returns>
 		AccessLight& off()
@@ -89,9 +89,9 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// ŒõŒ¹‚ÌÀ•W‚Ìİ’è
+		/// å…‰æºã®åº§æ¨™ã®è¨­å®š
 		/// </summary>
-		/// <param name="sourcePos"> ŒõŒ¹‚ÌÀ•W </param>
+		/// <param name="sourcePos"> å…‰æºã®åº§æ¨™ </param>
 		/// <returns> *this </returns>
 		AccessLight& setSourcePos(const Vec2& sourcePos)
 		{
@@ -100,115 +100,115 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// Œõ‚ª·‚·•ûŒü‚Ìİ’è
+		/// å…‰ãŒå·®ã™æ–¹å‘ã®è¨­å®š
 		/// </summary>
-		/// <param name="directionAngle"> Œõ‚ª·‚·•ûŒüix²+‚Ì•ûŒü‚ğ0‚Æ‚µ‚½‚Æ‚«‚Ì¶‰ñ‚è‚ÌŠp“x [0, 2Pi]j </param>
-		/// <param name="rate"> ‘JˆÚ‚ÌŠ„‡ </param>
+		/// <param name="directionAngle"> å…‰ãŒå·®ã™æ–¹å‘ï¼ˆxè»¸+ã®æ–¹å‘ã‚’0ã¨ã—ãŸã¨ãã®å·¦å›ã‚Šã®è§’åº¦ [0, 2Pi]ï¼‰ </param>
+		/// <param name="rate"> é·ç§»ã®å‰²åˆ </param>
 		/// <returns> *this </returns>
 		AccessLight& setDirectionAngle(double directionAngle, double rate = 0);
 
 		/// <summary>
-		/// ’†SŠp‚Ìİ’è
+		/// ä¸­å¿ƒè§’ã®è¨­å®š
 		/// </summary>
-		/// <param name="centralAngle"> Œõ‚ğîŒ^‚Æ‚µ‚½‚Æ‚«‚Ì’†SŠp [0, 2Pi] </param>
-		/// <param name="rate"> ‘JˆÚ‚ÌŠ„‡ </param>
+		/// <param name="centralAngle"> å…‰ã‚’æ‰‡å‹ã¨ã—ãŸã¨ãã®ä¸­å¿ƒè§’ [0, 2Pi] </param>
+		/// <param name="rate"> é·ç§»ã®å‰²åˆ </param>
 		/// <returns> *this </returns>
 		AccessLight& setCentralAngle(double centralAngle, double rate = 0);
 
 		/// <summary>
-		/// ‹——£‚Ìİ’è
+		/// è·é›¢ã®è¨­å®š
 		/// </summary>
-		/// <param name="distance"> ŒõŒ¹‚ÆŒõ‚ª“Í‚­Å‚à‰“‚¢“_‚Ì‹——£ </param>
-		/// <param name="rate"> Š„‡‚Ì‘JˆÚ </param>
+		/// <param name="distance"> å…‰æºã¨å…‰ãŒå±Šãæœ€ã‚‚é ã„ç‚¹ã®è·é›¢ </param>
+		/// <param name="rate"> å‰²åˆã®é·ç§» </param>
 		/// <returns> *this </returns>
 		AccessLight& setDistance(double distance, double rate = 0);
 
 		/// <summary>
-		/// Œõ‚Ì–¾‚é‚³‚Ìİ’è
+		/// å…‰ã®æ˜ã‚‹ã•ã®è¨­å®š
 		/// </summary>
-		/// <param name="alpha"> Œõ‚Ì–¾‚é‚³ MyWhite‚Ì•s“§–¾“x [0, 1] </param>
+		/// <param name="alpha"> å…‰ã®æ˜ã‚‹ã• MyWhiteã®ä¸é€æ˜åº¦ [0, 1] </param>
 		/// <returns> *this </returns>
 		AccessLight& setAlpha(double alpha, double rate = 0);
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
-		/// <param name="terrain"> ’nŒ`ƒf[ƒ^ </param>
+		/// <param name="terrain"> åœ°å½¢ãƒ‡ãƒ¼ã‚¿ </param>
 		void update(const Terrain& terrain);
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
 		void draw() const;
 
 	private:
 
 		/// <summary>
-		/// ‹——£‚ªm_distance‚ÌÀ•W‚ğ’Ç‰Á
+		/// è·é›¢ãŒm_distanceã®åº§æ¨™ã‚’è¿½åŠ 
 		/// </summary>
-		/// <param name="angle"> Šp“x </param>
+		/// <param name="angle"> è§’åº¦ </param>
 		void addPoint(double angle);
 
 		/// <summary>
-		/// îŒ^‚Ì’[‚Ì“_‚Ì’Ç‰Á
+		/// æ‰‡å‹ã®ç«¯ã®ç‚¹ã®è¿½åŠ 
 		/// </summary>
-		/// <param name="angle"> Šp“x </param>
+		/// <param name="angle"> è§’åº¦ </param>
 		void addPiePoint(double angle);
 
 		/// <summary>
-		/// •Ó‚Ìn“_‚Ì’Ç‰Á
+		/// è¾ºã®å§‹ç‚¹ã®è¿½åŠ 
 		/// </summary>
-		/// <param name="edgeId"> •Ó”Ô† </param>
+		/// <param name="edgeId"> è¾ºç•ªå· </param>
 		void addStartPoint(size_t edgeId);
 
 		/// <summary>
-		/// •Ó‚ÌI“_‚Ì’Ç‰Á
+		/// è¾ºã®çµ‚ç‚¹ã®è¿½åŠ 
 		/// </summary>
-		/// <param name="edgeId"> •Ó”Ô† </param>
+		/// <param name="edgeId"> è¾ºç•ªå· </param>
 		void addEndPoint(size_t edgeId);
 
 		/// <summary>
-		/// ƒq[ƒvæ“ª‚Ì•Ó‚ğæ“¾
+		/// ãƒ’ãƒ¼ãƒ—å…ˆé ­ã®è¾ºã‚’å–å¾—
 		/// </summary>
-		/// <param name="angle"> Šp“x </param>
-		/// <returns> ƒq[ƒvæ“ª‚Ì•Ó‚ÌŠp“x‚É‘Î‰‚·‚é“_‚Ì“®Œa </returns>
+		/// <param name="angle"> è§’åº¦ </param>
+		/// <returns> ãƒ’ãƒ¼ãƒ—å…ˆé ­ã®è¾ºã®è§’åº¦ã«å¯¾å¿œã™ã‚‹ç‚¹ã®å‹•å¾„ </returns>
 		double heapTopR(double angle) const;
 
 		/// <summary>
-		/// ƒq[ƒv‚É•Ó‚ğ’Ç‰Á
+		/// ãƒ’ãƒ¼ãƒ—ã«è¾ºã‚’è¿½åŠ 
 		/// </summary>
-		/// <param name="edgeId"> •Ó”Ô† </param>
-		/// <param name="angle"> Šp“x </param>
+		/// <param name="edgeId"> è¾ºç•ªå· </param>
+		/// <param name="angle"> è§’åº¦ </param>
 		void addEdgeToHeap(size_t edgeId, double angle);
 
 		/// <summary>
-		/// ƒq[ƒv‚©‚ç•Ó‚ğíœ
+		/// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰è¾ºã‚’å‰Šé™¤
 		/// </summary>
-		/// <param name="edgeId"> •Ó”Ô† </param>
-		/// <param name="angle"> Šp“x </param>
+		/// <param name="edgeId"> è¾ºç•ªå· </param>
+		/// <param name="angle"> è§’åº¦ </param>
 		void removeEdgeToHeap(size_t edgeId, double angle);
 
 		/// <summary>
-		/// ’¸“_‚ğ‹t“]‚ª‚È‚­‚È‚é‚Ü‚Åã‚Öã‚°‚é
+		/// é ‚ç‚¹ã‚’é€†è»¢ãŒãªããªã‚‹ã¾ã§ä¸Šã¸ä¸Šã’ã‚‹
 		/// </summary>
-		/// <param name="i"> –Ø”Ô† </param>
-		/// <param name="angle"> Šp“x </param>
+		/// <param name="i"> æœ¨ç•ªå· </param>
+		/// <param name="angle"> è§’åº¦ </param>
 		void heapUp(size_t i, double angle);
 
 		/// <summary>
-		/// ’¸“_‚ğ‹t“]‚ª‚È‚­‚È‚é‚Ü‚Å‰º‚Ö‰º‚°‚é
+		/// é ‚ç‚¹ã‚’é€†è»¢ãŒãªããªã‚‹ã¾ã§ä¸‹ã¸ä¸‹ã’ã‚‹
 		/// </summary>
-		/// <param name="i"> –Ø”Ô† </param>
-		/// <param name="angle"> Šp“x </param>
+		/// <param name="i"> æœ¨ç•ªå· </param>
+		/// <param name="angle"> è§’åº¦ </param>
 		void heapDown(size_t i, double angle);
 
 		/// <summary>
-		/// •Ó‚Ì”äŠr
+		/// è¾ºã®æ¯”è¼ƒ
 		/// </summary>
-		/// <param name="id1"> –Ø”Ô†1 </param>
-		/// <param name="id2"> –Ø”Ô†2 </param>
-		/// <param name="angle"> Šp“x </param>
-		/// <returns> •Ó1‚ª•Ó2‚æ‚èè‘O‚É‚ ‚éê‡ true , ‚»‚¤‚Å‚È‚¢‚Æ‚« false </returns>
+		/// <param name="id1"> æœ¨ç•ªå·1 </param>
+		/// <param name="id2"> æœ¨ç•ªå·2 </param>
+		/// <param name="angle"> è§’åº¦ </param>
+		/// <returns> è¾º1ãŒè¾º2ã‚ˆã‚Šæ‰‹å‰ã«ã‚ã‚‹å ´åˆ true , ãã†ã§ãªã„ã¨ã false </returns>
 		bool compareEdge(size_t edgeId1, size_t edgeId2, double angle) const;
 
 	};

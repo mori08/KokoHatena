@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include"SceneName.hpp"
@@ -9,23 +9,23 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒV[ƒ“‚Å‹¤—L‚³‚ê‚éƒf[ƒ^
+	/// ã‚·ãƒ¼ãƒ³ã§å…±æœ‰ã•ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿
 	/// </summary>
 	class SceneShareData
 	{
 	public:
 
-		// ƒ{[ƒh‚ÌŠÇ—
+		// ãƒœãƒ¼ãƒ‰ã®ç®¡ç†
 		BoardManager board;
 		
-		// ƒZ[ƒuƒf[ƒ^‚Æ‘Î‰‚·‚éRecordSet‚ÌƒŠƒXƒg
+		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¨å¯¾å¿œã™ã‚‹RecordSetã®ãƒªã‚¹ãƒˆ
 		std::list<RecordSet> recordSetList;
 
-		// Board‚É‘Î‰‚³‚¹‚½Record
+		// Boardã«å¯¾å¿œã•ã›ãŸRecord
 		RecordSet nowRecordSet;
 
 	};
 }
 
-// ƒV[ƒ“ŠÇ—ƒNƒ‰ƒX
+// ã‚·ãƒ¼ãƒ³ç®¡ç†ã‚¯ãƒ©ã‚¹
 using MyApp = SceneManager<SceneName, Kokoha::SceneShareData>;

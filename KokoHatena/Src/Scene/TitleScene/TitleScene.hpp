@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../Scene.hpp"
 #include "../../ButtonSet/ButtonSet.hpp"
@@ -6,22 +6,22 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒ^ƒCƒgƒ‹ƒV[ƒ“
+	/// ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³
 	/// </summary>
 	class TitleScene : public MyApp::Scene
 	{
 	private:
 
-		// ƒ{ƒ^ƒ“‚ÌŠÇ—
+		// ãƒœã‚¿ãƒ³ã®ç®¡ç†
 		ButtonSet m_buttonSet;
 
-		// ƒJ[ƒ\ƒ‹‚Ì•
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®å¹…
 		double m_cursorWidth;
 
-		// ƒJ[ƒ\ƒ‹‚Ì‰¡‚Éo‚éü‚Ì’·‚³
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®æ¨ªã«å‡ºã‚‹ç·šã®é•·ã•
 		double m_cursorLineLength;
 
-		// ƒJ[ƒ\ƒ‹‚Ì‰¡‚Éo‚éü‚Ì•s“§–¾“x
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®æ¨ªã«å‡ºã‚‹ç·šã®ä¸é€æ˜åº¦
 		double m_cursorLineAlpha;
 
 	public:
@@ -37,21 +37,21 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// ƒƒS‚Ì•`‰æ
+		/// ãƒ­ã‚´ã®æç”»
 		/// </summary>
 		void drawLogo() const;
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚Ì•`‰æ
+		/// ãƒœã‚¿ãƒ³ã®æç”»
 		/// </summary>
 		void drawButton() const;
 
 		/// <summary>
-		/// ƒVƒF[ƒ_‚Ég—p‚·‚éƒVƒtƒg‚ÌƒxƒNƒgƒ‹
+		/// ã‚·ã‚§ãƒ¼ãƒ€æ™‚ã«ä½¿ç”¨ã™ã‚‹ã‚·ãƒ•ãƒˆã®ãƒ™ã‚¯ãƒˆãƒ«
 		/// </summary>
-		/// <param name="frequency"> •p“x         </param>
-		/// <param name="shift"    > ‚¸‚ê‚Ì‘å‚«‚³ </param>
-		/// <returns> ƒVƒtƒg‚ÌƒxƒNƒgƒ‹ </returns>
+		/// <param name="frequency"> é »åº¦         </param>
+		/// <param name="shift"    > ãšã‚Œã®å¤§ãã• </param>
+		/// <returns> ã‚·ãƒ•ãƒˆã®ãƒ™ã‚¯ãƒˆãƒ« </returns>
 		static Float2 makeShift(double frequency, double shift);
 
 	};

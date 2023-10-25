@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include<Siv3D.hpp>
@@ -7,28 +7,28 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// {ƒ{ƒ^ƒ“‚Ì”ÍˆÍ,–¼‘O,‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ—}‚ğ‚Ü‚Æ‚ß‚é
+	/// {ãƒœã‚¿ãƒ³ã®ç¯„å›²,åå‰,æŠ¼ã—ãŸã¨ãã®å‡¦ç†}ã‚’ã¾ã¨ã‚ã‚‹
 	/// </summary>
 	class Button
 	{
 	private:
 
-		// –¼‘O
+		// åå‰
 		const String m_name;
 
-		// ”ÍˆÍ
+		// ç¯„å›²
 		Rect m_region;
 
-		// ƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«‚Ìˆ—
+		// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ãã®å‡¦ç†
 		std::function<void()> m_onClickFunc;
 
 	public:
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“
+		/// ãƒœã‚¿ãƒ³
 		/// </summary>
-		/// <param name="name"  > –¼‘O </param>
-		/// <param name="region"> ”ÍˆÍ </param>
+		/// <param name="name"  > åå‰ </param>
+		/// <param name="region"> ç¯„å›² </param>
 		Button(const String& name, const Rect& region)
 			: m_name(name)
 			, m_region(region)
@@ -39,52 +39,52 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚Ì–¼‘O‚Ìæ“¾
+		/// ãƒœã‚¿ãƒ³ã®åå‰ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒ{ƒ^ƒ“‚Ì–¼‘O </returns>
+		/// <returns> ãƒœã‚¿ãƒ³ã®åå‰ </returns>
 		const String& getName() const
 		{
 			return m_name;
 		}
 
 		/// <summary>
-		/// ”ÍˆÍ‚ÌŠî€À•W‚Ì•ÏX
+		/// ç¯„å›²ã®åŸºæº–åº§æ¨™ã®å¤‰æ›´
 		/// </summary>
-		/// <param name="pos"> ”ÍˆÍ‚ÌŠî€À•W </param>
+		/// <param name="pos"> ç¯„å›²ã®åŸºæº–åº§æ¨™ </param>
 		void setPos(const Point& pos)
 		{
 			m_region.setPos(pos);
 		}
 
 		/// <summary>
-		/// ”ÍˆÍ‚ÌƒTƒCƒY‚Ì•ÏX
+		/// ç¯„å›²ã®ã‚µã‚¤ã‚ºã®å¤‰æ›´
 		/// </summary>
-		/// <param name="pos"> ”ÍˆÍ‚ÌŠî€À•W </param>
+		/// <param name="pos"> ç¯„å›²ã®åŸºæº–åº§æ¨™ </param>
 		void setSize(const Size& size)
 		{
 			m_region.setSize(size);
 		}
 
 		/// <summary>
-		/// ƒ{ƒ^ƒ“‚Ì”ÍˆÍ‚Ìæ“¾
+		/// ãƒœã‚¿ãƒ³ã®ç¯„å›²ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒ{ƒ^ƒ“‚Ì”ÍˆÍ </summary>
+		/// <returns> ãƒœã‚¿ãƒ³ã®ç¯„å›² </summary>
 		const Rect& getRegion() const
 		{
 			return m_region;
 		}
 
 		/// <summary>
-		/// ƒNƒŠƒbƒN‚µ‚½‚Æ‚«‚Ìˆ—‚Ìİ’è
+		/// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã¨ãã®å‡¦ç†ã®è¨­å®š
 		/// </summary>
-		/// <param name="onClickFunc"> ‰Ÿ‚µ‚½‚Æ‚«‚Ìˆ— </param>
+		/// <param name="onClickFunc"> æŠ¼ã—ãŸã¨ãã®å‡¦ç† </param>
 		void setOnClickFunc(const std::function<void()>& onClickFunc)
 		{
 			m_onClickFunc = onClickFunc;
 		}
 
 		/// <summary>
-		/// ƒNƒŠƒbƒN‚µ‚½‚Æ‚«‚Ìˆ—
+		/// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã¨ãã®å‡¦ç†
 		/// </summary>
 		void onClick() const
 		{

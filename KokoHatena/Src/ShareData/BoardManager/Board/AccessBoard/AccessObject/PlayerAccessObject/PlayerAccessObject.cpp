@@ -1,4 +1,4 @@
-#include "PlayerAccessObject.hpp"
+ï»¿#include "PlayerAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
 
@@ -25,7 +25,7 @@ namespace Kokoha
 		if (KeyA.pressed()) { m_movement += Vec2::Left();  }
 		if (KeyD.pressed()) { m_movement += Vec2::Right(); }
 
-		// ‘¬‚³
+		// é€Ÿã•
 		static const double SPEED = Config::get<double>(U"PlayerAccessObject.speed");
 		m_movement *= SPEED;
 
@@ -54,16 +54,16 @@ namespace Kokoha
 
 	void PlayerAccessObject::inputLight()
 	{
-		// –ÊÏ
+		// é¢ç©
 		static const double AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
-		// ‰ñ“]‘¬“x
+		// å›è»¢é€Ÿåº¦
 		static const double SPIN_SPEED = Config::get<double>(U"PlayerAccessObject.lightSpinSpeed");
 
-		// ‹——£‚Ì•ÏX‚Ì”ä—¦
+		// è·é›¢ã®å¤‰æ›´ã®æ¯”ç‡
 		static const double DISTANCE_RATE = Config::get<double>(U"AccessLight.Rate.distance");
-		// ’†SŠp‚Ì•ÏX‚Ì”ä—¦
+		// ä¸­å¿ƒè§’ã®å¤‰æ›´ã®æ¯”ç‡
 		static const double CENTRAL_ANGLE_RATE = Config::get<double>(U"AccessLight.Rate.centralAngle");
-		// Œõ‚ªË‚·Šp“x‚Ì•ÏX‚Ì”ä—¦
+		// å…‰ãŒå°„ã™è§’åº¦ã®å¤‰æ›´ã®æ¯”ç‡
 		static const double DIRECTION_ANGLE_RATE = Config::get<double>(U"AccessLight.Rate.directionAngle");
 
 		m_lightMode ^= MouseR.down();

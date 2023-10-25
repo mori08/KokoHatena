@@ -1,29 +1,29 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessState.hpp"
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒQ[ƒ€ŠJn‚ÌAccessState
+	/// ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®AccessState
 	/// </summary>
 	class StartingAccessState : public AccessState
 	{
 	private:
 
-		// 0 ‚Ì‚Æ‚« •¶š‚ğ—h‚ç‚·
+		// 0 ã®ã¨ã æ–‡å­—ã‚’æºã‚‰ã™
 		int32 m_noiseCount;
 
-		// ƒvƒŒƒCƒ„[‚Ì‚¢‚éÀ•W
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã„ã‚‹åº§æ¨™
 		Vec2 m_playerPos;
 
-		// PlayingState‚Ö‘JˆÚ‚·‚é‚Æ‚« true
+		// PlayingStateã¸é·ç§»ã™ã‚‹ã¨ã true
 		bool m_nextStateFlag;
 
-		// ƒXƒe[ƒW–¼
+		// ã‚¹ãƒ†ãƒ¼ã‚¸å
 		static String stageName;
 
-		// ¶¬‚·‚éAccessObject‚ÌƒŠƒXƒg
+		// ç”Ÿæˆã™ã‚‹AccessObjectã®ãƒªã‚¹ãƒˆ
 		std::list<AccessObject::Ptr> m_makeObjectList;
 
 	public:

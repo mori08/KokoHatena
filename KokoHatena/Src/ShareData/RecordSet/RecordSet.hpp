@@ -1,93 +1,93 @@
-#pragma once
+ï»¿#pragma once
 
 #include"Record/Record.hpp"
 
 namespace Kokoha
 {
 	/// <summary>
-	/// •¡”‚ÌRecord‚ðŠÇ—‚µA
-	/// •¶Žš—ñ‚Æ‚Ì•ÏŠ·AŠeRecord‚Ì•ÏX/Žæ“¾‚ðs‚¤
+	/// è¤‡æ•°ã®Recordã‚’ç®¡ç†ã—ã€
+	/// æ–‡å­—åˆ—ã¨ã®å¤‰æ›ã€å„Recordã®å¤‰æ›´/å–å¾—ã‚’è¡Œã†
 	/// </summary>
 	class RecordSet
 	{
 	public:
 
-		// ƒŒƒR[ƒh‚ð•Û‘¶‚·‚éƒtƒ@ƒCƒ‹–¼
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å
 		static const String FILE_NAME;
 
 	private:
 
-		// Record‚Ìƒ}ƒbƒv
+		// Recordã®ãƒžãƒƒãƒ—
 		std::map<String, Record> m_recordMap;
 
-		// ŽžŠÔ‚ð•\‚·•¶Žš—ñ
+		// æ™‚é–“ã‚’è¡¨ã™æ–‡å­—åˆ—
 		String m_timeCode;
 
 	public:
 
 		/// <summary>
-		/// Record‚ðƒfƒtƒHƒ‹ƒg’l‚ÅÝ’è
+		/// Recordã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§è¨­å®š
 		/// </summary>
 		RecordSet();
 
 		/// <summary>
-		/// ˆÃ†•¶‚ð•œ†‚µAƒtƒ‰ƒO‚ÌƒŠƒXƒg‚ÉŠi”[‚·‚é
+		/// æš—å·æ–‡ã‚’å¾©å·ã—ã€ãƒ•ãƒ©ã‚°ã®ãƒªã‚¹ãƒˆã«æ ¼ç´ã™ã‚‹
 		/// </summary>
-		/// <param name="str"> ˆÃ†‰»‚³‚ê‚½•¶Žš—ñ </param>
+		/// <param name="str"> æš—å·åŒ–ã•ã‚ŒãŸæ–‡å­—åˆ— </param>
 		static Optional<RecordSet> decryption(const String& str);
 
 		/// <summary>
-		/// ƒŒƒR[ƒh‚ÌˆÃ†‰»
+		/// ãƒ¬ã‚³ãƒ¼ãƒ‰ã®æš—å·åŒ–
 		/// </summary>
-		/// <returns> ˆÃ†‰»‚µ‚½•¶Žš—ñ </returns>
+		/// <returns> æš—å·åŒ–ã—ãŸæ–‡å­—åˆ— </returns>
 		String encryption() const;
 
 		/// <summary>
-		/// ƒŒƒR[ƒh‚ÌÝ’è
+		/// ãƒ¬ã‚³ãƒ¼ãƒ‰ã®è¨­å®š
 		/// </summary>
-		/// <param name="name"> –¼‘O </param>
-		/// <param name="value"> •ÏXŒã‚Ì’l </param>
+		/// <param name="name"> åå‰ </param>
+		/// <param name="value"> å¤‰æ›´å¾Œã®å€¤ </param>
 		/// <returns> *this </returns>
 		RecordSet& setRecord(const String& name, uint32 value);
 
 		/// <summary>
-		/// ƒŒƒR[ƒh‚ÉŒ»Ý‚ÌŽž‚ðÝ’è‚·‚é
+		/// ãƒ¬ã‚³ãƒ¼ãƒ‰ã«ç¾åœ¨ã®æ™‚åˆ»ã‚’è¨­å®šã™ã‚‹
 		/// </summary>
 		/// <returns> *this </returns>
 		RecordSet& setRecordTime();
 
 		/// <summary>
-		/// ƒŒƒR[ƒh‚ÌŽæ“¾
+		/// ãƒ¬ã‚³ãƒ¼ãƒ‰ã®å–å¾—
 		/// </summary>
-		/// <param name="name"> –¼‘O </param>
-		/// <returns> ƒŒƒR[ƒh‚Ì’l </returns>
+		/// <param name="name"> åå‰ </param>
+		/// <returns> ãƒ¬ã‚³ãƒ¼ãƒ‰ã®å€¤ </returns>
 		uint32 getRecord(const String& name) const;
 
 		/// <summary>
-		/// ƒŒƒR[ƒh‚Ì‹L˜^ŽžŠÔ‚ðŽ¦‚·•¶Žš—ñ‚ÌŽæ“¾
+		/// ãƒ¬ã‚³ãƒ¼ãƒ‰ã®è¨˜éŒ²æ™‚é–“ã‚’ç¤ºã™æ–‡å­—åˆ—ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒŒƒR[ƒh‚Ì‹L˜^ŽžŠÔ‚ðŽ¦‚·•¶Žš—ñ </returns>
+		/// <returns> ãƒ¬ã‚³ãƒ¼ãƒ‰ã®è¨˜éŒ²æ™‚é–“ã‚’ç¤ºã™æ–‡å­—åˆ— </returns>
 		const String& getTimeCode() const
 		{
 			return m_timeCode;
 		}
 
 		/// <summary>
-		/// ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ÉƒŒƒR[ƒh‚Ì“à—e‚ð‘‚«ž‚Ý
+		/// ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ¬ã‚³ãƒ¼ãƒ‰ã®å†…å®¹ã‚’æ›¸ãè¾¼ã¿
 		/// </summary>
 		void writeDebugText() const;
 
 	private:
 
 		/// <summary>
-		/// ƒŒƒR[ƒh‚Ì‹L˜^ŽžŠÔ‚ðŽ¦‚·•¶Žš—ñ
+		/// ãƒ¬ã‚³ãƒ¼ãƒ‰ã®è¨˜éŒ²æ™‚é–“ã‚’ç¤ºã™æ–‡å­—åˆ—
 		/// </summary>
 		void setTimeCode();
 
 		/// <summary>
-		/// ‰Šú’l‚ðŠi”[‚µ‚½Record‚Ìƒ}ƒbƒv‚ðŽæ“¾i‰‰ñ‚Ì‚ÝTOMLƒtƒ@ƒCƒ‹‚Ì“Ç‚Ýž‚Ýj
+		/// åˆæœŸå€¤ã‚’æ ¼ç´ã—ãŸRecordã®ãƒžãƒƒãƒ—ã‚’å–å¾—ï¼ˆåˆå›žã®ã¿TOMLãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ï¼‰
 		/// </summary>
-		/// <returns> ‰Šú’l‚ðŠi”[‚µ‚½Record‚Ìƒ}ƒbƒv </returns>
+		/// <returns> åˆæœŸå€¤ã‚’æ ¼ç´ã—ãŸRecordã®ãƒžãƒƒãƒ— </returns>
 		const std::map<String, Record>& getDefaultRecordMap() const;
 
 	};

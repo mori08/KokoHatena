@@ -1,4 +1,4 @@
-#include"SaveRecordScene.hpp"
+ï»¿#include"SaveRecordScene.hpp"
 
 namespace Kokoha
 {
@@ -13,7 +13,7 @@ namespace Kokoha
 			{
 				TextWriter writer(RecordSet::FILE_NAME);
 
-				// RecordSet‚ğ•¶š—ñ‚É•ÏŠ·‚µ‚Ä1s‚¸‚Â‘‚«‚Ş
+				// RecordSetã‚’æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¦1è¡Œãšã¤æ›¸ãè¾¼ã‚€
 				for (const auto& recordSet : recordSetList)
 				{
 					writer.writeln(recordSet.encryption());

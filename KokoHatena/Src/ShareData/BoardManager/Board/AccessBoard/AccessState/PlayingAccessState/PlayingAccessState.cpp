@@ -1,4 +1,4 @@
-#include "PlayingAccessState.hpp"
+ï»¿#include "PlayingAccessState.hpp"
 #include "../FailedAccessState/FailedAccessState.hpp"
 #include "../SuccessAccessState/SuccessAccessState.hpp"
 #include "../../AccessObject/MinionAccessObject/MinionAccessObject.hpp"
@@ -15,14 +15,14 @@ namespace Kokoha
 		AccessObject::TypeToGuidSet& typeToGuidSet,
 		BoardRequest&)
 	{
-		// ƒvƒŒƒCƒ„[‚ÌÀ•W‚Ìæ“¾
-		Circle playerBody = Circle(-1e5, -1e5, 0); // ‘¼ƒIƒuƒWƒFƒNƒg‚ÆÚG‚µ‚È‚¢À•W‚Å‰Šú‰»
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™ã®å–å¾—
+		Circle playerBody = Circle(-1e5, -1e5, 0); // ä»–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨æ¥è§¦ã—ãªã„åº§æ¨™ã§åˆæœŸåŒ–
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::PLAYER])
 		{
 			playerBody = objectMap[guid]->body();
 		}
 		
-		// MinionAccessObject‚Ìì¬
+		// MinionAccessObjectã®ä½œæˆ
 		if (m_isMakingMinion)
 		{
 			AccessObject::Ptr ptr = std::make_shared<MinionAccessObject>(playerBody.center);
@@ -30,7 +30,7 @@ namespace Kokoha
 		}
 		m_isMakingMinion = false;
 
-		// ƒvƒŒƒCƒ„[‚ª“G‚ÆÚG
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ•µã¨æ¥è§¦
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::ENEMY])
 		{
 			if (playerBody.intersects(objectMap[guid]->body()))
@@ -40,7 +40,7 @@ namespace Kokoha
 			}
 		}
 
-		// ƒvƒŒƒCƒ„[‚ªƒS[ƒ‹‚ÆÚG
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã‚´ãƒ¼ãƒ«ã¨æ¥è§¦
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::GOAL])
 		{
 			if (playerBody.intersects(objectMap[guid]->body()))

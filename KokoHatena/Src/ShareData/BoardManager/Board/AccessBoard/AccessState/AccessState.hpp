@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessObject/AccessObject.hpp"
 #include "../../BoardConst.hpp"
@@ -14,40 +14,40 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// “ü—Í
+		/// å…¥åŠ›
 		/// </summary>
-		/// <param name="cursorPos"> ƒJ[ƒ\ƒ‹‚ÌÀ•W </param>
+		/// <param name="cursorPos"> ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ </param>
 		virtual void input(const Vec2& cursorPos) = 0;
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
-		/// <param name="objectMap"> guid‚©‚çObject‚Ö‚Ì˜A‘z”z—ñ </param>
-		/// <param name="typeToGuidSet"> Object‚Ìí—Ş‚©‚çguid‚Ö‚Ì˜A‘z”z—ñ </param>
-		/// <param name="typeToGuidSet"> AccessBoard‚ÌBoardRequest </param>
-		/// <returns> Ÿ‚ÌAccessState‚Ö‚Ìunique_ptr , ó‘Ô‚ğ•ÏX‚µ‚È‚¢‚Æ‚« none </returns>
+		/// <param name="objectMap"> guidã‹ã‚‰Objectã¸ã®é€£æƒ³é…åˆ— </param>
+		/// <param name="typeToGuidSet"> Objectã®ç¨®é¡ã‹ã‚‰guidã¸ã®é€£æƒ³é…åˆ— </param>
+		/// <param name="typeToGuidSet"> AccessBoardã®BoardRequest </param>
+		/// <returns> æ¬¡ã®AccessStateã¸ã®unique_ptr , çŠ¶æ…‹ã‚’å¤‰æ›´ã—ãªã„ã¨ã none </returns>
 		virtual Optional<std::shared_ptr<AccessState>> update(
 			AccessObject::GuidToObject& objectMap, 
 			AccessObject::TypeToGuidSet& typeToGuidSet,
 			BoardRequest& boradRequest) = 0;
 
 		/// <summary>
-		/// ƒIƒuƒWƒFƒNƒg‚ğXV‚·‚é‚©
+		/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ›´æ–°ã™ã‚‹ã‹
 		/// </summary>
-		/// <returns> trur‚Ì‚Æ‚«‚ÍXV , false‚Ì‚Æ‚«‚ÍXV‚µ‚È‚¢ </returns>
+		/// <returns> trurã®ã¨ãã¯æ›´æ–° , falseã®ã¨ãã¯æ›´æ–°ã—ãªã„ </returns>
 		virtual bool isUpdatingObject() const = 0;
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
 		virtual void draw() const = 0;
 
 	protected:
 
 		/// <summary>
-		/// ƒ{[ƒh‚Ì”ÍˆÍ‚ğ¦‚·’·•ûŒ`‚Ìæ“¾
+		/// ãƒœãƒ¼ãƒ‰ã®ç¯„å›²ã‚’ç¤ºã™é•·æ–¹å½¢ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒ{[ƒh‚Ì”ÍˆÍ‚ğ¦‚·’·•ûŒ` </returns>
+		/// <returns> ãƒœãƒ¼ãƒ‰ã®ç¯„å›²ã‚’ç¤ºã™é•·æ–¹å½¢ </returns>
 		static const Rect& boardRect();
 
 	};

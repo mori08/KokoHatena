@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../EventObject.hpp"
 #include "../../../../../../../MyLibrary/Linearly/Linearly.hpp"
@@ -7,21 +7,21 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// ‰æ‘œ‚ğ•\¦‚·‚éEventPlayer—pƒIƒuƒWƒFƒNƒg
+	/// ç”»åƒã‚’è¡¨ç¤ºã™ã‚‹EventPlayerç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	/// </summary>
 	class TextureEventObject : public EventObject
 	{
 	private:
 
 		/// <summary>
-		/// •\¦‚·‚é‰æ‘œ‚Ìî•ñ
+		/// è¡¨ç¤ºã™ã‚‹ç”»åƒã®æƒ…å ±
 		/// </summary>
 		class Slice
 		{
 		public:
-			double time;   // ‰æ‘œ‚ğ•\¦‚·‚éŠÔ
-			int32  id;     // •\¦‚·‚é‰æ‘œ‚Ì”Ô†i¶‚©‚ç‰½”Ô–Ú‚©j
-			bool   mirror; // true ‚È‚ç ”½“] , false ‚È‚ç ”½“]
+			double time;   // ç”»åƒã‚’è¡¨ç¤ºã™ã‚‹æ™‚é–“
+			int32  id;     // è¡¨ç¤ºã™ã‚‹ç”»åƒã®ç•ªå·ï¼ˆå·¦ã‹ã‚‰ä½•ç•ªç›®ã‹ï¼‰
+			bool   mirror; // true ãªã‚‰ åè»¢ , false ãªã‚‰ åè»¢
 			Slice(double t, int32 i, bool m)
 				: time(t), id(i), mirror(m)
 			{
@@ -30,19 +30,19 @@ namespace Kokoha
 
 	private:
 
-		// •\¦‚·‚é‰æ‘œƒf[ƒ^
+		// è¡¨ç¤ºã™ã‚‹ç”»åƒãƒ‡ãƒ¼ã‚¿
 		SliceTexture m_texture;
 
-		// •\¦‚·‚éÀ•W
+		// è¡¨ç¤ºã™ã‚‹åº§æ¨™
 		Linearly<Vec2> m_pos;
 
-		// EventPlayer‚ğ‘Ò‚¿ó‘Ô‚É‚·‚é‚È‚ç true , ‚»‚¤‚Å‚È‚¢‚È‚ç false
+		// EventPlayerã‚’å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹ãªã‚‰ true , ãã†ã§ãªã„ãªã‚‰ false
 		bool m_isWaiting;
 
-		// ”ñ•\¦‚Ì‚Æ‚« true , •\¦‚·‚é‚Æ‚« false
+		// éè¡¨ç¤ºã®ã¨ã true , è¡¨ç¤ºã™ã‚‹ã¨ã false
 		bool m_isHidden;
 
-		// ‰æ‘œ‚ğ”½“]‚·‚é‚Æ‚« true
+		// ç”»åƒã‚’åè»¢ã™ã‚‹ã¨ã true
 		bool m_mirror;
 
 	public:
@@ -60,10 +60,10 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// TOMLValue‚ğPoint‚É•ÏX‚·‚é
+		/// TOMLValueã‚’Pointã«å¤‰æ›´ã™ã‚‹
 		/// </summary>
-		/// <param name="toml"> İ’èƒtƒ@ƒCƒ‹ƒf[ƒ^ </param>
-		/// <returns> À•W </returns>
+		/// <param name="toml"> è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ </param>
+		/// <returns> åº§æ¨™ </returns>
 		static Point tomlToPos(const TOMLValue& toml);
 
 	};

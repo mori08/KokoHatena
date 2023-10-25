@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../Scene.hpp"
 #include "../../ShareData/BoardManager/Board/Board.hpp"
@@ -6,8 +6,8 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// Board‚ÌƒŠƒXƒg‚ğŠÇ—‚·‚éƒV[ƒ“
-	/// ƒQ[ƒ€‚ÌƒƒCƒ“‚Ìis
+	/// Boardã®ãƒªã‚¹ãƒˆã‚’ç®¡ç†ã™ã‚‹ã‚·ãƒ¼ãƒ³
+	/// ã‚²ãƒ¼ãƒ ã®ãƒ¡ã‚¤ãƒ³ã®é€²è¡Œ
 	/// </summary>
 	class DesktopScene : public MyApp::Scene
 	{

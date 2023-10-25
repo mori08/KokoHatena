@@ -1,8 +1,8 @@
-#include"Record.hpp"
+ï»¿#include"Record.hpp"
 
 namespace
 {
-	// Œ…‚ÌÅ‘å’l
+	// æ¡ã®æœ€å¤§å€¤
 	constexpr int32 MAX_DIGIT = 30;
 }
 
@@ -20,7 +20,7 @@ namespace Kokoha
 	{
 		for (int32 i = 0; i < m_digit; ++i)
 		{
-			// iŒ…–Ú‚ğ’Ç‰Á
+			// iæ¡ç›®ã‚’è¿½åŠ 
 			dataList.emplace_back((m_value >> i) & 1);
 		}
 	}
@@ -33,7 +33,7 @@ namespace Kokoha
 		{
 			if (dataList.empty()) { return; }
 
-			// iŒ…–Ú‚É’Ç‰Á
+			// iæ¡ç›®ã«è¿½åŠ 
 			m_value |= dataList.front() << i;
 			dataList.pop_front();
 		}

@@ -1,4 +1,4 @@
-#include"AccessBoard.hpp"
+ï»¿#include"AccessBoard.hpp"
 #include"AccessState/StartingAccessState/StartingAccessState.hpp"
 
 namespace Kokoha
@@ -28,7 +28,7 @@ namespace Kokoha
 
 		if (m_state->isUpdatingObject())
 		{
-			// ƒIƒuƒWƒFƒNƒg‚Ö‚Ì“ü—Í
+			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®å…¥åŠ›
 			for (const auto& object : m_objectMap)
 			{
 				object.second->input(cursorPosFInBoard());
@@ -45,7 +45,7 @@ namespace Kokoha
 
 		if (m_state->isUpdatingObject())
 		{
-			// ƒIƒuƒWƒFƒNƒg‚Ì¶¬
+			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
 			for (const auto& object : m_objectMap)
 			{
 				object.second->addObjectList(m_makeObjectList);
@@ -60,19 +60,19 @@ namespace Kokoha
 				m_makeObjectList.pop_front();
 			}
 
-			// ‘¼ƒIƒuƒWƒFƒNƒg‚Ìî•ñ‚Ìæ“¾
+			// ä»–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æƒ…å ±ã®å–å¾—
 			for (const auto& object : m_objectMap)
 			{
 				object.second->checkOthers(m_terrain, m_objectMap, m_typeToGuidSet);
 			}
 
-			// XV
+			// æ›´æ–°
 			for (const auto& object : m_objectMap)
 			{
 				object.second->update(m_terrain);
 			}
 
-			// íœ
+			// å‰Šé™¤
 			for (auto itr = m_objectMap.begin(); itr != m_objectMap.end();)
 			{
 				if (itr->second->isEraseAble())
@@ -87,7 +87,7 @@ namespace Kokoha
 
 	void AccessBoard::drawInBoard() const
 	{
-		// ƒIƒuƒWƒFƒNƒg‚Ìo‚·Œõ‚Ì•`‰æ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‡ºã™å…‰ã®æç”»
 		for (const auto& object : m_objectMap)
 		{
 			object.second->drawLight();
@@ -95,7 +95,7 @@ namespace Kokoha
 
 		m_terrain.draw();
 
-		// ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
 		for (const auto& object : m_objectMap)
 		{
 			object.second->draw();

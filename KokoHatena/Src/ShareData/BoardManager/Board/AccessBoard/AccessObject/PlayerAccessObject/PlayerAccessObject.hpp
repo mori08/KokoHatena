@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessObject.hpp"
 
@@ -8,13 +8,13 @@ namespace Kokoha
 	{
 	private:
 
-		// input‚ÅŒˆ’è‚·‚éˆÚ“®—Ê
+		// inputã§æ±ºå®šã™ã‚‹ç§»å‹•é‡
 		Vec2 m_movement;
 
-		// true ‚Ì‚Æ‚«©•ª‚Ìü‚è‚ğÆ‚ç‚· , false ‚Ì‚Æ‚«‰“‚­‚ğÆ‚ç‚·
+		// true ã®ã¨ãè‡ªåˆ†ã®å‘¨ã‚Šã‚’ç…§ã‚‰ã™ , false ã®ã¨ãé ãã‚’ç…§ã‚‰ã™
 		bool m_lightMode;
 
-		// Œõ‚ğo‚·•ûŒü
+		// å…‰ã‚’å‡ºã™æ–¹å‘
 		double m_direction;
 
 	public:
@@ -34,7 +34,7 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// Œõ‚Ìî•ñ‚Ì“ü—Í
+		/// å…‰ã®æƒ…å ±ã®å…¥åŠ›
 		/// </summary>
 		void inputLight();
 

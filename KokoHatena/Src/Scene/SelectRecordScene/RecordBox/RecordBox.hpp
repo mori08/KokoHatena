@@ -1,65 +1,65 @@
-#pragma once
+ï»¿#pragma once
 
 #include<Siv3D.hpp>
 
 namespace Kokoha
 {
 	/// <summary>
-	/// RecordSet‚Ì‘I‘ğ/•`‰æ
+	/// RecordSetã®é¸æŠ/æç”»
 	/// </summary>
 	class RecordBox
 	{
 	private:
 
-		// À•W
+		// åº§æ¨™
 		Vec2 m_pos;
 
-		// •
+		// å¹…
 		double m_width;
 
-		// À•W‚ÌˆÚ“®æ
+		// åº§æ¨™ã®ç§»å‹•å…ˆ
 		Vec2 m_goal;
 
-		// ‘I‘ğ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+		// é¸æŠã•ã‚ŒãŸã¨ãã®å‡¦ç†
 		const std::function<void()> m_onSelected;
 
-		// •\¦‚·‚é•¶š—ñ
+		// è¡¨ç¤ºã™ã‚‹æ–‡å­—åˆ—
 		const std::pair<String, String> m_textPair;
 
 	public:
 
-		/// <param name="onSelected"> ‘I‘ğ‚³‚ê‚½‚Æ‚«‚Ìˆ— </param>
-		/// <param name="itr"> RecordSet‚ÌƒCƒeƒŒ[ƒ^ </param>
+		/// <param name="onSelected"> é¸æŠã•ã‚ŒãŸã¨ãã®å‡¦ç† </param>
+		/// <param name="itr"> RecordSetã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ </param>
 		RecordBox(std::function<void()> onSelected, const std::pair<String, String>& textPair);
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
-		/// <returns> ‘I‘ğ‚³‚ê‚½‚Æ‚« true , ‚»‚¤‚Å‚È‚¢‚Æ‚« false </returns>
+		/// <returns> é¸æŠã•ã‚ŒãŸã¨ã true , ãã†ã§ãªã„ã¨ã false </returns>
 		bool update();
 
 		/// <summary>
-		/// À•W‚ÌˆÚ“®æ‚ğİ’è
+		/// åº§æ¨™ã®ç§»å‹•å…ˆã‚’è¨­å®š
 		/// </summary>
-		/// <param name="index"> •\¦‚·‚é‡”Ô </param>
+		/// <param name="index"> è¡¨ç¤ºã™ã‚‹é †ç•ª </param>
 		void setGoalPos(const int32 index);
 
 		/// <summary>
-		/// À•W‚ÌˆÚ“®æ‚ğİ’è
+		/// åº§æ¨™ã®ç§»å‹•å…ˆã‚’è¨­å®š
 		/// </summary>
-		/// <param name="pos"> À•W‚ÌˆÚ“®æ </param>
+		/// <param name="pos"> åº§æ¨™ã®ç§»å‹•å…ˆ </param>
 		void setGoalPos(const Vec2& pos);
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
-		/// <param name="index"> •\¦‚·‚é‡”Ô </param>
+		/// <param name="index"> è¡¨ç¤ºã™ã‚‹é †ç•ª </param>
 		void draw(int32 index) const;
 
 	private:
 
 		/// <summary>
-		/// •‚ÌXV
+		/// å¹…ã®æ›´æ–°
 		/// </summary>
 		void updateWidth();
 

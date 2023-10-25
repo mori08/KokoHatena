@@ -1,4 +1,4 @@
-#include "FailedAccessState.hpp"
+ï»¿#include "FailedAccessState.hpp"
 #include "../StartingAccessState/StartingAccessState.hpp"
 #include "../../../../../../Config/Config.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
@@ -18,7 +18,7 @@ namespace Kokoha
 
 	Optional<std::shared_ptr<AccessState>> FailedAccessState::update(AccessObject::GuidToObject& objectMap, AccessObject::TypeToGuidSet& typeToGuidSet, BoardRequest&)
 	{
-		// ƒoƒO‰‰o‚Ìis‚·‚é‘¬“x
+		// ãƒã‚°æ¼”å‡ºã®é€²è¡Œã™ã‚‹é€Ÿåº¦
 		static const double FAILED_SPEED = Config::get<double>(U"FailedAccessState.failedSpeed");
 		static const double FAILED_WIDTH = Config::get<double>(U"FailedAccessState.failedWidth");
 		m_failedDistance -= FAILED_SPEED * Scene::DeltaTime();
@@ -28,7 +28,7 @@ namespace Kokoha
 			return rtn;
 		}
 
-		// ƒvƒŒƒCƒ„[ˆÈŠO‚ÌŒõ‚ğÁ‚·
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥å¤–ã®å…‰ã‚’æ¶ˆã™
 		static const double CHANGE_ALPHA_RATE = Config::get<double>(U"FailedAccessState.changeAlphaRate");
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::MINION])
 		{
@@ -45,14 +45,14 @@ namespace Kokoha
 
 	void FailedAccessState::draw() const
 	{
-		// ƒoƒO‰‰o‚Ì•
+		// ãƒã‚°æ¼”å‡ºã®å¹…
 		static const double FAILED_WIDTH = Config::get<double>(U"FailedAccessState.failedWidth");
 
 		for (int32 i : Range(0, Terrain::N - 1))
 		{
 			Point sq = Terrain::toSquare(i);
 			
-			// ƒvƒŒƒCƒ„[‚Æƒ}ƒX‚Ì‹——£
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒã‚¹ã®è·é›¢
 			const double dist = sq.distanceFrom(m_playerSquare);
 			if (dist < m_failedDistance) { continue; }
 

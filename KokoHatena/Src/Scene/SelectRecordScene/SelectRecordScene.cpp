@@ -1,4 +1,4 @@
-#include "SelectRecordScene.hpp"
+ï»¿#include "SelectRecordScene.hpp"
 #include "../../Config/Config.hpp"
 #include "../../MyLibrary/MyLibrary.hpp"
 
@@ -17,7 +17,7 @@ namespace Kokoha
 		, m_scrollBarPosY(Scene::Center().y)
 		, m_wheel(0)
 	{
-		// RecordSet‚É‘Î‰‚·‚é
+		// RecordSetã«å¯¾å¿œã™ã‚‹
 		for (auto& recordSet : getData().recordSetList)
 		{
 			m_recordBoxList.emplace_back
@@ -27,7 +27,7 @@ namespace Kokoha
 			);
 		}
 
-		// æ“ª‚ÉRecordBox‚É’Ç‰Á
+		// å…ˆé ­ã«RecordBoxã«è¿½åŠ 
 		m_recordBoxList.emplace_back(recordBox);
 
 		m_topBoxItr = m_recordBoxList.begin();
@@ -39,11 +39,11 @@ namespace Kokoha
 		
 		for (auto itr = m_recordBoxList.begin(); itr != m_recordBoxList.end(); ++itr)
 		{
-			// æ“ª‚ÌRecordBox‚ğ recordBoxIndex = 0
-			// ‚»‚êˆÈ~‚Í1‚¸‚Â‘‚â‚·
+			// å…ˆé ­ã®RecordBoxã‚’ recordBoxIndex = 0
+			// ãã‚Œä»¥é™ã¯1ãšã¤å¢—ã‚„ã™
 			if (itr == m_topBoxItr || recordBoxIndex >= 0) { ++recordBoxIndex; }
 
-			// RecordBox‚ÌXV
+			// RecordBoxã®æ›´æ–°
 			itr->setGoalPos(recordBoxIndex);
 			if (itr->update())
 			{
@@ -53,18 +53,18 @@ namespace Kokoha
 
 		scrollWheel();
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌƒTƒCƒY
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚µã‚¤ã‚º
 		static const Size SCROLL_BAR_SIZE = Config::get<Size>(U"SelectRecordScene.scrollBarSize");
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌƒTƒCƒY
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚µã‚¤ã‚º
 		static const double SCROLL_BAR_MOVE_RATE = Config::get<double>(U"SelectRecordScene.scrollBarMoveRate");
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌyÀ•W
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®yåº§æ¨™
 		const double scrollBarGoalY 
 			= Scene::Center().y
 			- SCROLL_BAR_SIZE.y/2
 			+ SCROLL_BAR_SIZE.y * (m_recordBoxList.size() - recordBoxIndex - 0.5) / m_recordBoxList.size();
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌyÀ•W
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®yåº§æ¨™
 		internalDividingPoint(
 			m_scrollBarPosY,
 			scrollBarGoalY,
@@ -76,7 +76,7 @@ namespace Kokoha
 	{		
 		FontAsset(U"15")(m_explanation).draw();
 
-		// •`‰æ‚·‚éƒtƒ@ƒCƒ‹”Ô†
+		// æç”»ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·
 		int32 index = static_cast<int32>(m_recordBoxList.size());
 
 		for (const auto& recordBox : m_recordBoxList)
@@ -84,14 +84,14 @@ namespace Kokoha
 			recordBox.draw(--index);
 		}
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌxÀ•W
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®xåº§æ¨™
 		static const int32 SCROLL_BAR_POS_X = Config::get<int32>(U"SelectRecordScene.scrollBarPosX");
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌƒTƒCƒY
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚µã‚¤ã‚º
 		static const Size SCROLL_BAR_SIZE = Config::get<Size>(U"SelectRecordScene.scrollBarSize");
-		// ƒXƒNƒ[ƒ‹ƒo[‚Ì•
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®å¹…
 		static const int32 SCROLL_BAR_WIDTH = Config::get<int32>(U"SelectRecordScene.scrollBarWidth");
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚Ì•`‰æ
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®æç”»
 		Rect(Arg::center = Point(SCROLL_BAR_POS_X, Scene::Center().y), SCROLL_BAR_SIZE)
 			.draw(MyWhite);
 
@@ -103,18 +103,18 @@ namespace Kokoha
 
 	void SelectRecordScene::scrollWheel()
 	{
-		// ƒzƒC[ƒ‹‚Å‚Ì“®‚«‚Ì‘å‚«‚³
+		// ãƒ›ã‚¤ãƒ¼ãƒ«ã§ã®å‹•ãã®å¤§ãã•
 		static const double WHEEL_RATE = Config::get<double>(U"SelectRecordScene.wheelRate");
 
 		m_wheel += WHEEL_RATE * Mouse::Wheel();
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚Å‚Ì“®‚«‚Ì‘å‚«‚³
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã§ã®å‹•ãã®å¤§ãã•
 		static const double BAR_RATE = Config::get<double>(U"SelectRecordScene.barRate");
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌxÀ•W
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®xåº§æ¨™
 		static const int32 SCROLL_BAR_POS_X = Config::get<int32>(U"SelectRecordScene.scrollBarPosX");
-		// ƒXƒNƒ[ƒ‹ƒo[‚Ì•
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®å¹…
 		static const int32 SCROLL_BAR_WIDTH = Config::get<int32>(U"SelectRecordScene.scrollBarWidth");
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌƒTƒCƒY
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚µã‚¤ã‚º
 		static const Size SCROLL_BAR_SIZE = Config::get<Size>(U"SelectRecordScene.scrollBarSize");
 
 		if (MouseL.pressed() 
@@ -142,9 +142,9 @@ namespace Kokoha
 	SelectLoadRecordScene::SelectLoadRecordScene(const InitData& init)
 		: SelectRecordScene(
 			init,
-			RecordBox([this]() {getData().nowRecordSet = RecordSet(); }, { U"",U"‚Í‚¶‚ß‚©‚ç" }),
+			RecordBox([this]() {getData().nowRecordSet = RecordSet(); }, { U"",U"ã¯ã˜ã‚ã‹ã‚‰" }),
 			[this](RecordSet& recordSet) { getData().nowRecordSet = recordSet; },
-			U"ƒ[ƒh‚·‚éƒf[ƒ^‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢",
+			U"ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’é¸æŠã—ã¦ãã ã•ã„",
 			SceneName::LOAD_BOARD
 		)
 	{
@@ -153,9 +153,9 @@ namespace Kokoha
 	SelectSaveRecordScene::SelectSaveRecordScene(const InitData& init)
 		: SelectRecordScene(
 			init,
-			RecordBox([this]() { getData().recordSetList.emplace_front(getData().nowRecordSet); }, { U"",U"V‚µ‚¢ƒf[ƒ^" }),
+			RecordBox([this]() { getData().recordSetList.emplace_front(getData().nowRecordSet); }, { U"",U"æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿" }),
 			[this](RecordSet& recordSet) { recordSet = getData().nowRecordSet; },
-			U"ƒZ[ƒu‚·‚éƒf[ƒ^‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢",
+			U"ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’é¸æŠã—ã¦ãã ã•ã„",
 			SceneName::SAVE_RECORD
 		)
 	{

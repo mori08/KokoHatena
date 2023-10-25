@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessState.hpp"
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒQ[ƒ€‚ğ—V‚ñ‚Å‚¢‚é‚Æ‚«(AccessObject‚ÌXV/•`‰æ‚ğs‚Á‚Ä‚¢‚é‚Æ‚«)‚ÌAccessState
+	/// ã‚²ãƒ¼ãƒ ã‚’éŠã‚“ã§ã„ã‚‹ã¨ã(AccessObjectã®æ›´æ–°/æç”»ã‚’è¡Œã£ã¦ã„ã‚‹ã¨ã)ã®AccessState
 	/// </summary>
 	class PlayingAccessState : public AccessState
 	{
 	private:
 
-		// true ‚Ì‚Æ‚«Player‚ğì¬‚·‚é
+		// true ã®ã¨ãPlayerã‚’ä½œæˆã™ã‚‹
 		bool m_isMakingMinion;
 
 	private:

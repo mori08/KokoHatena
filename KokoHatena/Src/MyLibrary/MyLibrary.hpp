@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 
 #include <Siv3D.hpp>
@@ -6,17 +6,17 @@
 
 namespace Kokoha
 {
-	// •
+	// é»’
 	constexpr ColorF MyBlack(Color(0x0F));
 
-	// ”’
+	// ç™½
 	constexpr ColorF MyWhite(Color(0xF0));
 
 	/// <summary>
-	/// F‚Ìo—Í
+	/// è‰²ã®å‡ºåŠ›
 	/// </summary>
-	/// <param name="rgb"  > rgb‚Ì’l [0,1] </param>
-	/// <param name="alpha"> •s“§–¾“x[0,1] </param>
+	/// <param name="rgb"  > rgbã®å€¤ [0,1] </param>
+	/// <param name="alpha"> ä¸é€æ˜åº¦[0,1] </param>
 	constexpr inline ColorF myColor(double rgb, double alpha = 1.0)
 	{
 		return ColorF(Max(0.0, Min(1.0, rgb)) * (MyWhite.r - MyBlack.r) + MyBlack.r, alpha);
@@ -25,9 +25,9 @@ namespace Kokoha
 
 #ifdef _DEBUG
 	/// <summary>
-	/// ƒfƒoƒbƒO—p‚Ì•¶š—ñ‚ğo—Í
+	/// ãƒ‡ãƒãƒƒã‚°ç”¨ã®æ–‡å­—åˆ—ã‚’å‡ºåŠ›
 	/// </summary>
-	/// <param name="message"> o—Í‚·‚é•¶š—ñ </param>
+	/// <param name="message"> å‡ºåŠ›ã™ã‚‹æ–‡å­—åˆ— </param>
 	inline void printDebug(const String& message)
 	{
 		Print << message;
@@ -40,20 +40,20 @@ namespace Kokoha
 #endif // _DEBUG
 
 	/// <summary>
-	/// ƒAƒZƒbƒgŠÇ—
+	/// ã‚¢ã‚»ãƒƒãƒˆç®¡ç†
 	/// </summary>
-	/// <param name="direName"> ƒfƒBƒŒƒNƒgƒŠ‚Ì–¼‘O </param>
+	/// <param name="direName"> ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åå‰ </param>
 	void registerAsset(const String& dirName);
 
 	/// <summary>
-	/// w’è‚³‚ê‚½•p“x‚Åƒ‰ƒ“ƒ_ƒ€‚É 1 ‚ğo—Í
+	/// æŒ‡å®šã•ã‚ŒãŸé »åº¦ã§ãƒ©ãƒ³ãƒ€ãƒ ã« 1 ã‚’å‡ºåŠ›
 	/// </summary>
-	/// <param name="frequency"> •p“x (times/second) </param>
+	/// <param name="frequency"> é »åº¦ (times/second) </param>
 	/// <returns> 
-	/// ƒ‰ƒ“ƒ_ƒ€‚Å 1 ‚Ü‚½‚Í 0 
+	/// ãƒ©ãƒ³ãƒ€ãƒ ã§ 1 ã¾ãŸã¯ 0 
 	/// </returns>
 	/// <remarks>
-	/// •p“x‚ªƒtƒŒ[ƒ€ƒŒ[ƒg‚ğ’´‚¦‚½‚Æ‚«, –ˆƒtƒŒ[ƒ€ 1 ‚ğo—Í
+	/// é »åº¦ãŒãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã‚’è¶…ãˆãŸã¨ã, æ¯ãƒ•ãƒ¬ãƒ¼ãƒ  1 ã‚’å‡ºåŠ›
 	/// </remarks>
 	inline int32 randomFrequency(double frequency)
 	{
@@ -61,14 +61,14 @@ namespace Kokoha
 	}
 
 	/// <summary>
-	/// “à•ª“_‚ğg‚Á‚½’l‚Ì•ÏX
+	/// å†…åˆ†ç‚¹ã‚’ä½¿ã£ãŸå€¤ã®å¤‰æ›´
 	/// </summary>
-	/// <param name="x"> •ÏX‚µ‚½‚¢’l     </param>
-	/// <param name="a"> –Ú“I’l           </param>
-	/// <param name="r"> “à•ª”ä(0,1) (/s) </param>
+	/// <param name="x"> å¤‰æ›´ã—ãŸã„å€¤     </param>
+	/// <param name="a"> ç›®çš„å€¤           </param>
+	/// <param name="r"> å†…åˆ†æ¯”(0,1) (/s) </param>
 	/// <remarks>
-	/// r ‚É‚Í (0,1)‚Ì”ÍˆÍ‚Ì¬”’l
-	/// ”’l‚Í0‚É‹ß‚Ã‚¯‚é‚Ù‚Ç‘¬‚­ˆÚ“®
+	/// r ã«ã¯ (0,1)ã®ç¯„å›²ã®å°æ•°å€¤
+	/// æ•°å€¤ã¯0ã«è¿‘ã¥ã‘ã‚‹ã»ã©é€Ÿãç§»å‹•
 	/// </remarks>
 	template<typename TYPE_X, typename TYPE_A>
 	void internalDividingPoint(TYPE_X& x, const TYPE_A& a, double r)
@@ -78,67 +78,67 @@ namespace Kokoha
 	}
 
 	/// <summary>
-	/// FPS‚Ì•\¦
+	/// FPSã®è¡¨ç¤º
 	/// </summary>
 	void showFPS();
 
 	/// <summary>
-	/// ’†SÀ•W‚ğŒˆ‚ß‚½’·•ûŒ`‚Ìæ“¾
+	/// ä¸­å¿ƒåº§æ¨™ã‚’æ±ºã‚ãŸé•·æ–¹å½¢ã®å–å¾—
 	/// </summary>
-	/// <param name="center"> ’†SÀ•W </param>
-	/// <param name="size">   ƒTƒCƒY   </param>
-	/// <returns> ’·•ûŒ` </returns>
+	/// <param name="center"> ä¸­å¿ƒåº§æ¨™ </param>
+	/// <param name="size">   ã‚µã‚¤ã‚º   </param>
+	/// <returns> é•·æ–¹å½¢ </returns>
 	inline constexpr Rect getRectFromCenter(const Point& center, const Size& size)
 	{
 		return std::move(Rect(center - size / 2, size));
 	}
 
 	/// <summary>
-	/// 2’¸“_‚©‚ç’·•ûŒ`‚Ìæ“¾
+	/// 2é ‚ç‚¹ã‹ã‚‰é•·æ–¹å½¢ã®å–å¾—
 	/// </summary>
-	/// <param name="pos1"> ’¸“_1 </param>
-	/// <param name="pos2"> ’¸“_2 </param>
-	/// <returns> ’·•ûŒ` </returns>
+	/// <param name="pos1"> é ‚ç‚¹1 </param>
+	/// <param name="pos2"> é ‚ç‚¹2 </param>
+	/// <returns> é•·æ–¹å½¢ </returns>
 	inline constexpr Rect getRectFromTwoPoint(const Point& pos1, const Point& pos2)
 	{
 		return std::move(Rect(Min(pos1.x, pos2.x), Min(pos1.y, pos2.y), Abs(pos1.x - pos2.x), Abs(pos1.y - pos2.y)));
 	}
 
 	/// <summary>
-	/// ’·•ûŒ`‚Ì’¸“_ƒŠƒXƒg‚ğæ“¾
+	/// é•·æ–¹å½¢ã®é ‚ç‚¹ãƒªã‚¹ãƒˆã‚’å–å¾—
 	/// </summary>
-	/// <param name="rect"> ’·•ûŒ` </param>
-	/// <returns> ’¸“_ƒŠƒXƒg </returns>
+	/// <param name="rect"> é•·æ–¹å½¢ </param>
+	/// <returns> é ‚ç‚¹ãƒªã‚¹ãƒˆ </returns>
 	inline const Array<Vec2> getRectNode(const RectF& rect)
 	{
 		return { rect.tl(),rect.tr(),rect.br(),rect.bl() };
 	}
 
 	/// <summary>
-	/// ’·•ûŒ`‚Ì•ÓƒŠƒXƒg‚ğæ“¾
+	/// é•·æ–¹å½¢ã®è¾ºãƒªã‚¹ãƒˆã‚’å–å¾—
 	/// </summary>
-	/// <param name="rect"> ’·•ûŒ` </param>
-	/// <returns> ’¸“_ƒŠƒXƒg </returns>
+	/// <param name="rect"> é•·æ–¹å½¢ </param>
+	/// <returns> é ‚ç‚¹ãƒªã‚¹ãƒˆ </returns>
 	inline const Array<Line> getRectEdge(const RectF& rect)
 	{
 		return { rect.top(),rect.right(),rect.bottom(),rect.left() };
 	}
 
 	/// <summary>
-	/// ’·•ûŒ`“à‚É‚ ‚éŠiq“_‚ÌƒŠƒXƒg‚Ìæ“¾
+	/// é•·æ–¹å½¢å†…ã«ã‚ã‚‹æ ¼å­ç‚¹ã®ãƒªã‚¹ãƒˆã®å–å¾—
 	/// </summary>
-	/// <param name="rect"> ’·•ûŒ` </param>
-	/// <returns> Šiq“_ </returns>
+	/// <param name="rect"> é•·æ–¹å½¢ </param>
+	/// <returns> æ ¼å­ç‚¹ </returns>
 	Array<Point> getGridPoint(const Rect& rect);
 
 	/// <summary>
-	/// Šp“x‚©‚ç‚»‚Ì•ûŒü‚ğŒü‚¢‚½’PˆÊƒxƒNƒgƒ‹‚ğæ“¾
+	/// è§’åº¦ã‹ã‚‰ãã®æ–¹å‘ã‚’å‘ã„ãŸå˜ä½ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
 	/// </summary>
-	/// <param name="angle"> Šp“x(rad) </param>
-	/// <returns> ’PˆÊƒxƒNƒgƒ‹ </returns>
+	/// <param name="angle"> è§’åº¦(rad) </param>
+	/// <returns> å˜ä½ãƒ™ã‚¯ãƒˆãƒ« </returns>
 	/// <remarks>
-	/// 0(rad)‚ğƒxƒNƒgƒ‹(1,0)‚É‘Î‰‚³‚¹C
-	/// Œv‰ñ‚è‚ğ³‚Ì•ûŒü‚Æ‚·‚é
+	/// 0(rad)ã‚’ãƒ™ã‚¯ãƒˆãƒ«(1,0)ã«å¯¾å¿œã•ã›ï¼Œ
+	/// æ™‚è¨ˆå›ã‚Šã‚’æ­£ã®æ–¹å‘ã¨ã™ã‚‹
 	/// </remarks>
 	inline constexpr Vec2 angleToVec(double angle)
 	{
@@ -146,13 +146,13 @@ namespace Kokoha
 	}
 
 	/// <summary>
-	/// 2ƒxƒNƒgƒ‹‚ª‚È‚·Šp“x‚ğæ“¾
+	/// 2ãƒ™ã‚¯ãƒˆãƒ«ãŒãªã™è§’åº¦ã‚’å–å¾—
 	/// </summary>
-	/// <param name="v1"> ƒxƒNƒgƒ‹1 </param>
-	/// <param name="v2"> ƒxƒNƒgƒ‹2 </param>
-	/// <returns> Šp“x(rad) [-Pi,Pi) </returns>
+	/// <param name="v1"> ãƒ™ã‚¯ãƒˆãƒ«1 </param>
+	/// <param name="v2"> ãƒ™ã‚¯ãƒˆãƒ«2 </param>
+	/// <returns> è§’åº¦(rad) [-Pi,Pi) </returns>
 	/// <remarks>
-	/// ƒxƒNƒgƒ‹1‚ğŠî€‚É‚µ‚ÄŒv‰ñ‚è‚ğ³‚Æ‚µ‚ÄŒvZ
+	/// ãƒ™ã‚¯ãƒˆãƒ«1ã‚’åŸºæº–ã«ã—ã¦æ™‚è¨ˆå›ã‚Šã‚’æ­£ã¨ã—ã¦è¨ˆç®—
 	/// </remarks>
 	inline double twoVecToAngle(Vec2 v1, Vec2 v2)
 	{
@@ -161,12 +161,12 @@ namespace Kokoha
 	}
 
 	/// <summary>
-	/// 3‚Â‚ÌŠp“x‚ªŒv‰ñ‚è‚É”z’u‚³‚ê‚Ä‚¢‚é‚©
+	/// 3ã¤ã®è§’åº¦ãŒæ™‚è¨ˆå›ã‚Šã«é…ç½®ã•ã‚Œã¦ã„ã‚‹ã‹
 	/// </summary>
-	/// <param name="a1"> Šp“x1 </param>
-	/// <param name="a2"> Šp“x2 </param>
-	/// <param name="a3"> Šp“x3 </param>
-	/// <returns> 1->2->3‚ªŒv‰ñ‚è‚É‚È‚Á‚Ä‚¢‚é‚È‚ç true , ‚»‚¤‚Å‚È‚¢‚È‚ç false </returns>
+	/// <param name="a1"> è§’åº¦1 </param>
+	/// <param name="a2"> è§’åº¦2 </param>
+	/// <param name="a3"> è§’åº¦3 </param>
+	/// <returns> 1->2->3ãŒæ™‚è¨ˆå›ã‚Šã«ãªã£ã¦ã„ã‚‹ãªã‚‰ true , ãã†ã§ãªã„ãªã‚‰ false </returns>
 	inline bool clockwise(double a1, double a2, double a3)
 	{
 		const Vec2 v1 = angleToVec(a1), v2 = angleToVec(a2), v3 = angleToVec(a3);
@@ -174,12 +174,12 @@ namespace Kokoha
 	}
 
 	/// <summary>
-	/// ƒxƒNƒgƒ‹‚ªx²‚Æ‚È‚·Šp“x‚ğæ“¾
+	/// ãƒ™ã‚¯ãƒˆãƒ«ãŒxè»¸ã¨ãªã™è§’åº¦ã‚’å–å¾—
 	/// </summary>
-	/// <param name="v"> ƒxƒNƒgƒ‹ </param>
-	/// <returns> Šp“x(rad) [-Pi,Pi) </returns>
+	/// <param name="v"> ãƒ™ã‚¯ãƒˆãƒ« </param>
+	/// <returns> è§’åº¦(rad) [-Pi,Pi) </returns>
 	/// <remarks>
-	/// ƒxƒNƒgƒ‹1‚ğŠî€‚É‚µ‚ÄŒv‰ñ‚è‚ğ³‚Æ‚µ‚ÄŒvZ
+	/// ãƒ™ã‚¯ãƒˆãƒ«1ã‚’åŸºæº–ã«ã—ã¦æ™‚è¨ˆå›ã‚Šã‚’æ­£ã¨ã—ã¦è¨ˆç®—
 	/// </remarks>
 	inline double vecToAngle(const Vec2& v)
 	{
@@ -187,9 +187,9 @@ namespace Kokoha
 	}
 
 	/// <summary>
-	/// ƒfƒoƒbƒO—p“®ì
+	/// ãƒ‡ãƒãƒƒã‚°ç”¨å‹•ä½œ
 	/// </summary>
-	/// <returns> ˆÚ“®—Ê </returns>
+	/// <returns> ç§»å‹•é‡ </returns>
 	inline Point debugMovement()
 	{
 		return Point(KeyD.pressed() - KeyA.pressed(), KeyS.pressed() - KeyW.pressed())

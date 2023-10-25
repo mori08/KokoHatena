@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessObject.hpp"
 
@@ -8,7 +8,7 @@ namespace Kokoha
 	{
 	private:
 
-		// ƒvƒŒƒCƒ„[‚ÌÀ•W
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™
 		Vec2 m_playerPos;
 
 	public:

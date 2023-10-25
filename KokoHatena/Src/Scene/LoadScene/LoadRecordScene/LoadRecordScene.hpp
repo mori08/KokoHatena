@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 
 #include"../LoadScene.hpp"
 
 namespace Kokoha
 {
 	/// <summary>
-	/// RecordManager‚Ì“à—e‚Ì“Ç‚İ‚İ
-	/// ‘¼Manager‚ÌƒZƒbƒgƒAƒbƒv‚às‚¤
+	/// RecordManagerã®å†…å®¹ã®èª­ã¿è¾¼ã¿
+	/// ä»–Managerã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚‚è¡Œã†
 	/// </summary>
 	class LoadRecordScene : public LoadScene
 	{

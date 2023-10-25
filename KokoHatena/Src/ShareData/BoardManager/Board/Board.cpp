@@ -1,11 +1,11 @@
-#include "Board.hpp"
+ï»¿#include "Board.hpp"
 #include "../../../Config/Config.hpp"
 #include "../../../MyLibrary/MyLibrary.hpp"
 
 namespace 
 {
 	/// <summary>
-	/// ƒtƒŒ[ƒ€ã•”‚Ì‘€ì”Õ‚Ì‚‚³
+	/// ãƒ•ãƒ¬ãƒ¼ãƒ ä¸Šéƒ¨ã®æ“ä½œç›¤ã®é«˜ã•
 	/// </summary>
 	int32 controlFrameHeight()
 	{
@@ -21,7 +21,7 @@ namespace Kokoha
 		, m_state(state)
 		, m_name(Config::get<String>(configName + U".name"))
 		, m_size(Config::get<Size>  (configName + U".size"))
-		, m_pos(Scene::Center() - m_size/2) // ‰æ–Ê’†S‚É•\¦
+		, m_pos(Scene::Center() - m_size/2) // ç”»é¢ä¸­å¿ƒã«è¡¨ç¤º
 		, m_render(m_size)
 		, m_iconTextureName(configName)
 		, m_iconOrder(Config::get<int32>(configName + U".iconOrder") )
@@ -80,28 +80,28 @@ namespace Kokoha
 	{
 		if (m_state != BoardState::IS_DISPLAYED) { return; }
 
-		// ƒtƒŒ[ƒ€‚Ì‘¾‚³
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã®å¤ªã•
 		static const double FRAME_THICKNESS = Config::get<double>(U"Board.frameThickness");
-		// –¼‘O‚ğ•`‰æ‚·‚éÀ•W
+		// åå‰ã‚’æç”»ã™ã‚‹åº§æ¨™
 		static const Point NAME_POS = Config::get<Point>(U"Board.namePos");
 
-		// ƒŒƒ“ƒ_[ƒeƒNƒXƒ`ƒƒ[‚ÌƒNƒŠƒA
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¯ãƒªã‚¢
 		m_render.clear(MyBlack);
 
-		// ƒŒƒ“ƒ_[ƒeƒNƒXƒ`ƒƒ[‚ğg‚Á‚Ä Rect(m_pos + Point::Down(controlFrameHeight()), m_size) ‚É•`‰æ
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’ä½¿ã£ã¦ Rect(m_pos + Point::Down(controlFrameHeight()), m_size) ã«æç”»
 		{
 			ScopedRenderTarget2D target(m_render);
 
-			// ƒ{[ƒh“à‚Ì•`‰æ
+			// ãƒœãƒ¼ãƒ‰å†…ã®æç”»
 			drawInBoard();
 		}
 		Graphics2D::Flush();
 		m_render.resolve();
 		m_render.draw(m_pos + Point::Down(controlFrameHeight()));
 
-		// ƒtƒŒ[ƒ€‚Ì•`‰æ
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã®æç”»
 		Rect(m_pos, m_size + Point::Down(controlFrameHeight())).drawFrame(FRAME_THICKNESS, 0, MyWhite);
-		// ƒtƒŒ[ƒ€ã•”‚Ì‘€ì”Õ
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ä¸Šéƒ¨ã®æ“ä½œç›¤
 		Rect(m_pos, m_size.x, controlFrameHeight()).draw(MyWhite);
 		TextureAsset(U"Small" + m_iconTextureName).draw(m_pos);
 		TextureAsset(U"HideButton").draw(m_pos + hideButtonRect().pos);
@@ -135,7 +135,7 @@ namespace Kokoha
 
 	const Rect Board::getIconRect() const
 	{
-		// ƒAƒCƒRƒ“‚ÌƒTƒCƒY
+		// ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚µã‚¤ã‚º
 		static const Size iconSize = Config::get<Size>(U"Board.iconSize");
 
 		return Rect(
@@ -147,7 +147,7 @@ namespace Kokoha
 
 	const Rect Board::hideButtonRect() const
 	{
-		// ƒAƒCƒRƒ“‚ÌƒTƒCƒY
+		// ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚µã‚¤ã‚º
 		static const Size buttonSize = Config::get<Size>(U"Board.hideButtonSize");
 
 		return Rect(

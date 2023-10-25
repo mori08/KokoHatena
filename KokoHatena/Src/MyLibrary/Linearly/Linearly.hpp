@@ -1,36 +1,36 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Siv3D.hpp>
 
 namespace Kokoha
 {
 	/// <summary>
-	/// üŒ^“I‚É’l‚ğ•ÏX
-	/// å‚Édouble‚âVec2,Vec3‚È‚Ç‚Ì¬”’l‚Åˆµ‚¤
+	/// ç·šå‹çš„ã«å€¤ã‚’å¤‰æ›´
+	/// ä¸»ã«doubleã‚„Vec2,Vec3ãªã©ã®å°æ•°å€¤ã§æ‰±ã†
 	/// </summary>
-	/// <typeparam name="Type"> •ÏX‚·‚é’l‚ÌŒ^ </typeparam>
+	/// <typeparam name="Type"> å¤‰æ›´ã™ã‚‹å€¤ã®å‹ </typeparam>
 	template<typename Type>
 	class Linearly
 	{
 	private:
 
-		// ‰½•b‚Å’l‚ğ•ÏX‚·‚é‚© (DeltaTime‚ğ‰º‰ñ‚é‚Æ1ƒtƒŒ[ƒ€‚ÅmRate‚ğ1‚É‚·‚é)
+		// ä½•ç§’ã§å€¤ã‚’å¤‰æ›´ã™ã‚‹ã‹ (DeltaTimeã‚’ä¸‹å›ã‚‹ã¨1ãƒ•ãƒ¬ãƒ¼ãƒ ã§mRateã‚’1ã«ã™ã‚‹)
 		double m_changeSecond;
 
-		// ’[“_ { n“_, I“_ }
+		// ç«¯ç‚¹ { å§‹ç‚¹, çµ‚ç‚¹ }
 		std::pair<Type, Type> m_endPoint;
 
-		// “à•ª”ä [0,1]
+		// å†…åˆ†æ¯” [0,1]
 		double m_rate;
 
 	public:
 
 		/// <summary>
-		/// üŒ`•âŠ®
+		/// ç·šå½¢è£œå®Œ
 		/// </summary>
-		/// <param name="changeSecond"> ‰½•b‚Å’l‚ğ•ÏX‚·‚é‚© </param>
-		/// <param name="start"       > n“_                 </param>
-		/// <param name="goal"        > I“_                 </param>
+		/// <param name="changeSecond"> ä½•ç§’ã§å€¤ã‚’å¤‰æ›´ã™ã‚‹ã‹ </param>
+		/// <param name="start"       > å§‹ç‚¹                 </param>
+		/// <param name="goal"        > çµ‚ç‚¹                 </param>
 		Linearly(double changeSecond, const Type& start, const Type& goal)
 			: m_changeSecond(changeSecond)
 			, m_endPoint({ start,goal })
@@ -39,10 +39,10 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// üŒ`•âŠ®
+		/// ç·šå½¢è£œå®Œ
 		/// </summary>
-		/// <param name="changeSecond"> ‰½•b‚Å’l‚ğ•ÏX‚·‚é‚© </param>
-		/// <param name="goal"        > I“_                 </param>
+		/// <param name="changeSecond"> ä½•ç§’ã§å€¤ã‚’å¤‰æ›´ã™ã‚‹ã‹ </param>
+		/// <param name="goal"        > çµ‚ç‚¹                 </param>
 		Linearly(double changeSecond, Type goal)
 			: m_changeSecond(changeSecond)
 			, m_endPoint({ Type(),goal })
@@ -51,7 +51,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// n“_‚É–ß‚·
+		/// å§‹ç‚¹ã«æˆ»ã™
 		/// </summary>
 		void restart()
 		{
@@ -59,7 +59,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// I“_‚É‚Æ‚Î‚·
+		/// çµ‚ç‚¹ã«ã¨ã°ã™
 		/// </summary>
 		void toGoal()
 		{
@@ -67,16 +67,16 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
 		/// <returns>
-		/// “à•ª”ä‚ª 1 ‚ğ’´‚¦‚½‚ç true, ‚»‚¤‚Å‚È‚¢‚Æ‚« false
+		/// å†…åˆ†æ¯”ãŒ 1 ã‚’è¶…ãˆãŸã‚‰ true, ãã†ã§ãªã„ã¨ã false
 		/// </returns>
 		bool update()
 		{
 			const double deltaTime = Scene::DeltaTime();
 
-			if (deltaTime > m_changeSecond) // mChangeSecond‚ª0ˆÈ‰º‚Ì‚Æ‚«‚Ì‘Îô
+			if (deltaTime > m_changeSecond) // mChangeSecondãŒ0ä»¥ä¸‹ã®ã¨ãã®å¯¾ç­–
 			{
 				m_rate = 1;
 				return true;
@@ -94,7 +94,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// ’l‚Ìæ“¾
+		/// å€¤ã®å–å¾—
 		/// </summary>
 		Type getValue() const
 		{
@@ -102,7 +102,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// I“_‚Ìæ“¾
+		/// çµ‚ç‚¹ã®å–å¾—
 		/// </summary>
 		Type getGoal() const
 		{

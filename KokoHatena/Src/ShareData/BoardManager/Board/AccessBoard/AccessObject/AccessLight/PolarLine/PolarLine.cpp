@@ -1,4 +1,4 @@
-#include "PolarLine.hpp"
+ï»¿#include "PolarLine.hpp"
 #include "../../../../../../../MyLibrary/MyLibrary.hpp"
 
 namespace
@@ -19,18 +19,18 @@ namespace Kokoha
 
 	Optional<double> PolarLine::r(double a) const
 	{
-		// ®‚Ì¶•Ó ACos(a)+BSin(a)
+		// å¼ã®å·¦è¾º ACos(a)+BSin(a)
 		const double L = A * Cos(a) + B * Sin(a);
 
-		// C == 0  -> 2“_‚ğ’Ê‚é’¼ü‚ª r=a‚Æ•Às‚È‚Æ‚«
-		// N/C < 0 -> r=a‚ÆŒğ“_‚ğ‚½‚È‚¢(‹t‚Ér=a+Pi‚ÆŒğ“_‚ğ‚Â)
+		// C == 0  -> 2ç‚¹ã‚’é€šã‚‹ç›´ç·šãŒ r=aã¨ä¸¦è¡Œãªã¨ã
+		// N/C < 0 -> r=aã¨äº¤ç‚¹ã‚’æŒãŸãªã„(é€†ã«r=a+Piã¨äº¤ç‚¹ã‚’æŒã¤)
 		if (C == 0 || C / L < 0) { return none; }
 		return C / L;
 	}
 
 	std::list<double> PolarLine::a(double r) const
 	{
-		// ”»•Ê®
+		// åˆ¤åˆ¥å¼
 		const double D = (A*A + B*B) * r*r - C*C;
 		std::list<double> rtn;
 
@@ -38,14 +38,14 @@ namespace Kokoha
 		
 		if (D == 0) 
 		{ 
-			const double angle = atan2(B*C, A*C); // Œğ“_‚ÌŠp“x
+			const double angle = atan2(B*C, A*C); // äº¤ç‚¹ã®è§’åº¦
 			if (clockwise(p1.a, angle, p2.a)) { rtn.push_back(angle); }
 			return rtn; 
 		}
 
 		const double vD = Sqrt(D);
 
-		// Œğ“_‚ÌÀ•W
+		// äº¤ç‚¹ã®åº§æ¨™
 		const double
 			a1 = atan2(B*C + A*vD, A*C - B*vD),
 			a2 = atan2(B*C - A*vD, A*C + B*vD);

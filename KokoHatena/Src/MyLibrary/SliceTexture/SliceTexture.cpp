@@ -1,4 +1,4 @@
-#include "SliceTexture.hpp"
+ï»¿#include "SliceTexture.hpp"
 
 namespace Kokoha
 {
@@ -18,7 +18,7 @@ namespace Kokoha
 	{
 		m_animSecond += Scene::DeltaTime();
 
-		// ‰æ‘œ‚ªƒ‹[ƒv‚·‚é‚Æ‚«
+		// ç”»åƒãŒãƒ«ãƒ¼ãƒ—ã™ã‚‹ã¨ã
 		if (m_animMap.find(m_animName)->second.loop())
 		{
 			if (isFinished())

@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 #include<Siv3D.hpp>
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ©•ª‚Åì¬‚µ‚½ƒsƒNƒZƒ‹ƒVƒF[ƒ_‚ÌŠÇ—
+	/// è‡ªåˆ†ã§ä½œæˆã—ãŸãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã®ç®¡ç†
 	/// </summary>
 	class MyPixelShader
 	{
 	private:
 
-		// ©•ª‚Åì¬‚µ‚½ƒsƒNƒZƒ‹ƒVƒF[ƒ_‚Ìƒ}ƒbƒv
+		// è‡ªåˆ†ã§ä½œæˆã—ãŸãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã®ãƒãƒƒãƒ—
 		std::unordered_map<String, const PixelShader> m_shaderMap;
 
 	private:
@@ -19,9 +19,9 @@ namespace Kokoha
 		MyPixelShader() = default;
 
 		/// <summary>
-		/// ƒNƒ‰ƒX“à‚Åg—p‚·‚éƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾
+		/// ã‚¯ãƒ©ã‚¹å†…ã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒCƒ“ƒXƒ^ƒ“ƒX </returns>
+		/// <returns> ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ </returns>
 		static MyPixelShader& instance()
 		{
 			static MyPixelShader myShader;
@@ -31,15 +31,15 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// ƒsƒNƒZƒ‹ƒVƒF[ƒ_‚Ì“Ç‚İæ‚è
+		/// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã®èª­ã¿å–ã‚Š
 		/// </summary>
 		static void loadPixelShader();
 
 		/// <summary>
-		/// ƒsƒNƒZƒ‹ƒVƒF[ƒ_‚Ìæ“¾
+		/// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã®å–å¾—
 		/// </summary>
-		/// <param name="type"> –¼‘O </param>
-		/// <returns> ƒsƒNƒZƒ‹ƒVƒF[ƒ_ </returns>
+		/// <param name="type"> åå‰ </param>
+		/// <returns> ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ </returns>
 		static const PixelShader& get(const String& name);
 
 	};

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include"../Board.hpp"
 #include"AccessObject/AccessObject.hpp"
 #include"AccessState/AccessState.hpp"
@@ -10,21 +10,21 @@ namespace Kokoha
 	{
 	private:
 
-		// ƒXƒe[ƒW–¼
+		// ã‚¹ãƒ†ãƒ¼ã‚¸å
 		const String m_stageName;
 
-		// ’nŒ`
+		// åœ°å½¢
 		const Terrain m_terrain;
 
-		// guid‚©‚çƒIƒuƒWƒFƒNƒg‚Ö‚Ì˜A‘z”z—ñ
+		// guidã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®é€£æƒ³é…åˆ—
 		AccessObject::GuidToObject m_objectMap;
 
-		//  ƒIƒuƒWƒFƒNƒg‚Ìí—Ş‚©‚çguid‚Ö‚Ì˜A‘z”z—ñ
+		//  ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡ã‹ã‚‰guidã¸ã®é€£æƒ³é…åˆ—
 		AccessObject::TypeToGuidSet m_typeToGuidSet;
 
 		std::shared_ptr<AccessState> m_state;
 
-		// ¶¬‚·‚éƒIƒuƒWƒFƒNƒg
+		// ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 		std::list<AccessObject::Ptr> m_makeObjectList;
 
 	public:

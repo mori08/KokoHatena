@@ -1,4 +1,4 @@
-#include "GoalAccessObject.hpp"
+﻿#include "GoalAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
