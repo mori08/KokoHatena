@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../Scene.hpp"
 #include "RecordBox/RecordBox.hpp"
@@ -6,40 +6,40 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// RecordBox‚ð‘I‘ð‚·‚éƒV[ƒ“
-	/// ‘I‘ð‚µ‚½RecordSet‚ð‚Ç‚¤‚·‚é‚©‚Í”h¶ƒNƒ‰ƒX‚ÅŒˆ’è‚³‚ê‚é
+	/// RecordBoxã‚’é¸æŠžã™ã‚‹ã‚·ãƒ¼ãƒ³
+	/// é¸æŠžã—ãŸRecordSetã‚’ã©ã†ã™ã‚‹ã‹ã¯æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ã§æ±ºå®šã•ã‚Œã‚‹
 	/// </summary>
 	class SelectRecordScene : public MyApp::Scene
 	{
 	protected:
 
-		// ‚±‚ÌƒV[ƒ“‚Ìà–¾•¶
+		// ã“ã®ã‚·ãƒ¼ãƒ³ã®èª¬æ˜Žæ–‡
 		const String m_explanation;
 
-		// RecordBox‚ÌƒŠƒXƒg
+		// RecordBoxã®ãƒªã‚¹ãƒˆ
 		std::list<RecordBox> m_recordBoxList;
 
-		// ‰æ–Ê“à‚Ìˆê”Ôã‚É•\Ž¦‚·‚éRecordBox‚ÌƒCƒeƒŒ[ƒ^
+		// ç”»é¢å†…ã®ä¸€ç•ªä¸Šã«è¡¨ç¤ºã™ã‚‹RecordBoxã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		std::list<RecordBox>::iterator m_topBoxItr;
 
-		// RecordBox‚ð‘I‘ð‚µ‚½ê‡‚É‘JˆÚ‚·‚éƒV[ƒ“
+		// RecordBoxã‚’é¸æŠžã—ãŸå ´åˆã«é·ç§»ã™ã‚‹ã‚·ãƒ¼ãƒ³
 		const SceneName m_sceneName;
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚ð•\Ž¦‚·‚éyÀ•W
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹yåº§æ¨™
 		double m_scrollBarPosY;
 
-		// ƒ}ƒEƒXƒzƒC[ƒ‹‚Å‚ÌƒXƒNƒ[ƒ‹Žž‚ÌƒN[ƒ‹ƒ^ƒCƒ€
+		// ãƒžã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã§ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ™‚ã®ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
 		double m_wheel;
 
 	public:
 
 		/// <summary>
-		/// RecordBox‚ð‘I‘ð‚·‚éƒV[ƒ“
+		/// RecordBoxã‚’é¸æŠžã™ã‚‹ã‚·ãƒ¼ãƒ³
 		/// </summary>
-		/// <param name="recordBox"> ˆê”Ôã‚É•\Ž¦‚·‚éRecordBox </param>
-		/// <param name="recordFunc"> RecordSet‚É‘Î‰ž‚·‚éˆ— </param>
-		/// <param name="explanation"> ƒV[ƒ“‚Ìà–¾•¶ </param>
-		/// <param name="sceneName"> ‘I‘ðŽž‚É‘JˆÚ‚·‚éƒV[ƒ“–¼ </param>
+		/// <param name="recordBox"> ä¸€ç•ªä¸Šã«è¡¨ç¤ºã™ã‚‹RecordBox </param>
+		/// <param name="recordFunc"> RecordSetã«å¯¾å¿œã™ã‚‹å‡¦ç† </param>
+		/// <param name="explanation"> ã‚·ãƒ¼ãƒ³ã®èª¬æ˜Žæ–‡ </param>
+		/// <param name="sceneName"> é¸æŠžæ™‚ã«é·ç§»ã™ã‚‹ã‚·ãƒ¼ãƒ³å </param>
 		SelectRecordScene(
 			const InitData& init, 
 			const RecordBox& recordBox, 
@@ -57,14 +57,14 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// ƒXƒNƒ[ƒ‹ƒzƒC[ƒ‹‚Å‚ÌRecordBox‚ÌˆÚ“®
+		/// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ›ã‚¤ãƒ¼ãƒ«ã§ã®RecordBoxã®ç§»å‹•
 		/// </summary>
 		void scrollWheel();
 
 	};
 
 	/// <summary>
-	/// ƒ[ƒh‚·‚éRecordSet‚ð‘I‘ð‚·‚é
+	/// ãƒ­ãƒ¼ãƒ‰ã™ã‚‹RecordSetã‚’é¸æŠžã™ã‚‹
 	/// </summary>
 	class SelectLoadRecordScene : public SelectRecordScene
 	{
@@ -73,7 +73,7 @@ namespace Kokoha
 	};
 
 	/// <summary>
-	/// ƒZ[ƒu‚·‚éRecordSet‚ð‘I‘ð‚·‚é
+	/// ã‚»ãƒ¼ãƒ–ã™ã‚‹RecordSetã‚’é¸æŠžã™ã‚‹
 	/// </summary>
 	class SelectSaveRecordScene : public SelectRecordScene
 	{

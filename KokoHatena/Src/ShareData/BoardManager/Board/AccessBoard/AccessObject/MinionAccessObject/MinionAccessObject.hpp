@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessObject.hpp"
 
@@ -8,10 +8,10 @@ namespace Kokoha
 	{
 	private:
 
-		// –Ú“I’n
+		// ç›®çš„åœ°
 		Vec2 m_goal;
 
-		// ˆÚ“®—Ê
+		// ç§»å‹•é‡
 		double m_direction;
 
 	public:

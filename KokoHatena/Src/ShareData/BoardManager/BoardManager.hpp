@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include"Board/Board.hpp"
 #include"../RecordSet/RecordSet.hpp"
 #include"../../Scene/SceneName.hpp"
@@ -6,15 +6,15 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒ{[ƒh‚ÌŠÇ—‚ğs‚¤
-	/// loadScene‚Å‚Ì‰Šú‰»
-	/// DesktopScene‚Å‚ÌXV‚Æ•`‰æ
+	/// ãƒœãƒ¼ãƒ‰ã®ç®¡ç†ã‚’è¡Œã†
+	/// loadSceneã§ã®åˆæœŸåŒ–
+	/// DesktopSceneã§ã®æ›´æ–°ã¨æç”»
 	/// </summary>
 	class BoardManager
 	{
 	private:
 
-		// ƒ{[ƒh‚ÌƒŠƒXƒg
+		// ãƒœãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆ
 		std::list<std::shared_ptr<Board>> m_boardList;
 
 	public:
@@ -24,41 +24,41 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// Record‚©‚ç
+		/// Recordã‹ã‚‰
 		/// </summary>
-		/// <param name="recordSet"> ƒZ[ƒuƒf[ƒ^ </param>
+		/// <param name="recordSet"> ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ </param>
 		void load(const RecordSet& recordSet);
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
-		/// <param name="recordSet"> ƒZ[ƒuƒf[ƒ^ </param>
+		/// <param name="recordSet"> ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ </param>
 		Optional<SceneName> update(RecordSet& recordSet);
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
 		void draw() const;
 
 	private:
 
 		/// <summary>
-		/// Board::Role‚É‘Î‰‚µ‚½ƒ{[ƒh‚ÌƒCƒeƒŒ[ƒ^‚ğæ“¾
+		/// Board::Roleã«å¯¾å¿œã—ãŸãƒœãƒ¼ãƒ‰ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã‚’å–å¾—
 		/// </summary>
-		/// <param name="role"> ƒ{[ƒh‚Ìí—Ş </param>
+		/// <param name="role"> ãƒœãƒ¼ãƒ‰ã®ç¨®é¡ </param>
 		std::list<std::shared_ptr<Board>>::iterator findBoardItr(const BoardRole& role);
 
 		/// <summary>
-		/// ƒ{[ƒh‚ğæ“ª‚É•\¦
+		/// ãƒœãƒ¼ãƒ‰ã‚’å…ˆé ­ã«è¡¨ç¤º
 		/// </summary>
-		/// <param name="role"> ƒ{[ƒh‚Ìí—Ş </param>
-		/// <param name="requestText"> ŠJ‚¢‚½‚Æ‚«request‚ğ“Š‚°‚é </param>
+		/// <param name="role"> ãƒœãƒ¼ãƒ‰ã®ç¨®é¡ </param>
+		/// <param name="requestText"> é–‹ã„ãŸã¨ãrequestã‚’æŠ•ã’ã‚‹ </param>
 		void displayBoard(const BoardRole& role, const String& requestText = U"");
 
 		/// <summary>
-		/// ƒ{[ƒh‚ğ––”ö‚ÉˆÚ“®‚³‚¹”ñ•\¦
+		/// ãƒœãƒ¼ãƒ‰ã‚’æœ«å°¾ã«ç§»å‹•ã•ã›éè¡¨ç¤º
 		/// </summary>
-		/// <param name="role"> ƒ{[ƒh‚Ìí—Ş </param>
+		/// <param name="role"> ãƒœãƒ¼ãƒ‰ã®ç¨®é¡ </param>
 		void hideBoard(const BoardRole& role);
 
 	};

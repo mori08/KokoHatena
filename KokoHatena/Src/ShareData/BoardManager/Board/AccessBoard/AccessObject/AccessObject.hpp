@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../Terrain/Terrain.hpp"
 #include "AccessLight/AccessLight.hpp"
@@ -6,7 +6,7 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// AccessBoard‚Åg—p‚·‚é‚ÆObject
+	/// AccessBoardã§ä½¿ç”¨ã™ã‚‹ã¨Object
 	/// </summary>
 	class AccessObject
 	{
@@ -14,10 +14,10 @@ namespace Kokoha
 
 		enum class Type
 		{
-			PLAYER, // ƒvƒŒƒCƒ„[
-			ENEMY,  // “G
-			MINION, // èæ
-			GOAL    // ƒS[ƒ‹
+			PLAYER, // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+			ENEMY,  // æ•µ
+			MINION, // æ‰‹å…ˆ
+			GOAL    // ã‚´ãƒ¼ãƒ«
 		};
 
 		using Ptr = std::shared_ptr<AccessObject>;
@@ -27,31 +27,31 @@ namespace Kokoha
 		using TypeToGuidSet = std::unordered_map<Type, std::unordered_set<String>>;
 
 		/// <summary>
-		/// Type‚ª‡‚¤æ“ªƒIƒuƒWƒFƒNƒg‚ÌGuid‚ğæ“¾
+		/// TypeãŒåˆã†å…ˆé ­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®Guidã‚’å–å¾—
 		/// </summary>
-		/// <param name="type"> ƒIƒuƒWƒFƒNƒg‚Ìí—Ş </param>
-		/// <param name="typeToGuidSet"> type‚©‚çguidW‡‚Ö‚Ì˜A‘z”z—ñ </param>
-		/// <returns> ‘¶İ‚·‚é‚Æ‚«‚Í guid , W‡‚ª‹ó‚Ì‚Æ‚«‚Í none </returns>
+		/// <param name="type"> ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡ </param>
+		/// <param name="typeToGuidSet"> typeã‹ã‚‰guidé›†åˆã¸ã®é€£æƒ³é…åˆ— </param>
+		/// <returns> å­˜åœ¨ã™ã‚‹ã¨ãã¯ guid , é›†åˆãŒç©ºã®ã¨ãã¯ none </returns>
 		static Optional<String> getFrontGuid(Type type, const TypeToGuidSet& typeToGuidSet);
 
 	private:
 
-		// ƒIƒuƒWƒFƒNƒg‚Ìí—Ş
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡
 		const Type m_type;
 
 		// GUID
 		const String m_guid;
 
-		// true ‚Ì‚Æ‚« íœ‚·‚é
+		// true ã®ã¨ã å‰Šé™¤ã™ã‚‹
 		bool m_isErase;
 
-		// ì¬‚·‚éƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg
+		// ä½œæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆ
 		std::list<AccessObject::Ptr> m_makeObjectList;
 
-		// ˆÊ’u‚Æ”»’è—p‚Ì”ÍˆÍ
+		// ä½ç½®ã¨åˆ¤å®šç”¨ã®ç¯„å›²
 		Circle m_body;
 
-		// Œõ
+		// å…‰
 		AccessLight m_light;
 		
 	public:
@@ -67,7 +67,7 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// type‚Ìæ“¾
+		/// typeã®å–å¾—
 		/// </summary>
 		/// <returns> type </returns>
 		const Type& type() const
@@ -76,7 +76,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// guid‚Ìæ“¾
+		/// guidã®å–å¾—
 		/// </summary>
 		/// <returns> guid </returns>
 		const String& guid() const
@@ -85,7 +85,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// body‚Ìæ“¾
+		/// bodyã®å–å¾—
 		/// </summary>
 		/// <returns> body </returns>
 		const Circle& body() const
@@ -94,51 +94,51 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// “ü—Í
+		/// å…¥åŠ›
 		/// </summary>
-		/// <param name="cursorPos"> ƒJ[ƒ\ƒ‹‚ÌÀ•W </param>
+		/// <param name="cursorPos"> ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ </param>
 		virtual void input(const Vec2& cursorPos);
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
-		/// <param name="terrain"> ’nŒ` </param>
+		/// <param name="terrain"> åœ°å½¢ </param>
 		virtual void update(const Terrain& terrain);
 
 		/// <summary>
-		/// ‘¼ƒIƒuƒWƒFƒNƒg‚ÌŠm”F
+		/// ä»–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¢ºèª
 		/// </summary>
-		/// <param name="terrain"> ’nŒ` </param>
-		/// <param name="guidToObject"> guid‚©‚çƒIƒuƒWƒFƒNƒg‚Ö‚Ì˜A‘z”z—ñ </param>
-		/// <param name="typeToGuidSet"> ƒIƒuƒWƒFƒNƒg‚Ìí—Ş‚©‚çguid‚Ö‚Ì˜A‘z”z—ñ </param>
+		/// <param name="terrain"> åœ°å½¢ </param>
+		/// <param name="guidToObject"> guidã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®é€£æƒ³é…åˆ— </param>
+		/// <param name="typeToGuidSet"> ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡ã‹ã‚‰guidã¸ã®é€£æƒ³é…åˆ— </param>
 		virtual void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
 
 		/// <summary>
-		/// ’Ç‰ÁƒIƒuƒWƒFƒNƒg‚ğƒIƒuƒWƒFƒNƒgƒŠƒXƒg‚É’Ç‰Á
+		/// è¿½åŠ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆã«è¿½åŠ 
 		/// </summary>
-		/// <param name="makeObjectList"> ƒIƒuƒWƒFƒNƒg‚Ìì¬ƒŠƒXƒg </param>
+		/// <param name="makeObjectList"> ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆãƒªã‚¹ãƒˆ </param>
 		virtual void addObjectList(std::list<AccessObject::Ptr>& makeObjectList);
 
 		/// <summary>
-		/// íœğŒ
+		/// å‰Šé™¤æ¡ä»¶
 		/// </summary>
-		/// <returns> true ‚Ì‚Æ‚«íœ </returns>
+		/// <returns> true ã®ã¨ãå‰Šé™¤ </returns>
 		virtual bool isEraseAble() const;
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
 		virtual void draw() const;
 
 		/// <summary>
-		/// Œõ‚Ì•`‰æ
+		/// å…‰ã®æç”»
 		/// </summary>
 		virtual void drawLight() const;
 
 		/// <summary>
-		/// Œõ
+		/// å…‰
 		/// </summary>
-		/// <returns> Œõ‚ÌQÆ </returns>
+		/// <returns> å…‰ã®å‚ç…§ </returns>
 		AccessLight& light()
 		{
 			return m_light;
@@ -147,7 +147,7 @@ namespace Kokoha
 	protected:
 
 		/// <summary>
-		/// ‚±‚ÌƒIƒuƒWƒFƒNƒg‚ğíœ‚·‚é
+		/// ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 		/// </summary>
 		void erase()
 		{
@@ -155,29 +155,29 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// ‘¼‚ÌƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
+		/// ä»–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
 		/// </summary>
-		/// <param name="objectPtr"> ì¬‚·‚éƒIƒuƒWƒFƒNƒg‚Ìunique_ptr </param>
+		/// <param name="objectPtr"> ä½œæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®unique_ptr </param>
 		void makeObject(AccessObject::Ptr&& object)
 		{
 			m_makeObjectList.emplace_back(std::move(object));
 		}
 
 		/// <summary>
-		/// ˆÚ“®
+		/// ç§»å‹•
 		/// </summary>
-		/// <param name="movement"> ˆÚ“®—Ê(/s) </param>
-		/// <param name="terrain"> ’nŒ` </param>
-		/// <returns> ÀÛ‚ÉˆÚ“®‚µ‚½ˆÚ“®—Ê </returns>
+		/// <param name="movement"> ç§»å‹•é‡(/s) </param>
+		/// <param name="terrain"> åœ°å½¢ </param>
+		/// <returns> å®Ÿéš›ã«ç§»å‹•ã—ãŸç§»å‹•é‡ </returns>
 		Vec2 walk(Vec2 movement, const Terrain& terrain);
 
 		/// <summary>
-		/// –Ú“I’n‚Ö‚ÌˆÚ“®
+		/// ç›®çš„åœ°ã¸ã®ç§»å‹•
 		/// </summary>
-		/// <param name="speed"> ‘¬‚³(/s) </param>
-		/// <param name="goal"> –Ú“I’n </param>
-		/// <param name="terrain"> ’nŒ` </param>
-		/// <returns> ÀÛ‚ÉˆÚ“®‚µ‚½ˆÚ“®—Ê </returns>
+		/// <param name="speed"> é€Ÿã•(/s) </param>
+		/// <param name="goal"> ç›®çš„åœ° </param>
+		/// <param name="terrain"> åœ°å½¢ </param>
+		/// <returns> å®Ÿéš›ã«ç§»å‹•ã—ãŸç§»å‹•é‡ </returns>
 		Vec2 walkToGoal(double speed, const Vec2& goal, const Terrain& terrain);
 
 	};

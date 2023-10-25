@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessState.hpp"
 
@@ -8,16 +8,16 @@ namespace Kokoha
 	{
 	private:
 
-		// ƒvƒŒƒCƒ„[‚ÌÀ•W
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™
 		const Vec2 m_playerPos;
 
-		// Œõ‚Ì—Ö‚Ì”¼Œa
+		// å…‰ã®è¼ªã®åŠå¾„
 		double m_lightRadius;
 
-		// Œõ‚Ì•s“§–¾“x
+		// å…‰ã®ä¸é€æ˜åº¦
 		double m_lightAlpha;
 
-		// ƒƒbƒZ[ƒWƒ{[ƒh‚ÉRequest‚ğ‘—‚Á‚½‚©‚Ç‚¤‚© true ‚È‚ç‘—MÏ
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒ¼ãƒ‰ã«Requestã‚’é€ã£ãŸã‹ã©ã†ã‹ true ãªã‚‰é€ä¿¡æ¸ˆ
 		bool m_alreadySendRequest;
 
 	public:

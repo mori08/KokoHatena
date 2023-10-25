@@ -1,4 +1,4 @@
-#include "AccessLight.hpp"
+ï»¿#include "AccessLight.hpp"
 #include <queue>
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
@@ -60,12 +60,12 @@ namespace Kokoha
 
 		m_isPie = m_centralAngle < Math::TwoPi - EPSILON;
 
-		// •ÓƒŠƒXƒg‚Ìì¬
+		// è¾ºãƒªã‚¹ãƒˆã®ä½œæˆ
 		m_edgeAry.clear();
 		const Point tl = terrain.toSquare(m_sourcePos - m_distance * Vec2::One());
 		const Point br = terrain.toSquare(m_sourcePos + m_distance * Vec2::One());
 
-		// ‚’¼‚È•Ó
+		// å‚ç›´ãªè¾º
 		for (const auto& edge : terrain.getVerticalEdgeList().getSubList({ tl.x, br.x }))
 		{
 			const Vec2 begin = Terrain::SQUARE_SIZE * Vec2(edge.first, edge.second.first);
@@ -81,7 +81,7 @@ namespace Kokoha
 			}
 		}
 		
-		// …•½‚È•Ó
+		// æ°´å¹³ãªè¾º
 		for (const auto& edge : terrain.getHorizontalEdgeList().getSubList({ tl.y, br.y }))
 		{
 			const Vec2 begin = Terrain::SQUARE_SIZE * Vec2(edge.second.first , edge.first);
@@ -97,21 +97,21 @@ namespace Kokoha
 			}
 		}
 
-		// ƒq[ƒv‚Ì‰Šú‰»
+		// ãƒ’ãƒ¼ãƒ—ã®åˆæœŸåŒ–
 		m_heap.clear();
 		m_edgeToHeap = Array<size_t>(m_edgeAry.size());
 
-		// •Ó‚ÌƒCƒxƒ“ƒg‚ğì¬
+		// è¾ºã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆ
 		std::priority_queue<AngleEvent> eventQueue;
 		for (size_t edgeId = 0; edgeId < m_edgeAry.size(); ++edgeId)
 		{
-			// •Ó‚ğ–‘O‚É’Ç‰Á
+			// è¾ºã‚’äº‹å‰ã«è¿½åŠ 
 			if (m_edgeAry[edgeId].p2.a < m_edgeAry[edgeId].p1.a)
 			{
 				addEdgeToHeap(edgeId, -Math::Pi);
 			}
 
-			// •Ó‚ÌƒCƒxƒ“ƒg‚Ìì¬
+			// è¾ºã®ã‚¤ãƒ™ãƒ³ãƒˆã®ä½œæˆ
 			eventQueue.emplace(m_edgeAry[edgeId].p1.a, [this, edgeId]() { addStartPoint(edgeId); });
 			eventQueue.emplace(m_edgeAry[edgeId].p2.a, [this, edgeId]() { addEndPoint(edgeId);   });
 			for (const auto& angle : m_edgeAry[edgeId].a(m_distance))
@@ -120,7 +120,7 @@ namespace Kokoha
 			}
 		}
 
-		// ‰~‚ÌƒCƒxƒ“ƒg‚Ìì¬
+		// å††ã®ã‚¤ãƒ™ãƒ³ãƒˆã®ä½œæˆ
 		const int32 QUALITY = Config::get<int32>(U"AccessLight.quality");
 		for (int32 i = 0; i <= QUALITY; ++i)
 		{
@@ -133,7 +133,7 @@ namespace Kokoha
 			eventQueue.emplace(+m_centralAngle/2, [this]() { addPiePoint(+m_centralAngle/2); });
 		}
 
-		// ’¸“_ƒŠƒXƒg‚Ìì¬
+		// é ‚ç‚¹ãƒªã‚¹ãƒˆã®ä½œæˆ
 		m_posAry.clear();
 		if (m_isPie) { m_posAry.emplace_back(m_sourcePos); }
 		while (!eventQueue.empty())
@@ -172,14 +172,14 @@ namespace Kokoha
 
 	void AccessLight::addStartPoint(size_t edgeId)
 	{
-		const double a = m_edgeAry[edgeId].p1.a; // n“_‚Ì•ÎŠp
-		const double r = m_edgeAry[edgeId].p1.r; // n“_‚Ì“®Œa
+		const double a = m_edgeAry[edgeId].p1.a; // å§‹ç‚¹ã®åè§’
+		const double r = m_edgeAry[edgeId].p1.r; // å§‹ç‚¹ã®å‹•å¾„
 
-		const double minR = Min(heapTopR(a), m_distance); // Œõ‚ª“Í‚­‹——£
+		const double minR = Min(heapTopR(a), m_distance); // å…‰ãŒå±Šãè·é›¢
 
 		if (m_isPie && !clockwise(-m_centralAngle / 2, a, m_centralAngle / 2))
 		{
-			// îŒ^‚ÌŠO‘¤‚È‚ç’¸“_‚Í’Ç‰Á‚µ‚È‚¢
+			// æ‰‡å‹ã®å¤–å´ãªã‚‰é ‚ç‚¹ã¯è¿½åŠ ã—ãªã„
 		}
 		else if (Abs(r - minR) < EPSILON)
 		{
@@ -191,23 +191,23 @@ namespace Kokoha
 			m_posAry << m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
 		}
 
-		// •Ó‚ğƒq[ƒv‚É’Ç‰Á
+		// è¾ºã‚’ãƒ’ãƒ¼ãƒ—ã«è¿½åŠ 
 		addEdgeToHeap(edgeId, a);
 	}
 
 	void AccessLight::addEndPoint(size_t edgeId)
 	{
-		const double a = m_edgeAry[edgeId].p2.a; // I“_‚Ì•ÎŠp
-		const double r = m_edgeAry[edgeId].p2.r; // I“_‚Ì“®Œa
+		const double a = m_edgeAry[edgeId].p2.a; // çµ‚ç‚¹ã®åè§’
+		const double r = m_edgeAry[edgeId].p2.r; // çµ‚ç‚¹ã®å‹•å¾„
 
-		// •Ó‚ğƒq[ƒv‚©‚çíœ
+		// è¾ºã‚’ãƒ’ãƒ¼ãƒ—ã‹ã‚‰å‰Šé™¤
 		removeEdgeToHeap(edgeId, a);
 
-		const double minR = Min(heapTopR(a), m_distance); // Œõ‚ª“Í‚­‹——£
+		const double minR = Min(heapTopR(a), m_distance); // å…‰ãŒå±Šãè·é›¢
 		
 		if (m_isPie && !clockwise(-m_centralAngle / 2, a, m_centralAngle / 2))
 		{
-			// îŒ^‚ÌŠO‘¤‚È‚ç’¸“_‚Í’Ç‰Á‚µ‚È‚¢
+			// æ‰‡å‹ã®å¤–å´ãªã‚‰é ‚ç‚¹ã¯è¿½åŠ ã—ãªã„
 		}
 		else if (Abs(r - minR) < EPSILON)
 		{
@@ -237,14 +237,14 @@ namespace Kokoha
 
 	void AccessLight::removeEdgeToHeap(size_t edgeId, double angle)
 	{
-		const size_t back = m_heap.back();   // ƒq[ƒv––”ö‚Ì•Ó”Ô†
-		const size_t i = m_edgeToHeap[edgeId]; // íœ‚·‚é‰ÓŠ
+		const size_t back = m_heap.back();   // ãƒ’ãƒ¼ãƒ—æœ«å°¾ã®è¾ºç•ªå·
+		const size_t i = m_edgeToHeap[edgeId]; // å‰Šé™¤ã™ã‚‹ç®‡æ‰€
 
-		// ––”ö‚Ì•Ó‚ğíœ‚·‚é‰ÓŠ‚Öã‘‚«
+		// æœ«å°¾ã®è¾ºã‚’å‰Šé™¤ã™ã‚‹ç®‡æ‰€ã¸ä¸Šæ›¸ã
 		m_heap[i] = back;
 		m_edgeToHeap[back] = i;
 
-		// ƒq[ƒv––”ö‚ğíœ
+		// ãƒ’ãƒ¼ãƒ—æœ«å°¾ã‚’å‰Šé™¤
 		m_heap.pop_back();
 
 		if (i == m_heap.size()) { return; }
@@ -257,15 +257,15 @@ namespace Kokoha
 	{
 		const size_t edgeId = m_heap[i];
 
-		// ’¸“_‚ª‹t“]‚µ‚È‚­‚È‚é‚Ü‚Åã‚°‚é
+		// é ‚ç‚¹ãŒé€†è»¢ã—ãªããªã‚‹ã¾ã§ä¸Šã’ã‚‹
 		while (i > 0)
 		{
-			const size_t p = (i - 1) / 2; // e‚Ì–Ø”Ô†
+			const size_t p = (i - 1) / 2; // è¦ªã®æœ¨ç•ªå·
 
-			// e‚Ì•û‚ª‹ß‚¢‚Æ‚«I—¹
+			// è¦ªã®æ–¹ãŒè¿‘ã„ã¨ãçµ‚äº†
 			if (compareEdge(p, i, angle)) { break; }
 
-			// e‚ğˆê‚Â‰º‚°‚é
+			// è¦ªã‚’ä¸€ã¤ä¸‹ã’ã‚‹
 			m_heap[i] = m_heap[p];
 			m_edgeToHeap[m_heap[i]] = i;
 
@@ -282,17 +282,17 @@ namespace Kokoha
 	{
 		const size_t edgeId = m_heap[i];
 
-		// ’¸“_‚ª‹t“]‚µ‚È‚­‚È‚é‚Ü‚Å‰º‚°‚é
+		// é ‚ç‚¹ãŒé€†è»¢ã—ãªããªã‚‹ã¾ã§ä¸‹ã’ã‚‹
 		while (i * 2 + 1 < m_heap.size())
 		{
-			// q“¯m‚ğ”äŠr
+			// å­åŒå£«ã‚’æ¯”è¼ƒ
 			size_t x = i * 2 + 1, y = i * 2 + 2;
 			if (y < m_heap.size() && compareEdge(y, x, angle)) { x = y; }
 
-			// q‚Ì•û‚ª‰“‚¢‚Æ‚«I—¹
+			// å­ã®æ–¹ãŒé ã„ã¨ãçµ‚äº†
 			if (compareEdge(i, x, angle)) { break; }
 
-			// q‚ğˆê‚Âã‚°‚é
+			// å­ã‚’ä¸€ã¤ä¸Šã’ã‚‹
 			m_heap[i] = m_heap[x];
 			m_edgeToHeap[m_heap[i]] = i;
 

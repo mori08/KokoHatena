@@ -1,4 +1,4 @@
-#include "SuccessAccessState.hpp"
+ï»¿#include "SuccessAccessState.hpp"
 #include "../../../../../../Config/Config.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 
@@ -21,25 +21,25 @@ namespace Kokoha
 		AccessObject::TypeToGuidSet& typeToGuidSet,
 		BoardRequest& boardRequest)
 	{
-		// ƒvƒŒƒCƒ„[ˆÈŠO‚ÌŒõ‚ğÁ‚·
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥å¤–ã®å…‰ã‚’æ¶ˆã™
 		static const double CHANGE_ALPHA_RATE = Config::get<double>(U"FailedAccessState.changeAlphaRate");
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::MINION])
 		{
 			objectMap[guid]->light().setAlpha(0, CHANGE_ALPHA_RATE);
 		}
 
-		// ƒvƒŒƒCƒ„[‚ÌŒõ‚ğÁ‚·
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å…‰ã‚’æ¶ˆã™
 		static const double CHANGE_ALPHA_PLAYER_RATE = Config::get<double>(U"SuccessAccessState.changeAlphaRate");
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::PLAYER])
 		{
 			objectMap[guid]->light().setAlpha(0, CHANGE_ALPHA_PLAYER_RATE);
 		}
 
-		// Œõ‚Ì—Ö‚ªL‚ª‚é‘¬“x
+		// å…‰ã®è¼ªãŒåºƒãŒã‚‹é€Ÿåº¦
 		static const double LIGHT_RADIUS_SPREAD_SPEED = Config::get<double>(U"SuccessAccessState.lightRadiusSpreadSpeed");
-		// Œõ‚Ì—Ö‚ÌÅ‘å”¼Œa
+		// å…‰ã®è¼ªã®æœ€å¤§åŠå¾„
 		static const double LIGHT_MAX_RADIUS = Config::get<double>(U"SuccessAccessState.lightMaxRaduis");
-		// Œõ‚Ì•s“§–¾“x‚Ì•ÏX‚Ì“x‡
+		// å…‰ã®ä¸é€æ˜åº¦ã®å¤‰æ›´ã®åº¦åˆ
 		static const double LIGHT_ALPHA_RATE = Config::get<double>(U"SuccessAccessState.lightAlphaRate");
 		m_lightRadius += Scene::DeltaTime()*LIGHT_RADIUS_SPREAD_SPEED;
 		internalDividingPoint(m_lightAlpha, 0, LIGHT_ALPHA_RATE);
@@ -65,16 +65,16 @@ namespace Kokoha
 
 	void SuccessAccessState::draw() const
 	{
-		// Œõ‚Ì—Ö‚Ì‘¾‚³
+		// å…‰ã®è¼ªã®å¤ªã•
 		static const double LIGHT_THICKNESS = Config::get<double>(U"SuccessAccessState.lightThickness");
 
-		// Œõ‚ÌF
+		// å…‰ã®è‰²
 		ColorF color = ColorF(MyWhite, m_lightAlpha);
 
-		// Œõ‚Ì—Ö‚Ì•`‰æ
+		// å…‰ã®è¼ªã®æç”»
 		Circle(m_playerPos, m_lightRadius).drawFrame(LIGHT_THICKNESS, color);
 
-		// •¶š‚Ì•`‰æ
+		// æ–‡å­—ã®æç”»
 		FontAsset(U"15")(U"ACCESS").drawAt(m_playerPos, color);
 	}
 }

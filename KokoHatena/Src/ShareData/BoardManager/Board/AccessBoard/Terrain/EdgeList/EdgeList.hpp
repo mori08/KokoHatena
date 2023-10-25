@@ -1,25 +1,25 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Siv3D.hpp>
 
 namespace Kokoha
 {
 	/// <summary>
-	/// •Ó‚ğì¬‚·‚é‚½‚ß‚Ì•Ó‚ÌƒŠƒXƒg
+	/// è¾ºã‚’ä½œæˆã™ã‚‹ãŸã‚ã®è¾ºã®ãƒªã‚¹ãƒˆ
 	/// </summary>
 	class EdgeList
 	{
 	public:
 
-		// •Ó 
-		// ‚’¼‚È•Ó‚Ìê‡ {x, {y1, y2}}
-		// …•½‚È•Ó‚Ìê‡ {y, {x1, x2}}
+		// è¾º 
+		// å‚ç›´ãªè¾ºã®å ´åˆ {x, {y1, y2}}
+		// æ°´å¹³ãªè¾ºã®å ´åˆ {y, {x1, x2}}
 		using Edge = std::pair<int32, std::pair<int32, int32>>;
 
-		// •Ó‚ÌƒCƒeƒŒ[ƒ^
+		// è¾ºã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		using ConstItr = std::list<Edge>::const_iterator;
 
-		// •”•ªƒŠƒXƒg
+		// éƒ¨åˆ†ãƒªã‚¹ãƒˆ
 		class SubList
 		{
 		private:
@@ -39,35 +39,35 @@ namespace Kokoha
 
 	private:
 
-		// •ÓƒŠƒXƒg
-		// ”z—ñ‚ğg‚¤‚ÆƒGƒ‰[
+		// è¾ºãƒªã‚¹ãƒˆ
+		// é…åˆ—ã‚’ä½¿ã†ã¨ã‚¨ãƒ©ãƒ¼
 		std::list<Edge> m_edgeList;
 
-		// ƒCƒeƒŒ[ƒ^‚Ì”z—ñ
+		// ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®é…åˆ—
 		Array<ConstItr> m_itrAry;
 
 	public:
 
 		/// <summary>
-		/// •Ó‚Ì’Ç‰Á
+		/// è¾ºã®è¿½åŠ 
 		/// </summary>
-		/// <param name="edge"> •Ó </param>
+		/// <param name="edge"> è¾º </param>
 		void addEdge(const Edge& edge)
 		{
 			m_edgeList.emplace_back(edge);
 		}
 
 		/// <summary>
-		/// ƒCƒeƒŒ[ƒ^‚Ì”z—ñ‚ğİ’è
+		/// ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®é…åˆ—ã‚’è¨­å®š
 		/// </summary>
-		/// <param name="size"> ƒCƒeƒŒ[ƒ^‚Ì”z—ñ‚ÌƒTƒCƒY </param>
+		/// <param name="size"> ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®é…åˆ—ã®ã‚µã‚¤ã‚º </param>
 		void setIteratorAry(int32 size);
 
 		/// <summary>
-		/// ”ÍˆÍ“à‚Ì•”•ªƒŠƒXƒg‚ğæ“¾
+		/// ç¯„å›²å†…ã®éƒ¨åˆ†ãƒªã‚¹ãƒˆã‚’å–å¾—
 		/// </summary>
-		/// <param name="l"> ”ÍˆÍ i‚’¼‚È•Ó‚È‚çxÀ•W , …•½‚È•Ó‚È‚çyÀ•Wj </param>
-		/// <returns> •”•ªƒŠƒXƒg </returns>
+		/// <param name="l"> ç¯„å›² ï¼ˆå‚ç›´ãªè¾ºãªã‚‰xåº§æ¨™ , æ°´å¹³ãªè¾ºãªã‚‰yåº§æ¨™ï¼‰ </param>
+		/// <returns> éƒ¨åˆ†ãƒªã‚¹ãƒˆ </returns>
 		SubList getSubList(const std::pair<int32, int32>& region) const
 		{
 			return SubList(getItr(region.first), getItr(region.second));
@@ -76,10 +76,10 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// ƒ}ƒXÀ•W‚©‚çƒCƒeƒŒ[ƒ^‚Ìæ“¾
+		/// ãƒã‚¹åº§æ¨™ã‹ã‚‰ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®å–å¾—
 		/// </summary>
-		/// <param name="x"> ‚’¼‚È•Ó‚È‚çxÀ•W , …•½‚È•Ó‚È‚çyÀ•W </param>
-		/// <returns> w’è‚Ìƒ}ƒXÀ•W‚©‚çŒ©‚½ˆê”Ô¬‚³‚¢À•W‚Ì•Ó </returns>
+		/// <param name="x"> å‚ç›´ãªè¾ºãªã‚‰xåº§æ¨™ , æ°´å¹³ãªè¾ºãªã‚‰yåº§æ¨™ </param>
+		/// <returns> æŒ‡å®šã®ãƒã‚¹åº§æ¨™ã‹ã‚‰è¦‹ãŸä¸€ç•ªå°ã•ã„åº§æ¨™ã®è¾º </returns>
 		ConstItr getItr(int32 x) const;
 	};
 }

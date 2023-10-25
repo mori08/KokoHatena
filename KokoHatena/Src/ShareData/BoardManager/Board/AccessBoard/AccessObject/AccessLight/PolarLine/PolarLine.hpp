@@ -1,62 +1,62 @@
-#pragma once
+ï»¿#pragma once
 
 #include "PolarPos/PolarPos.hpp"
 
 namespace Kokoha
 {
 	/// <summary>
-	/// 2“_‚Ì‹ÉÀ•W‚Å‚È‚éü•ª
+	/// 2ç‚¹ã®æ¥µåº§æ¨™ã§ãªã‚‹ç·šåˆ†
 	/// </summary>
 	class PolarLine
 	{
 	public:
 
-		// n“_
+		// å§‹ç‚¹
 		const PolarPos p1;
 
-		// I“_
+		// çµ‚ç‚¹
 		const PolarPos p2;
 
 	private:
 
 		// ACos(a)+BSin(a) = C/r
 
-		// ’¼ü Ax+By=C
+		// ç›´ç·š Ax+By=C
 		const double A;
 
-		// ’¼ü Ax+By=C
+		// ç›´ç·š Ax+By=C
 		const double B;
 
-		// ’¼ü Ax+By=C
+		// ç›´ç·š Ax+By=C
 		const double C;
 
 	public:
 
-		/// <param name="point1"> n“_ </param>
-		/// <param name="point2"> I“_ </param>
+		/// <param name="point1"> å§‹ç‚¹ </param>
+		/// <param name="point2"> çµ‚ç‚¹ </param>
 		PolarLine(const PolarPos& point1, const PolarPos& point2);
 
 	public:
 
 		/// <summary>
-		/// ŒõŒ¹‚©‚çw’è‚ÌŠp“x‚Æ‚È‚é’¼üã‚Ì“®Œa
+		/// å…‰æºã‹ã‚‰æŒ‡å®šã®è§’åº¦ã¨ãªã‚‹ç›´ç·šä¸Šã®å‹•å¾„
 		/// </summary>
-		/// <param name="a"> Šp“x </param>
-		/// <returns> “®Œa , w’è‚ÌŠp“x‚Æ‚È‚é“_‚ª‚È‚¢ê‡ none </returns>
+		/// <param name="a"> è§’åº¦ </param>
+		/// <returns> å‹•å¾„ , æŒ‡å®šã®è§’åº¦ã¨ãªã‚‹ç‚¹ãŒãªã„å ´åˆ none </returns>
 		Optional<double> r(double a) const;
 
 		/// <summary>
-		/// ŒõŒ¹‚©‚çw’è‚Ì‹——£‚Æ‚È‚é’¼üã‚Ì•ÎŠp
+		/// å…‰æºã‹ã‚‰æŒ‡å®šã®è·é›¢ã¨ãªã‚‹ç›´ç·šä¸Šã®åè§’
 		/// </summary>
-		/// <param name="r"> ‹——£ </param>
-		/// <returns> •ÎŠp , 0 ~ 2ŒÂ </returns>
+		/// <param name="r"> è·é›¢ </param>
+		/// <returns> åè§’ , 0 ~ 2å€‹ </returns>
 		std::list<double> a(double r) const;
 
 		/// <summary>
-		/// ”¼Œar‚Ì‰~‚Æ‹¤—L•”•ª‚ğ‚Â‚©
+		/// åŠå¾„rã®å††ã¨å…±æœ‰éƒ¨åˆ†ã‚’æŒã¤ã‹
 		/// </summary>
-		/// <param name="r"> ”¼Œa </param>
-		/// <returns> true ‚Ìê‡‹¤—L‚ğ‚Â </returns>
+		/// <param name="r"> åŠå¾„ </param>
+		/// <returns> true ã®å ´åˆå…±æœ‰ã‚’æŒã¤ </returns>
 		bool on(double r) const;
 
 	};

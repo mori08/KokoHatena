@@ -1,21 +1,21 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Siv3D.hpp>
 
 
-// ƒV[ƒ“‚Ì–¼‘O
+// ã‚·ãƒ¼ãƒ³ã®åå‰
 enum class SceneName
 {
-	TITLE,              // ƒ^ƒCƒgƒ‹‰æ–Ê
-	DESKTOP,            // ƒfƒXƒNƒgƒbƒv‰æ–Ê
-	LOAD_RECORD,        // ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ð“Ç‚Ýž‚ñ‚ÅRecord‚ð¶¬
-	LOAD_BOARD,         // Record‚ð“Ç‚Ýž‚ñ‚ÅBoard‚ð¶¬
-	SAVE_RECORD,        // Record‚ðƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ð‘‚«ž‚Ý
-	SELECT_LOAD_RECORD, // ƒ[ƒh‚·‚éRecordSet‚ð‘I‘ð
-	SELECT_SAVE_RECORD, // ƒZ[ƒu‚·‚éRecordSet‚ð‘I‘ð
+	TITLE,              // ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
+	DESKTOP,            // ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç”»é¢
+	LOAD_RECORD,        // ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§Recordã‚’ç”Ÿæˆ
+	LOAD_BOARD,         // Recordã‚’èª­ã¿è¾¼ã‚“ã§Boardã‚’ç”Ÿæˆ
+	SAVE_RECORD,        // Recordã‚’ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã¿
+	SELECT_LOAD_RECORD, // ãƒ­ãƒ¼ãƒ‰ã™ã‚‹RecordSetã‚’é¸æŠž
+	SELECT_SAVE_RECORD, // ã‚»ãƒ¼ãƒ–ã™ã‚‹RecordSetã‚’é¸æŠž
 };
 
-// •¶Žš—ñ‚ðSceneName‚É•ÏŠ·‚·‚é˜A‘z”z—ñ
+// æ–‡å­—åˆ—ã‚’SceneNameã«å¤‰æ›ã™ã‚‹é€£æƒ³é…åˆ—
 static const std::unordered_map<String, SceneName> SCENE_NAME_MAP
 {
 	{ U"title", SceneName::TITLE },

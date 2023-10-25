@@ -1,4 +1,4 @@
-#include "StartingAccessState.hpp"
+ï»¿#include "StartingAccessState.hpp"
 #include "../PlayingAccessState/PlayingAccessState.hpp"
 #include "../../AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
 #include "../../AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
@@ -32,7 +32,7 @@ namespace Kokoha
 
 		if (m_playerPos.distanceFrom(cursorPos) < NOISE_DIST && m_noiseCount > NOISE_SPAN)
 		{
-			m_noiseCount = -1; // update‚Å0‚É‚È‚é
+			m_noiseCount = -1; // updateã§0ã«ãªã‚‹
 		}
 
 		if (MouseL.down() && m_playerPos.distanceFrom(cursorPos) < NOISE_DIST)
@@ -63,9 +63,9 @@ namespace Kokoha
 
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::PLAYER])
 		{
-			// Board‚Ì’†SÀ•W
+			// Boardã®ä¸­å¿ƒåº§æ¨™
 			static const Vec2 CENTER_POS = Config::get<Vec2>(U"StartingAccessState.centerPos");
-			// •\¦‚·‚éêŠ‚Ì”ä—¦
+			// è¡¨ç¤ºã™ã‚‹å ´æ‰€ã®æ¯”ç‡
 			static const double RATE = Config::get<double>(U"StartingAccessState.rate");
 
 			m_playerPos = objectMap[guid]->body().center;
@@ -90,7 +90,7 @@ namespace Kokoha
 
 	void StartingAccessState::draw() const
 	{
-		// •¶š‚ğ—h‚ç‚·‘å‚«‚³
+		// æ–‡å­—ã‚’æºã‚‰ã™å¤§ãã•
 		static const double NOISE_AMOUNT = Config::get<double>(U"StartingAccessState.noiseAmount");
 
 		boardRect().draw(MyBlack);
@@ -106,7 +106,7 @@ namespace Kokoha
 
 	void StartingAccessState::setMakeObjectList()
 	{
-		// ƒIƒuƒWƒFƒNƒg‚Ìì¬—p‚Ìƒ}ƒbƒv
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆç”¨ã®ãƒãƒƒãƒ—
 		static std::unordered_map<String, std::function<AccessObject::Ptr(const Vec2& pos)>> makeObjectMap =
 		{
 			{U"player",[](const Vec2& pos) { return std::make_shared<PlayerAccessObject>(pos); }},
@@ -114,7 +114,7 @@ namespace Kokoha
 			{U"goal",  [](const Vec2& pos) { return std::make_shared<GoalAccessObject>  (pos); }}
 		};
 
-		// ƒIƒuƒWƒFƒNƒg‚Ì“Ç‚İ‚İ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®èª­ã¿è¾¼ã¿
 		const TOMLReader objectToml(U"asset/data/stage/object.toml");
 		for (const auto object : objectToml[stageName].tableArrayView())
 		{

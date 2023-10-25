@@ -1,62 +1,62 @@
-#include "RecordBox.hpp"
+ï»¿#include "RecordBox.hpp"
 #include "../../../Config/Config.hpp"
 #include "../../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ‚‚³‚Ìæ“¾
+	/// é«˜ã•ã®å–å¾—
 	/// </summary>
 	int32 getHeight()
 	{
-		// •`‰æ‚·‚éƒTƒCƒY
+		// æç”»ã™ã‚‹ã‚µã‚¤ã‚º
 		static const int32 rtn = Config::get<int32>(U"RecordBox.height");
 		return rtn;
 	}
 
 	/// <summary>
-	/// ”ñ•\¦’†‚Ì•‚Ìæ“¾
+	/// éè¡¨ç¤ºä¸­ã®å¹…ã®å–å¾—
 	/// </summary>
 	double getHideWidth()
 	{
-		// •`‰æ‚·‚éƒTƒCƒY
+		// æç”»ã™ã‚‹ã‚µã‚¤ã‚º
 		static const double rtn = Config::get<int32>(U"RecordBox.hideWidth");
 		return rtn;
 	}
 
 	/// <summary>
-	/// •\¦’†‚Ì•‚Ìæ“¾
+	/// è¡¨ç¤ºä¸­ã®å¹…ã®å–å¾—
 	/// </summary>
 	double getDisplayWidth()
 	{
-		// •`‰æ‚·‚éƒTƒCƒY
+		// æç”»ã™ã‚‹ã‚µã‚¤ã‚º
 		static const double rtn = Config::get<int32>(U"RecordBox.displayWidth");
 		return rtn;
 	}
 
 	/// <summary>
-	/// ‘I‘ğ’†‚Ì•‚Ìæ“¾
+	/// é¸æŠä¸­ã®å¹…ã®å–å¾—
 	/// </summary>
 	double getOverWidth()
 	{
-		// •`‰æ‚·‚éƒTƒCƒY
+		// æç”»ã™ã‚‹ã‚µã‚¤ã‚º
 		static const double rtn = Config::get<int32>(U"RecordBox.overWidth");
 		return rtn;
 	}
 
 	/// <summary>
-	/// •`‰æ‚·‚é”ÍˆÍiƒTƒCƒYj‚Ìæ“¾
+	/// æç”»ã™ã‚‹ç¯„å›²ï¼ˆã‚µã‚¤ã‚ºï¼‰ã®å–å¾—
 	/// </summary>
-	/// <returns> •`‰æ‚·‚é”ÍˆÍ </returns>
+	/// <returns> æç”»ã™ã‚‹ç¯„å›² </returns>
 	double gethideWidth()
 	{
-		// •`‰æ‚·‚éƒTƒCƒY
+		// æç”»ã™ã‚‹ã‚µã‚¤ã‚º
 		static const int32 rtn = Config::get<int32>(U"RecordBox.hideWidth");
 		return rtn;
 	}
 
 	/// <summary>
-	/// ‘I‘ğ—p‚Ìƒ{ƒ^ƒ“‚Ì’·•ûŒ`
+	/// é¸æŠç”¨ã®ãƒœã‚¿ãƒ³ã®é•·æ–¹å½¢
 	/// </summary>
 	/// <returns></returns>
 	const RectF& getButtonRect()
@@ -70,7 +70,7 @@ namespace Kokoha
 		, m_onSelected(onSelected)
 		, m_textPair(textPair)
 	{
-		// ‰æ–Ê“à‚ÌRecordBox‚ÌÀ•W‚Ìˆê”Ôã
+		// ç”»é¢å†…ã®RecordBoxã®åº§æ¨™ã®ä¸€ç•ªä¸Š
 		static const Point DRAW_POS = Config::get<Point>(U"SelectRecordScene.drawPos");
 
 		m_pos.x = DRAW_POS.x;
@@ -79,7 +79,7 @@ namespace Kokoha
 
 	bool RecordBox::update()
 	{
-		// À•W‚ÌXV
+		// åº§æ¨™ã®æ›´æ–°
 		static const double MOVE_RATE_POS = Config::get<double>(U"RecordBox.posMoveRate");
 		internalDividingPoint(m_pos, m_goal, MOVE_RATE_POS);
 
@@ -96,12 +96,12 @@ namespace Kokoha
 
 	void RecordBox::setGoalPos(const int32 index)
 	{
-		// ‰æ–Ê“à‚ÌRecordBox‚ÌÀ•W‚Ìˆê”Ôã
+		// ç”»é¢å†…ã®RecordBoxã®åº§æ¨™ã®ä¸€ç•ªä¸Š
 		static const Point DRAW_POS = Config::get<Point>(U"SelectRecordScene.drawPos");
-		// RecordBox‚Ì
+		// RecordBoxã®
 		static const int32 DRAW_SPACE = Config::get<int32>(U"SelectRecordScene.recordBoxSpace");
 
-		// ‰æ–Êã‘¤‚É‰B‚·
+		// ç”»é¢ä¸Šå´ã«éš ã™
 		if (index < 0)
 		{
 			setGoalPos(Vec2(DRAW_POS.x, -DRAW_SPACE - getHeight()));
@@ -110,14 +110,14 @@ namespace Kokoha
 
 		const Vec2 pos = DRAW_POS + index * Vec2::Down(DRAW_SPACE + getHeight());
 
-		// ‰æ–Ê‰º‘¤‚É‰B‚·
+		// ç”»é¢ä¸‹å´ã«éš ã™
 		if (pos.y + getHeight() > Scene::Height())
 		{
 			setGoalPos(Vec2(DRAW_POS.x, Scene::Height() + DRAW_SPACE));
 			return;
 		}
 
-		// ‰æ–Ê“à‚É•\¦
+		// ç”»é¢å†…ã«è¡¨ç¤º
 		setGoalPos(pos);
 	}
 
@@ -128,28 +128,28 @@ namespace Kokoha
 
 	void RecordBox::draw(int32 index) const
 	{
-		// ”Ô†‚ğ•\¦‚·‚éÀ•W
+		// ç•ªå·ã‚’è¡¨ç¤ºã™ã‚‹åº§æ¨™
 		static const Point TEXT_FILE_POS = Config::get<Point>(U"RecordBox.textFilePos");
-		// m_textPair.first‚ğ•\¦‚·‚éÀ•W
+		// m_textPair.firstã‚’è¡¨ç¤ºã™ã‚‹åº§æ¨™
 		static const Point TEXT_FIRST_POS = Config::get<Point>(U"RecordBox.textFirstPos");
-		// m_textPair.seoncd‚ğ•\¦‚·‚éÀ•W
+		// m_textPair.seoncdã‚’è¡¨ç¤ºã™ã‚‹åº§æ¨™
 		static const Point TEXT_SECOND_POS = Config::get<Point>(U"RecordBox.textSecondPos");
-		// ¶‰E‚Ì˜g‚ÌŒú‚³
+		// å·¦å³ã®æ ã®åšã•
 		static const double FRAME_WIDTH = Config::get<int32>(U"RecordBox.frameWith");
-		// ”wŒi‚É•`‰æ‚·‚éÀ•W
+		// èƒŒæ™¯ã«æç”»ã™ã‚‹åº§æ¨™
 		static const ColorF BACK_COLOR = Config::get<ColorF>(U"RecordBox.backColor");
 
-		// ”wŒi
+		// èƒŒæ™¯
 		RectF(m_pos, m_width, getHeight()).draw(BACK_COLOR);
 
-		// ƒeƒLƒXƒg
+		// ãƒ†ã‚­ã‚¹ãƒˆ
 		if (index != 0) {
 			FontAsset(U"18")(U"File " + ToString(index)).draw(m_pos + TEXT_FILE_POS);
 		}
 		FontAsset(U"12")(m_textPair.first ).draw(m_pos + TEXT_FIRST_POS );
 		FontAsset(U"20")(m_textPair.second).draw(m_pos + TEXT_SECOND_POS);
 
-		// ƒ{ƒ^ƒ“
+		// ãƒœã‚¿ãƒ³
 		const RectF button = getButtonRect().movedBy(m_pos).draw(MyBlack);
 		button.draw(MyBlack);
 		if (m_width > getButtonRect().tr().x && button.mouseOver())
@@ -158,16 +158,16 @@ namespace Kokoha
 			buttonLight.movedBy(m_pos).draw(BACK_COLOR);
 		}
 
-		// ¶‘¤‚ğ‰B‚·
+		// å·¦å´ã‚’éš ã™
 		RectF(m_pos + Vec2::Right(m_width), getOverWidth(), getHeight()).draw(MyBlack);
 
-		// ¶‘¤‚ÌƒtƒŒ[ƒ€
+		// å·¦å´ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 		RectF(
 			m_pos + Vec2::Left(FRAME_WIDTH / 2),
 			FRAME_WIDTH, getHeight()
 		).draw(MyWhite);
 
-		// ‰E‘¤‚ÌƒtƒŒ[ƒ€
+		// å³å´ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 		RectF(
 			m_pos + Vec2::Left(FRAME_WIDTH / 2 - m_width),
 			FRAME_WIDTH, getHeight()
@@ -178,25 +178,25 @@ namespace Kokoha
 	{
 		double goalWidth = 0;
 
-		// ‰æ–ÊŠO
+		// ç”»é¢å¤–
 		if (m_goal.y < 0 || m_goal.y > Scene::Height())
 		{
 			goalWidth = getHideWidth();
 		}
 
-		// ƒ}ƒEƒX‚ğƒI[ƒo[‚µ‚Ä‚¢‚é
+		// ãƒã‚¦ã‚¹ã‚’ã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã„ã‚‹
 		else if (RectF(m_pos, m_width, getHeight()).mouseOver())
 		{
 			goalWidth = getOverWidth();
 		}
 
-		// ‰æ–Ê“à
+		// ç”»é¢å†…
 		else
 		{
 			goalWidth = getDisplayWidth();
 		}
 
-		// •‚ÌXV
+		// å¹…ã®æ›´æ–°
 		static const double MOVE_RATE_POS = Config::get<double>(U"RecordBox.posMoveRate");
 		internalDividingPoint(m_width, goalWidth, MOVE_RATE_POS);
 	}

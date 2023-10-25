@@ -1,39 +1,39 @@
-#pragma once
+ï»¿#pragma once
 #include<Siv3D.hpp>
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒtƒ‰ƒO‚â”’l‚ÌŠÇ—
-	/// ‰½bit‚É‘Î‰‚·‚é‚©w’è
+	/// ãƒ•ãƒ©ã‚°ã‚„æ•°å€¤ã®ç®¡ç†
+	/// ä½•bitã«å¯¾å¿œã™ã‚‹ã‹æŒ‡å®š
 	/// </summary>
 	class Record
 	{
 	private:
 
-		// Œ…”
+		// æ¡æ•°
 		const int32 m_digit;
 
-		// Å‘å’l
+		// æœ€å¤§å€¤
 		const int32 m_maxValue;
 
-		// ‰Šú’l
+		// åˆæœŸå€¤
 		const int32 m_defaultValue;
 
-		// ’l
+		// å€¤
 		int32 m_value;
 
 	public:
 
 		/// <summary>
-		/// ƒŒƒR[ƒh‚ğ\¬‚·‚é—v‘f
+		/// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’æ§‹æˆã™ã‚‹è¦ç´ 
 		/// </summary>
-		/// <param name="digit">        Œ…”   </param>
-		/// <param name="defaultValue"> ‰Šú’l </param>
+		/// <param name="digit">        æ¡æ•°   </param>
+		/// <param name="defaultValue"> åˆæœŸå€¤ </param>
 		Record(int32 digit, int32 defaultValue);
 
 		/// <summary>
-		/// ‰Šú‰»
+		/// åˆæœŸåŒ–
 		/// </summary>
 		void init()
 		{
@@ -41,19 +41,19 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// ’l‚Ìİ’è
+		/// å€¤ã®è¨­å®š
 		/// </summary>
-		/// <param name="value"> •ÏX‚µ‚½‚¢’l </param>
+		/// <param name="value"> å¤‰æ›´ã—ãŸã„å€¤ </param>
 		void set(int32 value)
 		{
 			m_value = Clamp(value, 0, m_maxValue);
 		}
 
 		/// <summary>
-		/// ’l‚Ìæ“¾
+		/// å€¤ã®å–å¾—
 		/// </summary>
 		/// <returns>
-		/// ŠÇ—‚µ‚Ä‚¢‚é’l
+		/// ç®¡ç†ã—ã¦ã„ã‚‹å€¤
 		/// </returns>
 		int32 get() const
 		{
@@ -61,15 +61,15 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// ˆÃ†‰»—p‚ÌƒŠƒXƒg‚É‚±‚ÌƒŒƒR[ƒh‚ğ’Ç‰Á
+		/// æš—å·åŒ–ç”¨ã®ãƒªã‚¹ãƒˆã«ã“ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 		/// </summary>
-		/// <param name="dataList"> ˆÃ†‰»—p‚ÌƒŠƒXƒg </param>
+		/// <param name="dataList"> æš—å·åŒ–ç”¨ã®ãƒªã‚¹ãƒˆ </param>
 		void addRecordToEncryptionList(std::list<int32>& dataList) const;
 
 		/// <summary>
-		/// •œ†‰Â—p‚ÌƒŠƒXƒg‚©‚ç’l‚ğİ’è
+		/// å¾©å·å¯ç”¨ã®ãƒªã‚¹ãƒˆã‹ã‚‰å€¤ã‚’è¨­å®š
 		/// </summary>
-		/// <param name="dataList"> •œ†‰»—p‚ÌƒŠƒXƒg </param>
+		/// <param name="dataList"> å¾©å·åŒ–ç”¨ã®ãƒªã‚¹ãƒˆ </param>
 		void setValueFromDecryption(std::list<int32>& dataList);
 
 	};

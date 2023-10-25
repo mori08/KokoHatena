@@ -1,41 +1,41 @@
-#pragma once
+ï»¿#pragma once
 
 #include "EdgeList/EdgeList.hpp"
 
 /*
-	3í—Ş‚ÌÀ•W‚ğˆÈ‰º‚Ì•\Œ»‚Åg‚¢•ª‚¯‚é.
-	int32 integer -> ®”’l       : ƒf[ƒ^‚ÌŠÇ—‚Åg—p
-	Vec2  pixel   -> ƒsƒNƒZƒ‹À•W : “–‚½‚è”»’è‚â•`‰æ‚Ég—p
-	Point square  -> ƒ}ƒXÀ•W     : áŠQ•¨‚ÌŠÇ—‚âŒo˜H’Tõ‚Ég—p
+	3ç¨®é¡ã®åº§æ¨™ã‚’ä»¥ä¸‹ã®è¡¨ç¾ã§ä½¿ã„åˆ†ã‘ã‚‹.
+	int32 integer -> æ•´æ•°å€¤       : ãƒ‡ãƒ¼ã‚¿ã®ç®¡ç†ã§ä½¿ç”¨
+	Vec2  pixel   -> ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ : å½“ãŸã‚Šåˆ¤å®šã‚„æç”»ã«ä½¿ç”¨
+	Point square  -> ãƒã‚¹åº§æ¨™     : éšœå®³ç‰©ã®ç®¡ç†ã‚„çµŒè·¯æ¢ç´¢ã«ä½¿ç”¨
 */
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ’nŒ`ƒf[ƒ^
-	/// ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®‚ÆŒõ‚Ì•`‰æ‚Åg—p 
+	/// åœ°å½¢ãƒ‡ãƒ¼ã‚¿
+	/// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•ã¨å…‰ã®æç”»ã§ä½¿ç”¨ 
 	/// </summary>
 	class Terrain
 	{
 	public:
 
-		// Šeƒ}ƒX‚Ìó‘Ô
+		// å„ãƒã‚¹ã®çŠ¶æ…‹
 		enum class Cell
 		{
-			NONE,     // Œõ -> ’Ê‚· , ƒIƒuƒWƒFƒNƒg -> ’Ê‚·
-			SKELETON, // Œõ -> ’Ê‚· , ƒIƒuƒWƒFƒNƒg -> ’Ê‚³‚È‚¢
-			BLOCK     // Œõ -> ’Ê‚³‚È‚¢ , ƒIƒuƒWƒFƒNƒg -> ’Ê‚³‚È‚¢
+			NONE,     // å…‰ -> é€šã™ , ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ -> é€šã™
+			SKELETON, // å…‰ -> é€šã™ , ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ -> é€šã•ãªã„
+			BLOCK     // å…‰ -> é€šã•ãªã„ , ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ -> é€šã•ãªã„
 		};
 
-		// •Ó
-		// ‚’¼‚È•Ó‚Ìê‡ {x, {y1, y2}}
-		// …•½‚È•Ó‚Ìê‡ {y, {x1, x2}}
+		// è¾º
+		// å‚ç›´ãªè¾ºã®å ´åˆ {x, {y1, y2}}
+		// æ°´å¹³ãªè¾ºã®å ´åˆ {y, {x1, x2}}
 		using Edge = std::pair<int32, std::pair<int32, int32>>;
 
-		// •ÓƒŠƒXƒg‚ÌƒCƒeƒŒ[ƒ^
+		// è¾ºãƒªã‚¹ãƒˆã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 		using ConstItr = std::list<Edge>::const_iterator;
 
-		// •”•ªƒŠƒXƒg
+		// éƒ¨åˆ†ãƒªã‚¹ãƒˆ
 		class SubList
 		{
 		private:
@@ -51,85 +51,85 @@ namespace Kokoha
 
 	public:
 
-		static constexpr int32 WIDTH       = 24;           // ƒXƒe[ƒW‚Ì•(ƒ}ƒX)
-		static constexpr int32 HEIGHT      = 18;           // ƒXƒe[ƒW‚Ì‚‚³(ƒ}ƒX)
-		static constexpr int32 N           = WIDTH*HEIGHT; // ƒ}ƒX”
-		static constexpr int32 SQUARE_SIZE = 25;           // 1ƒ}ƒX‚Ì1•Ó‚Ì’·‚³(ƒsƒNƒZƒ‹)
+		static constexpr int32 WIDTH       = 24;           // ã‚¹ãƒ†ãƒ¼ã‚¸ã®å¹…(ãƒã‚¹)
+		static constexpr int32 HEIGHT      = 18;           // ã‚¹ãƒ†ãƒ¼ã‚¸ã®é«˜ã•(ãƒã‚¹)
+		static constexpr int32 N           = WIDTH*HEIGHT; // ãƒã‚¹æ•°
+		static constexpr int32 SQUARE_SIZE = 25;           // 1ãƒã‚¹ã®1è¾ºã®é•·ã•(ãƒ”ã‚¯ã‚»ãƒ«)
 
 	private:
 
-		// ’nŒ`ƒf[ƒ^
+		// åœ°å½¢ãƒ‡ãƒ¼ã‚¿
 		std::array<Cell, N> m_cellList;
 
-		// [i][j] : i -> j ‚Ö‚ÌÅ’ZŒo˜HiŸ‚Ì–Ú•Wj
+		// [i][j] : i -> j ã¸ã®æœ€çŸ­çµŒè·¯ï¼ˆæ¬¡ã®ç›®æ¨™ï¼‰
 		std::array<std::array<int32, N>, N> m_path;
 
-		// [i][j] : i -> j ‚Ö‚ÌÅ’ZŒo˜Hi1ƒ}ƒX‚Ì1•Ó‚ğ1‚Æ‚µ‚½‹——£j
+		// [i][j] : i -> j ã¸ã®æœ€çŸ­çµŒè·¯ï¼ˆ1ãƒã‚¹ã®1è¾ºã‚’1ã¨ã—ãŸè·é›¢ï¼‰
 		std::array<std::array<double, N>, N> m_dist;
 
-		// ‰eì¬—p‚Ì‚’¼‚È•Ó
+		// å½±ä½œæˆç”¨ã®å‚ç›´ãªè¾º
 		EdgeList m_verticalEdgeList;
 
-		// ‰eì¬—p‚Ì…•½‚È•Ó
+		// å½±ä½œæˆç”¨ã®æ°´å¹³ãªè¾º
 		EdgeList m_horizontalEdgeList;
 
 	public:
 
 		/// <summary>
-		/// ƒ}ƒXÀ•W‚ğ®”’l‚É•ÏŠ·
+		/// ãƒã‚¹åº§æ¨™ã‚’æ•´æ•°å€¤ã«å¤‰æ›
 		/// </summary>
-		/// <param name="square"> ƒ}ƒXÀ•W </param>
-		/// <returns> ƒ}ƒXÀ•W‚É‘Î‚·‚é®”’l </returns>
+		/// <param name="square"> ãƒã‚¹åº§æ¨™ </param>
+		/// <returns> ãƒã‚¹åº§æ¨™ã«å¯¾ã™ã‚‹æ•´æ•°å€¤ </returns>
 		static constexpr int32 toInteger(const Point& square)
 		{
 			return square.x + WIDTH * square.y;
 		}
 
 		/// <summary>
-		/// ƒsƒNƒZƒ‹À•W‚ğ®”’l‚É•ÏŠ·
+		/// ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã‚’æ•´æ•°å€¤ã«å¤‰æ›
 		/// </summary>
-		/// <param name="pixel"> ƒsƒNƒZƒ‹À•W </param>
-		/// <returns> ƒsƒNƒZƒ‹À•W‚ª‚ ‚éƒ}ƒXÀ•W‚É‘Î‰‚·‚é®”’l </returns>
+		/// <param name="pixel"> ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ </param>
+		/// <returns> ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ãŒã‚ã‚‹ãƒã‚¹åº§æ¨™ã«å¯¾å¿œã™ã‚‹æ•´æ•°å€¤ </returns>
 		static constexpr int32 toInteger(const Vec2& pixel)
 		{
 			return toInteger(toSquare(pixel));
 		}
 
 		/// <summary>
-		/// ®”’l‚ğƒ}ƒXÀ•W‚É•ÏŠ·
+		/// æ•´æ•°å€¤ã‚’ãƒã‚¹åº§æ¨™ã«å¤‰æ›
 		/// </summary>
-		/// <param name="integer"> ®”’l </param>
-		/// <returns> ®”’l‚É‘Î‰‚·‚éƒ}ƒXÀ•W </returns>
+		/// <param name="integer"> æ•´æ•°å€¤ </param>
+		/// <returns> æ•´æ•°å€¤ã«å¯¾å¿œã™ã‚‹ãƒã‚¹åº§æ¨™ </returns>
 		static constexpr Point toSquare(int32 integer)
 		{
 			return Point(integer % WIDTH, integer / WIDTH);
 		}
 
 		/// <summary>
-		/// ƒsƒNƒZƒ‹À•W‚ğƒ}ƒXÀ•W‚É•ÏŠ·
+		/// ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã‚’ãƒã‚¹åº§æ¨™ã«å¤‰æ›
 		/// </summary>
-		/// <param name="pixel"> ƒsƒNƒZƒ‹À•W </param>
-		/// <returns> ƒsƒNƒZƒ‹À•W‚ª‚ ‚éƒ}ƒX‚Ìƒ}ƒXÀ•W </returns>
+		/// <param name="pixel"> ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ </param>
+		/// <returns> ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ãŒã‚ã‚‹ãƒã‚¹ã®ãƒã‚¹åº§æ¨™ </returns>
 		static constexpr Point toSquare(const Vec2& pixel)
 		{
 			return Floor(pixel / SQUARE_SIZE).asPoint();
 		}
 
 		/// <summary>
-		/// ®”’l‚ğƒsƒNƒZƒ‹À•W‚É•ÏŠ·
+		/// æ•´æ•°å€¤ã‚’ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã«å¤‰æ›
 		/// </summary>
-		/// <param name="integer"> ®”’l </param>
-		/// <returns> ®”’l‚É‘Î‰‚·‚éƒ}ƒXÀ•W‚Ì’†SƒsƒNƒZƒ‹À•W </returns>
+		/// <param name="integer"> æ•´æ•°å€¤ </param>
+		/// <returns> æ•´æ•°å€¤ã«å¯¾å¿œã™ã‚‹ãƒã‚¹åº§æ¨™ã®ä¸­å¿ƒãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ </returns>
 		static constexpr Vec2 toPixel(int32 integer)
 		{
 			return toPixel(toSquare(integer));
 		}
 
 		/// <summary>
-		/// ƒ}ƒXÀ•W‚ğƒsƒNƒZƒ‹À•W‚É•ÏŠ·
+		/// ãƒã‚¹åº§æ¨™ã‚’ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã«å¤‰æ›
 		/// </summary>
-		/// <param name="square"> ƒ}ƒXÀ•W </param>
-		/// <returns> ƒ}ƒX‚Ì’†S‚ÌƒsƒNƒZƒ‹À•W </returns>
+		/// <param name="square"> ãƒã‚¹åº§æ¨™ </param>
+		/// <returns> ãƒã‚¹ã®ä¸­å¿ƒã®ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ </returns>
 		static constexpr Vec2 toPixel(const Point& square)
 		{
 			return SQUARE_SIZE * (Vec2::One() * square + Vec2::One() / 2);
@@ -137,40 +137,40 @@ namespace Kokoha
 
 	public:
 
-		/// <param name="filePath"> ’nŒ`ƒf[ƒ^‚ÌCSVƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX </param>
+		/// <param name="filePath"> åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã®CSVãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹ </param>
 		Terrain(const FilePath& filePath);
 
 	private:
 
 		/// <summary>
-		/// csvƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚Æ’nŒ`‚Ìİ’è
+		/// csvãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã¨åœ°å½¢ã®è¨­å®š
 		/// </summary>
 		void loadCSV(const FilePath& filePath);
 
 		/// <summary>
-		/// Œo˜H’Tõ
+		/// çµŒè·¯æ¢ç´¢
 		/// </summary>
 		void searchPath();
 
 		/// <summary>
-		/// ƒ}ƒX1‚Æƒ}ƒX2‚ÌŠÔ‚É’¼ü‚ÌŒo˜H‚ğİ’è
+		/// ãƒã‚¹1ã¨ãƒã‚¹2ã®é–“ã«ç›´ç·šã®çµŒè·¯ã‚’è¨­å®š
 		/// </summary>
-		/// <param name="s1"> ƒ}ƒX1 </param>
-		/// <param name="s2"> ƒ}ƒX2 </param>
+		/// <param name="s1"> ãƒã‚¹1 </param>
+		/// <param name="s2"> ãƒã‚¹2 </param>
 		void makeStraightPath(const Point& s1, const Point& s2);
 
 		/// <summary>
-		/// áŠQ•¨‚Ì•Ó‚ÌZo
+		/// éšœå®³ç‰©ã®è¾ºã®ç®—å‡º
 		/// </summary>
 		void searchEdge();
 
 	public:
 
 		/// <summary>
-		/// w’è‚³‚ê‚½ƒ}ƒX‚ª’Ês‰Â”\‚©
+		/// æŒ‡å®šã•ã‚ŒãŸãƒã‚¹ãŒé€šè¡Œå¯èƒ½ã‹
 		/// </summary>
-		/// <param name="square"> ƒ}ƒXÀ•W </param>
-		/// <returns> true ‚Ì‚Æ‚«’Ês‰Â”\ , false ‚Ì‚Æ‚«’Ês•s‰Â </returns>
+		/// <param name="square"> ãƒã‚¹åº§æ¨™ </param>
+		/// <returns> true ã®ã¨ãé€šè¡Œå¯èƒ½ , false ã®ã¨ãé€šè¡Œä¸å¯ </returns>
 		bool isWalkAble(const Point& square) const
 		{
 			return true
@@ -182,30 +182,30 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// w’è‚³‚ê‚½®”’l‚É‘Î‰‚·‚éƒ}ƒX‚ª’Ês‰Â”\‚©
+		/// æŒ‡å®šã•ã‚ŒãŸæ•´æ•°å€¤ã«å¯¾å¿œã™ã‚‹ãƒã‚¹ãŒé€šè¡Œå¯èƒ½ã‹
 		/// </summary>
-		/// <param name="integer"> ®”’l </param>
-		/// <returns> true ‚Ì‚Æ‚«’Ês‰Â”\ , false ‚Ì‚Æ‚«’Ês•s‰Â </returns>
+		/// <param name="integer"> æ•´æ•°å€¤ </param>
+		/// <returns> true ã®ã¨ãé€šè¡Œå¯èƒ½ , false ã®ã¨ãé€šè¡Œä¸å¯ </returns>
 		bool isWalkAble(int32 integer) const
 		{
 			return isWalkAble(toSquare(integer));
 		}
 
 		/// <summary>
-		/// w’è‚³‚ê‚½ƒsƒNƒZƒ‹À•W‚ª’Ês‰Â”\‚©
+		/// æŒ‡å®šã•ã‚ŒãŸãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ãŒé€šè¡Œå¯èƒ½ã‹
 		/// </summary>
-		/// <param name="pixel"> ƒsƒNƒZƒ‹À•W </param>
-		/// <returns> true ‚Ì‚Æ‚«’Ês‰Â”\ , false ‚Ì‚Æ‚«’Ês•s‰Â </returns>
+		/// <param name="pixel"> ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ </param>
+		/// <returns> true ã®ã¨ãé€šè¡Œå¯èƒ½ , false ã®ã¨ãé€šè¡Œä¸å¯ </returns>
 		bool isWalkAble(const Vec2& pixel) const
 		{
 			return isWalkAble(toSquare(pixel));
 		}
 
 		/// <summary>
-		/// w’è‚³‚ê‚½ƒ}ƒX‚ªŒõ‚ğ’Ê‚·‚©
+		/// æŒ‡å®šã•ã‚ŒãŸãƒã‚¹ãŒå…‰ã‚’é€šã™ã‹
 		/// </summary>
-		/// <param name="square"> ƒ}ƒXÀ•W </param>
-		/// <returns> true ‚Ì‚Æ‚«Œõ‚ğ’Ê‚³‚È‚¢ , false ‚Ì‚Æ‚«Œõ‚ğ’Ê‚· </returns>
+		/// <param name="square"> ãƒã‚¹åº§æ¨™ </param>
+		/// <returns> true ã®ã¨ãå…‰ã‚’é€šã•ãªã„ , false ã®ã¨ãå…‰ã‚’é€šã™ </returns>
 		bool isBlack(const Point square) const
 		{
 			return false
@@ -217,33 +217,33 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// Å’ZŒo˜H‚Ìæ“¾
+		/// æœ€çŸ­çµŒè·¯ã®å–å¾—
 		/// </summary>
-		/// <param name="pixelS"> n“_iƒsƒNƒZƒ‹À•Wj </param>
-		/// <param name="pixelT"> I“_iƒsƒNƒZƒ‹À•Wj </param>
-		/// <returns> Œo˜Hã‚ÅÅ‰‚Éi‚Ş•ûŒü‚Ì’PˆÊƒxƒNƒgƒ‹ or Vec2::Zero() </returns>
+		/// <param name="pixelS"> å§‹ç‚¹ï¼ˆãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ï¼‰ </param>
+		/// <param name="pixelT"> çµ‚ç‚¹ï¼ˆãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ï¼‰ </param>
+		/// <returns> çµŒè·¯ä¸Šã§æœ€åˆã«é€²ã‚€æ–¹å‘ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ« or Vec2::Zero() </returns>
 		Vec2 getPath(const Vec2& pixelS, const Vec2& pixelT) const;
 
 		/// <summary>
-		/// ‚’¼•ûŒü‚Ì•Ó‚ğæ“¾
+		/// å‚ç›´æ–¹å‘ã®è¾ºã‚’å–å¾—
 		/// </summary>
-		/// <returns> ‚’¼•ûŒü‚Ì•Ó‚ÌƒŠƒXƒg </returns>
+		/// <returns> å‚ç›´æ–¹å‘ã®è¾ºã®ãƒªã‚¹ãƒˆ </returns>
 		const EdgeList& getVerticalEdgeList() const
 		{
 			return m_verticalEdgeList;
 		}
 
 		/// <summary>
-		/// …•½•ûŒü‚Ì•Ó‚ğæ“¾
+		/// æ°´å¹³æ–¹å‘ã®è¾ºã‚’å–å¾—
 		/// </summary>
-		/// <returns> …•½•ûŒü‚Ì•Ó‚ğæ“¾ </returns>
+		/// <returns> æ°´å¹³æ–¹å‘ã®è¾ºã‚’å–å¾— </returns>
 		const EdgeList& getHorizontalEdgeList() const
 		{
 			return m_horizontalEdgeList;
 		}
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
 		void draw() const;
 	};

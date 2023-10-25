@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include"../../../MyLibrary/SliceTexture/SliceTexture.hpp"
 #include"../../../Scene/SceneName.hpp"
 #include"BoardConst.hpp"
@@ -6,44 +6,44 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒ{[ƒh‚ÌŠî’ê
+	/// ãƒœãƒ¼ãƒ‰ã®åŸºåº•
 	/// </summary>
 	class Board
 	{
 	private:
 
-		// í—Ş
+		// ç¨®é¡
 		const BoardRole m_role;
 
-		// ó‘Ô
+		// çŠ¶æ…‹
 		BoardState m_state;
 
-		// –¼‘O
+		// åå‰
 		const String m_name;
 
-		// ƒTƒCƒY
+		// ã‚µã‚¤ã‚º
 		const Size m_size;
 
-		// ¶ã‚ÌÀ•W
+		// å·¦ä¸Šã®åº§æ¨™
 		Point m_pos;
 
-		// ƒŒƒ“ƒ_[ƒeƒNƒXƒ`ƒƒ[iƒ{[ƒh“à‚Ì•`‰æj
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ï¼ˆãƒœãƒ¼ãƒ‰å†…ã®æç”»ï¼‰
 		const MSRenderTexture m_render;
 
-		// À•WˆÚ“®‚ÌŠî€À•W (none‚Ì‚Æ‚«ˆÚ“®‚µ‚È‚¢)
+		// åº§æ¨™ç§»å‹•æ™‚ã®åŸºæº–åº§æ¨™ (noneã®ã¨ãç§»å‹•ã—ãªã„)
 		Optional<Point> m_optMovePos;
 
-		// ƒAƒCƒRƒ“‰æ‘œ‚Ì–¼‘O
+		// ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã®åå‰
 		String m_iconTextureName;
 
-		// ƒAƒCƒRƒ“‚Ì•\¦‡(-1‚¾‚Æ”ñ•\¦)
+		// ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºé †(-1ã ã¨éè¡¨ç¤º)
 		const int32 m_iconOrder;
 
 	public:
 
-		/// <param name="role"> í—Ş(–ğŠ„) </param>
-		/// <param name="configName"> configƒtƒ@ƒCƒ‹‚Å‚Ì–¼‘O </param>
-		/// <param name="state"> ‰Šúó‘Ô </param>
+		/// <param name="role"> ç¨®é¡(å½¹å‰²) </param>
+		/// <param name="configName"> configãƒ•ã‚¡ã‚¤ãƒ«ã§ã®åå‰ </param>
+		/// <param name="state"> åˆæœŸçŠ¶æ…‹ </param>
 		Board(const BoardRole& role, const String& configName, const BoardState& state);
 
 		virtual ~Board() = default;
@@ -51,25 +51,25 @@ namespace Kokoha
 	public:
 
 		/// <summary>
-		/// ƒ{[ƒh‚Ìí—Ş‚Ìæ“¾
+		/// ãƒœãƒ¼ãƒ‰ã®ç¨®é¡ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒ{[ƒh‚Ìí—Ş </returns>
+		/// <returns> ãƒœãƒ¼ãƒ‰ã®ç¨®é¡ </returns>
 		const BoardRole& role() const
 		{
 			return m_role;
 		}
 
 		/// <summary>
-		/// ƒ{[ƒh‚Ìó‘Ô‚Ìæ“¾
+		/// ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒ{[ƒh‚Ìó‘Ô </returns>
+		/// <returns> ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹ </returns>
 		const BoardState& state() const
 		{
 			return m_state;
 		}
 
 		/// <summary>
-		/// ƒ{[ƒh‚ğ•\¦‚·‚éó‘Ô‚Ö•ÏX
+		/// ãƒœãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã™ã‚‹çŠ¶æ…‹ã¸å¤‰æ›´
 		/// </summary>
 		void display()
 		{
@@ -77,7 +77,7 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// ƒ{[ƒh‚ğ”ñ•\¦‚É‚·‚éó‘Ô‚Ö•ÏX
+		/// ãƒœãƒ¼ãƒ‰ã‚’éè¡¨ç¤ºã«ã™ã‚‹çŠ¶æ…‹ã¸å¤‰æ›´
 		/// </summary>
 		void hide()
 		{
@@ -85,112 +85,112 @@ namespace Kokoha
 		}
 
 		/// <summary>
-		/// ƒAƒCƒRƒ“‚ªƒNƒŠƒbƒN‚³‚ê‚½‚©
+		/// ã‚¢ã‚¤ã‚³ãƒ³ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã‹
 		/// </summary>
 		/// <returns> 
-		/// ˆÈ‰º‚ÌğŒ‚ğ‘S‚Ä–‚½‚·‚Æ‚« true , ‚»‚êˆÈŠO‚Ìê‡false
-		/// * ƒAƒCƒRƒ“‚ªƒNƒŠƒbƒN‚³‚ê‚½
-		/// * m_state‚ªNONE‚Å‚È‚¢
-		/// * m_iconOrder‚ª-1‚Å‚È‚¢
+		/// ä»¥ä¸‹ã®æ¡ä»¶ã‚’å…¨ã¦æº€ãŸã™ã¨ã true , ãã‚Œä»¥å¤–ã®å ´åˆfalse
+		/// * ã‚¢ã‚¤ã‚³ãƒ³ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸ
+		/// * m_stateãŒNONEã§ãªã„
+		/// * m_iconOrderãŒ-1ã§ãªã„
 		/// </returns>
 		bool onIconClicked() const;
 
 		/// <summary>
-		/// ƒ{[ƒh‚ªƒNƒŠƒbƒN‚³‚ê‚½‚©
+		/// ãƒœãƒ¼ãƒ‰ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã‹
 		/// </summary>
 		/// <returns>
-		/// m_state‚ªDISPLAYED ‚©‚Â ƒ{[ƒh‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚« true , ‚»‚¤‚Å‚È‚¢‚Æ‚« false
+		/// m_stateãŒDISPLAYED ã‹ã¤ ãƒœãƒ¼ãƒ‰ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã¨ã true , ãã†ã§ãªã„ã¨ã false
 		/// </returns>
 		bool mouseLeftDown() const;
 
 		/// <summary>
-		/// ƒAƒCƒRƒ“‚Ì•`‰æ
+		/// ã‚¢ã‚¤ã‚³ãƒ³ã®æç”»
 		/// </summary>
 		void drawIcon() const;
 
 		/// <summary>
-		/// “ü—Í
+		/// å…¥åŠ›
 		/// </summary>
-		/// <returns> true ‚Ì‚Æ‚«ƒ{[ƒh‚ğ•Â‚¶‚é </returns>
+		/// <returns> true ã®ã¨ããƒœãƒ¼ãƒ‰ã‚’é–‰ã˜ã‚‹ </returns>
 		bool input();
 
 		/// <summary>
-		/// XV
+		/// æ›´æ–°
 		/// </summary>
-		/// <param name="request"> ƒ{[ƒhŠO•”‚Ö‚Ì–½—ß </param>
+		/// <param name="request"> ãƒœãƒ¼ãƒ‰å¤–éƒ¨ã¸ã®å‘½ä»¤ </param>
 		void update(BoardRequest& request);
 
 		/// <summary>
-		/// •`‰æ
+		/// æç”»
 		/// </summary>
 		void draw() const;
 
 		/// <summary>
-		/// ‘¼ƒ{[ƒh‚©‚çƒf[ƒ^‚ÌóM
+		/// ä»–ãƒœãƒ¼ãƒ‰ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
 		/// </summary>
-		/// <param name="requestText"> ƒf[ƒ^‚Æ‚È‚é•¶š—ñ </param>
+		/// <param name="requestText"> ãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹æ–‡å­—åˆ— </param>
 		virtual void receiveRequest(const String& requestText) = 0;
 
 	protected:
 
 		/// <summary>
-		/// Šeƒ{[ƒhŒÅ—L‚Ì“ü—Íˆ—
+		/// å„ãƒœãƒ¼ãƒ‰å›ºæœ‰ã®å…¥åŠ›å‡¦ç†
 		/// </summary>
 		virtual void inputInBoard() = 0;
 
 		/// <summary>
-		/// Šeƒ{[ƒhŒÅ—L‚ÌXVˆ—
+		/// å„ãƒœãƒ¼ãƒ‰å›ºæœ‰ã®æ›´æ–°å‡¦ç†
 		/// </summary>
 		virtual void updateInBoard(BoardRequest& request) = 0;
 
 		/// <summary>
-		/// Šeƒ{[ƒhŒÅ—L‚Ì•`‰æˆ—
+		/// å„ãƒœãƒ¼ãƒ‰å›ºæœ‰ã®æç”»å‡¦ç†
 		/// </summary>
 		virtual void drawInBoard() const = 0;
 
 	protected:
 
 		/// <summary>
-		/// ƒ{[ƒh‚ÌƒTƒCƒY‚ğæ“¾
+		/// ãƒœãƒ¼ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 		/// </summary>
-		/// <returns> ƒTƒCƒY </returns>
+		/// <returns> ã‚µã‚¤ã‚º </returns>
 		const Size& size() const
 		{
 			return m_size;
 		}
 
 		/// <summary>
-		/// ƒ{[ƒh“à‚Ìƒ}ƒEƒXÀ•W‚Ìæ“¾
+		/// ãƒœãƒ¼ãƒ‰å†…ã®ãƒã‚¦ã‚¹åº§æ¨™ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒ{[ƒh“à‚Ìƒ}ƒEƒXÀ•W </returns>
+		/// <returns> ãƒœãƒ¼ãƒ‰å†…ã®ãƒã‚¦ã‚¹åº§æ¨™ </returns>
 		Point cursorPosInBoard() const
 		{
 			return cursorPosFInBoard().asPoint();
 		}
 
 		/// <summary>
-		/// ƒ{[ƒh“à‚Ìƒ}ƒEƒXÀ•W‚Ìæ“¾
+		/// ãƒœãƒ¼ãƒ‰å†…ã®ãƒã‚¦ã‚¹åº§æ¨™ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒ{[ƒh“à‚Ìƒ}ƒEƒXÀ•W </returns>
+		/// <returns> ãƒœãƒ¼ãƒ‰å†…ã®ãƒã‚¦ã‚¹åº§æ¨™ </returns>
 		Vec2 cursorPosFInBoard() const;
 
 	private:
 
 		/// <summary>
-		/// ƒJ[ƒ\ƒ‹‚ÅÀ•W‚ğˆÚ“®‚·‚é
+		/// ã‚«ãƒ¼ã‚½ãƒ«ã§åº§æ¨™ã‚’ç§»å‹•ã™ã‚‹
 		/// </summary>
 		void movePosByCursor();
 
 		/// <summary>
-		/// ƒAƒCƒRƒ“‚Ì”ÍˆÍ‚Ìæ“¾
+		/// ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²ã®å–å¾—
 		/// </summary>
-		/// <returns> ƒAƒCƒRƒ“‚Ì”ÍˆÍ‚Ì’·•ûŒ` </returns>
+		/// <returns> ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²ã®é•·æ–¹å½¢ </returns>
 		const Rect getIconRect() const;
 
 		/// <summary>
-		/// ”ñ•\¦ƒ{ƒ^ƒ“‚Ì”ÍˆÍ‚ğ¦‚·’·•ûŒ`‚Ìæ“¾
+		/// éè¡¨ç¤ºãƒœã‚¿ãƒ³ã®ç¯„å›²ã‚’ç¤ºã™é•·æ–¹å½¢ã®å–å¾—
 		/// </summary>
-		/// <returns> ”ñ•\¦ƒ{ƒ^ƒ“‚Ì”ÍˆÍ </returns>
+		/// <returns> éè¡¨ç¤ºãƒœã‚¿ãƒ³ã®ç¯„å›² </returns>
 		const Rect hideButtonRect() const;
 
 	};

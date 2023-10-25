@@ -1,63 +1,63 @@
-#pragma once
+﻿#pragma once
 
 #include<Siv3D.hpp>
 
 namespace Kokoha
 {
-	// �摜�̐؂�ւ���              ����    ���W
+	// 画像の切り替え順              時間    座標
 	using PosOrder = Array<std::pair<double, Point>>;
 
 	/// <summary>
-	/// Animation�N���X
-	/// �摜�̐؂�ւ����Ƃ���ɂ����鎞�Ԃ��܂Ƃ߂�����
+	/// Animationクラス
+	/// 画像の切り替え順とそれにかかる時間をまとめたもの
 	/// </summary>
 	class Animation
 	{
 	private:
 
-		// �摜��؂�ւ��I���܂łɂ����鎞��
+		// 画像を切り替え終わるまでにかかる時間
 		const double m_totalSecond;
 
-		// �摜�̐؂�ւ���
+		// 画像の切り替え順
 		const PosOrder m_posOrder;
 
-		// true ���[�v���� , false �Ō�̍��W�Œ�~
+		// true ループする , false 最後の座標で停止
 		const bool m_isLoop;
 
 	public:
 
 		/// <summary>
-		/// �摜�̐؂�ւ����Ƃ���ɂ����鎞�ԂȂ�
+		/// 画像の切り替え順とそれにかかる時間など
 		/// </summary>
-		/// <param name="posList"> �摜�̐؂�ւ��� </param>
-		/// <param name="posList"> ���[�v           </param>
+		/// <param name="posList"> 画像の切り替え順 </param>
+		/// <param name="posList"> ループ           </param>
 		Animation(const PosOrder& posOrder, bool isLoop);
 
 		/// <summary>
-		/// �摜�̍��W���擾
+		/// 画像の座標を取得
 		/// </summary>
-		/// <param name="animSecond"> ���� </param>
-		/// <returns> ���ԂɑΉ������摜�ԍ� </returns>
+		/// <param name="animSecond"> 時間 </param>
+		/// <returns> 時間に対応した画像番号 </returns>
 		/// <remarks>
-		/// O(log|m_posOrder�̃T�C�Y|)���ԕK�v
-		/// �ΐ����ԂȂ̂ő債�����Ԃ�v���Ȃ���
-		/// �ꉞ�CO(1)�łȂ����Ƃɒ���
+		/// O(log|m_posOrderのサイズ|)時間必要
+		/// 対数時間なので大した時間を要しないが
+		/// 一応，O(1)でないことに注意
 		/// </remarks>
 		Point getTexturePos(double animSecond) const;
 
 		/// <summary>
-		/// �摜��؂�ւ��I���܂łɂ����鎞�Ԃ̎擾
+		/// 画像を切り替え終わるまでにかかる時間の取得
 		/// </summary>
-		/// <returns> �摜��؂�ւ��I���܂łɂ����鎞�� </returns>
+		/// <returns> 画像を切り替え終わるまでにかかる時間 </returns>
 		double getTotalSecond() const
 		{
 			return m_totalSecond;
 		}
 
 		/// <summary>
-		/// ���[�v���邩����
+		/// ループするか示す
 		/// </summary>
-		/// <returns> ���[�v����Ƃ� true , �����łȂ��Ƃ� false </returns>
+		/// <returns> ループするとき true , そうでないとき false </returns>
 		bool loop() const
 		{
 			return m_isLoop;
@@ -66,12 +66,12 @@ namespace Kokoha
 	private:
 
 		/// <summary>
-		/// m_totalSecond�̌v�Z
+		/// m_totalSecondの計算
 		/// </summary>
 		static double getTotalSecond(const PosOrder& posOrder);
 
 		/// <summary>
-		/// m_posOrder�̎��Ԃ�݌v�ɕύX
+		/// m_posOrderの時間を累計に変更
 		/// </summary>
 		static PosOrder getPosOrder(PosOrder posOrder);
 

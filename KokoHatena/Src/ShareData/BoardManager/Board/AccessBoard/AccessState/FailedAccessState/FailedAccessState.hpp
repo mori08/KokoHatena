@@ -1,25 +1,25 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../AccessState.hpp"
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ƒvƒŒƒCƒ„[‚ª“G‚ÆÚG‚µ‚½‚Æ‚«‚ÌAccessState
+	/// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ•µã¨æ¥è§¦ã—ãŸã¨ãã®AccessState
 	/// </summary>
 	class FailedAccessState : public AccessState
 	{
 	private:
 
-		// ¸”s‰‰o‚ğo‚·ƒ}ƒX‚ÆƒvƒŒƒCƒ„[‚Ì‹——£
+		// å¤±æ•—æ¼”å‡ºã‚’å‡ºã™ãƒã‚¹ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è·é›¢
 		double m_failedDistance;
 
-		// ƒvƒŒƒCƒ„[‚Ìƒ}ƒXÀ•W
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒã‚¹åº§æ¨™
 		const Point m_playerSquare;
 
 	public:
 
-		/// <returns> ƒvƒŒƒCƒ„[‚Ìƒ}ƒXÀ•W </returns>
+		/// <returns> ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒã‚¹åº§æ¨™ </returns>
 		FailedAccessState(const Point& playerSquare);
 
 	private:

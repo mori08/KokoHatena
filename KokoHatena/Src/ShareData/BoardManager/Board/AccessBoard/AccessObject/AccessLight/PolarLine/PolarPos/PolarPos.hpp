@@ -1,49 +1,49 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Siv3D.hpp>
 
 namespace Kokoha
 {
 	/// <summary>
-	/// ‹ÉÀ•W
+	/// æ¥µåº§æ¨™
 	/// </summary>
 	class PolarPos
 	{
 	public:
 
-		// •ÎŠp in [-Pi,Pi]
+		// åè§’ in [-Pi,Pi]
 		const double a;
 
-		// “®Œa in [0, Inf)
+		// å‹•å¾„ in [0, Inf)
 		const double r;
 
 	public:
 
 		/// <summary>
-		/// •ÎŠp‚Æ‹——£‚©‚ç‹ÉÀ•W‚ğì¬
+		/// åè§’ã¨è·é›¢ã‹ã‚‰æ¥µåº§æ¨™ã‚’ä½œæˆ
 		/// </summary>
-		/// <param name="angle"> •ÎŠp </param>
-		/// <param name="distance"> ‹——£ </param>
+		/// <param name="angle"> åè§’ </param>
+		/// <param name="distance"> è·é›¢ </param>
 		PolarPos(double angle, double distance);
 
 		PolarPos(const PolarPos& another);
 
 		/// <summary>
-		/// ’¼ŒğÀ•W‚©‚ç•ÏŠ·
+		/// ç›´äº¤åº§æ¨™ã‹ã‚‰å¤‰æ›
 		/// </summary>
-		/// <param name="pos"> ’¼ŒğÀ•W </param>
-		/// <param name="originPos"> r=0‚Æ‚È‚é“_‚Ì’¼ŒğÀ•W </param>
-		/// <param name="initalLineAngle"> nü‚ÌŠp“x </param>
+		/// <param name="pos"> ç›´äº¤åº§æ¨™ </param>
+		/// <param name="originPos"> r=0ã¨ãªã‚‹ç‚¹ã®ç›´äº¤åº§æ¨™ </param>
+		/// <param name="initalLineAngle"> å§‹ç·šã®è§’åº¦ </param>
 		PolarPos(const Vec2& pos, const Vec2& originPos, double initalLineAngle);
 
 		
 
 		/// <summary>
-		/// ’¼ŒğÀ•W‚Ö•ÏŠ·
+		/// ç›´äº¤åº§æ¨™ã¸å¤‰æ›
 		/// </summary>
-		/// <param name="originPos"> r=0‚Æ‚È‚é“_‚Ì’¼ŒğÀ•W </param>
-		/// <param name="initialLineAngle"> nü‚ÌŠp“x </param>
-		/// <returns> ’¼ŒğÀ•W </returns>
+		/// <param name="originPos"> r=0ã¨ãªã‚‹ç‚¹ã®ç›´äº¤åº§æ¨™ </param>
+		/// <param name="initialLineAngle"> å§‹ç·šã®è§’åº¦ </param>
+		/// <returns> ç›´äº¤åº§æ¨™ </returns>
 		Vec2 toOrthoPos(const Vec2& originPos, double initialLineAngle) const;
 
 	};

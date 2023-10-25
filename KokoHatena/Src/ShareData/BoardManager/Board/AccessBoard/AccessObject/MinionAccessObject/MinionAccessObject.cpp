@@ -1,4 +1,4 @@
-#include "MinionAccessObject.hpp"
+﻿#include "MinionAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
