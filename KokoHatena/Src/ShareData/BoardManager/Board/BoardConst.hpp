@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Siv3D.hpp>
 #include "../../../Scene/SceneName.hpp"
@@ -6,47 +6,47 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// í—Şi–ğŠ„j
+	/// ç¨®é¡ï¼ˆå½¹å‰²ï¼‰
 	/// </summary>
 	enum class BoardRole
 	{
-		MESSAGE,  // ƒƒbƒZ[ƒW
-		SECURITY, // ƒZƒLƒ…ƒŠƒeƒB
-		ACCESS,   // ƒAƒNƒZƒXiƒpƒYƒ‹ƒAƒNƒVƒ‡ƒ“•”•ªj
+		MESSAGE,  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+		SECURITY, // ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£
+		ACCESS,   // ã‚¢ã‚¯ã‚»ã‚¹ï¼ˆãƒ‘ã‚ºãƒ«ã‚¢ã‚¯ã‚·ãƒ§ãƒ³éƒ¨åˆ†ï¼‰
 	};
 
-	// •¶š—ñ‚ğBoradRole‚É•ÏŠ·‚·‚é˜A‘z”z—ñ
+	// æ–‡å­—åˆ—ã‚’BoradRoleã«å¤‰æ›ã™ã‚‹é€£æƒ³é…åˆ—
 	static const std::unordered_map<String, BoardRole> BOARD_ROLE_MAP
 	{
 		{ U"access"  , BoardRole::ACCESS },
 		{ U"security", BoardRole::SECURITY },
-		{ U"access"  , BoardRole::ACCESS }
+		{ U"message" , BoardRole::MESSAGE }
 	};
 
 	/// <summary>
-	/// ó‘Ô
+	/// çŠ¶æ…‹
 	/// </summary>
 	enum class BoardState
 	{
-		IS_DISPLAYED, // •\¦’†
-		IS_HIDING,    // ”ñ•\¦
-		NONE,         // —˜—p•s‰Â
+		IS_DISPLAYED, // è¡¨ç¤ºä¸­
+		IS_HIDING,    // éè¡¨ç¤º
+		NONE,         // åˆ©ç”¨ä¸å¯
 	};
 
 	/// <summary>
-	/// ŠO•”‚Ö‘—M‚·‚éƒf[ƒ^
+	/// å¤–éƒ¨ã¸é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 	/// </summary>
 	class BoardRequest
 	{
 	public:
 
-		// ‘¼ƒ{[ƒh‚Ö‚Ì–½—ß
+		// ä»–ãƒœãƒ¼ãƒ‰ã¸ã®å‘½ä»¤
 		std::list<std::pair<BoardRole, String>> toBoard;
 
-		// Record‚Ö‚Ì‘‚«‚İ
+		// Recordã¸ã®æ›¸ãè¾¼ã¿
 		std::unordered_map<String, int32> toRecord;
 
-		// Scene‘JˆÚ
+		// Sceneé·ç§»
 		Optional<SceneName> toScene = none;
 	};
 }
