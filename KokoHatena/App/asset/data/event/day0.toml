@@ -37,14 +37,13 @@
         ]
 
 [[test1]]
-    event = "jump"
-    flag = "flag1"
-    to = "test2"
+    event = "recieve"
+    name = "test"
 
-[[test2]]
+[[test1]]
     event = "act"
     name = "ui_text"
-    [test2.param]
+    [test1.param]
         type = "message"
         text = "選択肢1を選んだ"
         speaker = false

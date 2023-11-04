@@ -9,6 +9,7 @@ namespace Kokoha
 	EventPlayer::EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet)
 		: m_render(drawSize)
 		, m_eventToml(eventFileName)
+		, m_waitingRequest(none)
 	{
 		setGenerateObjectMap();
 
@@ -56,9 +57,11 @@ namespace Kokoha
 		{
 			m_waitingObjectList.pop_front();
 		}
-		
+
 		// イベントの進行
-		if (m_now != m_end && m_waitingObjectList.empty())
+		bool waiting = !m_waitingObjectList.empty()
+			|| m_waitingRequest;
+		if (m_now != m_end && !waiting)
 		{
 			const String eventName = (*m_now)[U"event"].getString();
 			
@@ -66,6 +69,14 @@ namespace Kokoha
 			{
 				++m_now;
 			}
+		}
+	}
+
+	void EventPlayer::receive(const String& requestText)
+	{
+		if (m_waitingRequest && m_waitingRequest.value() == requestText)
+		{
+			m_waitingRequest = none;
 		}
 	}
 
@@ -93,7 +104,9 @@ namespace Kokoha
 	bool EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
 	{
 		const String eventName = nowEvent[U"event"].getString(); // イベント名
-		
+
+		Print << nowEvent;
+
 		// オブジェクトの生成
 		if (eventName == U"object")
 		{
@@ -199,6 +212,14 @@ namespace Kokoha
 				boardRequest.toRecord[jumpFlagName] = m_jumpFlagMap[jumpFlagName];
 			}
 			boardRequest.toScene = SCENE_NAME_MAP.find(scene)->second;
+
+			return true;
+		}
+
+		// Boardへのリクエストを待機
+		if (eventName == U"recieve")
+		{
+			m_waitingRequest = nowEvent[U"name"].getOpt<String>();
 
 			return true;
 		}

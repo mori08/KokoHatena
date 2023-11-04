@@ -132,6 +132,11 @@
     selectY = 70
     [SecurityBoard.default]
         text = "PCを保護しています"
+        [[SecurityBoard.default.select]]
+            text = "はい"
+            toBoard =[
+                {role="message", request="test"}
+            ]
     [SecurityBoard.test]
         text = "テスト用"
         [[SecurityBoard.test.select]]

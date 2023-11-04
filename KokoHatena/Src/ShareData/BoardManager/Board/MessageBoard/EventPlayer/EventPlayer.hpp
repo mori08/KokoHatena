@@ -42,6 +42,9 @@ namespace Kokoha
 		// 別イベントに遷移する条件のフラグのリスト
 		std::unordered_map<String, bool> m_jumpFlagMap;
 
+		// 待機中のリクエスト
+		Optional<String> m_waitingRequest;
+
 	public:
 
 		/// <param name="eventFileName"> イベントのファイル名 </param>
@@ -59,6 +62,11 @@ namespace Kokoha
 		/// </summary>
 		/// <param name=boardRequest"> ボードへのリクエスト </param>
 		void update(BoardRequest& boardRequest);
+
+		/// <summary>
+		/// MessageBoardが受け取ったリクエストを受け取る
+		/// </summary>
+		void receive(const String& requestText);
 
 		/// <summary>
 		/// 描画

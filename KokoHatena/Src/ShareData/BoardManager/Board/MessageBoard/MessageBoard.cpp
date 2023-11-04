@@ -48,9 +48,12 @@ namespace Kokoha
 		}
 	}
 
-	void MessageBoard::receiveRequest(const String&)
+	void MessageBoard::receiveRequest(const String& requestText)
 	{
-		
+		for (auto& eventPlayer : m_eventPlayerMap)
+		{
+			eventPlayer.second.receive(requestText);
+		}
 	}
 
 	void MessageBoard::inputInBoard()
