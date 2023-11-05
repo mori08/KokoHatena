@@ -10,6 +10,7 @@ namespace Kokoha
 		: m_render(drawSize)
 		, m_eventToml(eventFileName)
 		, m_waitingRequest(none)
+		, m_waitingSecond(0.0)
 	{
 		setGenerateObjectMap();
 
@@ -58,9 +59,13 @@ namespace Kokoha
 			m_waitingObjectList.pop_front();
 		}
 
+		// 待ち時間の更新
+		m_waitingSecond -= Scene::DeltaTime();
+
 		// イベントの進行
 		bool waiting = !m_waitingObjectList.empty()
-			|| m_waitingRequest;
+			|| m_waitingRequest
+			|| m_waitingSecond > 0;
 		if (m_now != m_end && !waiting)
 		{
 			const String eventName = (*m_now)[U"event"].getString();
@@ -104,8 +109,6 @@ namespace Kokoha
 	bool EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)
 	{
 		const String eventName = nowEvent[U"event"].getString(); // イベント名
-
-		Print << nowEvent;
 
 		// オブジェクトの生成
 		if (eventName == U"object")
@@ -220,6 +223,14 @@ namespace Kokoha
 		if (eventName == U"recieve")
 		{
 			m_waitingRequest = nowEvent[U"name"].getOpt<String>();
+
+			return true;
+		}
+
+		// 待ち時間の設定
+		if (eventName == U"wait")
+		{
+			m_waitingSecond = nowEvent[U"time"].getOr<double>(0.0);
 
 			return true;
 		}
