@@ -45,6 +45,9 @@ namespace Kokoha
 		// 待機中のリクエスト
 		Optional<String> m_waitingRequest;
 
+		// 待ち時間(s)
+		double m_waitingSecond;
+
 	public:
 
 		/// <param name="eventFileName"> イベントのファイル名 </param>

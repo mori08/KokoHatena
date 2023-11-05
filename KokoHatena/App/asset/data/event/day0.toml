@@ -41,6 +41,10 @@
     name = "test"
 
 [[test1]]
+    event = "wait"
+    time = 10.0
+
+[[test1]]
     event = "act"
     name = "ui_text"
     [test1.param]
