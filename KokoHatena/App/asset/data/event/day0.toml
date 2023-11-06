@@ -37,7 +37,7 @@
         ]
 
 [[test1]]
-    event = "recieve"
+    event = "receive"
     name = "test"
 
 [[test1]]
