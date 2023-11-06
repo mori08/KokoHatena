@@ -220,7 +220,7 @@ namespace Kokoha
 		}
 
 		// Boardへのリクエストを待機
-		if (eventName == U"recieve")
+		if (eventName == U"receive")
 		{
 			m_waitingRequest = nowEvent[U"name"].getOpt<String>();
 
