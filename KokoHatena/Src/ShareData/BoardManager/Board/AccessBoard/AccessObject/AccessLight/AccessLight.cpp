@@ -141,6 +141,10 @@ namespace Kokoha
 			eventQueue.top().func();
 			eventQueue.pop();
 		}
+		if (m_posAry.front().distanceFromSq(m_posAry.back()) < EPSILON)
+		{
+			m_posAry.pop_back();
+		}
 
 		m_polygon = Polygon(m_posAry);
 	}
