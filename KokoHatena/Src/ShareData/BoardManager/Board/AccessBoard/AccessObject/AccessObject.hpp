@@ -118,7 +118,7 @@ namespace Kokoha
 		/// 追加オブジェクトをオブジェクトリストに追加
 		/// </summary>
 		/// <param name="makeObjectList"> オブジェクトの作成リスト </param>
-		virtual void addObjectList(std::list<AccessObject::Ptr>& makeObjectList);
+		void addObjectList(std::list<AccessObject::Ptr>& makeObjectList);
 
 		/// <summary>
 		/// 削除条件

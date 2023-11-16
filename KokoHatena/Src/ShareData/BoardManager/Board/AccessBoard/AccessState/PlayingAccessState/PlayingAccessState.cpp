@@ -2,33 +2,24 @@
 #include "../FailedAccessState/FailedAccessState.hpp"
 #include "../SuccessAccessState/SuccessAccessState.hpp"
 #include "../../AccessObject/MinionAccessObject/MinionAccessObject.hpp"
+#include "../../../../../../Config/Config.hpp"
 
 namespace Kokoha
 {
-	void PlayingAccessState::input(const BoardArg& board)
-	{
-		m_isMakingMinion = board.rect().leftClicked();
-	}
-
 	Optional<std::shared_ptr<AccessState>> PlayingAccessState::update(
 		AccessObject::GuidToObject& objectMap,
 		AccessObject::TypeToGuidSet& typeToGuidSet,
 		BoardRequest&)
 	{
+		// 距離の変更の比率
+		static const double DISTANCE_RATE = Config::get<double>(U"AccessLight.Rate.distance");
+
 		// プレイヤーの座標の取得
 		Circle playerBody = Circle(-1e5, -1e5, 0); // 他オブジェクトと接触しない座標で初期化
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::PLAYER])
 		{
 			playerBody = objectMap[guid]->body();
 		}
-		
-		// MinionAccessObjectの作成
-		if (m_isMakingMinion)
-		{
-			AccessObject::Ptr ptr = std::make_shared<MinionAccessObject>(playerBody.center);
-			AccessObject::setMakingObject(ptr, objectMap, typeToGuidSet);
-		}
-		m_isMakingMinion = false;
 
 		// プレイヤーが敵と接触
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::ENEMY])

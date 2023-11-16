@@ -154,6 +154,11 @@ namespace Kokoha
 		m_polygon.draw(ColorF(MyWhite, m_alpha));
 	}
 
+	double AccessLight::area() const
+	{
+		return m_distance * m_distance * m_centralAngle / 2;
+	}
+
 	void AccessLight::addPoint(double angle)
 	{
 		const double minR = heapTopR(angle);

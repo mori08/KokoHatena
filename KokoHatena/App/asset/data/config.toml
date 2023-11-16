@@ -186,7 +186,6 @@
     speed = 100
     lightAlpha = 0.5
     lightArea  = 20000
-    lightSpinSpeed = 0.1
 
 [EnemyAccessObject]
     speed = 10

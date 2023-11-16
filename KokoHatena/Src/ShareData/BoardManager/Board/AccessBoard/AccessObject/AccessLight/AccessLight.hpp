@@ -141,6 +141,10 @@ namespace Kokoha
 		/// </summary>
 		void draw() const;
 
+		/// <summary>
+		/// 面積の取得
+		double area() const;
+
 	private:
 
 		/// <summary>
