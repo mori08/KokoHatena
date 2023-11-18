@@ -35,12 +35,12 @@ namespace Kokoha
 		}
 	}
 
-	void EventPlayer::input(const Vec2& cursorPos)
+	void EventPlayer::input(const BoardArg& board)
 	{
 		// オブジェクトの入力
 		for (const auto& object : m_objectList)
 		{
-			object.second->input(cursorPos);
+			object.second->input(board);
 		}
 	}
 

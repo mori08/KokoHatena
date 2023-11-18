@@ -12,10 +12,6 @@ namespace Kokoha
 	{
 	}
 
-	void SuccessAccessState::input(const Vec2&)
-	{
-	}
-
 	Optional<std::shared_ptr<AccessState>> SuccessAccessState::update(
 		AccessObject::GuidToObject& objectMap,
 		AccessObject::TypeToGuidSet& typeToGuidSet,

@@ -15,9 +15,9 @@ namespace Kokoha
 		FontAsset(U"20")(text).drawAt(m_rect.center(), MyWhite);
 	}
 
-	bool SecurityBoard::Select::clicked(const Point& cursorPos) const
+	bool SecurityBoard::Select::clicked(const BoardArg& board) const
 	{
-		return m_rect.contains(cursorPos) && MouseL.down();
+		return m_rect.contains(board.cursorPos()) && board.rect().leftClicked();
 	}
 
 	SecurityBoard::SecurityBoard(const RecordSet& recordSet)
@@ -35,10 +35,9 @@ namespace Kokoha
 
 	void SecurityBoard::inputInBoard()
 	{
-		const Point cursorPos = cursorPosInBoard();
 		for (const auto& select : m_selectList)
 		{
-			if (!select.clicked(cursorPos)) { continue; }
+			if (!select.clicked(boardArg())) { continue; }
 
 			// 選択肢がクリックされたらBoardRequestへ
 			m_requestOpt = BoardRequest();
@@ -84,6 +83,8 @@ namespace Kokoha
 			const String selectText = selectToml[U"text"].getString();
 			std::list<std::pair<BoardRole, String>> toBoard;
 
+			if (!selectToml[U"toBoard"].isTableArray()) { continue; }
+			
 			for (const TOMLValue& toBoardToml : selectToml[U"toBoard"].tableArrayView())
 			{
 				const String boardRoleName = toBoardToml[U"role"].getString();

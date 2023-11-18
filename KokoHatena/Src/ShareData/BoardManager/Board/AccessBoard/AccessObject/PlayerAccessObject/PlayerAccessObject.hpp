@@ -23,7 +23,7 @@ namespace Kokoha
 
 	private:
 
-		void input(const Vec2& cursorPos) override;
+		void input(const BoardArg& board) override;
 
 		void update(const Terrain& terrain) override;
 

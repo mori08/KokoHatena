@@ -1,11 +1,8 @@
 ﻿#include "AccessState.hpp"
-#include "../../../../../Config/Config.hpp"
 
 namespace Kokoha
 {
-	const Rect& AccessState::boardRect()
+	void AccessState::input(const BoardArg&)
 	{
-		static const Rect rtn = Rect(Point::Zero(), Config::get<Size>(U"AccessBoard.size"));
-		return rtn;
 	}
 }

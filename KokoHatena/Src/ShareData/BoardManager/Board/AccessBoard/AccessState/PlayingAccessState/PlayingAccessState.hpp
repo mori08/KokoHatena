@@ -16,7 +16,7 @@ namespace Kokoha
 
 	private:
 
-		void input(const Vec2& cursorPos) override;
+		void input(const BoardArg& board) override;
 
 		Optional<std::shared_ptr<AccessState>> update(
 			AccessObject::GuidToObject& objectMap,

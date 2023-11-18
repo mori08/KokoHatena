@@ -58,7 +58,7 @@ namespace Kokoha
 		/// 入力
 		/// </summary>
 		/// <param name="cursorPos"> マウスカーソルの座標 </cursorPos>
-		void input(const Vec2& cursorPos);
+		void input(const BoardArg& board);
 
 		/// <summary>
 		/// 更新

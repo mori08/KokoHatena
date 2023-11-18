@@ -39,6 +39,8 @@ namespace Kokoha
 		// アイコンの表示順(-1だと非表示)
 		const int32 m_iconOrder;
 
+		BoardArg m_boardArg;
+
 	public:
 
 		/// <param name="role"> 種類(役割) </param>
@@ -147,6 +149,14 @@ namespace Kokoha
 		/// 各ボード固有の描画処理
 		/// </summary>
 		virtual void drawInBoard() const = 0;
+
+		/// <summary>
+		/// 他へ渡すボードの情報
+		/// </summary>
+		virtual const BoardArg& boardArg()const
+		{
+			return m_boardArg;
+		}
 
 	protected:
 

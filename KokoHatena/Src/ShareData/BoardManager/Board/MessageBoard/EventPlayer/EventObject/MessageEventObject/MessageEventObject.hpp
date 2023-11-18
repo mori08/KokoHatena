@@ -122,7 +122,7 @@ namespace Kokoha
 			/// いずれかの選択肢をクリックしたか
 			/// </summary>
 			/// <param name="cursorPos"> マウスカーソルの座標 </param>
-			Optional<String> input(const Vec2& cusrorPos);
+			Optional<String> input(const BoardArg& board);
 
 			void update();
 
@@ -149,7 +149,7 @@ namespace Kokoha
 
 		bool wait() const override;
 
-		void input(const Vec2& cursorPos) override;
+		void input(const BoardArg& board) override;
 
 		void update() override;
 

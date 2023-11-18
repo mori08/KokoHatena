@@ -43,7 +43,7 @@ namespace Kokoha
 			/// <summary> クリックされたか示す </summary>
 			/// <param name="cursorPos"> カーソルの座標 </param>
 			/// <returns> クリックされたとき true , そうでないとき false </returns>
-			bool clicked(const Point& cursorPos) const;
+			bool clicked(const BoardArg& board) const;
 		};
 
 	private:

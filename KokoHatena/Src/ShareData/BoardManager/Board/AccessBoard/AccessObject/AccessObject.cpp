@@ -32,7 +32,7 @@ namespace Kokoha
 		objectMap.try_emplace(ptr->guid(), ptr);
 	}
 
-	void AccessObject::input(const Vec2&)
+	void AccessObject::input(const BoardArg&)
 	{
 	}
 

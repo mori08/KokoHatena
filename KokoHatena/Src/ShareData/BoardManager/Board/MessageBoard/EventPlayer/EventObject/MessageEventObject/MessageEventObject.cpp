@@ -125,11 +125,11 @@ namespace Kokoha
 		}
 	}
 
-	Optional<String> MessageEventObject::Select::input(const Vec2& cursorPos)
+	Optional<String> MessageEventObject::Select::input(const BoardArg& board)
 	{
 		for (const Post& post : m_selectAry)
 		{
-			if (post.getRect().intersects(cursorPos) && MouseL.down())
+			if (post.getRect().intersects(board.cursorPos()) && board.rect().leftClicked())
 			{
 				return m_flagNameMap[post.getText()];
 			}
@@ -212,11 +212,11 @@ namespace Kokoha
 		return false;
 	}
 
-	void MessageEventObject::input(const Vec2& cursorPos)
+	void MessageEventObject::input(const BoardArg& board)
 	{
 		if (m_select)
 		{
-			auto flagNameOpt = m_select->input(cursorPos);
+			auto flagNameOpt = m_select->input(board);
 
 			if (flagNameOpt)
 			{
