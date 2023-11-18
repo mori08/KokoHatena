@@ -276,9 +276,6 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject</Filter>
     </ClCompile>
-    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.cpp">
-      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState</Filter>
-    </ClCompile>
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState</Filter>
     </ClCompile>
@@ -323,6 +320,9 @@
     </ClCompile>
     <ClCompile Include="Src\ShareData\BoardManager\Board\SecurityBoard\SecurityBoard.cpp">
       <Filter>Src\ShareData\BoardManager\Board\SecurityBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

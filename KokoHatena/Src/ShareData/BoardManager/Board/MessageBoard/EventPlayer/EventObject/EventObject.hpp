@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Siv3D.hpp>
+#include "../../../BoardConst.hpp"
 
 namespace Kokoha
 {
@@ -34,7 +34,7 @@ namespace Kokoha
 		/// 入力
 		/// </summary>
 		/// <param name="cursorPos"> cursorPos </param>
-		virtual void input(const Vec2& cursorPos);
+		virtual void input(const BoardArg& board);
 
 		/// <summary>
 		/// 更新

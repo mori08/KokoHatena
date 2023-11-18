@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "../Terrain/Terrain.hpp"
+#include "../../BoardConst.hpp"
 #include "AccessLight/AccessLight.hpp"
 
 namespace Kokoha
@@ -96,8 +97,8 @@ namespace Kokoha
 		/// <summary>
 		/// 入力
 		/// </summary>
-		/// <param name="cursorPos"> カーソルの座標 </param>
-		virtual void input(const Vec2& cursorPos);
+		/// <param name="board"> Boardの情報 </param>
+		virtual void input(const BoardArg& board);
 
 		/// <summary>
 		/// 更新

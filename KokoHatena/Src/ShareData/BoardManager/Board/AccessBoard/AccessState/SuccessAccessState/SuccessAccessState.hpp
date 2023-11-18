@@ -26,8 +26,6 @@ namespace Kokoha
 
 	private:
 
-		void input(const Vec2&) override;
-
 		Optional<std::shared_ptr<AccessState>> update(
 			AccessObject::GuidToObject& objectMap,
 			AccessObject::TypeToGuidSet& typeToGuidSet,

@@ -24,7 +24,8 @@ namespace Kokoha
 		, m_pos(Scene::Center() - m_size/2) // 画面中心に表示
 		, m_render(m_size)
 		, m_iconTextureName(configName)
-		, m_iconOrder(Config::get<int32>(configName + U".iconOrder") )
+		, m_iconOrder(Config::get<int32>(configName + U".iconOrder"))
+		, m_boardArg(m_size)
 	{
 	}
 
@@ -63,6 +64,8 @@ namespace Kokoha
 		}
 			
 		movePosByCursor();
+
+		m_boardArg.setPos(m_pos);
 
 		inputInBoard();
 

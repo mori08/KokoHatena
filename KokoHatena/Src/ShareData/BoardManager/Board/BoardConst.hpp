@@ -2,6 +2,7 @@
 
 #include <Siv3D.hpp>
 #include "../../../Scene/SceneName.hpp"
+#include "../../../Config/Config.hpp"
 
 namespace Kokoha
 {
@@ -48,5 +49,47 @@ namespace Kokoha
 
 		// Scene遷移
 		Optional<SceneName> toScene = none;
+	};
+
+	/// <summary>
+	/// 他クラスにBoardの情報を渡す
+	/// </summary>
+	class BoardArg
+	{
+	private:
+
+		// Boardの座標
+		RectF m_boardRect;
+
+	public:
+
+		BoardArg(const Size& size)
+			: m_boardRect(0, 0, size)
+		{}
+
+		/// <summary> Boardの座標の設定 </summary> 
+		void setPos(const Vec2& pos)
+		{
+			m_boardRect.pos = pos;
+		}
+
+		/// <summary>
+		/// Board上でのカーソルの座標を取得
+		/// </summary>
+		/// <returns> Board上のカーソルの座標 </returns>
+		Vec2 cursorPos() const
+		{
+			static const int32 CONTROL_FRAME_HEIGHT = Kokoha::Config::get<int32>(U"Board.controlFrameHeight");
+			return Cursor::PosF() - m_boardRect.pos - Vec2::Down(CONTROL_FRAME_HEIGHT);
+		}
+
+		/// <summary>
+		/// Boardの範囲の取得
+		/// </summary>
+		/// <returns> Boardの範囲 </returns>
+		const RectF rect() const
+		{
+			return m_boardRect;
+		}
 	};
 }

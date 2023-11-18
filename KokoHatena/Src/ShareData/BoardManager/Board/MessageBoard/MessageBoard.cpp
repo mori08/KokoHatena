@@ -80,8 +80,7 @@ namespace Kokoha
 
 		if (m_selectedSpeakerName)
 		{
-			const Vec2 cursorPos = cursorPosFInBoard() - Point(getSpeakerNameRect(0).w, 0);
-			m_eventPlayerMap.find(m_selectedSpeakerName.value())->second.input(cursorPos);
+			m_eventPlayerMap.find(m_selectedSpeakerName.value())->second.input(boardArg());
 		}
 	}
 

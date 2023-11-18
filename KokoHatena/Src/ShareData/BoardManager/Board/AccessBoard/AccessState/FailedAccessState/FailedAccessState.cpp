@@ -12,10 +12,6 @@ namespace Kokoha
 
 	}
 
-	void FailedAccessState::input(const Vec2&)
-	{
-	}
-
 	Optional<std::shared_ptr<AccessState>> FailedAccessState::update(AccessObject::GuidToObject& objectMap, AccessObject::TypeToGuidSet& typeToGuidSet, BoardRequest&)
 	{
 		// バグ演出の進行する速度

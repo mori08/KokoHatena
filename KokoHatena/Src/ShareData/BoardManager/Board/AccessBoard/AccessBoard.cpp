@@ -24,14 +24,14 @@ namespace Kokoha
 
 	void AccessBoard::inputInBoard()
 	{
-		m_state->input(cursorPosFInBoard());
+		m_state->input(boardArg());
 
 		if (m_state->isUpdatingObject())
 		{
 			// オブジェクトへの入力
 			for (const auto& object : m_objectMap)
 			{
-				object.second->input(cursorPosFInBoard());
+				object.second->input(boardArg());
 			}
 		}
 	}

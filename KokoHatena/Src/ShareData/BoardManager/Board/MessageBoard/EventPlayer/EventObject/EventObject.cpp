@@ -2,7 +2,7 @@
 
 namespace Kokoha
 {
-	void EventObject::input(const Vec2&)
+	void EventObject::input(const BoardArg&)
 	{
 	}
 

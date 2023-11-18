@@ -18,7 +18,7 @@ namespace Kokoha
 			.on();
 	}
 
-	void PlayerAccessObject::input(const Vec2&)
+	void PlayerAccessObject::input(const BoardArg& board)
 	{
 		if (KeyW.pressed()) { m_movement += Vec2::Up();    }
 		if (KeyS.pressed()) { m_movement += Vec2::Down();  }

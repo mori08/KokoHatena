@@ -16,8 +16,8 @@ namespace Kokoha
 		/// <summary>
 		/// 入力
 		/// </summary>
-		/// <param name="cursorPos"> カーソルの座標 </param>
-		virtual void input(const Vec2& cursorPos) = 0;
+		/// <param name="board"> Boardの情報 </param>
+		virtual void input(const BoardArg& board);
 
 		/// <summary>
 		/// 更新
@@ -41,14 +41,6 @@ namespace Kokoha
 		/// 描画
 		/// </summary>
 		virtual void draw() const = 0;
-
-	protected:
-
-		/// <summary>
-		/// ボードの範囲を示す長方形の取得
-		/// </summary>
-		/// <returns> ボードの範囲を示す長方形 </returns>
-		static const Rect& boardRect();
 
 	};
 }

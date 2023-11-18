@@ -25,17 +25,17 @@ namespace Kokoha
 		setMakeObjectList();
 	}
 
-	void StartingAccessState::input(const Vec2& cursorPos)
+	void StartingAccessState::input(const BoardArg& board)
 	{
 		static const double NOISE_DIST = Config::get<double>(U"StartingAccessState.noiseDist");
 		static const int32  NOISE_SPAN = Config::get<int32>(U"StartingAccessState.noiseSpan");
 
-		if (m_playerPos.distanceFrom(cursorPos) < NOISE_DIST && m_noiseCount > NOISE_SPAN)
+		if (m_playerPos.distanceFrom(board.cursorPos()) < NOISE_DIST && m_noiseCount > NOISE_SPAN)
 		{
 			m_noiseCount = -1; // updateで0になる
 		}
 
-		if (MouseL.down() && m_playerPos.distanceFrom(cursorPos) < NOISE_DIST)
+		if (board.rect().leftClicked() && m_playerPos.distanceFrom(board.cursorPos()) < NOISE_DIST)
 		{
 			m_nextStateFlag = true;
 		}
@@ -93,7 +93,7 @@ namespace Kokoha
 		// 文字を揺らす大きさ
 		static const double NOISE_AMOUNT = Config::get<double>(U"StartingAccessState.noiseAmount");
 
-		boardRect().draw(MyBlack);
+		Scene::Rect().draw(MyBlack);
 
 		Vec2 drawPos = m_playerPos;
 		if (m_noiseCount == 0)
