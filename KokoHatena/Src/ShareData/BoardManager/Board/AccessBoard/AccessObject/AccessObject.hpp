@@ -18,6 +18,7 @@ namespace Kokoha
 			PLAYER, // プレイヤー
 			ENEMY,  // 敵
 			MINION, // 手先
+			TRACK,  // 光の粒
 			GOAL    // ゴール
 		};
 
@@ -27,13 +28,32 @@ namespace Kokoha
 
 		using TypeToGuidSet = std::unordered_map<Type, std::unordered_set<String>>;
 
+		class ObjectNotFoundException;
+
 		/// <summary>
-		/// Typeが合う先頭オブジェクトのGuidを取得
+		/// Typeが合う先頭オブジェクトのguidを取得
 		/// </summary>
 		/// <param name="type"> オブジェクトの種類 </param>
 		/// <param name="typeToGuidSet"> typeからguid集合への連想配列 </param>
 		/// <returns> 存在するときは guid , 集合が空のときは none </returns>
 		static Optional<String> getFrontGuid(Type type, const TypeToGuidSet& typeToGuidSet);
+
+		/// <summary>
+		/// guidが指定するオブジェクトの取得
+		/// </summary>
+		/// <param name="guid"> guid </param>
+		/// <param name="guidToObject"> guidからオブジェクトへの連想配列 </param>
+		/// <returns> 存在するときは オブジェクト , 見つからないときは none </returns>
+		static const AccessObject& getObject(const String& guid, const GuidToObject& guidToObject);
+
+		/// <summary>
+		/// Typeが合う先頭オブジェクトを取得
+		/// </summary>
+		/// <param name="type"> オブジェクトの種類 </param>
+		/// <param name="guidToObject"> guidからオブジェクトへの連想配列 </param>
+		/// <param name="typeToGuidSet"> typeからguid集合への連想配列 </param>
+		/// <returns> 存在するときは オブジェクト , 見つからないときは none </returns>
+		static const AccessObject& getFrontObject(Type type, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
 
 	private:
 
