@@ -39,6 +39,13 @@ namespace Kokoha
 		return *this;
 	}
 
+	AccessLight& AccessLight::setDistanceFromArea(double area, double rate)
+	{
+		internalDividingPoint(m_distance,
+			Sqrt(2 * area / m_centralAngle), rate);
+		return *this;
+	}
+
 	AccessLight& AccessLight::setAlpha(double alpha, double rate)
 	{
 		internalDividingPoint(m_alpha, alpha, rate);

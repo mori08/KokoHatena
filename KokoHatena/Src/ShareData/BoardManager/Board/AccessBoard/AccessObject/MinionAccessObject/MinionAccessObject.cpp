@@ -1,18 +1,36 @@
 ﻿#include "MinionAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
+#include "../../../../../../Config/Config.hpp"
+#include "../TrackAccessObject/TrackAccessObject.hpp"
+
+namespace
+{
+	const double& trackTime()
+	{
+		static const double rtn = Kokoha::Config::get<double>(U"MinionAccessObject.trackTime");
+		return rtn;
+	}
+}
 
 namespace Kokoha
 {
 	MinionAccessObject::MinionAccessObject(const Vec2& pos)
 		: AccessObject(Type::MINION, pos)
+		, m_trackTime(trackTime())
 	{
 		m_goal.x = Random(0.0, 600.0);
 		m_goal.y = Random(0.0, 450.0);
-		m_direction = 0;
+
+		// 光の初期面積
+		static const double LIGHT_AREA = Config::get<double>(U"MinionAccessObject.lightArea");
+		// 光の明るさ
+		static const double LIGHT_ALPHA = Config::get<double>(U"MinionAccessObject.lightAlpha");
+		
+		m_lightArea = LIGHT_AREA;
 		light()
-			.setAlpha(0.3)
+			.setAlpha(LIGHT_ALPHA)
 			.setCentralAngle(Math::TwoPi)
-			.setDistance(40)
+			.setDistanceFromArea(LIGHT_AREA)
 			.on();
 	}
 
@@ -24,15 +42,25 @@ namespace Kokoha
 			m_goal.x = Random(0.0, 600.0);
 			m_goal.y = Random(0.0, 450.0);
 		}
-		else
+
+		m_trackTime -= Scene::DeltaTime();
+		if (m_trackTime < 0)
 		{
-			const double d = twoVecToAngle(angleToVec(m_direction), movement);
-			internalDividingPoint(m_direction, m_direction + d, 0.2);
+			m_trackTime = trackTime();
+			Ptr trackObjPtr = std::make_shared<TrackAccessObject>(body().center, Vec2::Zero());
+			m_lightArea -= trackObjPtr->light().area();
+			makeObject(std::move(trackObjPtr));
+		}
+
+		if (m_lightArea < 0)
+		{
+			light().off();
+			erase();
 		}
 
 		light()
 			.setSourcePos(body().center)
-			.setDirectionAngle(m_direction)
+			.setDistanceFromArea(m_lightArea)
 			.update(terrain);
 	}
 

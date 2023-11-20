@@ -28,8 +28,6 @@ namespace Kokoha
 
 		using TypeToGuidSet = std::unordered_map<Type, std::unordered_set<String>>;
 
-		class ObjectNotFoundException;
-
 		/// <summary>
 		/// Typeが合う先頭オブジェクトのguidを取得
 		/// </summary>

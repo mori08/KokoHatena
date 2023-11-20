@@ -124,6 +124,14 @@ namespace Kokoha
 		AccessLight& setDistance(double distance, double rate = 0);
 
 		/// <summary>
+		/// 光の面積から距離の設定
+		/// </summary>
+		/// <param name="area"> 影を考慮しない光の面積 </param>
+		/// <param name="rate"> 割合の遷移 </param>
+		/// <returns> *this </returns>
+		AccessLight& setDistanceFromArea(double area, double rate = 0);
+
+		/// <summary>
 		/// 光の明るさの設定
 		/// </summary>
 		/// <param name="alpha"> 光の明るさ MyWhiteの不透明度 [0, 1] </param>

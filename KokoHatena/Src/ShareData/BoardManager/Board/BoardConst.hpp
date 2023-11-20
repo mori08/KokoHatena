@@ -2,7 +2,6 @@
 
 #include <Siv3D.hpp>
 #include "../../../Scene/SceneName.hpp"
-#include "../../../Config/Config.hpp"
 
 namespace Kokoha
 {
@@ -77,11 +76,7 @@ namespace Kokoha
 		/// Board上でのカーソルの座標を取得
 		/// </summary>
 		/// <returns> Board上のカーソルの座標 </returns>
-		Vec2 cursorPos() const
-		{
-			static const int32 CONTROL_FRAME_HEIGHT = Kokoha::Config::get<int32>(U"Board.controlFrameHeight");
-			return Cursor::PosF() - m_boardRect.pos - Vec2::Down(CONTROL_FRAME_HEIGHT);
-		}
+		Vec2 cursorPos() const;
 
 		/// <summary>
 		/// Boardの範囲の取得
