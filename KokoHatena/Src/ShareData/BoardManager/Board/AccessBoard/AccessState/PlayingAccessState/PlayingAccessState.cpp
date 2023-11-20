@@ -2,14 +2,10 @@
 #include "../FailedAccessState/FailedAccessState.hpp"
 #include "../SuccessAccessState/SuccessAccessState.hpp"
 #include "../../AccessObject/MinionAccessObject/MinionAccessObject.hpp"
+#include "../../../../../../Config/Config.hpp"
 
 namespace Kokoha
 {
-	void PlayingAccessState::input(const BoardArg& board)
-	{
-		m_isMakingMinion = board.rect().leftClicked();
-	}
-
 	Optional<std::shared_ptr<AccessState>> PlayingAccessState::update(
 		AccessObject::GuidToObject& objectMap,
 		AccessObject::TypeToGuidSet& typeToGuidSet,
@@ -21,14 +17,6 @@ namespace Kokoha
 		{
 			playerBody = objectMap[guid]->body();
 		}
-		
-		// MinionAccessObjectの作成
-		if (m_isMakingMinion)
-		{
-			AccessObject::Ptr ptr = std::make_shared<MinionAccessObject>(playerBody.center);
-			AccessObject::setMakingObject(ptr, objectMap, typeToGuidSet);
-		}
-		m_isMakingMinion = false;
 
 		// プレイヤーが敵と接触
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::ENEMY])

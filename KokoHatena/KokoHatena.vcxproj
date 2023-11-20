@@ -140,6 +140,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\TrackAccessObject\TrackAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\EdgeList\EdgeList.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\Terrain\Terrain.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\Board.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\BoardConst.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\EventObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\MessageEventObject\MessageEventObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp" />
@@ -282,6 +284,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\PlayerAccessObject\PlayerAccessObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\TrackAccessObject\TrackAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.hpp" />

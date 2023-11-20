@@ -14,6 +14,12 @@ namespace Kokoha
 		// 移動量
 		double m_direction;
 
+		// 光の面積
+		double m_lightArea;
+
+		// Trackを作成する時間
+		double m_trackTime;
+
 	public:
 
 		MinionAccessObject(const Vec2& pos);

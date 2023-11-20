@@ -23,6 +23,10 @@ namespace Kokoha
 		{
 			objectMap[guid]->light().setAlpha(0, CHANGE_ALPHA_RATE);
 		}
+		for (const auto& guid : typeToGuidSet[AccessObject::Type::TRACK])
+		{
+			objectMap[guid]->light().setAlpha(0, CHANGE_ALPHA_RATE);
+		}
 
 		// プレイヤーの光を消す
 		static const double CHANGE_ALPHA_PLAYER_RATE = Config::get<double>(U"SuccessAccessState.changeAlphaRate");

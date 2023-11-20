@@ -9,15 +9,6 @@ namespace Kokoha
 	/// </summary>
 	class PlayingAccessState : public AccessState
 	{
-	private:
-
-		// true のときPlayerを作成する
-		bool m_isMakingMinion;
-
-	private:
-
-		void input(const BoardArg& board) override;
-
 		Optional<std::shared_ptr<AccessState>> update(
 			AccessObject::GuidToObject& objectMap,
 			AccessObject::TypeToGuidSet& typeToGuidSet,

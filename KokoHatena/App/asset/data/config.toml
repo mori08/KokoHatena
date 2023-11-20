@@ -185,8 +185,19 @@
 [PlayerAccessObject]
     speed = 100
     lightAlpha = 0.5
-    lightArea  = 20000
-    lightSpinSpeed = 0.1
+    lightArea  = 80000
+    lightPlusRate = 1.01
 
 [EnemyAccessObject]
     speed = 10
+
+[MinionAccessObject]
+    lightArea = 4800
+    lightAlpha = 0.25
+    trackTime = 0.5
+
+[TrackAccessObject]
+    speed = 5
+    slowDownRate = 0.01
+    radius = 3
+    alpha = 0.5

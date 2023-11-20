@@ -1,4 +1,5 @@
 ﻿#include "PlayerAccessObject.hpp"
+#include "../MinionAccessObject/MinionAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
 
@@ -7,10 +8,11 @@ namespace Kokoha
 	PlayerAccessObject::PlayerAccessObject(const Vec2& pos)
 		: AccessObject(Type::PLAYER, pos)
 		, m_movement(0, 0)
-		, m_lightMode(true)
-		, m_direction(0)
 	{
 		static const double LIGHT_ALPHA = Config::get<double>(U"PlayerAccessObject.lightAlpha");
+		static const double LIGHT_AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
+
+		m_lightArea = LIGHT_AREA;
 
 		light()
 			.setAlpha(LIGHT_ALPHA)
@@ -29,7 +31,18 @@ namespace Kokoha
 		static const double SPEED = Config::get<double>(U"PlayerAccessObject.speed");
 		m_movement *= SPEED;
 
-		inputLight();
+		if (board.rect().leftClicked())
+		{
+			Ptr ptr = std::make_shared<MinionAccessObject>(body().center);
+
+			const double minionLightArea = ptr->light().area();
+
+			if (minionLightArea < m_lightArea)
+			{
+				m_lightArea -= minionLightArea;
+				makeObject(std::move(ptr));
+			}
+		}
 	}
 
 	void PlayerAccessObject::update(const Terrain& terrain)
@@ -38,8 +51,15 @@ namespace Kokoha
 
 		m_movement = Vec2::Zero();
 
+		// 距離の変更の比率
+		static const double DISTANCE_RATE = Config::get<double>(U"AccessLight.Rate.distance");
+
+		// 面積から光の半径を計算
+		const double lightDistance = Sqrt(2 * m_lightArea / Math::TwoPi);
+
 		light()
 			.setSourcePos(body().center)
+			.setDistance(lightDistance, DISTANCE_RATE)
 			.update(terrain);
 	}
 
@@ -50,38 +70,22 @@ namespace Kokoha
 
 	void PlayerAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
-	}
+		static const double LIGHT_AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
 
-	void PlayerAccessObject::inputLight()
-	{
-		// 面積
-		static const double AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
-		// 回転速度
-		static const double SPIN_SPEED = Config::get<double>(U"PlayerAccessObject.lightSpinSpeed");
+		// 光が少しずつ削られてもとの値にならない
+		// 少し追加で増やす
+		static const double LIGHT_PLUS_RATE = Config::get<double>(U"PlayerAccessObject.lightPlusRate");
 
-		// 距離の変更の比率
-		static const double DISTANCE_RATE = Config::get<double>(U"AccessLight.Rate.distance");
-		// 中心角の変更の比率
-		static const double CENTRAL_ANGLE_RATE = Config::get<double>(U"AccessLight.Rate.centralAngle");
-		// 光が射す角度の変更の比率
-		static const double DIRECTION_ANGLE_RATE = Config::get<double>(U"AccessLight.Rate.directionAngle");
-
-		m_lightMode ^= MouseR.down();
-
-		if (m_lightMode)
+		// 光を吸収
+		for (const auto& guid : typeToGuidSet.find(Type::TRACK)->second)
 		{
-			light()
-				.setDistance(Sqrt(2 * AREA / Math::TwoPi), DISTANCE_RATE)
-				.setCentralAngle(Math::TwoPi, CENTRAL_ANGLE_RATE);
-		}
-		else
-		{
-			m_direction += Math::Pi * SPIN_SPEED * Mouse::Wheel();
+			const auto& track = getObject(guid, guidToObject);
 
-			light()
-				.setDistance(Sqrt(2 * AREA / Math::OneThirdPi), DISTANCE_RATE)
-				.setCentralAngle(Math::OneThirdPi, CENTRAL_ANGLE_RATE)
-				.setDirectionAngle(m_direction, DIRECTION_ANGLE_RATE);
+			if (track.body().intersects(body()))
+			{
+				m_lightArea += LIGHT_PLUS_RATE * track.constLight().area();
+				m_lightArea = Min(m_lightArea, LIGHT_AREA);
+			}
 		}
 	}
 }

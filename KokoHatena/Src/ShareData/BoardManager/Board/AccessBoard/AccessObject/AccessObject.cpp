@@ -13,6 +13,26 @@ namespace Kokoha
 		return *guidSet.begin();
 	}
 
+	const AccessObject& AccessObject::getObject(const String& guid, const GuidToObject& guidToObject)
+	{
+		if (guidToObject.count(guid))
+		{
+			return *(guidToObject.find(guid)->second);
+		}
+
+		throw Error(U"Faild to find object [guid : " + guid + U"]");
+	}
+
+	const AccessObject& AccessObject::getFrontObject(Type type, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+	{
+		if (auto guid = getFrontGuid(type, typeToGuidSet))
+		{
+			return getObject(*guid, guidToObject);
+		}
+
+		throw Error(U"Faild to find object [type : " + static_cast<int32>(type) + String(U"]"));
+	}
+
 	AccessObject::AccessObject(const Type& type, const Circle& body)
 		: m_type(type)
 		, m_guid(makeGuid())
