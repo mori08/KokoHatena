@@ -27,8 +27,6 @@ namespace Kokoha
 
 		void update(const Terrain& terrain) override;
 
-		void drawLight() const override;
-
 		void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 	};
 }

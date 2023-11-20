@@ -17,6 +17,7 @@ namespace Kokoha
 		, m_centralAngle(0)
 		, m_distance(0)
 		, m_alpha(0)
+		, m_shadowMode(true)
 	{
 
 	}
@@ -66,6 +67,12 @@ namespace Kokoha
 		}
 
 		m_isPie = m_centralAngle < Math::TwoPi - EPSILON;
+
+		if (!m_shadowMode)
+		{
+			// 影の計算をスキップ
+			return;
+		}
 
 		// 辺リストの作成
 		m_edgeAry.clear();
@@ -158,7 +165,18 @@ namespace Kokoha
 
 	void AccessLight::draw() const
 	{
-		m_polygon.draw(ColorF(MyWhite, m_alpha));
+		if (m_shadowMode)
+		{
+			m_polygon.draw(ColorF(MyWhite, m_alpha)); return;
+		}
+
+		if (m_isPie)
+		{
+			// 多分使わないので実装をスキップ
+			return;
+		}
+
+		Circle(m_sourcePos, m_distance).draw(ColorF(MyWhite, m_alpha));
 	}
 
 	double AccessLight::area() const

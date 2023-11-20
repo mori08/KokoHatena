@@ -70,5 +70,22 @@ namespace Kokoha
 
 	void PlayerAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
+		static const double LIGHT_AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
+
+		// 光が少しずつ削られてもとの値にならない
+		// 少し追加で増やす
+		static const double LIGHT_PLUS_RATE = Config::get<double>(U"PlayerAccessObject.lightPlusRate");
+
+		// 光を吸収
+		for (const auto& guid : typeToGuidSet.find(Type::TRACK)->second)
+		{
+			const auto& track = getObject(guid, guidToObject);
+
+			if (track.body().intersects(body()))
+			{
+				m_lightArea += LIGHT_PLUS_RATE * track.constLight().area();
+				m_lightArea = Min(m_lightArea, LIGHT_AREA);
+			}
+		}
 	}
 }

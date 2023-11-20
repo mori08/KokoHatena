@@ -15,6 +15,7 @@ namespace Kokoha
 		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
 		m_typeToGuidSet[AccessObject::Type::ENEMY]  = {};
 		m_typeToGuidSet[AccessObject::Type::MINION] = {};
+		m_typeToGuidSet[AccessObject::Type::TRACK]  = {};
 		m_typeToGuidSet[AccessObject::Type::GOAL]   = {};
 	}
 

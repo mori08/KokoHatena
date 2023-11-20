@@ -11,9 +11,6 @@ namespace Kokoha
 		AccessObject::TypeToGuidSet& typeToGuidSet,
 		BoardRequest&)
 	{
-		// 距離の変更の比率
-		static const double DISTANCE_RATE = Config::get<double>(U"AccessLight.Rate.distance");
-
 		// プレイヤーの座標の取得
 		Circle playerBody = Circle(-1e5, -1e5, 0); // 他オブジェクトと接触しない座標で初期化
 		for (const auto& guid : typeToGuidSet[AccessObject::Type::PLAYER])

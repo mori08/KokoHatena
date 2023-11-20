@@ -186,6 +186,7 @@
     speed = 100
     lightAlpha = 0.5
     lightArea  = 80000
+    lightPlusRate = 1.01
 
 [EnemyAccessObject]
     speed = 10

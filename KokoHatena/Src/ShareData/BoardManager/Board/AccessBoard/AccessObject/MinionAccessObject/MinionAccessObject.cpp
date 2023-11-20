@@ -57,11 +57,13 @@ namespace Kokoha
 			light().off();
 			erase();
 		}
-
-		light()
-			.setSourcePos(body().center)
-			.setDistanceFromArea(m_lightArea)
-			.update(terrain);
+		else
+		{
+			light()
+				.setSourcePos(body().center)
+				.setDistanceFromArea(m_lightArea)
+				.update(terrain);
+		}
 	}
 
 	void MinionAccessObject::draw() const

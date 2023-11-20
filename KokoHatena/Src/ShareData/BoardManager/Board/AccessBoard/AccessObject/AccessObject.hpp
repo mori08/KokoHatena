@@ -163,6 +163,15 @@ namespace Kokoha
 			return m_light;
 		}
 
+		/// <summary>
+		/// 光
+		/// </summary>
+		/// <returns> 光の参照 </returns>
+		const AccessLight& constLight() const
+		{
+			return m_light;
+		}
+
 	protected:
 
 		/// <summary>

@@ -19,9 +19,13 @@ namespace Kokoha
 		, m_playerPos(pos)
 		, m_movement(movement)
 	{
+		static const double LIGHT_ALPHA = Config::get<double>(U"TrackAccessObject.alpha");
 		light()
+			.setAlpha(LIGHT_ALPHA)
 			.setDistance(radius())
-			.setCentralAngle(Math::TwoPi);
+			.setCentralAngle(Math::TwoPi)
+			.setShadowMode(false)
+			.on();
 	}
 
 	void TrackAccessObject::update(const Terrain& terrain)
@@ -40,15 +44,10 @@ namespace Kokoha
 			m_movement *= speed / m_movement.length();
 			walk(m_movement, terrain);
 		}
-	}
 
-	void TrackAccessObject::drawLight() const
-	{
-		// 光の色
-		static ColorF LIGHT_COLOR =
-			ColorF(MyWhite, Config::get<double>(U"TrackAccessObject.alpha"));
-
-		body().draw(LIGHT_COLOR);
+		light()
+			.setSourcePos(body().center)
+			.update(terrain);
 	}
 
 	void TrackAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
@@ -57,6 +56,11 @@ namespace Kokoha
 		{
 			const auto& player = getFrontObject(Type::PLAYER, guidToObject, typeToGuidSet);
 			m_playerPos = player.body().center;
+
+			if (player.body().intersects(body()))
+			{
+				erase();
+			}
 		}
 		catch (Error)
 		{

@@ -30,6 +30,9 @@ namespace Kokoha
 		// 光の明るさ [0, 1]
 		double m_alpha;
 
+		// trueのときのみ影の計算を行う
+		bool m_shadowMode;
+
 		// 光を表す多角形
 		Polygon m_polygon;
 
@@ -137,6 +140,17 @@ namespace Kokoha
 		/// <param name="alpha"> 光の明るさ MyWhiteの不透明度 [0, 1] </param>
 		/// <returns> *this </returns>
 		AccessLight& setAlpha(double alpha, double rate = 0);
+
+		/// <summary>
+		/// 影の計算についての設定
+		/// </summary>
+		/// <param name="shadowMode"> trueのとき影の計算を行う , falseのときは円or扇形をそのまま描画 </param>
+		/// <returns> *this </returns>
+		AccessLight& setShadowMode(bool shadowMode)
+		{
+			m_shadowMode = shadowMode;
+			return *this;
+		}
 
 		/// <summary>
 		/// 更新
