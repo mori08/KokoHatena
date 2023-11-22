@@ -1,5 +1,6 @@
 ﻿#include "PlayerAccessObject.hpp"
 #include "../MinionAccessObject/SearchingMinionAccessObject/SearchingMinionAccessObject.hpp"
+#include "../MinionAccessObject/ProtectingMinionAccessObject/ProtectingMinionAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
 
@@ -33,7 +34,7 @@ namespace Kokoha
 
 		if (board.rect().leftClicked())
 		{
-			Ptr ptr = std::make_shared<SearchingMinionAccessObject>(body().center);
+			Ptr ptr = std::make_shared<ProtectingMinionAccessObject>(body().center);
 
 			const double minionLightArea = ptr->light().area();
 
