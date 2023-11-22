@@ -6,13 +6,12 @@ namespace Kokoha
 {
 	class MinionAccessObject : public AccessObject
 	{
-	private:
+	protected:
 
 		// 目的地
 		Vec2 m_goal;
 
-		// 移動量
-		double m_direction;
+	private:
 
 		// 光の面積
 		double m_lightArea;
@@ -29,6 +28,27 @@ namespace Kokoha
 		void update(const Terrain& terrain) override;
 
 		void draw() const override;
+
+		void checkOthers(
+			const Terrain& terrain,
+			const GuidToObject& guidToObject,
+			const TypeToGuidSet& typeToGuidSet
+		) override;
+
+	protected:
+
+		/// <summary>
+		/// 目的地の設定を行うための関数
+		/// overrideして使う
+		/// </summary>
+		/// <param name="terrain"> 地形 </param>
+		/// <param name="guidToObject"> guidからオブジェクトへの連想配列 </param>
+		/// <param name="typeToGuidSet"> オブジェクトの種類からguidへの連想配列 </param>
+		virtual void setGoal(
+			const Terrain& terrain,
+			const GuidToObject& guidToObject,
+			const TypeToGuidSet& typeToGuidSet
+		);
 
 	};
 }

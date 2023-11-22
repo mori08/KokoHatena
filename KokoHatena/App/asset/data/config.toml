@@ -192,9 +192,10 @@
     speed = 10
 
 [MinionAccessObject]
+    speed = 30
     lightArea = 4800
     lightAlpha = 0.25
-    trackTime = 0.5
+    trackTime = 1.0
 
 [TrackAccessObject]
     speed = 5

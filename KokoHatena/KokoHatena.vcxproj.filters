@@ -199,6 +199,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\TrackAccessObject">
       <UniqueIdentifier>{29324501-8802-466a-96a7-64da0d3db831}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\SearchingMinionAccessObject">
+      <UniqueIdentifier>{b34f0cef-bea8-4553-8619-16ea5623ae0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -332,6 +335,9 @@
     </ClCompile>
     <ClCompile Include="Src\ShareData\BoardManager\Board\BoardConst.cpp">
       <Filter>Src\ShareData\BoardManager\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\SearchingMinionAccessObject\SearchingMinionAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\SearchingMinionAccessObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -733,6 +739,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\TrackAccessObject\TrackAccessObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\TrackAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\SearchingMinionAccessObject\SearchingMinionAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\SearchingMinionAccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

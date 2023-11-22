@@ -165,7 +165,16 @@ namespace Kokoha
 
 		/// <summary>
 		/// 面積の取得
+		/// </summary>
+		/// <returns> 面積 </returns>
 		double area() const;
+
+		/// <summary>
+		/// 指定された座標を含んでいるか
+		/// </summary>
+		/// <param name="pos"> 座標 </param>
+		/// <returns> true のとき指定された座標が含まれている </returns>
+		bool contains(const Vec2& pos);
 
 	private:
 
