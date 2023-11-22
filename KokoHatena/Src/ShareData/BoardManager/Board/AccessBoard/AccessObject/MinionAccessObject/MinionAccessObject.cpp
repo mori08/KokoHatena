@@ -18,8 +18,7 @@ namespace Kokoha
 		: AccessObject(Type::MINION, pos)
 		, m_trackTime(trackTime())
 	{
-		m_goal.x = Random(0.0, 600.0);
-		m_goal.y = Random(0.0, 450.0);
+		m_goal = pos;
 
 		// 光の初期面積
 		static const double LIGHT_AREA = Config::get<double>(U"MinionAccessObject.lightArea");
@@ -36,12 +35,8 @@ namespace Kokoha
 
 	void MinionAccessObject::update(const Terrain& terrain)
 	{
-		const Vec2 movement = walkToGoal(60, m_goal, terrain);
-		if (movement.isZero())
-		{
-			m_goal.x = Random(0.0, 600.0);
-			m_goal.y = Random(0.0, 450.0);
-		}
+		static const double SPEED = Config::get<double>(U"MinionAccessObject.speed");
+		walkToGoal(SPEED, m_goal, terrain);
 
 		m_trackTime -= Scene::DeltaTime();
 		if (m_trackTime < 0)
@@ -69,5 +64,16 @@ namespace Kokoha
 	void MinionAccessObject::draw() const
 	{
 		body().drawFrame(2, MyBlack);
+	}
+
+	void MinionAccessObject::checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+	{
+		setGoal(terrain, guidToObject, typeToGuidSet);
+
+		// 敵とぶつかったら消える
+	}
+
+	void MinionAccessObject::setGoal(const Terrain&, const GuidToObject&, const TypeToGuidSet&)
+	{
 	}
 }

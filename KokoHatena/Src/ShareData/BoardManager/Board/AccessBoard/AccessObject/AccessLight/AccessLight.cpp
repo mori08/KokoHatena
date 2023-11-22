@@ -184,6 +184,26 @@ namespace Kokoha
 		return m_distance * m_distance * m_centralAngle / 2;
 	}
 
+	bool AccessLight::contains(const Vec2& pos)
+	{
+		if (!m_on) { return false; }
+
+		if (!m_shadowMode)
+		{
+			if (m_isPie)
+			{
+				// 多分使わないので実装をスキップ
+				return false;
+			}
+			else
+			{
+				return Circle(m_sourcePos, m_distance).contains(pos);
+			}
+		}
+
+		return m_polygon.contains(pos);
+	}
+
 	void AccessLight::addPoint(double angle)
 	{
 		const double minR = heapTopR(angle);
