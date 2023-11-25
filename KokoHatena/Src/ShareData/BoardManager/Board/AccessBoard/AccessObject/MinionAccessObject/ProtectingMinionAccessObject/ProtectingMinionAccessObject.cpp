@@ -20,9 +20,11 @@ namespace Kokoha
 		{
 			const auto& playerObj = getFrontObject(Type::PLAYER, guidToObject, typeToGuidSet);
 
-			m_goal
+			const Vec2 goal
 				= playerObj.body().center
 				+ DISTANCE * angleToVec(m_angle);
+
+			if (terrain.isWalkAble(goal)) { m_goal = goal; }
 		}
 		catch (Error)
 		{

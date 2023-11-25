@@ -1,6 +1,7 @@
 ﻿#include "PlayerAccessObject.hpp"
 #include "../MinionAccessObject/SearchingMinionAccessObject/SearchingMinionAccessObject.hpp"
 #include "../MinionAccessObject/ProtectingMinionAccessObject/ProtectingMinionAccessObject.hpp"
+#include "../MinionAccessObject/ChasingMinionAccessObject/ChasingMinionAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
 
@@ -9,6 +10,7 @@ namespace Kokoha
 	PlayerAccessObject::PlayerAccessObject(const Vec2& pos)
 		: AccessObject(Type::PLAYER, pos)
 		, m_movement(0, 0)
+		, m_makingLightPos(none)
 	{
 		static const double LIGHT_ALPHA = Config::get<double>(U"PlayerAccessObject.lightAlpha");
 		static const double LIGHT_AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
@@ -34,20 +36,12 @@ namespace Kokoha
 
 		if (board.rect().leftClicked())
 		{
-			Ptr ptr = std::make_shared<ProtectingMinionAccessObject>(body().center);
-
-			const double minionLightArea = ptr->light().area();
-
-			if (minionLightArea < m_lightArea)
-			{
-				m_lightArea -= minionLightArea;
-				makeObject(std::move(ptr));
-			}
+			m_makingLightPos = board.cursorPos();
 		}
 	}
 
 	void PlayerAccessObject::update(const Terrain& terrain)
-	{		
+	{
 		walk(m_movement, terrain);
 
 		m_movement = Vec2::Zero();
@@ -86,6 +80,48 @@ namespace Kokoha
 			{
 				m_lightArea += LIGHT_PLUS_RATE * track.constLight().area();
 				m_lightArea = Min(m_lightArea, LIGHT_AREA);
+			}
+		}
+
+		// 光の生成
+		if (m_makingLightPos)
+		{
+			const Vec2 cursorPos = m_makingLightPos.value();
+			m_makingLightPos = none;
+
+			Optional<String> chasingGuid = none;
+
+			// カーソルの座標が他オブジェクトの上にあるか確認
+			for (const auto& guid : typeToGuidSet.find(Type::ENEMY)->second)
+			{
+				if (getObject(guid, guidToObject).body().contains(cursorPos))
+				{
+					chasingGuid = guid;
+				}
+			}
+			for (const auto& guid : typeToGuidSet.find(Type::GOAL)->second)
+			{
+				if (getObject(guid, guidToObject).body().contains(cursorPos))
+				{
+					chasingGuid = guid;
+				}
+			}
+
+			Ptr ptr = nullptr;
+			if (chasingGuid)
+			{
+				ptr = std::make_shared<ChasingMinionAccessObject>(body().center, chasingGuid.value());
+			}
+
+			if (ptr != nullptr)
+			{
+				const double minionLightArea = ptr->light().area();
+
+				if (minionLightArea < m_lightArea)
+				{
+					m_lightArea -= minionLightArea;
+					makeObject(std::move(ptr));
+				}
 			}
 		}
 	}

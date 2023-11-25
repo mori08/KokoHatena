@@ -14,6 +14,9 @@ namespace Kokoha
 		// 光の面積
 		double m_lightArea;
 
+		// noneでないとき光を生成 , 座標はカーソル位置
+		Optional<Vec2> m_makingLightPos;
+
 	public:
 
 		PlayerAccessObject(const Vec2& pos);
