@@ -197,7 +197,7 @@
     lightAlpha = 0.25
     trackTime = 1.0
     [MinionAccessObject.Protecting]
-        angleSpeed = 0.6
+        angleSpeed = 0.3
         distance = 70
 
 [TrackAccessObject]
