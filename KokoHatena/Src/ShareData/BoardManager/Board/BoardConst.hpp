@@ -50,6 +50,8 @@ namespace Kokoha
 		Optional<SceneName> toScene = none;
 	};
 
+	// ↓別ファイルに移したい
+
 	/// <summary>
 	/// 他クラスにBoardの情報を渡す
 	/// </summary>
@@ -67,10 +69,7 @@ namespace Kokoha
 		{}
 
 		/// <summary> Boardの座標の設定 </summary> 
-		void setPos(const Vec2& pos)
-		{
-			m_boardRect.pos = pos;
-		}
+		void setPos(const Vec2& pos);
 
 		/// <summary>
 		/// Board上でのカーソルの座標を取得
