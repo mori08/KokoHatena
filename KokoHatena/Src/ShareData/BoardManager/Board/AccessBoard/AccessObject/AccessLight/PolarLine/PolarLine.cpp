@@ -23,8 +23,8 @@ namespace Kokoha
 		const double L = A * Cos(a) + B * Sin(a);
 
 		// C == 0  -> 2点を通る直線が r=aと並行なとき
-		// N/C < 0 -> r=aと交点を持たない(逆にr=a+Piと交点を持つ)
-		if (C == 0 || C / L < 0) { return none; }
+		// C/L < 0 -> r=aと交点を持たない(逆にr=a+Piと交点を持つ)
+		if (L == 0 || C / L < 0) { return none; }
 		return C / L;
 	}
 
