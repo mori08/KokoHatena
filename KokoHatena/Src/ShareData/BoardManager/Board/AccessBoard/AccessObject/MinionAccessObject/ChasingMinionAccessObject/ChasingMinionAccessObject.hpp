@@ -14,13 +14,15 @@ namespace Kokoha
 
 		ChasingMinionAccessObject(const Vec2& pos, const String& chasingGuid);
 
-	public:
+	protected:
 
 		void setGoal(
 			const Terrain& terrain,
 			const GuidToObject& guidToObject,
 			const TypeToGuidSet& typeToGuidSet
 		) override;
+
+		double maxLightArea() const override;
 
 	};
 }

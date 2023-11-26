@@ -31,5 +31,14 @@ namespace Kokoha
 
 		void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 
+	private:
+
+		/// <summary>
+		/// 光の作成
+		/// </summary>
+		/// <param name="guidToObject">
+		/// <param name="typeToGuidSet">
+		void makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
+
 	};
 }

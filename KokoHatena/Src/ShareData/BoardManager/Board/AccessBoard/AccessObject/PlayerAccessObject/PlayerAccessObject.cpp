@@ -49,12 +49,9 @@ namespace Kokoha
 		// 距離の変更の比率
 		static const double DISTANCE_RATE = Config::get<double>(U"AccessLight.Rate.distance");
 
-		// 面積から光の半径を計算
-		const double lightDistance = Sqrt(2 * m_lightArea / Math::TwoPi);
-
 		light()
 			.setSourcePos(body().center)
-			.setDistance(lightDistance, DISTANCE_RATE)
+			.setDistanceFromArea(m_lightArea, DISTANCE_RATE)
 			.update(terrain);
 	}
 
@@ -86,43 +83,51 @@ namespace Kokoha
 		// 光の生成
 		if (m_makingLightPos)
 		{
-			const Vec2 cursorPos = m_makingLightPos.value();
+			makeLight(guidToObject, typeToGuidSet);
 			m_makingLightPos = none;
+		}
+	}
 
-			Optional<String> chasingGuid = none;
+	void PlayerAccessObject::makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+	{
+		const Vec2 cursorPos = m_makingLightPos.value();
 
-			// カーソルの座標が他オブジェクトの上にあるか確認
-			for (const auto& guid : typeToGuidSet.find(Type::ENEMY)->second)
+		// 追跡対象のguid
+		Optional<String> chasingGuid = none;
+		for (const auto& guid : typeToGuidSet.find(Type::ENEMY)->second)
+		{
+			if (getObject(guid, guidToObject).body().contains(cursorPos))
 			{
-				if (getObject(guid, guidToObject).body().contains(cursorPos))
-				{
-					chasingGuid = guid;
-				}
+				chasingGuid = guid;
 			}
-			for (const auto& guid : typeToGuidSet.find(Type::GOAL)->second)
+		}
+		for (const auto& guid : typeToGuidSet.find(Type::GOAL)->second)
+		{
+			if (getObject(guid, guidToObject).body().contains(cursorPos))
 			{
-				if (getObject(guid, guidToObject).body().contains(cursorPos))
-				{
-					chasingGuid = guid;
-				}
+				chasingGuid = guid;
 			}
+		}
 
-			Ptr ptr = nullptr;
-			if (chasingGuid)
-			{
-				ptr = std::make_shared<ChasingMinionAccessObject>(body().center, chasingGuid.value());
-			}
+		Ptr ptr = nullptr;
+		if (chasingGuid)
+		{
+			ptr = std::make_shared<ChasingMinionAccessObject>(body().center, chasingGuid.value());
+		}
+		else if (light().contains(cursorPos))
+		{
+			ptr = std::make_shared<ProtectingMinionAccessObject>(body().center);
+		}
+		else
+		{
+			ptr = std::make_shared<SearchingMinionAccessObject>(body().center);
+		}
 
-			if (ptr != nullptr)
-			{
-				const double minionLightArea = ptr->light().area();
-
-				if (minionLightArea < m_lightArea)
-				{
-					m_lightArea -= minionLightArea;
-					makeObject(std::move(ptr));
-				}
-			}
+		const double minionLightArea = ptr->light().area();
+		if (ptr != nullptr && minionLightArea < m_lightArea)
+		{
+			m_lightArea -= minionLightArea;
+			makeObject(std::move(ptr));
 		}
 	}
 }

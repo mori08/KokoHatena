@@ -16,13 +16,15 @@ namespace Kokoha
 
 		ProtectingMinionAccessObject(const Vec2& pos);
 
-	public:
+	protected:
 
 		void setGoal(
 			const Terrain& terrain,
 			const GuidToObject& guidToObject,
 			const TypeToGuidSet& typeToGuidSet
 		) override;
+
+		double maxLightArea() const override;
 
 	};
 }
