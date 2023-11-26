@@ -21,7 +21,7 @@ namespace Kokoha
 
 	public:
 
-		MinionAccessObject(const Vec2& pos);
+		MinionAccessObject(const Vec2& pos, double lightArea);
 
 	private:
 
@@ -48,7 +48,11 @@ namespace Kokoha
 			const Terrain& terrain,
 			const GuidToObject& guidToObject,
 			const TypeToGuidSet& typeToGuidSet
-		);
+		) = 0;
 
+		/// <summary>
+		/// 光の面積の最大値（初期値）
+		/// </summary>
+		virtual double maxLightArea() const = 0;
 	};
 }

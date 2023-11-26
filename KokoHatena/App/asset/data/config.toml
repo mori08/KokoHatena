@@ -193,15 +193,19 @@
 
 [MinionAccessObject]
     speed = 30
-    lightArea = 4800
     lightAlpha = 0.25
-    trackTime = 1.0
+    trackTime = 2.0
     [MinionAccessObject.Protecting]
         angleSpeed = 0.3
         distance = 70
+        area = 4800
+    [MinionAccessObject.Chasing]
+        area = 2400
+    [MinionAccessObject.Searching]
+        area = 9600
 
 [TrackAccessObject]
     speed = 5
     slowDownRate = 0.01
     radius = 3
-    alpha = 0.5
+    alpha = 0.4

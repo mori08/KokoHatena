@@ -5,7 +5,7 @@
 namespace Kokoha
 {
 	ProtectingMinionAccessObject::ProtectingMinionAccessObject(const Vec2& pos)
-		: MinionAccessObject(pos)
+		: MinionAccessObject(pos, maxLightArea())
 	{
 		m_angle = Random(0.0, Math::TwoPi);
 	}
@@ -31,5 +31,12 @@ namespace Kokoha
 
 		}
 
+	}
+
+	double ProtectingMinionAccessObject::maxLightArea() const
+	{
+		static const double rtn
+			= Config::get<double>(U"MinionAccessObject.Protecting.area");
+		return rtn;
 	}
 }

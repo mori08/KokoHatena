@@ -14,22 +14,20 @@ namespace
 
 namespace Kokoha
 {
-	MinionAccessObject::MinionAccessObject(const Vec2& pos)
+	MinionAccessObject::MinionAccessObject(const Vec2& pos, double lightArea)
 		: AccessObject(Type::MINION, pos)
+		, m_lightArea(lightArea)
 		, m_trackTime(trackTime())
 	{
 		m_goal = pos;
 
-		// 光の初期面積
-		static const double LIGHT_AREA = Config::get<double>(U"MinionAccessObject.lightArea");
 		// 光の明るさ
 		static const double LIGHT_ALPHA = Config::get<double>(U"MinionAccessObject.lightAlpha");
-		
-		m_lightArea = LIGHT_AREA;
+
 		light()
 			.setAlpha(LIGHT_ALPHA)
 			.setCentralAngle(Math::TwoPi)
-			.setDistanceFromArea(LIGHT_AREA)
+			.setDistanceFromArea(m_lightArea)
 			.on();
 	}
 
@@ -71,9 +69,5 @@ namespace Kokoha
 		setGoal(terrain, guidToObject, typeToGuidSet);
 
 		// 敵とぶつかったら消える
-	}
-
-	void MinionAccessObject::setGoal(const Terrain&, const GuidToObject&, const TypeToGuidSet&)
-	{
 	}
 }
