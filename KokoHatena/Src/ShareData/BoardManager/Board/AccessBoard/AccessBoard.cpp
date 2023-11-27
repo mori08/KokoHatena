@@ -47,10 +47,6 @@ namespace Kokoha
 		if (m_state->isUpdatingObject())
 		{
 			// オブジェクトの生成
-			for (const auto& object : m_objectMap)
-			{
-				object.second->addObjectList(m_makeObjectList);
-			}
 			while (!m_makeObjectList.empty())
 			{
 				AccessObject::Ptr ptr = m_makeObjectList.front();
@@ -71,6 +67,11 @@ namespace Kokoha
 			for (const auto& object : m_objectMap)
 			{
 				object.second->update(m_terrain);
+			}
+
+			for (const auto& object : m_objectMap)
+			{
+				object.second->addObjectList(m_makeObjectList);
 			}
 
 			// 削除

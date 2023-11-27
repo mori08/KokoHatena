@@ -68,6 +68,22 @@ namespace Kokoha
 	{
 		setGoal(terrain, guidToObject, typeToGuidSet);
 
-		// 敵とぶつかったら消える
+		for (const auto& guid : typeToGuidSet.find(Type::ENEMY)->second)
+		{
+			if (getObject(guid, guidToObject).body().intersects(body()))
+			{
+				erase();
+
+				static const double TRACK_SPEED_RATE = Config::get<double>(U"MinionAccessObject.trackSpeedRate");
+				const double trackSpeed = TRACK_SPEED_RATE * Sqrt(m_lightArea);
+
+				while (m_lightArea > 0)
+				{
+					Ptr trackObjPtr = std::make_shared<TrackAccessObject>(body().center, trackSpeed * angleToVec(Random(Math::TwoPi)));
+					m_lightArea -= trackObjPtr->light().area();
+					makeObject(std::move(trackObjPtr));
+				}
+			}
+		}
 	}
 }

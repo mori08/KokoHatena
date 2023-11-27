@@ -33,7 +33,7 @@ namespace Kokoha
 		static const double SPEED = Config::get<double>(U"TrackAccessObject.speed");
 
 		double speed = m_movement.length();
-		if (speed < 1e-5)
+		if (speed < 1e-2)
 		{
 			walkToGoal(SPEED, m_playerPos, terrain);
 		}
