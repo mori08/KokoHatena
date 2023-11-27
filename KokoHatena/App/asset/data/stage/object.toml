@@ -4,6 +4,6 @@
     y = 0
 
 [[test]]
-    type = "goal"
+    type = "enemy"
     x = 9
     y = 9

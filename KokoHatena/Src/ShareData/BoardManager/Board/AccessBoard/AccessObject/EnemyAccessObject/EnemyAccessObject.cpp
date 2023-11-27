@@ -26,5 +26,12 @@ namespace Kokoha
 		{
 			m_playerPos = guidToObject.find(guid)->second->body().center;
 		}
+		for (const String& guid : typeToGuidSet.find(Type::MINION)->second)
+		{
+			if (getObject(guid, guidToObject).body().intersects(body()))
+			{
+				erase();
+			}
+		}
 	}
 }
