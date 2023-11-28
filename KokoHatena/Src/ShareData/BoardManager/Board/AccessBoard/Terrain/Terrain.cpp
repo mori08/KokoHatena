@@ -246,7 +246,7 @@ namespace Kokoha
 
 			for (int32 x : Range(0, WIDTH - 1))
 			{
-				if (!isWalkAble(Point(x, y)) && isWalkAble(Point(x, y + 1)))
+				if (isBlack(Point(x, y)) && !isBlack(Point(x, y + 1)))
 				{
 					// 辺を見つけたときは端点の設定
 
@@ -304,9 +304,22 @@ namespace Kokoha
 	{
 		for (int32 i : Range(0, N - 1))
 		{
-			if (isWalkAble(i)) { continue; }
-			const Point square = toSquare(i);
-			Rect(SQUARE_SIZE * square, SQUARE_SIZE).draw(MyBlack);
+			const Rect rect(SQUARE_SIZE * toSquare(i), SQUARE_SIZE);
+			static const double SKELETON_ALPHA = Config::get<double>(U"AccessBoard.skeletonAlpha");
+
+			switch (m_cellList[i])
+			{
+			case Cell::NONE:
+				break;
+
+			case Cell::BLOCK:
+				rect.draw(MyBlack);
+				break;
+
+			case Cell::SKELETON:
+				rect.draw(ColorF(MyBlack,SKELETON_ALPHA));
+				break;
+			}
 		}
 
 #ifdef _DEBUG // デバッグモード 画面が
