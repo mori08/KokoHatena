@@ -152,6 +152,7 @@
     size = {x=600,y=450}
     iconOrder = 1
     wideArea  = 100
+    skeletonAlpha = 0.5
 
 [StartingAccessState]
     centerPos = {x=300, y=225}
