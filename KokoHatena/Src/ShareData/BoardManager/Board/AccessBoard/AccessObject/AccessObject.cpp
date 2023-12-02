@@ -89,6 +89,8 @@ namespace Kokoha
 
 	Vec2 AccessObject::walk(Vec2 movement, const Terrain& terrain)
 	{
+		if (!terrain.isWalkAble(m_body.center)) { return Vec2::Zero(); }
+
 		movement *= Scene::DeltaTime();
 		Vec2 rtn = Vec2::Zero();
 
@@ -102,6 +104,18 @@ namespace Kokoha
 		{
 			m_body.y += movement.y;
 			rtn.y = movement.y;
+		}
+
+		// 壁に近すぎるときは離す
+		static const Array<Point> DIRECTION_LIST { Point::Up(), Point::Right(), Point::Down(), Point::Left() };
+		static const double SHOULDER_WIDTH = Config::get<double>(U"AccessObject.shoulderWidth");
+		for (const auto& direction : DIRECTION_LIST)
+		{
+			if (terrain.isWalkAble(m_body.center + SHOULDER_WIDTH * direction)) { continue; }
+			m_body.center +=
+				Terrain::SQUARE_SIZE / 2 * direction
+				- SHOULDER_WIDTH * direction
+				- (m_body.center - Terrain::toPixel(Terrain::toSquare(m_body.center))) * Vec2(Abs(direction.x), Abs(direction.y));
 		}
 
 		return rtn;

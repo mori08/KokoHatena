@@ -175,6 +175,7 @@
 
 [AccessObject]
     radius = 10.0
+    shoulderWidth = 1
 
 [AccessLight]
     quality = 32
