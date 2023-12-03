@@ -121,6 +121,19 @@ namespace Kokoha
 				}
 			}
 		}
+
+		// 直径の計算
+		m_diameter = 0;
+		for (int32 i : walkAbleList)
+		{
+			for (int32 j : walkAbleList)
+			{
+				if (m_dist[i][j] != Inf<double>)
+				{
+					m_diameter = Max(m_diameter, m_dist[i][j]);
+				}
+			}
+		}
 	}
 
 	void Terrain::makeStraightPath(const Point& s1, const Point& s2)

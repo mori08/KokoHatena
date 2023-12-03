@@ -73,6 +73,11 @@ namespace Kokoha
 		// 影作成用の水平な辺
 		EdgeList m_horizontalEdgeList;
 
+		// グラフの直径
+		// 頂点を Cell::None のマスだけで考え、連結なグラフとして計算
+		// 非連結なグラフが与えられた場合、連結成分内の直径を全て計算し最大値をとる
+		double m_diameter;
+
 	public:
 
 		/// <summary>
@@ -231,6 +236,14 @@ namespace Kokoha
 		/// <param name="pixelT"> 終点（ピクセル座標） </param>
 		/// <returns> 最短距離 or Inf<double> </returns>
 		double getDist(const Vec2& pixelS, const Vec2& pixelT) const;
+
+		/// <summary>
+		/// グラフの直径の取得
+		/// </summary>
+		double getDiameter()
+		{
+			return m_diameter;
+		}
 
 		/// <summary>
 		/// 垂直方向の辺を取得
