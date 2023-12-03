@@ -13,7 +13,22 @@ namespace Kokoha
 		if (!terrain.isWalkAble(m_goal)
 			|| Terrain::toInteger(m_goal)==Terrain::toInteger(body().center))
 		{
-			m_goal = Terrain::toPixel(Random(0, Terrain::N - 1));
+			const Vec2 nextGoal = Terrain::toPixel(Random(0, Terrain::N - 1));
+
+			try
+			{
+				const auto& playerObj = getFrontObject(Type::PLAYER, guidToObject, typeToGuidSet);
+				const double dist = terrain.getDist(playerObj.body().center, nextGoal);
+
+				if (dist / terrain.getDiameter() > Random())
+				{
+					m_goal = nextGoal;
+				}
+			}
+			catch (Error)
+			{
+
+			}
 		}
 	}
 

@@ -240,7 +240,7 @@ namespace Kokoha
 		/// <summary>
 		/// グラフの直径の取得
 		/// </summary>
-		double getDiameter()
+		double getDiameter() const
 		{
 			return m_diameter;
 		}
