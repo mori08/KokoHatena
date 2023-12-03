@@ -300,6 +300,15 @@ namespace Kokoha
 		return (relay - pixelS).normalize();
 	}
 
+	double Terrain::getDist(const Vec2& pixelS, const Vec2& pixelT) const
+	{
+		if (!isWalkAble(pixelS) || !isWalkAble(pixelT))
+		{
+			return Inf<double>;
+		}
+		return m_dist[toInteger(pixelS)][toInteger(pixelT)];
+	}
+
 	void Terrain::draw() const
 	{
 		for (int32 i : Range(0, N - 1))
