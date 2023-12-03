@@ -225,6 +225,14 @@ namespace Kokoha
 		Vec2 getPath(const Vec2& pixelS, const Vec2& pixelT) const;
 
 		/// <summary>
+		/// 最短距離の取得
+		/// </summary>
+		/// <param name="pixelS"> 始点（ピクセル座標） </param>
+		/// <param name="pixelT"> 終点（ピクセル座標） </param>
+		/// <returns> 最短距離 or Inf<double> </returns>
+		double getDist(const Vec2& pixelS, const Vec2& pixelT) const;
+
+		/// <summary>
 		/// 垂直方向の辺を取得
 		/// </summary>
 		/// <returns> 垂直方向の辺のリスト </returns>
