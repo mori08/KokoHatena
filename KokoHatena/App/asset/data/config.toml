@@ -199,9 +199,8 @@
     trackTime = 2.0
     trackSpeedRate = 0.8
     [MinionAccessObject.Protecting]
-        angleSpeed = 0.3
-        distance = 70
-        area = 4800
+        playerDist = 4.5
+        area = 6400
     [MinionAccessObject.Chasing]
         area = 2400
     [MinionAccessObject.Searching]
