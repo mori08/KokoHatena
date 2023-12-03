@@ -7,24 +7,26 @@ namespace Kokoha
 	ProtectingMinionAccessObject::ProtectingMinionAccessObject(const Vec2& pos)
 		: MinionAccessObject(pos, maxLightArea())
 	{
-		m_angle = Random(0.0, Math::TwoPi);
 	}
 
 	void ProtectingMinionAccessObject::setGoal(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
-		static const double ANGLE_SPEED = Config::get<double>(U"MinionAccessObject.Protecting.angleSpeed");
-		static const double DISTANCE = Config::get<double>(U"MinionAccessObject.Protecting.distance");
-		m_angle += ANGLE_SPEED * Scene::DeltaTime();
+		static const double PLAYER_DIST
+			= Config::get<double>(U"MinionAccessObject.Protecting.playerDist");
 
 		try
 		{
 			const auto& playerObj = getFrontObject(Type::PLAYER, guidToObject, typeToGuidSet);
 
-			const Vec2 goal
-				= playerObj.body().center
-				+ DISTANCE * angleToVec(m_angle);
-
-			if (terrain.isWalkAble(goal)) { m_goal = goal; }
+			if (!terrain.isWalkAble(m_goal)
+			|| Terrain::toInteger(m_goal) == Terrain::toInteger(body().center))
+			{
+				const Vec2 nextGoal = Terrain::toPixel(Random(0, Terrain::N - 1));
+				if (terrain.getDist(playerObj.body().center, nextGoal) < PLAYER_DIST)
+				{
+					m_goal = nextGoal;
+				}
+			}
 		}
 		catch (Error)
 		{

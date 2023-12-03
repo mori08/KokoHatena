@@ -8,10 +8,6 @@ namespace Kokoha
 	/// </summary>
 	class ProtectingMinionAccessObject : public MinionAccessObject
 	{
-	private:
-
-		double m_angle;
-
 	public:
 
 		ProtectingMinionAccessObject(const Vec2& pos);
