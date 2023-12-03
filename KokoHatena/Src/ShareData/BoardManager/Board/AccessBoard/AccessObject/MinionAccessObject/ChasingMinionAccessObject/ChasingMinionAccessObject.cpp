@@ -18,7 +18,7 @@ namespace Kokoha
 		}
 		catch (Error)
 		{
-
+			eraseAndMakeTrack();
 		}
 	}
 

@@ -54,5 +54,10 @@ namespace Kokoha
 		/// 光の面積の最大値（初期値）
 		/// </summary>
 		virtual double maxLightArea() const = 0;
+
+		/// <summary>
+		/// このオブジェクトを削除し、光の面積分だけTrackを作成する
+		/// </summary>
+		void eraseAndMakeTrack();
 	};
 }
