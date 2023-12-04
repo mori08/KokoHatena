@@ -2,6 +2,7 @@
 #include "../MinionAccessObject/SearchingMinionAccessObject/SearchingMinionAccessObject.hpp"
 #include "../MinionAccessObject/ProtectingMinionAccessObject/ProtectingMinionAccessObject.hpp"
 #include "../MinionAccessObject/ChasingMinionAccessObject/ChasingMinionAccessObject.hpp"
+#include "../TrackAccessObject/TrackAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
 
@@ -11,6 +12,8 @@ namespace Kokoha
 		: AccessObject(Type::PLAYER, pos)
 		, m_movement(0, 0)
 		, m_makingLightPos(none)
+		, m_trackTime(0)
+		, m_trackPtr(none)
 	{
 		static const double LIGHT_ALPHA = Config::get<double>(U"PlayerAccessObject.lightAlpha");
 		static const double LIGHT_AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
@@ -31,8 +34,32 @@ namespace Kokoha
 		if (KeyD.pressed()) { m_movement += Vec2::Right(); }
 
 		// 速さ
-		static const double SPEED = Config::get<double>(U"PlayerAccessObject.speed");
-		m_movement *= SPEED;
+		static const double SLOW_SPEED = Config::get<double>(U"PlayerAccessObject.slowSpeed");
+		static const double FAST_SPEED = Config::get<double>(U"PlayerAccessObject.fastSpeed");
+
+		m_trackTime -= Scene::DeltaTime();
+		if (m_trackTime < 0 && m_trackPtr)
+		{
+			makeObject(std::move(m_trackPtr.value()));
+			m_trackPtr = none;
+		}
+
+		if (board.rect().rightPressed() || m_trackTime > 0)
+		{
+			if (m_trackTime < 0)
+			{
+				static const double TRACK_TIME = Config::get<double>(U"PlayerAccessObject.trackTime");
+				static const double TRACK_SPEED = Config::get<double>(U"PlayerAccessObject.trackSpeed");
+				m_trackTime = TRACK_TIME;
+				m_trackPtr = std::make_shared<TrackAccessObject>(body().center, -m_movement * TRACK_SPEED);
+			}
+
+			m_movement *= FAST_SPEED;
+		}
+		else
+		{
+			m_movement *= SLOW_SPEED;
+		}
 
 		if (board.rect().leftClicked())
 		{
