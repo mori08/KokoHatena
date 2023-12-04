@@ -185,9 +185,12 @@
         directionAngle = 0.01
 
 [PlayerAccessObject]
-    speed = 100
+    slowSpeed = 40
+    fastSpeed = 60
+    trackTime = 0.25
+    trackSpeed = 10
     lightAlpha = 0.5
-    lightArea  = 80000
+    lightArea  = 60000
     lightPlusRate = 1.01
 
 [EnemyAccessObject]

@@ -17,6 +17,11 @@ namespace Kokoha
 		// noneでないとき光を生成 , 座標はカーソル位置
 		Optional<Vec2> m_makingLightPos;
 
+		// Trackを生成する時間
+		double m_trackTime;
+
+		Optional<AccessObject::Ptr> m_trackPtr;
+
 	public:
 
 		PlayerAccessObject(const Vec2& pos);
