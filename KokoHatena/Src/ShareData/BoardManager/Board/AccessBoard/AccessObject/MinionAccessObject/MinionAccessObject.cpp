@@ -61,7 +61,7 @@ namespace Kokoha
 
 	void MinionAccessObject::draw() const
 	{
-		body().drawFrame(2, MyBlack);
+		TextureAsset(U"MinionAccessObject").drawAt(body().center);
 	}
 
 	void MinionAccessObject::checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)

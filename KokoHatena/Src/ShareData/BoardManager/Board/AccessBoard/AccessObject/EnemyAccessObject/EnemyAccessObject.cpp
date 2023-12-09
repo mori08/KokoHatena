@@ -1,23 +1,30 @@
 ﻿#include "EnemyAccessObject.hpp"
 #include "../../../../../../Config/Config.hpp"
-#include "../../../../../../MyLibrary/MyLibrary.hpp"
 
 namespace Kokoha
 {
 	EnemyAccessObject::EnemyAccessObject(const Vec2& pos)
 		: AccessObject(Type::ENEMY, pos)
+		, m_bodyTexture(Config::get<SliceTexture>(U"EnemyAccessObject.body"))
+		, m_faceTexture(Config::get<SliceTexture>(U"EnemyAccessObject.face"))
 	{
+		m_bodyTexture.start(U"anim");
+		m_faceTexture.start(U"anim");
 	}
 
 	void EnemyAccessObject::update(const Terrain& terrain)
 	{
 		static double SPEED = Config::get<double>(U"EnemyAccessObject.speed");
 		walkToGoal(SPEED, m_playerPos, terrain);
+
+		m_bodyTexture.update();
+		m_faceTexture.update();
 	}
 
 	void EnemyAccessObject::draw() const
 	{
-		body().drawFrame(2, Palette::Black);
+		m_bodyTexture.getTexture().drawAt(body().center);
+		m_faceTexture.getTexture().drawAt(body().center);
 	}
 
 	void EnemyAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)

@@ -195,6 +195,34 @@
 
 [EnemyAccessObject]
     speed = 10
+    [EnemyAccessObject.body]
+        size = {x = 28, y = 28}
+        textureName = "EnemyAccessObject"
+        [[EnemyAccessObject.body.anim]]
+            name = "anim"
+            anim = [
+                    {t=0.15,x=0,y=0}, 
+                    {t=0.15,x=1,y=0},
+                    {t=0.15,x=2,y=0}, 
+                    {t=0.15,x=3,y=0},
+                    {t=0.15,x=2,y=0},
+                    {t=0.15,x=1,y=0}
+            ]
+            loop = true
+    [EnemyAccessObject.face]
+        size = {x = 28, y = 28}
+        textureName = "EnemyAccessObject"
+        [[EnemyAccessObject.face.anim]]
+            name = "anim"
+            anim = [
+                    {t=10.0,x=0,y=1}, 
+                    {t=0.1,x=1,y=1},
+                    {t=0.1,x=2,y=1}, 
+                    {t=0.1,x=3,y=1},
+                    {t=0.1,x=2,y=1},
+                    {t=0.1,x=1,y=1}
+            ]
+            loop = true
 
 [MinionAccessObject]
     speed = 20

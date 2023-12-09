@@ -84,7 +84,7 @@ namespace Kokoha
 
 	void PlayerAccessObject::draw() const
 	{
-		body().draw(MyBlack);
+		TextureAsset(U"PlayerAccessObject").drawAt(body().center);
 	}
 
 	void PlayerAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)

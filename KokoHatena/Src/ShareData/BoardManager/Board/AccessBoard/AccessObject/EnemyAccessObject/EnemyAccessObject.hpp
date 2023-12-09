@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "../AccessObject.hpp"
+#include "../../../../../../MyLibrary/SliceTexture/SliceTexture.hpp"
 
 namespace Kokoha
 {
@@ -10,6 +11,12 @@ namespace Kokoha
 
 		// プレイヤーの座標
 		Vec2 m_playerPos;
+
+		// 外殻描画用SliceTexture
+		SliceTexture m_bodyTexture;
+
+		// 顔描画用SliceTexture
+		SliceTexture m_faceTexture;
 
 	public:
 
