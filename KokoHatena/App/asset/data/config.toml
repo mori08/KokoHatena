@@ -190,8 +190,8 @@
     trackTime = 0.25
     trackSpeed = 10
     lightAlpha = 0.5
-    lightArea  = 60000
-    lightPlusRate = 1.01
+    lightArea  = 72000
+    lightPlusRate = 1.001
 
 [EnemyAccessObject]
     speed = 10

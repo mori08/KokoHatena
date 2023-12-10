@@ -44,22 +44,20 @@ namespace Kokoha
 			m_trackPtr = none;
 		}
 
-		if (board.rect().rightPressed() || m_trackTime > 0)
+		if (board.rect().rightPressed() && m_trackTime < 0)
 		{
-			if (m_trackTime < 0)
+			static const double TRACK_TIME = Config::get<double>(U"PlayerAccessObject.trackTime");
+			static const double TRACK_SPEED = Config::get<double>(U"PlayerAccessObject.trackSpeed");
+			m_trackTime = TRACK_TIME;
+			Ptr ptr = std::make_shared<TrackAccessObject>(body().center, -m_movement * TRACK_SPEED);
+			if (ptr->light().area() < m_lightArea)
 			{
-				static const double TRACK_TIME = Config::get<double>(U"PlayerAccessObject.trackTime");
-				static const double TRACK_SPEED = Config::get<double>(U"PlayerAccessObject.trackSpeed");
-				m_trackTime = TRACK_TIME;
-				m_trackPtr = std::make_shared<TrackAccessObject>(body().center, -m_movement * TRACK_SPEED);
+				m_trackPtr = ptr;
+				m_lightArea -= ptr->light().area();
 			}
+		}
 
-			m_movement *= FAST_SPEED;
-		}
-		else
-		{
-			m_movement *= SLOW_SPEED;
-		}
+		m_movement *= m_trackPtr ? FAST_SPEED : SLOW_SPEED;
 
 		if (board.rect().leftClicked())
 		{
