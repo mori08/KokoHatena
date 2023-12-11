@@ -2,6 +2,7 @@
 #include "../MinionAccessObject/SearchingMinionAccessObject/SearchingMinionAccessObject.hpp"
 #include "../MinionAccessObject/ProtectingMinionAccessObject/ProtectingMinionAccessObject.hpp"
 #include "../MinionAccessObject/ChasingMinionAccessObject/ChasingMinionAccessObject.hpp"
+#include "../MinionAccessObject/RushingMinionAccessObject/RushingMinionAccessObject.hpp"
 #include "../TrackAccessObject/TrackAccessObject.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
 #include "../../../../../../Config/Config.hpp"
@@ -139,9 +140,13 @@ namespace Kokoha
 		{
 			ptr = std::make_shared<ChasingMinionAccessObject>(body().center, chasingGuid.value());
 		}
-		else if (light().contains(cursorPos))
+		else if (body().contains(cursorPos))
 		{
 			ptr = std::make_shared<ProtectingMinionAccessObject>(body().center);
+		}
+		else if (light().contains(cursorPos))
+		{
+			ptr = std::make_shared<RushingMinionAccessObject>(body().center, cursorPos - body().center);
 		}
 		else
 		{

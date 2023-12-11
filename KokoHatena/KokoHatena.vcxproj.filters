@@ -208,6 +208,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject">
       <UniqueIdentifier>{fd339955-d714-4042-a299-da4166049c08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\RushingMinionAccessObject">
+      <UniqueIdentifier>{20b50bf5-a458-43de-bbab-6ff7954cfbb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -350,6 +353,9 @@
     </ClCompile>
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject\ChasingMinionAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\RushingMinionAccessObject\RushingMinionAccessObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -760,6 +766,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject\ChasingMinionAccessObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\RushingMinionAccessObject\RushingMinionAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\RushingMinionAccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -231,11 +231,14 @@
     trackSpeedRate = 0.8
     [MinionAccessObject.Protecting]
         playerDist = 4.5
-        area = 6400
+        area = 7200
     [MinionAccessObject.Chasing]
-        area = 2400
+        area = 4800
     [MinionAccessObject.Searching]
         area = 9600
+    [MinionAccessObject.Rushing]
+        erasingTime = 6.5
+        area = 2400
 
 [TrackAccessObject]
     speed = 5

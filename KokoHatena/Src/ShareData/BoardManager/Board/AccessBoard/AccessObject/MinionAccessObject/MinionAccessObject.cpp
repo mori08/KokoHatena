@@ -33,8 +33,7 @@ namespace Kokoha
 
 	void MinionAccessObject::update(const Terrain& terrain)
 	{
-		static const double SPEED = Config::get<double>(U"MinionAccessObject.speed");
-		walkToGoal(SPEED, m_goal, terrain);
+		walkMinion(terrain);
 
 		m_trackTime -= Scene::DeltaTime();
 		if (m_trackTime < 0)
@@ -77,6 +76,10 @@ namespace Kokoha
 		}
 	}
 
+	void MinionAccessObject::setGoal(const Terrain&, const GuidToObject&, const TypeToGuidSet&)
+	{
+	}
+
 	void MinionAccessObject::eraseAndMakeTrack()
 	{
 		erase();
@@ -90,5 +93,11 @@ namespace Kokoha
 			m_lightArea -= trackObjPtr->light().area();
 			makeObject(std::move(trackObjPtr));
 		}
+	}
+
+	void MinionAccessObject::walkMinion(const Terrain& terrain)
+	{
+		static const double SPEED = Config::get<double>(U"MinionAccessObject.speed");
+		walkToGoal(SPEED, m_goal, terrain);
 	}
 }
