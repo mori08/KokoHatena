@@ -48,7 +48,7 @@ namespace Kokoha
 			const Terrain& terrain,
 			const GuidToObject& guidToObject,
 			const TypeToGuidSet& typeToGuidSet
-		) = 0;
+		);
 
 		/// <summary>
 		/// 光の面積の最大値（初期値）
@@ -59,5 +59,10 @@ namespace Kokoha
 		/// このオブジェクトを削除し、光の面積分だけTrackを作成する
 		/// </summary>
 		void eraseAndMakeTrack();
+
+		/// <summary>
+		/// オブジェクトを移動する
+		/// </summary>
+		virtual void walkMinion(const Terrain& terrain);
 	};
 }

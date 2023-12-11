@@ -14,7 +14,7 @@ namespace Kokoha
 
 		ChasingMinionAccessObject(const Vec2& pos, const String& chasingGuid);
 
-	protected:
+	private:
 
 		void setGoal(
 			const Terrain& terrain,

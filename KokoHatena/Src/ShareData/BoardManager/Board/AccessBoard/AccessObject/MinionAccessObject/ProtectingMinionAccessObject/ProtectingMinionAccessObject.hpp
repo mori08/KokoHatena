@@ -4,7 +4,7 @@
 namespace Kokoha
 {
 	/// <summary>
-	/// プレイヤーの周りを動く<->敵の攻撃 を行うMinionAccessObject
+	/// プレイヤーの周りを動く
 	/// </summary>
 	class ProtectingMinionAccessObject : public MinionAccessObject
 	{
@@ -12,7 +12,7 @@ namespace Kokoha
 
 		ProtectingMinionAccessObject(const Vec2& pos);
 
-	protected:
+	private:
 
 		void setGoal(
 			const Terrain& terrain,

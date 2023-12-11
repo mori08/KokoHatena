@@ -12,7 +12,7 @@ namespace Kokoha
 
 		SearchingMinionAccessObject(const Vec2& pos);
 
-	protected:
+	private:
 
 		void setGoal(
 			const Terrain& terrain,
