@@ -3,6 +3,7 @@
 #include"AccessObject/AccessObject.hpp"
 #include"AccessState/AccessState.hpp"
 #include"Terrain/Terrain.hpp"
+#include"../../../RecordSet/RecordSet.hpp"
 
 namespace Kokoha
 {
@@ -29,7 +30,7 @@ namespace Kokoha
 
 	public:
 
-		AccessBoard();
+		AccessBoard(const RecordSet& recordSet);
 
 	private:
 

@@ -1,11 +1,17 @@
 ﻿#pragma once
 
 #include "../AccessObject.hpp"
+#include "../../../../../../MyLibrary/SliceTexture/SliceTexture.hpp"
 
 namespace Kokoha
 {
 	class GoalAccessObject : public AccessObject
 	{
+	private:
+
+		// ゴールの画像
+		SliceTexture m_texture;
+
 	public:
 
 		GoalAccessObject(const Vec2& pos);

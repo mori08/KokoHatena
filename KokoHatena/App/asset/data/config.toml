@@ -173,6 +173,16 @@
     lightThickness = 2.0
     lightAlphaRate = 0.3
 
+[TutorialAccessState]
+    wordsPerTime = 5.0
+    nextWordCount = 25
+    textList = [
+        "W A S D キー うごけ",
+        "左クリック 光 つくれる",
+        "右クリック 速く うごける",
+        "ゴール さがせ"
+    ]
+
 [AccessObject]
     radius = 10.0
     shoulderWidth = 1
@@ -245,3 +255,16 @@
     slowDownRate = 0.2
     radius = 3.0
     alpha = 0.4
+
+[GoalAccessObject]
+    [GoalAccessObject.slice]
+        size = {x = 28, y = 28}
+        textureName = "GoalAccessObject"
+        [[GoalAccessObject.slice.anim]]
+            name = "anim"
+            anim = [
+                    {t=0.2,x=0,y=0}, 
+                    {t=0.2,x=1,y=0},
+                    {t=0.2,x=2,y=0}
+            ]
+            loop = true

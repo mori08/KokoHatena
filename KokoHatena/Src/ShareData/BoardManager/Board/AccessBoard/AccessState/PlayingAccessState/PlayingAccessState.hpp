@@ -9,14 +9,16 @@ namespace Kokoha
 	/// </summary>
 	class PlayingAccessState : public AccessState
 	{
-		Optional<std::shared_ptr<AccessState>> update(
+	protected:
+
+		virtual Optional<std::shared_ptr<AccessState>> update(
 			AccessObject::GuidToObject& objectMap,
 			AccessObject::TypeToGuidSet& typeToGuidSet,
 			BoardRequest&) override;
 
 		bool isUpdatingObject() const override;
 
-		void draw() const override;
+		virtual void draw() const override;
 
 	};
 }
