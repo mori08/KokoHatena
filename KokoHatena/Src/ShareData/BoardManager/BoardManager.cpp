@@ -17,7 +17,7 @@ namespace Kokoha
 		m_boardList.clear();
 
 		m_boardList.emplace_back(std::make_shared<MessageBoard>(recordSet));
-		m_boardList.emplace_back(std::make_shared<AccessBoard>());
+		m_boardList.emplace_back(std::make_shared<AccessBoard>(recordSet));
 		m_boardList.emplace_back(std::make_shared<SecurityBoard>(recordSet));
 	}
 

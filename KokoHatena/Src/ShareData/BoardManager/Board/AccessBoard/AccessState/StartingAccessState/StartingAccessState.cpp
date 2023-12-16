@@ -1,5 +1,6 @@
 ﻿#include "StartingAccessState.hpp"
 #include "../PlayingAccessState/PlayingAccessState.hpp"
+#include "../TutorialAccessState/TutorialAccessState.hpp"
 #include "../../AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
 #include "../../AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 #include "../../AccessObject/GoalAccessObject/GoalAccessObject.hpp"
@@ -76,7 +77,15 @@ namespace Kokoha
 
 		if (m_nextStateFlag)
 		{
-			std::shared_ptr<AccessState> rtn = std::make_shared<PlayingAccessState>();
+			std::shared_ptr<AccessState> rtn;
+			if (stageName == U"day0")
+			{
+				rtn = std::make_shared<TutorialAccessState>();
+			}
+			else
+			{
+				rtn = std::make_shared<PlayingAccessState>();
+			}
 			return rtn;
 		}
 

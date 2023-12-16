@@ -14,9 +14,6 @@ namespace Kokoha
 
 	void EnemyAccessObject::update(const Terrain& terrain)
 	{
-		static double SPEED = Config::get<double>(U"EnemyAccessObject.speed");
-		walkToGoal(SPEED, m_playerPos, terrain);
-
 		m_bodyTexture.update();
 		m_faceTexture.update();
 	}

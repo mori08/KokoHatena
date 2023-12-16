@@ -3,12 +3,12 @@
 
 namespace Kokoha
 {
-	AccessBoard::AccessBoard()
+	AccessBoard::AccessBoard(const RecordSet& recordSet)
 		: Board(BoardRole::ACCESS
 			, U"AccessBoard"
 			, BoardState::IS_HIDING
 		)
-		, m_stageName(U"test")
+		, m_stageName(U"day" + ToString(recordSet.getRecord(U"Day")))
 		, m_terrain(U"asset/data/stage/" + m_stageName + U".csv")
 		, m_state(std::make_shared<StartingAccessState>(m_stageName))
 	{

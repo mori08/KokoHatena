@@ -5,6 +5,10 @@
 
 namespace Kokoha
 {
+	/// <summary>
+	/// 静止した敵オブジェクト
+	/// （他の敵オブジェクトの基底クラスとしても使う）
+	/// </summary>
 	class EnemyAccessObject : public AccessObject
 	{
 	private:
@@ -24,9 +28,9 @@ namespace Kokoha
 
 	private:
 
-		void update(const Terrain& terrain) override;
+		virtual void update(const Terrain&) override;
 
-		void draw() const override;
+		virtual void draw() const override;
 
 		void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 

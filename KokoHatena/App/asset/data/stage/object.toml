@@ -1,9 +1,24 @@
-[[test]]
+[[day0]]
     type = "player"
-    x = 0
+    x = 11
+    y = 17
+[[day0]]
+    type = "goal"
+    x = 11
     y = 0
-
-[[test]]
+[[day0]]
     type = "enemy"
-    x = 9
-    y = 9
+    x = 10
+    y = 3
+[[day0]]
+    type = "enemy"
+    x = 11
+    y = 3
+[[day0]]
+    type = "enemy"
+    x = 12
+    y = 3
+[[day0]]
+    type = "enemy"
+    x = 13
+    y = 3
