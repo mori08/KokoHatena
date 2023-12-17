@@ -2,7 +2,7 @@
 
 namespace Kokoha
 {
-	void EventObject::input(const BoardArg&)
+	void EventObject::input(const RectF&)
 	{
 	}
 

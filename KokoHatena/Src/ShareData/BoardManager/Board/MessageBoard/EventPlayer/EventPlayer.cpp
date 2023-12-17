@@ -6,8 +6,9 @@
 
 namespace Kokoha
 {
-	EventPlayer::EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet)
-		: m_render(drawSize)
+	EventPlayer::EventPlayer(const String& eventFileName, const Rect& rect, const RecordSet& recordSet)
+		: m_rect(rect)
+		, m_render(rect.size)
 		, m_eventToml(eventFileName)
 		, m_waitingRequest(none)
 		, m_waitingSecond(0.0)
@@ -37,10 +38,13 @@ namespace Kokoha
 
 	void EventPlayer::input(const BoardArg& board)
 	{
+		RectF rect = m_rect;
+		rect.pos += board.getPos();
+
 		// オブジェクトの入力
 		for (const auto& object : m_objectList)
 		{
-			object.second->input(board);
+			object.second->input(rect);
 		}
 	}
 
@@ -85,7 +89,7 @@ namespace Kokoha
 		}
 	}
 
-	void EventPlayer::draw(const Point& drawPos) const
+	void EventPlayer::draw() const
 	{
 		// レンダーテクスチャーのクリア
 		m_render.clear(MyBlack);
@@ -103,7 +107,7 @@ namespace Kokoha
 
 		Graphics2D::Flush();
 		m_render.resolve();
-		m_render.draw(drawPos);
+		m_render.draw(m_rect.pos);
 	}
 
 	bool EventPlayer::playEvent(const TOMLValue& nowEvent, BoardRequest& boardRequest)

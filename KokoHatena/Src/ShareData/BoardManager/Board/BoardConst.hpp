@@ -71,6 +71,12 @@ namespace Kokoha
 		/// <summary> Boardの座標の設定 </summary> 
 		void setPos(const Vec2& pos);
 
+		/// <summary> Boardの座標の取得 </summary> 
+		Vec2 getPos() const
+		{
+			return m_boardRect.pos;
+		}
+
 		/// <summary>
 		/// Board上でのカーソルの座標を取得
 		/// </summary>

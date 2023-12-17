@@ -18,7 +18,10 @@ namespace Kokoha
 
 	private:
 
-		// 描画範囲
+		// 範囲(カーソル入力と描画)
+		const Rect m_rect;
+
+		// 描画範囲(レンダー)
 		const MSRenderTexture m_render;
 
 		// 読込中のイベント
@@ -51,8 +54,8 @@ namespace Kokoha
 	public:
 
 		/// <param name="eventFileName"> イベントのファイル名 </param>
-		/// <param name="drawSize"> 描画範囲 </param>
-		EventPlayer(const String& eventFileName, const Size& drawSize, const RecordSet& recordSet);
+		/// <param name="rect"> カーソル入力と描画の範囲 </param>
+		EventPlayer(const String& eventFileName, const Rect& rect, const RecordSet& recordSet);
 
 		/// <summary>
 		/// 入力
@@ -74,8 +77,7 @@ namespace Kokoha
 		/// <summary>
 		/// 描画
 		/// </summary>
-		/// <param name="drawPos"> 描画座標 </param>
-		void draw(const Point& drawPos) const;
+		void draw() const;
 
 	private:
 

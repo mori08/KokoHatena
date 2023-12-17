@@ -23,7 +23,7 @@ namespace Kokoha
 				EventPlayer
 				(
 					U"asset/data/event/" + speakerName + U".toml",
-					Size(size().x - getSpeakerNameRect(0).w, size().y),
+					Rect(Point(getSpeakerNameRect(0).w, 0), Size(size().x - getSpeakerNameRect(0).w, size().y)),
 					recordSet
 				)
 			);
@@ -37,7 +37,7 @@ namespace Kokoha
 			EventPlayer
 			(
 				U"asset/data/event/day" + ToString(m_recordDay) + U".toml",
-				Size(size().x - getSpeakerNameRect(0).w, size().y),
+				Rect(Point(getSpeakerNameRect(0).w, 0), Size(size().x - getSpeakerNameRect(0).w, size().y)),
 				recordSet
 			)
 		);
@@ -115,7 +115,7 @@ namespace Kokoha
 		if (m_selectedSpeakerName)
 		{
 			m_eventPlayerMap.find(m_selectedSpeakerName.value())
-				->second.draw(Point(getSpeakerNameRect(0).w, 0));
+				->second.draw();
 		}
 
 		Rect(
