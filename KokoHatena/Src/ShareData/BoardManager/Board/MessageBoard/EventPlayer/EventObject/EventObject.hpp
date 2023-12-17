@@ -33,8 +33,8 @@ namespace Kokoha
 		/// <summary>
 		/// 入力
 		/// </summary>
-		/// <param name="cursorPos"> cursorPos </param>
-		virtual void input(const BoardArg& board);
+		/// <param name="rect"> EventPlayerの範囲 </param>
+		virtual void input(const RectF& rect);
 
 		/// <summary>
 		/// 更新

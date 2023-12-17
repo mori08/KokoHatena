@@ -121,8 +121,8 @@ namespace Kokoha
 			/// <summary>
 			/// いずれかの選択肢をクリックしたか
 			/// </summary>
-			/// <param name="cursorPos"> マウスカーソルの座標 </param>
-			Optional<String> input(const BoardArg& board);
+			/// <param name="rect"> EvnetPlayerの範囲 </param>
+			Optional<String> input(const RectF& rect);
 
 			void update();
 
@@ -149,7 +149,7 @@ namespace Kokoha
 
 		bool wait() const override;
 
-		void input(const BoardArg& board) override;
+		void input(const RectF& rect) override;
 
 		void update() override;
 
