@@ -10,7 +10,6 @@ namespace Kokoha
 		: m_rect(rect)
 		, m_render(rect.size)
 		, m_eventToml(eventFileName)
-		, m_waitingRequest(none)
 		, m_waitingSecond(0.0)
 	{
 		setGenerateObjectMap();
@@ -68,7 +67,7 @@ namespace Kokoha
 
 		// イベントの進行
 		bool waiting = !m_waitingObjectList.empty()
-			|| m_waitingRequest
+			|| !m_waitingRequestMap.empty()
 			|| m_waitingSecond > 0;
 		if (m_now != m_end && !waiting)
 		{
@@ -83,9 +82,21 @@ namespace Kokoha
 
 	void EventPlayer::receive(const String& requestText)
 	{
-		if (m_waitingRequest && m_waitingRequest.value() == requestText)
+		if (m_waitingRequestMap.count(requestText))
 		{
-			m_waitingRequest = none;
+			const String to = m_waitingRequestMap[requestText];
+			if (to != U"")
+			{
+				if (!m_eventToml[to].isTableArray())
+				{
+					throw Error(U"EventPlayer: jump: 指定された遷移先to[" + to + U"]は存在しない");
+				}
+
+				m_now = m_eventToml[to].tableArrayView().begin();
+				m_end = m_eventToml[to].tableArrayView().end();
+			}
+
+			m_waitingRequestMap.clear();
 		}
 	}
 
@@ -226,7 +237,13 @@ namespace Kokoha
 		// Boardへのリクエストを待機
 		if (eventName == U"receive")
 		{
-			m_waitingRequest = nowEvent[U"name"].getOpt<String>();
+			for (const auto& request : nowEvent[U"request"].tableArrayView())
+			{
+				const String requestText = request[U"text"].getString();
+				const String to = request[U"to"].getString();
+
+				m_waitingRequestMap[requestText] = to;
+			}
 
 			return true;
 		}

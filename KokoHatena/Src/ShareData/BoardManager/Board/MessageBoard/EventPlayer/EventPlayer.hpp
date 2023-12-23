@@ -45,8 +45,8 @@ namespace Kokoha
 		// 別イベントに遷移する条件のフラグのリスト
 		std::unordered_map<String, bool> m_jumpFlagMap;
 
-		// 待機中のリクエスト
-		Optional<String> m_waitingRequest;
+		// 待機中のリクエストから遷移先のイベントへの連想配列
+		std::unordered_map<String, String> m_waitingRequestMap;
 
 		// 待ち時間(s)
 		double m_waitingSecond;

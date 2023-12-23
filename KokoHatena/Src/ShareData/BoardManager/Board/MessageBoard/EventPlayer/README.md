@@ -118,17 +118,27 @@ jumpイベントで使用するフラグの更新
     - SceneConfig.hpp 参照
 
 ## receive
-`MessageBoard` に指定して `requestText` が送信されるまで待機
+`MessageBoard` に指定した `requestText` が送信されるまで待機
 
 ```toml
 [[Event]]
     event = "receive"
-    name = ""
+    [[Event.request]]
+        text = ""
+        to = ""
 ```
 
-- `name`
+- `request`
+    - `TomlTableArray`
+    - 待機する requestText と 受け取った後の遷移先について
+    - TableArray になっているので複数指定できる
+- `request[].text`
     - `String`
-    - 待機する requestText
+    - 待機する requestText（MessageBoardで受け取る）
+- `request[].to`
+    - `String`
+    - 遷移先のイベント群の名前
+    - 未指定の場合、現在進行中のイベントの続きから再開する
 
 ## wait
 指定された時間待機
