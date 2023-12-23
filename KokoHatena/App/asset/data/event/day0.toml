@@ -1,53 +1,39 @@
-[[init]]
-    event = "object"
-    type = "texture"
-    name = "obj_r"
-    [init.param]
-        objectKey = "Researcher"
-        pos = {x=110, y=320}
-[[init]]
-    event = "jump"
-    to = "test1"
+## init ##
 [[init]]
     event = "object"
     type = "message"
     name = "ui_text"
 
-[[test1]]
-    event = "flag"
-    name = "TestJumpFlag"
-    value = true
-[[test1]]
+[[init]]
+    event = "jump"
+    to = "e1"
+
+## e1 ##
+[[e1]]
     event = "act"
     name = "ui_text"
-    [test1.param]
+    [e1.param]
         type = "message"
-        text = "test1"
-        speaker = true
-    
-[[test1]]
-    event = "act"
-    name = "ui_text"
-    [test1.param]
-        type = "select"
-        select = [
-            {text="選択肢1", flag = "flag1"},
-            {text="選択肢2", flag = "flag2"},
-            {text="選択肢3", flag = "flag3"}
-        ]
-
-[[test1]]
-    event = "receive"
-    name = "test"
-
-[[test1]]
-    event = "wait"
-    time = 10.0
-
-[[test1]]
-    event = "act"
-    name = "ui_text"
-    [test1.param]
-        type = "message"
-        text = "選択肢1を選んだ"
+        text = "......"
         speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "..."
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "........."
+        speaker = false
+
+[[e1]]
+    event = "board"
+    role = "security"
+    text = "download"

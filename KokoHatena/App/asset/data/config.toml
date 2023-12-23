@@ -126,16 +126,14 @@
 [SecurityBoard]
     name = "セキュリティ"
     size = {x=400,y=100}
-    iconOrder = 2
+    iconOrder = 1
     textPos = {x=200, y=30}
     selectSize = {x=90, y=30}
     selectY = 70
     [SecurityBoard.default]
         text = "PCを保護しています"
-        [[SecurityBoard.default.select]]
-            text = "はい"
-    [SecurityBoard.test]
-        text = "テスト用"
+    [SecurityBoard.download]
+        text = ""
         [[SecurityBoard.test.select]]
             text = "はい"
             toBoard =[
@@ -150,7 +148,7 @@
 [AccessBoard]
     name = "アクセス"
     size = {x=600,y=450}
-    iconOrder = 1
+    iconOrder = 2
     wideArea  = 100
     skeletonAlpha = 0.5
 

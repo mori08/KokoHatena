@@ -169,6 +169,12 @@ namespace Kokoha
 
 		if (type == U"message")
 		{
+			/*
+			* [Event.param]
+			*	type = "message"
+			*	text = "" (String 表示する文字列)
+			*	speaker = true (bool trueなら自分,falseなら相手)
+			*/
 			const String text = param[U"text"].getString();
 			const bool   speaker = param[U"speaker"].get<bool>();
 

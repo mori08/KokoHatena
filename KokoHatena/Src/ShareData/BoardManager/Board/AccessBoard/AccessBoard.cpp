@@ -6,7 +6,7 @@ namespace Kokoha
 	AccessBoard::AccessBoard(const RecordSet& recordSet)
 		: Board(BoardRole::ACCESS
 			, U"AccessBoard"
-			, BoardState::IS_HIDING
+			, recordSet.getRecord(U"Day") == 0 ? BoardState::NONE : BoardState::IS_HIDING
 		)
 		, m_stageName(U"day" + ToString(recordSet.getRecord(U"Day")))
 		, m_terrain(U"asset/data/stage/" + m_stageName + U".csv")
