@@ -69,7 +69,10 @@ namespace Kokoha
 			board->update(request);
 
 			// Board
-			boardRequestList.merge(request.toBoard);
+			for (const auto& toBoard : request.toBoard)
+			{
+				boardRequestList.emplace_back(toBoard);
+			}
 
 			// Record
 			for (const std::pair<String, int32>& record : request.toRecord) 

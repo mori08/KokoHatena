@@ -1,3 +1,5 @@
+# https://github.com/mori08/KokoHatena/blob/develop/KokoHatena/Src/ShareData/BoardManager/Board/MessageBoard/EventPlayer/README.md
+
 ## init ##
 [[init]]
     event = "object"
@@ -26,14 +28,317 @@
         speaker = false
 
 [[e1]]
+    event = "jump"
+    to = "download"
+
+## download ##
+[[download]]
     event = "act"
     name = "ui_text"
-    [e1.param]
+    [download.param]
         type = "message"
-        text = "........."
+        text = "......"
         speaker = false
 
-[[e1]]
+[[download]]
+    event = "act"
+    name = "ui_text"
+    [download.param]
+        type = "message"
+        text = "[Access.kokoha]"
+        speaker = false
+
+[[download]]
     event = "board"
     role = "security"
     text = "download"
+
+[[download]]
+    event = "receive"
+    [[download.request]]
+        text = "download"
+        to = "download" # もう一度 download のイベント群をやり直す
+    [[download.request]]
+        text = "access"
+        to = "e2"
+    
+## e2 ##
+[[e2]]
+    event = "wait"
+    time = 3.0
+
+[[e2]]
+    event = "act"
+    name = "ui_text"
+    [e2.param]
+        type = "message"
+        text = "アクセスに成功したのか？"
+        speaker = false
+
+[[e2]]
+    event = "act"
+    name = "ui_text"
+    [e2.param]
+        type = "select"
+        select = [
+            {text = "お前は誰だ？", flag = "q1"},
+            {text = "さっきのゲームはなんだ？", flag = "q2"}
+        ]
+
+[[e2]]
+    event = "jump"
+    to = "q1"
+    flag = "q1"
+
+[[e2]]
+    event = "jump"
+    to = "q2"
+    flag = "q2"
+
+## q1「お前は誰だ」 ##
+[[q1]]
+    event = "act"
+    name = "ui_text"
+    [q1.param]
+        type = "message"
+        text = "お前は誰だ？"
+        speaker = true
+        wait = false
+
+[[q1]]
+    event = "wait"
+    time = 1.0
+
+[[q1]]
+    event = "act"
+    name = "ui_text"
+    [q1.param]
+        type = "message"
+        text = "ハカセの作ったロボット...が作ったロボットだ"
+        speaker = false
+
+[[q1]]
+    event = "act"
+    name = "ui_text"
+    [q1.param]
+        type = "message"
+        text = """
+ここで色々調べていたのだが私だけでは限界がある
+ハカセの知り合いである君に連絡をとった"""
+        speaker = false
+
+[[q1]]
+    event = "jump"
+    to = "e3"
+
+## q2「さっきのゲームはなんだ？」
+[[q2]]
+    event = "act"
+    name = "ui_text"
+    [q2.param]
+        type = "message"
+        text = "さっきのゲームはなんだ？"
+        speaker = true
+        wait = false
+
+[[q2]]
+    event = "wait"
+    time = 1.0
+
+[[q2]]
+    event = "act"
+    name = "ui_text"
+    [q2.param]
+        type = "message"
+        text = "詳しくは私にも分からない"
+        speaker = false
+
+[[q2]]
+    event = "act"
+    name = "ui_text"
+    [q2.param]
+        type = "message"
+        text = "私のアクセス機能を利用して外部への通信を可能にしているようなのだが..."
+        speaker = false
+
+[[q2]]
+    event = "act"
+    name = "ui_text"
+    [q2.param]
+        type = "message"
+        text = "ハカセの作ったものを理解するのは難しい"
+        speaker = false
+
+[[q2]]
+    event = "jump"
+    to = "e3"
+
+## e3 ##
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "ハカセ？"
+        speaker = true
+
+[[e3]]
+    event = "wait"
+    time = 2.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "君が教授と呼んでいる人間のことだ"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "私たちはハカセと呼んでいる"
+        speaker = false
+
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "教授は心を持ったロボットを完成させたのか？"
+        speaker = true
+
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "それは...まだうまく答えられない"
+        speaker = false
+
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "君は、今何をしている？"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "select"
+        select = [
+            {text = "何も...", flag = "q3"},
+            {text = "...ロボットの開発", flag = "q4"}
+        ]
+
+[[e3]]
+    event = "jump"
+    to = "q3"
+    flag = "q3"
+
+[[e3]]
+    event = "jump"
+    to = "q4"
+    flag = "q4"
+
+## q3「何も...」 ##
+[[q3]]
+    event = "act"
+    name = "ui_text"
+    [q3.param]
+        type = "message"
+        text = "特に...何もしていない"
+        speaker = true
+        wait = false
+
+[[q3]]
+    event = "wait"
+    time = 1.0
+
+[[q3]]
+    event = "act"
+    name = "ui_text"
+    [q3.param]
+        type = "message"
+        text = "なら時間はありそうだな"
+        speaker = false
+
+[[q3]]
+    event = "act"
+    name = "ui_text"
+    [q3.param]
+        type = "message"
+        text = "少し私に協力してほしい"
+        speaker = false
+
+[[q3]]
+    event = "jump"
+    to = "e4"
+
+## q4「...ロボットの開発」 ##
+[[q4]]
+    event = "act"
+    name = "ui_text"
+    [q4.param]
+        type = "message"
+        text = "...ロボットの開発をしている"
+        speaker = true
+        wait = false
+
+[[q4]]
+    event = "wait"
+    time = 1.0
+
+[[q4]]
+    event = "act"
+    name = "ui_text"
+    [q4.param]
+        type = "message"
+        text = "なるほど、ロボットに詳しいんだな"
+        speaker = false
+
+[[q4]]
+    event = "act"
+    name = "ui_text"
+    [q4.param]
+        type = "message"
+        text = "もしよければ私に協力してほしい"
+        speaker = false
+
+[[q4]]
+    event = "jump"
+    to = "e4"
+
+## e4 ##
+[[e4]]
+    event = "act"
+    name = "ui_text"
+    [e4.param]
+        type = "message"
+        text = "私は準備することがある\nまた明日連絡する"
+        speaker = false
+
+[[e4]]
+    event = "scene"
+    scene = "selectSaveRecord"

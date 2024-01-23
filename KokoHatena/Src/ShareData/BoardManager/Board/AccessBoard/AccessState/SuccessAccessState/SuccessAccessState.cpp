@@ -51,7 +51,7 @@ namespace Kokoha
 			if (!m_alreadySendRequest)
 			{
 				m_alreadySendRequest = true;
-				boardRequest.toBoard.emplace_back(BoardRole::MESSAGE, U"Clear");
+				boardRequest.toBoard.emplace_back(BoardRole::MESSAGE, U"access");
 			}
 		}
 

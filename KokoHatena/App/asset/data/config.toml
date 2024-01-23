@@ -89,9 +89,11 @@
     postX = 20
     postY = 10
     waitSecondPerCharCount = 0.1
-    maxPostCount = 3
+    maxPostCount = 5
     postRectColor = {rgb=0.8}
     textChangeAlphaRate = 0.05
+    waitingCirclePos = {x=280, y=20}
+    waitingCircleRadius = 2
 
 [TextureEventObject]
     [TextureEventObject.Researcher]
@@ -133,16 +135,18 @@
     [SecurityBoard.default]
         text = "PCを保護しています"
     [SecurityBoard.download]
-        text = ""
-        [[SecurityBoard.test.select]]
+        text = "インストールしますか？"
+        [[SecurityBoard.download.select]]
             text = "はい"
             toBoard =[
-                {role="security", request="default"}
+                {role="security", request="default"},
+                {role="access", request=""}
             ]
-        [[SecurityBoard.test.select]]
+        [[SecurityBoard.download.select]]
             text = "いいえ"
             toBoard =[
-                {role="security", request="default"}
+                {role="security", request="default"},
+                {role="message", request="download"}
             ]
 
 [AccessBoard]

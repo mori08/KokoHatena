@@ -174,27 +174,32 @@ namespace Kokoha
 			*	type = "message"
 			*	text = "" (String 表示する文字列)
 			*	speaker = true (bool trueなら自分,falseなら相手)
+			*	wait = true (bool trueのときはクリックするまで投稿を追加しない、デフォルトではspeaker）
 			*/
 			const String text = param[U"text"].getString();
 			const bool   speaker = param[U"speaker"].get<bool>();
+			const bool   wait = param[U"wait"].getOr<bool>(speaker);
 
-			m_postList.emplace_back(speaker, text);
-			static const size_t MAX_POST_COUNT = Config::get<size_t>(U"MessageEventObject.maxPostCount");
-			if (m_postList.size() > MAX_POST_COUNT)
+			m_prePost = { text, speaker };
+
+			if (!wait)
 			{
-				m_postList.pop_front();
+				addPost();
 			}
-			updatePostPos();
-
-			// 一文字ごとにかかる待ち時間
-			static const double WAIT_SECOND_PER_CHAR_COUNT = Config::get<double>(U"MessageEventObject.waitSecondPerCharCount");
-			m_waitSecond = WAIT_SECOND_PER_CHAR_COUNT * text.size();
 
 			return;
 		}
 
 		if (type == U"select")
 		{
+			/*
+			* [Event.param]
+			*	type = "select"
+			*	select = [
+			*		{text="選択肢1", flag = "flag1"},
+			*		{text="選択肢2", flag = "flag2"}
+			*	]
+			*/
 			m_select = Select(param[U"select"]);
 			updatePostPos();
 
@@ -205,7 +210,7 @@ namespace Kokoha
 	bool MessageEventObject::wait() const
 	{
 		// 投稿待ち
-		if (m_waitSecond > 0)
+		if (m_waitSecond > 0 || m_prePost)
 		{
 			return true;
 		}
@@ -221,6 +226,14 @@ namespace Kokoha
 
 	void MessageEventObject::input(const RectF& rect)
 	{
+		if (m_prePost)
+		{
+			if (rect.leftClicked())
+			{
+				addPost();
+			}
+		}
+
 		if (m_select)
 		{
 			auto flagNameOpt = m_select->input(rect);
@@ -252,10 +265,46 @@ namespace Kokoha
 			post.draw(POST_RECT_COLOR, MyBlack);
 		}
 
+		ClearPrint();
+		if (m_prePost)
+		{
+			const Vec2& WAITING_CIRCLE_POS = Config::get<Vec2>(U"MessageEventObject.waitingCirclePos");
+			const double WAITING_CIRCLE_RADIUS = Config::get<double>(U"MessageEventObject.waitingCircleRadius");
+			double y = m_postList.empty() ? 0 : m_postList.back().getRect().bl().y;
+			
+			Circle(
+				WAITING_CIRCLE_POS.movedBy(0, m_postList.empty() ? 0 : m_postList.back().getRect().bl().y),
+				WAITING_CIRCLE_RADIUS
+			).draw(MyWhite);
+		}
+
 		if (m_select)
 		{
 			m_select->draw();
 		}
+	}
+
+	void MessageEventObject::addPost()
+	{
+		if (!m_prePost) { return; }
+
+		const String text = m_prePost.value().first;
+		const bool speaker = m_prePost.value().second;
+
+		m_postList.emplace_back(speaker, text);
+
+		static const size_t MAX_POST_COUNT = Config::get<size_t>(U"MessageEventObject.maxPostCount");
+		if (m_postList.size() > MAX_POST_COUNT)
+		{
+			m_postList.pop_front();
+		}
+		updatePostPos();
+
+		// 一文字ごとにかかる待ち時間
+		static const double WAIT_SECOND_PER_CHAR_COUNT = Config::get<double>(U"MessageEventObject.waitSecondPerCharCount");
+		m_waitSecond = WAIT_SECOND_PER_CHAR_COUNT * text.size();
+
+		m_prePost = none;
 	}
 
 	void MessageEventObject::updatePostPos()

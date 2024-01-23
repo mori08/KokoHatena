@@ -138,6 +138,9 @@ namespace Kokoha
 		// 選択肢
 		Optional<Select> m_select;
 
+		// 追加予定の投稿
+		Optional<std::pair<String, bool>> m_prePost;
+
 		// 待ち時間
 		double m_waitSecond;
 
@@ -156,6 +159,11 @@ namespace Kokoha
 		void draw() const override;
 
 	private:
+
+		/// <summary>
+		/// Postの追加
+		/// </summary>
+		void addPost();
 
 		/// <summary>
 		/// PostやSelectのy座標を更新
