@@ -89,9 +89,11 @@
     postX = 20
     postY = 10
     waitSecondPerCharCount = 0.1
-    maxPostCount = 3
+    maxPostCount = 5
     postRectColor = {rgb=0.8}
     textChangeAlphaRate = 0.05
+    waitingCirclePos = {x=280, y=20}
+    waitingCircleRadius = 2
 
 [TextureEventObject]
     [TextureEventObject.Researcher]
@@ -126,31 +128,31 @@
 [SecurityBoard]
     name = "セキュリティ"
     size = {x=400,y=100}
-    iconOrder = 2
+    iconOrder = 1
     textPos = {x=200, y=30}
     selectSize = {x=90, y=30}
     selectY = 70
     [SecurityBoard.default]
         text = "PCを保護しています"
-        [[SecurityBoard.default.select]]
-            text = "はい"
-    [SecurityBoard.test]
-        text = "テスト用"
-        [[SecurityBoard.test.select]]
+    [SecurityBoard.download]
+        text = "インストールしますか？"
+        [[SecurityBoard.download.select]]
             text = "はい"
             toBoard =[
-                {role="security", request="default"}
+                {role="security", request="default"},
+                {role="access", request=""}
             ]
-        [[SecurityBoard.test.select]]
+        [[SecurityBoard.download.select]]
             text = "いいえ"
             toBoard =[
-                {role="security", request="default"}
+                {role="security", request="default"},
+                {role="message", request="download"}
             ]
 
 [AccessBoard]
     name = "アクセス"
     size = {x=600,y=450}
-    iconOrder = 1
+    iconOrder = 2
     wideArea  = 100
     skeletonAlpha = 0.5
 

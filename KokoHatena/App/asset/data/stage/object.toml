@@ -1,7 +1,7 @@
 [[day0]]
     type = "player"
     x = 11
-    y = 17
+    y = 14
 [[day0]]
     type = "goal"
     x = 11

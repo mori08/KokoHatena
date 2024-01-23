@@ -25,7 +25,7 @@ namespace Kokoha
 			, U"SecurityBoard"
 			, BoardState::IS_HIDING)
 	{
-		setState(U"test");
+		setState(U"default");
 	}
 
 	void SecurityBoard::receiveRequest(const String& requestText)

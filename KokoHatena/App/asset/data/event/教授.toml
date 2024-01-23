@@ -25,6 +25,7 @@
 別の研究をします。
 これ以上ココロの研究には付き合いきれません。"""
         speaker = true
+        wait = false
 
 [[init]]
     event = "act"
