@@ -57,16 +57,16 @@ namespace Kokoha
 				m_makeObjectList.pop_front();
 			}
 
-			// 他オブジェクトの情報の取得
-			for (const auto& object : m_objectMap)
-			{
-				object.second->checkOthers(m_terrain, m_objectMap, m_typeToGuidSet);
-			}
-
 			// 更新
 			for (const auto& object : m_objectMap)
 			{
 				object.second->update(m_terrain);
+			}
+
+			// 他オブジェクトの情報の取得
+			for (const auto& object : m_objectMap)
+			{
+				object.second->checkOthers(m_terrain, m_objectMap, m_typeToGuidSet);
 			}
 
 			for (const auto& object : m_objectMap)
@@ -84,6 +84,10 @@ namespace Kokoha
 				}
 				else { ++itr; }
 			}
+		}
+		else
+		{
+			m_makeObjectList.clear();
 		}
 	}
 
