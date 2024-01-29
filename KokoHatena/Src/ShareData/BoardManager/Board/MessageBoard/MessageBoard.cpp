@@ -15,20 +15,23 @@ namespace Kokoha
 		static const Array<String> SPEAKER_NAME_LIST = Config::getArray<String>(U"MessageBoard.speakerNameList");
 		m_speakerNameList = SPEAKER_NAME_LIST;
 
-		for (const auto& speakerName : m_speakerNameList)
+		if (m_recordDay == 0)
 		{
-			m_eventPlayerMap.try_emplace
-			(
-				speakerName,
-				EventPlayer
+			for (const auto& speakerName : m_speakerNameList)
+			{
+				m_eventPlayerMap.try_emplace
 				(
-					U"asset/data/event/" + speakerName + U".toml",
-					Rect(Point(getSpeakerNameRect(0).w, 0), Size(size().x - getSpeakerNameRect(0).w, size().y)),
-					recordSet
-				)
-			);
+					speakerName,
+					EventPlayer
+					(
+						U"asset/data/event/" + speakerName + U".toml",
+						Rect(Point(getSpeakerNameRect(0).w, 0), Size(size().x - getSpeakerNameRect(0).w, size().y)),
+						recordSet
+					)
+				);
 
-			m_notReadSpeakerNameSet.insert(speakerName);
+				m_notReadSpeakerNameSet.insert(speakerName);
+			}
 		}
 
 		m_eventPlayerMap.try_emplace
@@ -50,6 +53,13 @@ namespace Kokoha
 
 	void MessageBoard::receiveRequest(const String& requestText)
 	{
+		if (requestText == U"access")
+		{
+			m_speakerNameList.clear();
+			m_speakerNameList.emplace_back(U"ロボット");
+			m_selectedSpeakerName = U"ロボット";
+		}
+
 		for (auto& eventPlayer : m_eventPlayerMap)
 		{
 			eventPlayer.second.receive(requestText);
