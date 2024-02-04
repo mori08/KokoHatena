@@ -236,6 +236,11 @@
             ]
             loop = true
 
+[RandomWalkingEnemyAccessObject]
+    speed = 10
+    waitingSecond = 5.0
+    targetPosDist = 3.1
+
 [MinionAccessObject]
     speed = 20
     lightAlpha = 0.25

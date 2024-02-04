@@ -265,7 +265,6 @@ namespace Kokoha
 			post.draw(POST_RECT_COLOR, MyBlack);
 		}
 
-		ClearPrint();
 		if (m_prePost)
 		{
 			const Vec2& WAITING_CIRCLE_POS = Config::get<Vec2>(U"MessageEventObject.waitingCirclePos");

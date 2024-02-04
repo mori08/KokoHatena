@@ -234,7 +234,7 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="pixelS"> 始点（ピクセル座標） </param>
 		/// <param name="pixelT"> 終点（ピクセル座標） </param>
-		/// <returns> 最短距離 or Inf<double> </returns>
+		/// <returns> 最短距離 or Inf(double) </returns>
 		double getDist(const Vec2& pixelS, const Vec2& pixelT) const;
 
 		/// <summary>

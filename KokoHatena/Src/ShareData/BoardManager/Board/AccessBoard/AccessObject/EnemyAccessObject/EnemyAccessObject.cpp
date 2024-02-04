@@ -7,6 +7,7 @@ namespace Kokoha
 		: AccessObject(Type::ENEMY, pos)
 		, m_bodyTexture(Config::get<SliceTexture>(U"EnemyAccessObject.body"))
 		, m_faceTexture(Config::get<SliceTexture>(U"EnemyAccessObject.face"))
+		, m_targetPos(pos)
 	{
 		m_bodyTexture.start(U"anim");
 		m_faceTexture.start(U"anim");
@@ -16,6 +17,8 @@ namespace Kokoha
 	{
 		m_bodyTexture.update();
 		m_faceTexture.update();
+
+		walkToGoal(m_speed, m_targetPos, terrain);
 	}
 
 	void EnemyAccessObject::draw() const
@@ -26,10 +29,6 @@ namespace Kokoha
 
 	void EnemyAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
-		for (const String& guid : typeToGuidSet.find(Type::PLAYER)->second)
-		{
-			m_playerPos = guidToObject.find(guid)->second->body().center;
-		}
 		for (const String& guid : typeToGuidSet.find(Type::MINION)->second)
 		{
 			if (getObject(guid, guidToObject).body().intersects(body()))

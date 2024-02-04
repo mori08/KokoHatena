@@ -214,6 +214,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\TutorialAccessState">
       <UniqueIdentifier>{e4ba7011-e955-448d-bad7-7ed78c0d87b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject">
+      <UniqueIdentifier>{fc76e466-31ad-41e7-8f65-d9d21dc1703c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -362,6 +365,9 @@
     </ClCompile>
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\TutorialAccessState\TutorialAccessState.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\TutorialAccessState</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -778,6 +784,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\TutorialAccessState\TutorialAccessState.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessState\TutorialAccessState</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
