@@ -13,20 +13,25 @@ namespace Kokoha
 	{
 	private:
 
-		// プレイヤーの座標
-		Vec2 m_playerPos;
-
 		// 外殻描画用SliceTexture
 		SliceTexture m_bodyTexture;
 
 		// 顔描画用SliceTexture
 		SliceTexture m_faceTexture;
 
+	protected:
+
+		// 移動先の座標
+		Vec2 m_targetPos;
+
+		// 移動の速さ
+		double m_speed;
+
 	public:
 
 		EnemyAccessObject(const Vec2& pos);
 
-	private:
+	protected:
 
 		virtual void update(const Terrain&) override;
 

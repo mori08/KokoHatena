@@ -154,7 +154,11 @@ namespace Kokoha
 		: SelectRecordScene(
 			init,
 			RecordBox([this]() { getData().recordSetList.emplace_front(getData().nowRecordSet); }, { U"",U"新しいデータ" }),
-			[this](RecordSet& recordSet) { recordSet = getData().nowRecordSet; },
+			[this](RecordSet& recordSet) {
+				int32 day = getData().nowRecordSet.getRecord(U"Day");
+				getData().nowRecordSet.setRecord(U"Day", day + 1);
+				recordSet = getData().nowRecordSet;
+			},
 			U"セーブするデータを選択してください",
 			SceneName::SAVE_RECORD
 		)
