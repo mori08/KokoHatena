@@ -1,6 +1,6 @@
 ﻿
 [ D ]
-   0 < [Day]
+   1 < [Day]
 
 [ R ]
    7 < [RecordDate]

@@ -1,0 +1,7 @@
+# https://github.com/mori08/KokoHatena/blob/develop/KokoHatena/Src/ShareData/BoardManager/Board/MessageBoard/EventPlayer/README.md
+
+## init ##
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
