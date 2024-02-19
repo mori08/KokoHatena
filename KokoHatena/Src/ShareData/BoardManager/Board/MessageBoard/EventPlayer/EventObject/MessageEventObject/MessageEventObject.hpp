@@ -116,7 +116,8 @@ namespace Kokoha
 			/// y座標の設定
 			/// </summary>
 			/// <param name="y"> y座標 </param>
-			void setPosY(int32 y);
+			/// <returns> 最後の選択肢の下辺のy座標 </returns>
+			int32 setPosY(int32 y);
 
 			/// <summary>
 			/// いずれかの選択肢をクリックしたか
@@ -143,6 +144,9 @@ namespace Kokoha
 
 		// 待ち時間
 		double m_waitSecond;
+
+		// テキストの後ろに表示する黒背景
+		Rect m_backScreen;
 
 	public:
 

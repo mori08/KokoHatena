@@ -88,9 +88,10 @@
     widthSpread = 10
     postX = 20
     postY = 10
-    waitSecondPerCharCount = 0.1
+    waitSecondPerCharCount = 0.2
     maxPostCount = 5
     postRectColor = {rgb=0.8}
+    backScreenAlpha = 0.5
     textChangeAlphaRate = 0.05
     waitingCirclePos = {x=280, y=20}
     waitingCircleRadius = 2
@@ -102,6 +103,14 @@
         [[TextureEventObject.Researcher.anim]]
             name = "wait"
             anim = [{t=0,x=0,y=0}]
+            loop = false
+        [[TextureEventObject.Researcher.anim]]
+            name = "waitLeft"
+            anim = [{t=0,x=0,y=2}]
+            loop = false
+        [[TextureEventObject.Researcher.anim]]
+            name = "waitRight"
+            anim = [{t=0,x=2,y=2}]
             loop = false
         [[TextureEventObject.Researcher.anim]]
             name = "walkLeft"
@@ -121,9 +130,41 @@
                 {t=0.2,x=0,y=1},
                 {t=0.2,x=1,y=1},
                 {t=0.2,x=2,y=1}, 
-                {t=0.2,x=3,y=1}
+                {t=0.4,x=3,y=1},
+                {t=0.0,x=3,y=0}
             ]
             loop = false
+        [[TextureEventObject.Researcher.anim]]
+            name = "awake"
+            anim = [
+                {t=0.2,x=3,y=0}, 
+                {t=0.2,x=2,y=0},
+                {t=0.2,x=1,y=0}, 
+                {t=0.2,x=0,y=0}
+            ]
+            loop = false
+    [TextureEventObject.Nekoze]
+        textureName = "Nekoze"
+        size = {x=120, y=240}
+        [[TextureEventObject.Nekoze.anim]]
+            name = "sit"
+            anim = [{t=0.0, x=3, y=0}]
+            loop = false
+        [[TextureEventObject.Nekoze.anim]]
+            name = "stand"
+            anim = [{t=0.2, x=3, y=0},{t=0.2, x=2, y=0},{t=0.2, x=0, y=0}]
+            loop = false
+        [[TextureEventObject.Nekoze.anim]]
+            name = "walk"
+            anim = [{t=0.2, x=1, y=0},{t=0.2, x=0, y=0}]
+            loop = true
+    [TextureEventObject.BlackScreen]
+        textureName = "Black"
+        size = {x = 300, y = 400}
+    [TextureEventObject.Room]
+        textureName = "Room"
+        size = {x = 300, y = 400}
+
 
 [SecurityBoard]
     name = "セキュリティ"

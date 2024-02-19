@@ -144,6 +144,7 @@ namespace Kokoha
 			)
 		);
 
+		if (!instance().m_toml[name][U"anim"].isTableArray()) { return rtn; }
 		for (const auto& anim : instance().m_toml[name][U"anim"].tableArrayView())
 		{
 			const String animName = anim[U"name"].getString();

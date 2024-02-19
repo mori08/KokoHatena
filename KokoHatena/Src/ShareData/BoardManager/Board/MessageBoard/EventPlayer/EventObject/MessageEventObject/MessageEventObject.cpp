@@ -111,7 +111,7 @@ namespace Kokoha
 		}
 	}
 
-	void MessageEventObject::Select::setPosY(int32 y)
+	int32 MessageEventObject::Select::setPosY(int32 y)
 	{
 		static const int32 SELECT_WIDTH = Config::get<int32>(U"MessageBoard.size.x");
 		static const int32 POST_Y = Config::get<int32>(U"MessageEventObject.postY");
@@ -123,6 +123,7 @@ namespace Kokoha
 			
 			y += post.getSize().y;
 		}
+		return y;
 	}
 
 	Optional<String> MessageEventObject::Select::input(const RectF& rect)
@@ -161,6 +162,15 @@ namespace Kokoha
 		: m_select(none)
 		, m_waitSecond(0)
 	{
+		static const int32 EVENT_PLAYER_WIDTH
+			= Config::get<int32>(U"MessageBoard.size.x")
+			- Config::get<int32>(U"MessageBoard.speakerNameWidth");
+
+		m_backScreen = Rect(
+			Point::Zero(),
+			EVENT_PLAYER_WIDTH,
+			0
+		);
 	}
 
 	void MessageEventObject::receive(const TOMLValue& param)
@@ -259,6 +269,9 @@ namespace Kokoha
 	void MessageEventObject::draw() const
 	{
 		static const ColorF POST_RECT_COLOR = Config::get<ColorF>(U"MessageEventObject.postRectColor");
+		static const double BACK_SCREEN_ALPHA = Config::get<double>(U"MessageEventObject.backScreenAlpha");
+
+		m_backScreen.draw(ColorF(MyBlack, BACK_SCREEN_ALPHA));
 
 		for (const Post& post : m_postList)
 		{
@@ -309,8 +322,9 @@ namespace Kokoha
 	void MessageEventObject::updatePostPos()
 	{
 		static const int32 POST_Y = Config::get<int32>(U"MessageEventObject.postY");
+		const Vec2& WAITING_CIRCLE_POS = Config::get<Vec2>(U"MessageEventObject.waitingCirclePos");
 
-		int32 y = 0;
+		double y = 0;
 		for (Post& post : m_postList)
 		{
 			y += POST_Y;
@@ -320,7 +334,14 @@ namespace Kokoha
 
 		if (m_select)
 		{
-			m_select->setPosY(y);
+			y = m_select->setPosY(y);
 		}
+
+		if (m_prePost)
+		{
+			y += WAITING_CIRCLE_POS.y;
+		}
+
+		m_backScreen.h = y + POST_Y;
 	}
 }

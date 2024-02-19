@@ -45,6 +45,13 @@ namespace Kokoha
 		{
 			object.second->input(rect);
 		}
+
+#ifdef _DEBUG
+		if (Key0.down())
+		{
+			receive(U"access");
+		}
+#endif // _DEBUG
 	}
 
 	void EventPlayer::update(BoardRequest& boardRequest)

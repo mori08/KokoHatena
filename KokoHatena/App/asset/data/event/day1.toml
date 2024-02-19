@@ -5,3 +5,394 @@
     event = "object"
     type = "message"
     name = "ui_text"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "back_room"
+    [init.param]
+        objectKey = "Room"
+        pos = {x=0, y=0}
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_r"
+    [init.param]
+        objectKey = "Researcher"
+        pos = {x=50, y=310}
+
+[[init]]
+    event = "act"
+    name = "obj_r"
+    [init.param]
+        anim = "waitRight"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_nekoze"
+    [init.param]
+        objectKey = "Nekoze"
+        pos = {x=200, y=150}
+
+[[init]]
+    event = "act"
+    name = "obj_nekoze"
+    [init.param]
+        anim = "sit"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "scr_black"
+    [init.param]
+        objectKey = "BlackScreen"
+        pos = {x=0,y=0}
+
+[[init]]
+    event = "jump"
+    to = "e1"
+
+[[init]]
+    event = "receive"
+    [[init.request]]
+        text = "access"
+
+
+## e1 ##
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "少し待ってくれ"
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "よし、できた"
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.5
+
+[[e1]]
+    event = "act"
+    name = "scr_black"
+    [e1.param]
+        hide = true
+
+[[e1]]
+    event = "wait"
+    time = 3.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "助かったよ、君の仕事についてはまた今度手伝わせてくれ"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "obj_nekoze"
+    [e1.param]
+        anim = "stand"
+
+[[e1]]
+    event = "act"
+    name = "obj_nekoze"
+    [e1.param]
+        mirror = true
+        anim = "walk"
+        move = {t=2.5, x=150, y=0}
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "walkRight"
+        move = {t=1.0, x=20, y=0}
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "wait"
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "カメラを設置した\n私の姿が見えるか？"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "見える\n本当にロボットだったんだな"
+        speaker = true
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "厳密にはロボットではないのかもしれないが...\nいや、ロボットでいい"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "さっそく私の研究を手伝ってほしい"
+        speaker = false
+
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "何を手伝えばいい？"
+        speaker = true
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "私は心について研究している\n人間である君にいくつか質問に答えてほしい"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "まず...心とは何か\n説明できるか？"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "select"
+        select = [
+            {text = "心は...", flag = "e2_1"},
+            {text = "分からない", flag = "e2_2"}
+        ]
+
+[[e1]]
+    event = "jump"
+    to = "e2_1"
+    flag = "e2_1"
+
+[[e1]]
+    event = "jump"
+    to = "e2_2"
+    flag = "e2_2"
+
+
+## e2_1 「心とは...」 ##
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "心とは、知識・意思・感情の機能を持ったものだ"
+        speaker = true
+        wait = false
+
+[[e2_1]]
+    event = "act"
+    name = "obj_r"
+    [e2_1.param]
+        anim = "think"
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "それは心が満たすべき条件であって、定義ではないのではないか？"
+        speaker = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "そうかもしれないが..."
+        speaker = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "これ以上詳しいことを伝えるのは難しい\n目に見えるものではないんだ"
+        speaker = true
+
+[[e2_1]]
+    event = "jump"
+    to = "e3"
+
+
+## e2_2 「分からない」 ##
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "心に明確な定義はない"
+        speaker = true
+        wait = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "人間の内面を表す言葉なのだが...\n心が何かは人や場面によって異なってくる"
+        speaker = true
+
+[[e2_2]]
+    event = "act"
+    name = "obj_r"
+    [e2_2.param]
+        anim = "think"
+
+[[e2_2]]
+    event = "jump"
+    to = "e3"
+
+
+## e3 ##
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "なるほど..."
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "少し考え方を変える必要があるな..."
+        speaker = false
+
+[[e3]]
+    event = "wait"
+    time = 2.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "少し質問させてほしい"
+        speaker = true
+
+[[e3]]
+    event = "act"
+    name = "obj_r"
+    [e3.param]
+        anim = "awake"
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "お前に名前はあるのか？"
+        speaker = true
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "..."
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "ある"
+        speaker = false
+
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "だが、私はその名前を気に入ってはいない"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "そうなのか"
+        speaker = true
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "..."
+        speaker = false
+
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "少し一人で考え直したい\n明日また話そう"
+        speaker = false
+
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "scene"
+    scene = "selectSaveRecord"

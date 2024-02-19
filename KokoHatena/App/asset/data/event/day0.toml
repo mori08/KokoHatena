@@ -336,7 +336,7 @@
     name = "ui_text"
     [e4.param]
         type = "message"
-        text = "私は準備することがある\nまた明日連絡する"
+        text = "私は準備することがある\n続きはまた明日にしよう"
         speaker = false
 
 [[e4]]

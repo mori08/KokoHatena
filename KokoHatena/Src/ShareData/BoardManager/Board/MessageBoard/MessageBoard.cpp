@@ -14,7 +14,6 @@ namespace Kokoha
 	{
 		static const Array<String> SPEAKER_NAME_LIST = Config::getArray<String>(U"MessageBoard.speakerNameList");
 		m_speakerNameList = SPEAKER_NAME_LIST;
-
 		if (m_recordDay == 0)
 		{
 			for (const auto& speakerName : m_speakerNameList)
@@ -47,6 +46,8 @@ namespace Kokoha
 
 		if (m_recordDay != 0)
 		{
+			m_speakerNameList.clear();
+			m_selectedSpeakerName = U"ロボット";
 			m_speakerNameList.emplace_back(U"ロボット");
 		}
 	}
