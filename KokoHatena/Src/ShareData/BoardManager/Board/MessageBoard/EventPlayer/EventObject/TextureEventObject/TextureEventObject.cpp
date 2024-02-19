@@ -17,11 +17,17 @@ namespace Kokoha
 
 	void TextureEventObject::receive(const TOMLValue& param)
 	{
+		// anim = "" (String 開始するAnimation config.tomlで作成)
 		if (auto anim = param[U"anim"].getOpt<String>())
 		{
 			m_texture.start(anim.value());
 		}
-		
+
+		// pos = {t=1.0, x=0, y=0}
+		// t 時間(秒)
+		// x = x座標
+		// y = y座標
+		// t秒かけて座標(x,y)へ移動
 		auto posT = param[U"pos.t"].getOpt<double>();
 		auto posX = param[U"pos.x"].getOpt<int32>();
 		auto posY = param[U"pos.y"].getOpt<int32>();
@@ -34,6 +40,11 @@ namespace Kokoha
 			);
 		}
 
+		// move = {t=1.0, x=0, y=0}
+		// t (double 時間(秒))
+		// x (int x座標)
+		// y (int y座標)
+		// t秒かけて座標に(x,y)だけ加算
 		auto moveT = param[U"move.t"].getOpt<double>();
 		auto moveX = param[U"move.x"].getOpt<int32>();
 		auto moveY = param[U"move.y"].getOpt<int32>();
@@ -46,11 +57,13 @@ namespace Kokoha
 			);
 		}
 
+		// hide = true (bool trueなら非表示,falseなら表示)
 		if (auto hide = param[U"hide"].getOpt<bool>())
 		{
 			m_isHidden = hide.value();
 		}
 
+		// mirror = true (bool trueなら左右反転,falseならそのまま描画)
 		if (auto mirror = param[U"mirror"].getOpt<bool>())
 		{
 			m_texture.mirror(mirror.value());
