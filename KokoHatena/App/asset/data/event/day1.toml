@@ -304,7 +304,7 @@
     name = "ui_text"
     [e3.param]
         type = "message"
-        text = "少し考え方を変える必要があるな..."
+        text = "考え方を変える必要があるな..."
         speaker = false
 
 [[e3]]

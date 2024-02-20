@@ -88,7 +88,7 @@
     widthSpread = 10
     postX = 20
     postY = 10
-    waitSecondPerCharCount = 0.2
+    waitSecondPerCharCount = 0.15
     maxPostCount = 5
     postRectColor = {rgb=0.8}
     backScreenAlpha = 0.5
@@ -102,8 +102,15 @@
         size = {x = 80, y = 80}
         [[TextureEventObject.Researcher.anim]]
             name = "wait"
-            anim = [{t=0,x=0,y=0}]
-            loop = false
+            anim = [
+                {t=7.0,x=0,y=0},
+                {t=0.1,x=1,y=0},
+                {t=0.1,x=2,y=0},
+                {t=0.1,x=3,y=0},
+                {t=0.1,x=2,y=0},
+                {t=0.1,x=1,y=0}
+            ]
+            loop = true
         [[TextureEventObject.Researcher.anim]]
             name = "waitLeft"
             anim = [{t=0,x=0,y=2}]
