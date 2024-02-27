@@ -187,6 +187,19 @@ namespace Kokoha
 	}
 
 	/// <summary>
+	/// a±2nPiの中でbに最も近い角度を取得
+	/// </summary>
+	/// <param name="a"> 角度 </param>
+	/// <param name="b"> 基準となる角度 </param>
+	/// <returns> aをn回転させた角度(rad) [b-Pi,b+Pi) </returns>
+	inline double nearestAngle(double a, double b)
+	{
+		double s = (a - b + Math::Pi) / Math::TwoPi;
+		s -= Floor(s);
+		return Math::TwoPi * s + b - Math::Pi;
+	}
+
+	/// <summary>
 	/// デバッグ用動作
 	/// </summary>
 	/// <returns> 移動量 </returns>
