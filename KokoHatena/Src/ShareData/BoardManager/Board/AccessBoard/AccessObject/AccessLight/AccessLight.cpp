@@ -16,7 +16,7 @@ namespace Kokoha
 		, m_directionAngle(0)
 		, m_centralAngle(0)
 		, m_distance(0)
-		, m_alpha(0)
+		, m_color(MyWhite, 0)
 		, m_shadowMode(true)
 	{
 
@@ -49,13 +49,13 @@ namespace Kokoha
 
 	AccessLight& AccessLight::setAlpha(double alpha, double rate)
 	{
-		internalDividingPoint(m_alpha, alpha, rate);
+		internalDividingPoint(m_color.a, alpha, rate);
 		return *this;
 	}
 
 	void AccessLight::update(const Terrain& terrain)
 	{
-		if (!m_on || m_centralAngle == 0 || m_distance == 0 || m_alpha == 0)
+		if (!m_on || m_centralAngle == 0 || m_distance == 0 || m_color.a == 0)
 		{
 			return;
 		}
@@ -167,7 +167,7 @@ namespace Kokoha
 	{
 		if (m_shadowMode)
 		{
-			m_polygon.draw(ColorF(MyWhite, m_alpha)); return;
+			m_polygon.draw(m_color); return;
 		}
 
 		if (m_isPie)
@@ -176,7 +176,7 @@ namespace Kokoha
 			return;
 		}
 
-		Circle(m_sourcePos, m_distance).draw(ColorF(MyWhite, m_alpha));
+		Circle(m_sourcePos, m_distance).draw(m_color);
 	}
 
 	double AccessLight::area() const

@@ -217,6 +217,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject">
       <UniqueIdentifier>{fc76e466-31ad-41e7-8f65-d9d21dc1703c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject">
+      <UniqueIdentifier>{399d6dfe-0d25-4380-9a6f-6353f9a91f9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -368,6 +371,9 @@
     </ClCompile>
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.cpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -787,6 +793,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
