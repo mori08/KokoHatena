@@ -27,8 +27,8 @@ namespace Kokoha
 		// 光源からの光が届く距離 [0, 2Pi] 
 		double m_distance;
 
-		// 光の明るさ [0, 1]
-		double m_alpha;
+		// 光の色
+		ColorF m_color;
 
 		// trueのときのみ影の計算を行う
 		bool m_shadowMode;
@@ -133,6 +133,17 @@ namespace Kokoha
 		/// <param name="rate"> 割合の遷移 </param>
 		/// <returns> *this </returns>
 		AccessLight& setDistanceFromArea(double area, double rate = 0);
+
+		/// <summary>
+		/// 光の色を設定
+		/// </summary>
+		/// <param name="color"> 色を設定 </param>
+		/// <returns> *this </returns>
+		AccessLight& setColor(const ColorF& color)
+		{
+			m_color = color;
+			return *this;
+		}
 
 		/// <summary>
 		/// 光の明るさの設定

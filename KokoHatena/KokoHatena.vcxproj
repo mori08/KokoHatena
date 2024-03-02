@@ -136,6 +136,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.cpp" />
@@ -286,6 +287,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarLine.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessLight\PolarLine\PolarPos\PolarPos.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\AccessObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.hpp" />

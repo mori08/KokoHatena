@@ -11,15 +11,13 @@ namespace Kokoha
 	/// </summary>
 	class EnemyAccessObject : public AccessObject
 	{
-	private:
+	protected:
 
 		// 外殻描画用SliceTexture
 		SliceTexture m_bodyTexture;
 
 		// 顔描画用SliceTexture
 		SliceTexture m_faceTexture;
-
-	protected:
 
 		// 移動先の座標
 		Vec2 m_targetPos;
@@ -37,7 +35,7 @@ namespace Kokoha
 
 		virtual void draw() const override;
 
-		void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+		virtual void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 
 	};
 }

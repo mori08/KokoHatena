@@ -4,6 +4,7 @@
 #include "../../AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
 #include "../../AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 #include "../../AccessObject/EnemyAccessObject/RandomWalkingEnemyAccessObject/RandomWalkingEnemyAccessObject.hpp"
+#include "../../AccessObject/EnemyAccessObject/ChasingEnemyAccessObject/ChasingEnemyAccessObject.hpp"
 #include "../../AccessObject/GoalAccessObject/GoalAccessObject.hpp"
 #include "../../../../../../Config/Config.hpp"
 #include "../../../../../../MyLibrary/MyLibrary.hpp"
@@ -123,6 +124,7 @@ namespace Kokoha
 
 			{U"enemy", [](const Vec2& pos) { return std::make_shared<EnemyAccessObject> (pos); }},
 			{U"enemy_randomWalking", [](const Vec2& pos) { return std::make_shared<RandomWalkingEnemyAccessObject>(pos); }},
+			{U"enemy_chasing", [](const Vec2& pos) { return std::make_shared<ChasingEnemyAccessObject>(pos); }},
 
 			{U"goal",  [](const Vec2& pos) { return std::make_shared<GoalAccessObject>  (pos); }}
 		};

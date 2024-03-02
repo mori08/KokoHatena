@@ -123,9 +123,13 @@ namespace Kokoha
 
 	Vec2 AccessObject::walkToGoal(double speed, const Vec2& goal, const Terrain& terrain)
 	{
-		return goal.distanceFrom(m_body.center) < speed * Scene::DeltaTime()
-			? Vec2::Zero()
-			: walk(speed * terrain.getPath(m_body.center, goal), terrain);
+		if (goal.distanceFrom(m_body.center) < speed * Scene::DeltaTime())
+		{
+			Vec2 rtn = goal - m_body.center;
+			m_body.center = goal;
+			return rtn;
+		}
+		return walk(speed * terrain.getPath(m_body.center, goal), terrain);
 	}
 
 }
