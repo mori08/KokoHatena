@@ -10,7 +10,7 @@ namespace Kokoha
 		, m_targetPos(pos)
 	{
 		m_bodyTexture.start(U"anim");
-		m_faceTexture.start(U"anim");
+		m_faceTexture.start(U"normal");
 	}
 
 	void EnemyAccessObject::update(const Terrain& terrain)

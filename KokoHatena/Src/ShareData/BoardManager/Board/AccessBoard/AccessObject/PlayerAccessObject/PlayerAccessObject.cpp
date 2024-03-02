@@ -24,7 +24,8 @@ namespace Kokoha
 		light()
 			.setAlpha(LIGHT_ALPHA)
 			.setCentralAngle(Math::TwoPi)
-			.on();
+			.on()
+		;
 	}
 
 	void PlayerAccessObject::input(const BoardArg& board)

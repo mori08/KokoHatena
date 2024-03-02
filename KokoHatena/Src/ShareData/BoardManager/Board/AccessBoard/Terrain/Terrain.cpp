@@ -324,6 +324,15 @@ namespace Kokoha
 
 	void Terrain::draw() const
 	{
+#ifdef _DEBUG // デバッグモード 画面が
+		static bool debugMode = false;
+		debugMode ^= KeyQ.down();
+		if (debugMode)
+		{
+			Scene::Rect().draw(ColorF(MyWhite, 0.5));
+		}
+#endif // _DEBUG
+
 		for (int32 i : Range(0, N - 1))
 		{
 			const Rect rect(SQUARE_SIZE * toSquare(i), SQUARE_SIZE);
@@ -343,19 +352,5 @@ namespace Kokoha
 				break;
 			}
 		}
-
-#ifdef _DEBUG // デバッグモード 画面が
-		static bool debugMode = false;
-		debugMode ^= KeyQ.down();
-		if (!debugMode) { return; }
-		for (int32 i : Range(0, N - 1))
-		{
-			const Point square = toSquare(i);
-			Rect(SQUARE_SIZE * square, SQUARE_SIZE)
-				.draw(isWalkAble(i) ? ColorF(MyWhite, 0.5) : MyBlack)
-				.drawFrame(2, MyBlack);
-		}
-
-#endif // _DEBUG
 	}
 }

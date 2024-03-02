@@ -142,6 +142,7 @@ namespace Kokoha
 		AccessLight& setColor(const ColorF& color)
 		{
 			m_color = color;
+			return *this;
 		}
 
 		/// <summary>

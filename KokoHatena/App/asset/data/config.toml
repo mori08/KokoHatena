@@ -273,7 +273,7 @@
         size = {x = 28, y = 28}
         textureName = "EnemyAccessObject"
         [[EnemyAccessObject.face.anim]]
-            name = "anim"
+            name = "normal"
             anim = [
                     {t=10.0,x=0,y=1}, 
                     {t=0.1,x=1,y=1},
@@ -283,11 +283,29 @@
                     {t=0.1,x=1,y=1}
             ]
             loop = true
+        [[EnemyAccessObject.face.anim]]
+            name = "chase"
+            anim = [
+                    {t=0,x=4,y=1}
+            ]
+            loop = false
+    
 
 [RandomWalkingEnemyAccessObject]
     speed = 10
     waitingSecond = 5.0
     targetPosDist = 3.1
+
+[ChasingEnemyAccessObject]
+    patrolSpeed = 5
+    patrolDist = 5.1
+    chaseSpeed = 35
+    [ChasingEnemyAccessObject.VisualField]
+        alpha = 0.3
+        centralAngle = 1.1
+        distance = 135
+        angularSpeed = 0.4
+        angularRate = 0.1
 
 [MinionAccessObject]
     speed = 20
