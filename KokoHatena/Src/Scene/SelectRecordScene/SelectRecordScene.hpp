@@ -22,9 +22,6 @@ namespace Kokoha
 		// 画面内の一番上に表示するRecordBoxのイテレータ
 		std::list<RecordBox>::iterator m_topBoxItr;
 
-		// RecordBoxを選択した場合に遷移するシーン
-		const SceneName m_sceneName;
-
 		// スクロールバーを表示するy座標
 		double m_scrollBarPosY;
 
@@ -42,13 +39,16 @@ namespace Kokoha
 		/// <param name="sceneName"> 選択時に遷移するシーン名 </param>
 		SelectRecordScene(
 			const InitData& init, 
-			const RecordBox& recordBox, 
-			std::function<void(RecordSet&)> recordFunc, 
-			const String& explanation,
-			SceneName sceneName
+			const String& explanation
 		);
 
 	protected:
+
+		/// <summary>
+		/// 初期化用関数
+		/// 派生クラスでm_recordBoxListを作成した後に呼ぶ
+		/// </summary>
+		void initRecordBox();
 
 		virtual void update() override;
 

@@ -65,7 +65,7 @@ namespace Kokoha
 		return rtn;
 	}
 
-	RecordBox::RecordBox(std::function<void()> onSelected, const std::pair<String, String>& textPair)
+	RecordBox::RecordBox(std::function<SceneName()> onSelected, const std::pair<String, String>& textPair)
 		: m_width(0)
 		, m_onSelected(onSelected)
 		, m_textPair(textPair)
@@ -77,7 +77,7 @@ namespace Kokoha
 		m_pos.y = Scene::Height();
 	}
 
-	bool RecordBox::update()
+	Optional<SceneName> RecordBox::update()
 	{
 		// 座標の更新
 		static const double MOVE_RATE_POS = Config::get<double>(U"RecordBox.posMoveRate");
@@ -87,14 +87,13 @@ namespace Kokoha
 
 		if (m_width > getButtonRect().tr().x && getButtonRect().movedBy(m_pos).leftClicked())
 		{
-			m_onSelected();
-			return true;
+			return m_onSelected();
 		}
 
-		return false;
+		return none;
 	}
 
-	void RecordBox::setGoalPos(const int32 index)
+	Vec2 RecordBox::getPos(int32 index) const
 	{
 		// 画面内のRecordBoxの座標の一番上
 		static const Point DRAW_POS = Config::get<Point>(U"SelectRecordScene.drawPos");
@@ -104,8 +103,7 @@ namespace Kokoha
 		// 画面上側に隠す
 		if (index < 0)
 		{
-			setGoalPos(Vec2(DRAW_POS.x, -DRAW_SPACE - getHeight()));
-			return;
+			return Vec2(DRAW_POS.x, -DRAW_SPACE - getHeight());
 		}
 
 		const Vec2 pos = DRAW_POS + index * Vec2::Down(DRAW_SPACE + getHeight());
@@ -113,12 +111,21 @@ namespace Kokoha
 		// 画面下側に隠す
 		if (pos.y + getHeight() > Scene::Height())
 		{
-			setGoalPos(Vec2(DRAW_POS.x, Scene::Height() + DRAW_SPACE));
-			return;
+			return Vec2(DRAW_POS.x, Scene::Height() + DRAW_SPACE);
 		}
 
 		// 画面内に表示
-		setGoalPos(pos);
+		return pos;
+	}
+
+	void RecordBox::setPos(const int32 index)
+	{
+		m_pos = getPos(index);
+	}
+
+	void RecordBox::setGoalPos(const int32 index)
+	{
+		setGoalPos(getPos(index));
 	}
 
 	void RecordBox::setGoalPos(const Vec2& pos)
@@ -126,7 +133,7 @@ namespace Kokoha
 		m_goal = pos;
 	}
 
-	void RecordBox::draw(int32 index) const
+	void RecordBox::draw() const
 	{
 		// 番号を表示する座標
 		static const Point TEXT_FILE_POS = Config::get<Point>(U"RecordBox.textFilePos");
@@ -142,11 +149,7 @@ namespace Kokoha
 		// 背景
 		RectF(m_pos, m_width, getHeight()).draw(BACK_COLOR);
 
-		// テキスト
-		if (index != 0) {
-			FontAsset(U"18")(U"File " + ToString(index)).draw(m_pos + TEXT_FILE_POS);
-		}
-		FontAsset(U"12")(m_textPair.first ).draw(m_pos + TEXT_FIRST_POS );
+		FontAsset(U"16")(m_textPair.first ).draw(m_pos + TEXT_FIRST_POS );
 		FontAsset(U"20")(m_textPair.second).draw(m_pos + TEXT_SECOND_POS);
 
 		// ボタン

@@ -19,7 +19,7 @@ namespace Kokoha
 					writer.writeln(recordSet.encryption());
 				}
 
-				return SceneName::TITLE;
+				return SceneName::LOAD_BOARD;
 			}
 		);
 	}
