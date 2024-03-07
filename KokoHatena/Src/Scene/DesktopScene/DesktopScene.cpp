@@ -14,6 +14,8 @@ namespace Kokoha
 	{
 		if (Optional<SceneName> sceneName = getData().board.update(getData().nowRecordSet))
 		{
+			int32 day = getData().nowRecordSet.getRecord(U"Day");
+			getData().nowRecordSet.setRecord(U"Day", day + 1);
 			changeScene(sceneName.value());
 		}
 	}

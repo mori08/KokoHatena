@@ -6,31 +6,27 @@ namespace Kokoha
 {
 	SelectRecordScene::SelectRecordScene(
 		const InitData& init,
-		const RecordBox& recordBox,
-		std::function<void(RecordSet& recordSet)> recordFunc,
-		const String& explanation, 
-		SceneName sceneName
+		const String& explanation
 	)
 		: IScene(init)
 		, m_explanation(explanation)
-		, m_sceneName(sceneName)
 		, m_scrollBarPosY(Scene::Center().y)
 		, m_wheel(0)
 	{
-		// RecordSetに対応する
-		for (auto& recordSet : getData().recordSetList)
-		{
-			m_recordBoxList.emplace_back
-			(
-				[recordFunc, &recordSet]() { recordFunc(recordSet); },
-				std::pair<String, String>(recordSet.getTimeCode(), U"Day" + ToString(recordSet.getRecord(U"Day")))
-			);
-		}
 
-		// 先頭にRecordBoxに追加
-		m_recordBoxList.emplace_back(recordBox);
+	}
 
+	void SelectRecordScene::initRecordBox()
+	{
 		m_topBoxItr = m_recordBoxList.begin();
+
+		int32 recordBoxIndex = 0;
+
+		for (auto itr = m_recordBoxList.begin(); itr != m_recordBoxList.end(); ++itr)
+		{
+			itr->setPos(recordBoxIndex);
+			++recordBoxIndex;
+		}
 	}
 
 	void SelectRecordScene::update()
@@ -45,9 +41,9 @@ namespace Kokoha
 
 			// RecordBoxの更新
 			itr->setGoalPos(recordBoxIndex);
-			if (itr->update())
+			if (const auto sceneName = itr->update())
 			{
-				changeScene(m_sceneName);
+				changeScene(sceneName.value());
 			}
 		}
 
@@ -77,11 +73,10 @@ namespace Kokoha
 		FontAsset(U"15")(m_explanation).draw();
 
 		// 描画するファイル番号
-		int32 index = static_cast<int32>(m_recordBoxList.size());
 
 		for (const auto& recordBox : m_recordBoxList)
 		{
-			recordBox.draw(--index);
+			recordBox.draw();
 		}
 
 		// スクロールバーのx座標
@@ -142,26 +137,72 @@ namespace Kokoha
 	SelectLoadRecordScene::SelectLoadRecordScene(const InitData& init)
 		: SelectRecordScene(
 			init,
-			RecordBox([this]() {getData().nowRecordSet = RecordSet(); }, { U"",U"はじめから" }),
-			[this](RecordSet& recordSet) { getData().nowRecordSet = recordSet; },
-			U"ロードするデータを選択してください",
-			SceneName::LOAD_BOARD
+			U"ロードするデータを選択してください"
 		)
 	{
+		for (auto& recordSet : getData().recordSetList)
+		{
+			m_recordBoxList.emplace_back
+			(
+				RecordBox(
+					[this, &recordSet]() {
+						getData().nowRecordSet = recordSet;
+						return SceneName::LOAD_BOARD;
+					},
+					{recordSet.getTimeCode(), U"Day"+ToString(recordSet.getRecord(U"Day"))}
+				)
+			);
+		}
+
+		m_recordBoxList.emplace_back(
+			RecordBox(
+				[this]() { getData().nowRecordSet = RecordSet(); return SceneName::LOAD_BOARD; },
+				{U"", U"はじめから"}
+			)
+		);
+
+		initRecordBox();
 	}
 
 	SelectSaveRecordScene::SelectSaveRecordScene(const InitData& init)
 		: SelectRecordScene(
 			init,
-			RecordBox([this]() { getData().recordSetList.emplace_front(getData().nowRecordSet); }, { U"",U"新しいデータ" }),
-			[this](RecordSet& recordSet) {
-				int32 day = getData().nowRecordSet.getRecord(U"Day");
-				getData().nowRecordSet.setRecord(U"Day", day + 1);
-				recordSet = getData().nowRecordSet;
-			},
-			U"セーブするデータを選択してください",
-			SceneName::SAVE_RECORD
+			U"セーブするデータを選択してください"
 		)
 	{
+		for (auto& recordSet : getData().recordSetList)
+		{
+			m_recordBoxList.emplace_back
+			(
+				RecordBox(
+					[this, &recordSet]() {
+						recordSet = getData().nowRecordSet.setRecordTime();
+						return SceneName::SAVE_RECORD;
+					},
+					{ recordSet.getTimeCode(), U"Day" + ToString(recordSet.getRecord(U"Day")) }
+				)
+			);
+		}
+
+		m_recordBoxList.emplace_back(
+			RecordBox(
+				[this]() {
+					getData().recordSetList.emplace_front(getData().nowRecordSet.setRecordTime());
+					return SceneName::SAVE_RECORD;
+				},
+				{ U"", U"新しいデータ" }
+			)
+		);
+
+		m_recordBoxList.emplace_back(
+			RecordBox(
+				[this]() {
+					return SceneName::LOAD_BOARD;
+				},
+				{ U"", U"セーブしない" }
+			)
+		);
+
+		initRecordBox();
 	}
 }
