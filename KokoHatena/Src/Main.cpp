@@ -37,6 +37,7 @@ void Main()
 	sceneManager.add<SaveRecordScene>(SceneName::SAVE_RECORD);
 	sceneManager.add<SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
 	sceneManager.add<SelectSaveRecordScene>(SceneName::SELECT_SAVE_RECORD);
+	sceneManager.setFadeColor(MyBlack);
 
 	while (System::Update())
 	{

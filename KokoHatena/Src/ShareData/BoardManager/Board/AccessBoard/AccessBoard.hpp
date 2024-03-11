@@ -42,5 +42,9 @@ namespace Kokoha
 
 		void drawInBoard() const override;
 
+	private:
+
+		void initObjectMap();
+
 	};
 }

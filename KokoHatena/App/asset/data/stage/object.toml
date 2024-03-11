@@ -1,66 +1,50 @@
 [[day0]]
     type = "player"
-    x = 11
-    y = 14
+    marker = "1"
 [[day0]]
     type = "goal"
-    x = 11
-    y = 0
+    marker = "6"
 [[day0]]
     type = "enemy"
-    x = 10
-    y = 3
+    marker = "2"
 [[day0]]
     type = "enemy"
-    x = 11
-    y = 3
+    marker = "3"
 [[day0]]
     type = "enemy"
-    x = 12
-    y = 3
+    marker = "4"
 [[day0]]
     type = "enemy"
-    x = 13
-    y = 3
+    marker = "5"
 
 
 [[day1]]
     type = "player"
-    x = 0
-    y = 3
+    marker = "1"
 [[day1]]
     type = "goal"
-    x = 0
-    y = 11
+    marker = "2"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 8
-    y = 1
+    marker = "3"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 8
-    y = 6
+    marker = "4"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 8
-    y = 11
+    marker = "5"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 8
-    y = 16
+    marker = "6"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 15
-    y = 1
+    marker = "7"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 15
-    y = 6
+    marker = "8"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 15
-    y = 11
+    marker = "9"
 [[day1]]
     type = "enemy_randomWalking"
-    x = 15
-    y = 6
+    marker = "A"

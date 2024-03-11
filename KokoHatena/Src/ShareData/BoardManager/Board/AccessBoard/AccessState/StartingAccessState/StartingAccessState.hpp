@@ -23,8 +23,8 @@ namespace Kokoha
 		// ステージ名
 		static String stageName;
 
-		// 生成するAccessObjectのリスト
-		std::list<AccessObject::Ptr> m_makeObjectList;
+		// trueのときオブジェクトを初期化してもらう
+		bool m_initObjFlag;
 
 	public:
 
@@ -43,9 +43,9 @@ namespace Kokoha
 
 		bool isUpdatingObject() const override;
 
-		void draw() const override;
+		bool isInitializingObject() override;
 
-		void setMakeObjectList();
+		void draw() const override;
 
 	};
 }

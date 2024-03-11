@@ -38,6 +38,15 @@ namespace Kokoha
 		virtual bool isUpdatingObject() const = 0;
 
 		/// <summary>
+		/// オブジェクトを初期化するか
+		/// </summary>
+		/// <returns> trurのときは初期化 , falseのときは初期化しない </returns>
+		virtual bool isInitializingObject()
+		{
+			return false;
+		}
+
+		/// <summary>
 		/// 描画
 		/// </summary>
 		virtual void draw() const = 0;
