@@ -25,7 +25,14 @@ namespace Kokoha
 			// csvの内容に応じて地形データを書き換え
 			if      (cell == U"o") { m_cellList[i] = Cell::BLOCK;    }
 			else if (cell == U"x") { m_cellList[i] = Cell::SKELETON; }
-			else                   { m_cellList[i] = Cell::NONE;     }
+			else
+			{
+				if (cell != U"")
+				{
+					m_markerMap[cell] = toPixel(i);
+				}
+				m_cellList[i] = Cell::NONE;
+			}
 		}
 	}
 
@@ -320,6 +327,15 @@ namespace Kokoha
 			return Inf<double>;
 		}
 		return m_dist[toInteger(pixelS)][toInteger(pixelT)];
+	}
+
+	Vec2 Terrain::getMarker(const String& key) const
+	{
+		if (!m_markerMap.count(key))
+		{
+			throw Error(U"Faild to find marker [" + key + U"]");
+		}
+		return m_markerMap.find(key)->second;
 	}
 
 	void Terrain::draw() const

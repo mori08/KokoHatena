@@ -67,6 +67,9 @@ namespace Kokoha
 		// [i][j] : i -> j への最短経路（1マスの1辺を1とした距離）
 		std::array<std::array<double, N>, N> m_dist;
 
+		// 文字列から
+		std::unordered_map<String, Vec2> m_markerMap;
+
 		// 影作成用の垂直な辺
 		EdgeList m_verticalEdgeList;
 
@@ -262,6 +265,13 @@ namespace Kokoha
 		{
 			return m_horizontalEdgeList;
 		}
+
+		/// <summary>
+		/// markerをつけた座標の取得
+		/// </summary>
+		/// <param name="key"> markerの名前 </param>
+		/// <returns> markerをつけた座標 </returns>
+		Vec2 getMarker(const String& key) const;
 
 		/// <summary>
 		/// 描画
