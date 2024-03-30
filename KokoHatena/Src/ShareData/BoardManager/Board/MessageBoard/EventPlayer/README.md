@@ -54,7 +54,7 @@ jumpイベントで使用するフラグの更新
 
 ```toml
 [[Event]]
-    event = "jump"
+    event = "flag"
     name = ""
     value = ""
 ```

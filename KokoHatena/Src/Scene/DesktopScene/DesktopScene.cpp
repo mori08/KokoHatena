@@ -5,9 +5,6 @@ namespace Kokoha
 	DesktopScene::DesktopScene(const InitData& init)
 		: IScene(init)
 	{
-#ifdef _DEBUG
-		getData().nowRecordSet.writeDebugText();
-#endif // _DEBUG
 	}
 
 	void DesktopScene::update()
