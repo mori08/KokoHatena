@@ -28,3 +28,19 @@ default = 0
 name    = "TestJumpFlag"
 digit   = 1
 default = 1
+
+# EventPlayer day1 心とは
+# 1 心とは...
+# 0 できない
+[[Record]]
+name = "JumpFlagDay1_Kokoro"
+digit = 1
+default = 0
+
+# EventPlayer day2 教授は悪かった？
+# 1 悪い
+# 0 悪くない
+[[Record]]
+name = "JumpFlagDay2_Bad"
+digit = 1
+default = 0

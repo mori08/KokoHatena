@@ -48,3 +48,44 @@
 [[day1]]
     type = "enemy_randomWalking"
     marker = "A"
+
+
+[[day2]]
+    type = "player"
+    marker = "P"
+[[day2]]
+    type = "goal"
+    marker = "G"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "1"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "2"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "3"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "4"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "5"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "5"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "6"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "6"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "7"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "8"
+[[day2]]
+    type = "enemy_chasing"
+    marker = "9"

@@ -79,7 +79,9 @@
 
 [EventPlayer]
     recordJumpFlagNameList = [
-        "TestJumpFlag"
+        "TestJumpFlag",
+        "JumpFlagDay1_Kokoro",
+        "JumpFlagDay2_Bad"
     ]
 
 [MessageEventObject]
@@ -164,6 +166,28 @@
         [[TextureEventObject.Nekoze.anim]]
             name = "walk"
             anim = [{t=0.2, x=1, y=0},{t=0.2, x=0, y=0}]
+            loop = true
+    [TextureEventObject.Chibi]
+        textureName = "Chibi"
+        size = {x=40, y=40}
+        [[TextureEventObject.Chibi.anim]]
+            name = "wait"
+            anim = [{t=0.0, x=0, y=0}]
+            loop = false
+        [[TextureEventObject.Chibi.anim]]
+            name = "walk"
+            anim = [{t=0.1, x=1, y=0},{t=0.1, x=0, y=0}]
+            loop = true
+    [TextureEventObject.Noppo]
+        textureName = "Noppo"
+        size = {x=60, y=140}
+        [[TextureEventObject.Noppo.anim]]
+            name = "wait"
+            anim = [{t=0.0, x=0, y=0}]
+            loop = false
+        [[TextureEventObject.Noppo.anim]]
+            name = "walk"
+            anim = [{t=0.4, x=1, y=0},{t=0.4, x=2, y=0}]
             loop = true
     [TextureEventObject.BlackScreen]
         textureName = "Black"
@@ -305,7 +329,7 @@
         centralAngle = 1.1
         distance = 135
         angularSpeed = 0.4
-        angularRate = 0.1
+        angularRate = 0.001
 
 [MinionAccessObject]
     speed = 20
