@@ -161,6 +161,17 @@ namespace Kokoha
 			)
 		);
 
+#ifdef _DEBUG
+
+		m_recordBoxList.emplace_back(
+			RecordBox(
+				[this]() { getData().nowRecordSet = RecordSet::makeDebugRecordSet(); return SceneName::LOAD_BOARD; },
+				{ U"", U"Debug" }
+			)
+		);
+
+#endif // _DEBUG
+
 		initRecordBox();
 	}
 
