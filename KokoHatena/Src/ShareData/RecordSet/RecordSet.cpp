@@ -27,6 +27,22 @@ namespace Kokoha
 		setRecordTime();
 	}
 
+	RecordSet RecordSet::makeDebugRecordSet()
+	{
+		RecordSet rtn = RecordSet();
+		TOMLReader toml(U"asset/data/debug.toml");
+
+		for (const auto& record : toml[U"Record"].tableArrayView())
+		{
+			const String name = record[U"name"].getString();
+			const int32 value = record[U"value"].get<int32>();
+
+			rtn.setRecord(name, value);
+		}
+
+		return rtn;
+	}
+
 	String RecordSet::encryption() const
 	{
 		// 暗号用のリスト
@@ -225,10 +241,10 @@ namespace Kokoha
 		if (isReady) { return defaultMap; }
 
 		// Recordについてのtomlファイル
-		const TOMLReader m_toml(U"asset/data/record.toml");
+		const TOMLReader toml(U"asset/data/record.toml");
 		totalDigit = 0;
 
-		for (const auto& obj : m_toml[U"Record"].tableArrayView())
+		for (const auto& obj : toml[U"Record"].tableArrayView())
 		{
 			defaultMap.try_emplace
 			(

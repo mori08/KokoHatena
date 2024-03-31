@@ -31,6 +31,11 @@ namespace Kokoha
 		RecordSet();
 
 		/// <summary>
+		/// デバッグ用RecordSetの作成
+		/// </summary>
+		static RecordSet makeDebugRecordSet();
+
+		/// <summary>
 		/// 暗号文を復号し、フラグのリストに格納する
 		/// </summary>
 		/// <param name="str"> 暗号化された文字列 </param>
