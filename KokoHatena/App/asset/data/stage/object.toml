@@ -89,3 +89,20 @@
 [[day2]]
     type = "enemy_chasing"
     marker = "9"
+
+
+[[day3]]
+    type = "player"
+    marker = "P"
+[[day3]]
+    type = "hole"
+    marker = "1"
+[[day3]]
+    type = "hole"
+    marker = "2"
+[[day3]]
+    type = "hole"
+    marker = "3"
+[[day3]]
+    type = "goal"
+    marker = "G"

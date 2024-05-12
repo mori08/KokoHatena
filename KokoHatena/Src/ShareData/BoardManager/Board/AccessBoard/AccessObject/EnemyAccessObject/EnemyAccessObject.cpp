@@ -4,9 +4,14 @@
 namespace Kokoha
 {
 	EnemyAccessObject::EnemyAccessObject(const Vec2& pos)
+		: EnemyAccessObject(pos, U"EnemyAccessObject")
+	{
+	}
+
+	EnemyAccessObject::EnemyAccessObject(const Vec2& pos, const String& textureNameKey)
 		: AccessObject(Type::ENEMY, pos)
-		, m_bodyTexture(Config::get<SliceTexture>(U"EnemyAccessObject.body"))
-		, m_faceTexture(Config::get<SliceTexture>(U"EnemyAccessObject.face"))
+		, m_bodyTexture(Config::get<SliceTexture>(textureNameKey + U".body"))
+		, m_faceTexture(Config::get<SliceTexture>(textureNameKey + U".face"))
 		, m_targetPos(pos)
 	{
 		m_bodyTexture.start(U"anim");

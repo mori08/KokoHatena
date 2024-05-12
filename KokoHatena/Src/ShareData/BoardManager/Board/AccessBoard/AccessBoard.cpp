@@ -5,6 +5,7 @@
 #include "AccessObject/EnemyAccessObject/RandomWalkingEnemyAccessObject/RandomWalkingEnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/ChasingEnemyAccessObject/ChasingEnemyAccessObject.hpp"
 #include "AccessObject/GoalAccessObject/GoalAccessObject.hpp"
+#include "AccessObject/HoleAccessObject/HoleAccessObject.hpp"
 
 namespace
 {
@@ -140,9 +141,11 @@ namespace Kokoha
 		{
 			makeObjSet<PlayerAccessObject>(U"player"),
 
-			makeObjSet<EnemyAccessObject>             (U"enemy"),
+			makeObjSet<EnemyAccessObject>(U"enemy"),
 			makeObjSet<RandomWalkingEnemyAccessObject>(U"enemy_randomWalking"),
-			makeObjSet<ChasingEnemyAccessObject>      (U"enemy_chasing"),
+			makeObjSet<ChasingEnemyAccessObject>(U"enemy_chasing"),
+
+			makeObjSet<HoleAccessObject>(U"hole"),
 
 			makeObjSet<GoalAccessObject>(U"goal")
 		};

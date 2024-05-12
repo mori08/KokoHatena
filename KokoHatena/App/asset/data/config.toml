@@ -313,6 +313,36 @@
                     {t=0,x=4,y=1}
             ]
             loop = false
+
+[HoleAccessObject]
+    enemySizeLimit = 4
+    enemyMakeTime = 2.0
+    [HoleAccessObject.body]
+        size = {x = 28, y = 28}
+        textureName = "HoleAccessObject"
+        [[HoleAccessObject.body.anim]]
+            name = "anim"
+            anim = [
+                    {t=0.12,x=0,y=0},
+                    {t=0.12,x=1,y=0},
+                    {t=0.12,x=2,y=0},
+                    {t=0.12,x=3,y=0},
+            ]
+            loop = true
+    [HoleAccessObject.face]
+        size = {x = 28, y = 28}
+        textureName = "HoleAccessObject"
+        [[HoleAccessObject.face.anim]]
+            name = "normal"
+            anim = [
+                    {t=10.0,x=0,y=1}, 
+                    {t=0.1,x=1,y=1},
+                    {t=0.1,x=2,y=1}, 
+                    {t=0.1,x=3,y=1},
+                    {t=0.1,x=2,y=1},
+                    {t=0.1,x=1,y=1}
+            ]
+            loop = true
     
 
 [RandomWalkingEnemyAccessObject]

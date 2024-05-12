@@ -220,6 +220,9 @@
     <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject">
       <UniqueIdentifier>{399d6dfe-0d25-4380-9a6f-6353f9a91f9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject">
+      <UniqueIdentifier>{94d3550b-2211-4910-97b4-33eee8b8d7cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -374,6 +377,9 @@
     </ClCompile>
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.cpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject\HoleAccessObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -796,6 +802,9 @@
     </ClInclude>
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.hpp">
       <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject\HoleAccessObject.hpp">
+      <Filter>Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

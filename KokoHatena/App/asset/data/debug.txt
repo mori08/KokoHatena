@@ -3,14 +3,14 @@
    3 < [Day]
 
 [ J ]
-   1 < [JumpFlagDay1_Kokoro]
-   1 < [JumpFlagDay2_Bad]
+   0 < [JumpFlagDay1_Kokoro]
+   0 < [JumpFlagDay2_Bad]
 
 [ R ]
-  30 < [RecordDate]
-  21 < [RecordHour]
-  28 < [RecordMinute]
-   3 < [RecordMonth]
+  12 < [RecordDate]
+  23 < [RecordHour]
+   7 < [RecordMinute]
+   5 < [RecordMonth]
   24 < [RecordYear]
 
 [ T ]

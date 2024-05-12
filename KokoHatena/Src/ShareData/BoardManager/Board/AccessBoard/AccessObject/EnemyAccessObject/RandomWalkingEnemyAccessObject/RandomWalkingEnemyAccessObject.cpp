@@ -5,7 +5,7 @@ namespace Kokoha
 {
 	RandomWalkingEnemyAccessObject::RandomWalkingEnemyAccessObject(const Vec2& pos)
 		: EnemyAccessObject(pos)
-		, m_waitingSecond(0)
+		, m_waitingSecond(Inf<double>)
 	{
 		static const double SPEED = Config::get<double>(U"RandomWalkingEnemyAccessObject.speed");
 		m_speed = SPEED;
