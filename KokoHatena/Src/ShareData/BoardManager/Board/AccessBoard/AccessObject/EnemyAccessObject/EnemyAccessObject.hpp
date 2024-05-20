@@ -29,6 +29,8 @@ namespace Kokoha
 
 		EnemyAccessObject(const Vec2& pos);
 
+		EnemyAccessObject(const Vec2& pos, const String& textureNameKey);
+
 	protected:
 
 		virtual void update(const Terrain&) override;

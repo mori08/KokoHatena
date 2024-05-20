@@ -1,3 +1,7 @@
 [[Record]]
 name  = "Day"
-value = 2
+value = 3
+
+[[Record]]
+name = "JumpFlagDay1_Kokoro"
+value = 0

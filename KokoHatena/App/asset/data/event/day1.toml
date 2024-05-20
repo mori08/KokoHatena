@@ -227,7 +227,7 @@
     name = "ui_text"
     [e2_1.param]
         type = "message"
-        text = "心とは、知識・意思・感情の機能を持ったものだ"
+        text = "心とは、知性・意思・感情の機能を持ったものだ"
         speaker = true
         wait = false
 
