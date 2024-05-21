@@ -106,3 +106,32 @@
 [[day3]]
     type = "goal"
     marker = "G"
+
+
+[[day4]]
+    type = "player"
+    marker = "P"
+[[day4]]
+    type = "hole"
+    marker = "1"
+[[day4]]
+    type = "hole"
+    marker = "2"
+[[day4]]
+    type = "hole"
+    marker = "3"
+[[day4]]
+    type = "enemy_chasing"
+    marker = "4"
+[[day4]]
+    type = "enemy_chasing"
+    marker = "5"
+[[day4]]
+    type = "enemy_chasing"
+    marker = "6"
+[[day4]]
+    type = "enemy_chasing"
+    marker = "7"
+[[day4]]
+    type = "goal"
+    marker = "G"

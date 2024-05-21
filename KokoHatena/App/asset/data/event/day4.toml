@@ -1,0 +1,197 @@
+# https://github.com/mori08/KokoHatena/blob/develop/KokoHatena/Src/ShareData/BoardManager/Board/MessageBoard/EventPlayer/README.md
+
+## init ##
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "back_room"
+    [init.param]
+        objectKey = "Room"
+        pos = {x=0, y=0} 
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "scr_black"
+    [init.param]
+        objectKey = "BlackScreen"
+        pos = {x=0,y=0}
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_r"
+    [init.param]
+        objectKey = "Researcher"
+        pos = {x=50, y=310}
+
+[[init]]
+    event = "jump"
+    to = "e1"
+
+[[init]]
+    event = "receive"
+    [[init.request]]
+        text = "access"
+
+
+## e1 ##
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "scr_black"
+    [e1.param]
+        hide = true
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "..."
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "教授はロボットのココロを未完成だと言った"
+        speaker = false
+
+[[e1]]
+    event = "jump"
+    to = "e2_1"
+    flag = "JumpFlagDay1_Kokoro"
+
+[[e1]]
+    event = "jump"
+    to = "e2_2"
+
+
+## e2_1 （day1「心とは」）##
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "私たちのココロには知性も感情も...意思もあるはずだ"
+        speaker = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "それでも私たちのココロには何かが足りない"
+        speaker = false
+
+[[e2_1]]
+    event = "jump"
+    to = "e3"
+
+
+## e2_2 （day1「分からない」）##
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "しかし、心に明確な定義などない"
+        speaker = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "...私たちのココロは完成していない？"
+        speaker = false
+
+[[e2_2]]
+    event = "jump"
+    to = "e3"
+
+
+## e3 ##
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "ならば完成されたココロとはなんだ？\n私たちには何が足りない？"
+        speaker = false
+
+[[e3]]
+    event = "wait"
+    time = 1.5
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "..."
+        speaker = true
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "select"
+        select = [
+            {text = "教授が..."}
+        ]
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "教授が完成させたかったロボットの心は、お前の考えているようなものではないと思う"
+        speaker = true
+        wait = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "ロボットを人間社会に出すなら、安全で人を傷つけないものでなくてはいけない\n教授が目指していたのは多分それだ"
+        speaker = true
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "安全性..."
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "すまない\n今日はもう終わりにしてくれ"
+        speaker = false
+
+[[e3]]
+    event = "scene"
+    scene = "selectSaveRecord"
