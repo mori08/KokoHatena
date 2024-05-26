@@ -44,3 +44,11 @@ default = 0
 name = "JumpFlagDay2_Bad"
 digit = 1
 default = 0
+
+# EventPlayer day4 教授は悪かった？
+# 1 危険だ
+# 0 危険でない
+[[Record]]
+name = "JumpFlagDay4_Evil"
+digit = 1
+default = 0

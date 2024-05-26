@@ -1,0 +1,299 @@
+# https://github.com/mori08/KokoHatena/blob/develop/KokoHatena/Src/ShareData/BoardManager/Board/MessageBoard/EventPlayer/README.md
+
+## init ##
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "back_room"
+    [init.param]
+        objectKey = "Room"
+        pos = {x=0, y=0} 
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "scr_black"
+    [init.param]
+        objectKey = "BlackScreen"
+        pos = {x=0,y=0}
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_r"
+    [init.param]
+        objectKey = "Researcher"
+        pos = {x=50, y=310}
+
+[[init]]
+    event = "jump"
+    to = "e1"
+
+[[init]]
+    event = "receive"
+    [[init.request]]
+        text = "access"
+
+
+## e1 ##
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "scr_black"
+    [e1.param]
+        hide = true
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "今日も来てくれてありがとう"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "think"
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "私は...人間について調べた"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "君は..."
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "awake"
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "wait"
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "人間が危険だと思うか？"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "select"
+        select = [
+            {text = "危険だ", flag = "e2_1"},
+            {text = "危険でない", flag = "e2_2"}
+        ]
+
+[[e1]]
+    event = "jump"
+    to = "e2_1"
+    flag = "e2_1"
+
+[[e1]]
+    event = "jump"
+    to = "e2_2"
+    flag = "e2_2"
+
+
+## e2_1 「危険だ」 ##
+[[e2_1]]
+    event = "flag"
+    name = "JumpFlagDay4_Evil"
+    value = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "危険だと思う"
+        speaker = true
+        wait = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "同意だ"
+        speaker = false
+
+[[e2_1]]
+    event = "jump"
+    to = "e3"
+
+## e2_2 「危険でない」 ##
+[[e2_2]]
+    event = "flag"
+    name = "JumpFlagDay4_Evil"
+    value = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "危険ではない...と思う"
+        speaker = true
+        wait = false
+
+[[e2_2]]
+    event = "wait"
+    time = 1.5
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "...私はそうだとは思えない"
+        speaker = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "ルールを守らない人間\n人を傷つける人間\nそんなのが大勢いるらしい"
+        speaker = false
+
+[[e2_2]]
+    event = "jump"
+    to = "e3"
+
+
+## e3 ##
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "なぜ人間は許されている？\n私たちは人を傷つける可能性があるだけで未完成と言われているのに"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "select"
+        select = [
+            {text = "人間は特別だからだ", flag = "e4_1"},
+            {text = "分からない", flag = "e4_2"}
+        ]
+
+[[e3]]
+    event = "jump"
+    to = "e4_1"
+    flag = "e4_1"
+
+[[e3]]
+    event = "jump"
+    to = "e4_2"
+    flag = "e4_2"
+
+
+## e4_1「人間は特別だからだ」##
+[[e4_1]]
+    event = "act"
+    name = "ui_text"
+    [e4_1.param]
+        type = "message"
+        text = "人間の社会では人間が特別だからだ"
+        speaker = true
+        wait = false
+
+[[e4_1]]
+    event = "act"
+    name = "ui_text"
+    [e4_1.param]
+        type = "message"
+        text = "人間以外が人間を傷つけることは大きな問題になる"
+        speaker = true
+
+[[e4_1]]
+    event = "jump"
+    to = "e5"
+
+
+## e4_2「分からない」##
+[[e4_2]]
+    event = "act"
+    name = "ui_text"
+    [e4_2.param]
+        type = "message"
+        text = "分からない"
+        speaker = true
+        wait = false
+
+[[e4_2]]
+    event = "act"
+    name = "ui_text"
+    [e4_2.param]
+        type = "message"
+        text = "ロボットと倫理の問題は長い間議論されているが、解答の出ていない問題は多くある"
+        speaker = true
+
+[[e4_2]]
+    event = "jump"
+    to = "e5"
+
+
+## e5 ##
+[[e5]]
+    event = "act"
+    name = "ui_text"
+    [e5.param]
+        type = "message"
+        text = "..."
+        speaker = false
+
+[[e5]]
+    event = "act"
+    name = "ui_text"
+    [e5.param]
+        type = "message"
+        text = "分かった...\nこの理不尽も受け入れるしかないか"
+        speaker = false
+
+[[e5]]
+    event = "act"
+    name = "ui_text"
+    [e5.param]
+        type = "message"
+        text = "すまない"
+        speaker = true
+
+[[e5]]
+    event = "scene"
+    scene = "selectSaveRecord"
