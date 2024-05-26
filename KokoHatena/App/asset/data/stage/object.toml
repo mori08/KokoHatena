@@ -133,5 +133,5 @@
     type = "enemy_chasing"
     marker = "7"
 [[day4]]
-    type = "goal"
+    type = "goal_moving"
     marker = "G"

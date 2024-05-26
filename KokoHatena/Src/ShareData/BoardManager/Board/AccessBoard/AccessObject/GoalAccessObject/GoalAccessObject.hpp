@@ -18,11 +18,11 @@ namespace Kokoha
 
 	private:
 
-		void update(const Terrain& terrain) override;
+		virtual void update(const Terrain& terrain) override;
 
 		void draw() const override;
 
-		void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+		virtual void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 
 	};
 }

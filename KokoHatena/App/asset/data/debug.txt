@@ -9,8 +9,8 @@
 
 [ R ]
   26 < [RecordDate]
-  17 < [RecordHour]
-  57 < [RecordMinute]
+  23 < [RecordHour]
+  35 < [RecordMinute]
    5 < [RecordMonth]
   24 < [RecordYear]
 

@@ -317,7 +317,7 @@
 
 [HoleAccessObject]
     enemySizeLimit = 4
-    enemyMakeTime = 2.0
+    enemyMakeTime = 4.0
     [HoleAccessObject.body]
         size = {x = 28, y = 28}
         textureName = "HoleAccessObject"
@@ -396,3 +396,8 @@
                     {t=0.2,x=2,y=0}
             ]
             loop = true
+
+[MovingGoalAccessObject]
+    speed = 25
+    maxWaitingSecond = 2.0
+    targetPosDist = 4.1
