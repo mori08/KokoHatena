@@ -60,60 +60,124 @@
     name = "ui_text"
     [e1.param]
         type = "message"
-        text = "..."
+        text = "今日も来てくれてありがとう"
         speaker = false
 
 [[e1]]
-    event = "wait"
-    time = 1.0
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "think"
 
 [[e1]]
     event = "act"
     name = "ui_text"
     [e1.param]
         type = "message"
-        text = "教授はロボットのココロを未完成だと言った"
+        text = "私は...人間について調べた"
         speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "君は..."
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "awake"
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "wait"
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "人間が危険だと思うか？"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "select"
+        select = [
+            {text = "危険だ", flag = "e2_1"},
+            {text = "危険でない", flag = "e2_2"}
+        ]
 
 [[e1]]
     event = "jump"
     to = "e2_1"
-    flag = "JumpFlagDay1_Kokoro"
+    flag = "e2_1"
 
 [[e1]]
     event = "jump"
     to = "e2_2"
+    flag = "e2_2"
 
 
-## e2_1 （day1「心とは」）##
+## e2_1 「危険だ」 ##
+[[e2_1]]
+    event = "flag"
+    name = "JumpFlagDay4_Evil"
+    value = true
+
 [[e2_1]]
     event = "act"
     name = "ui_text"
     [e2_1.param]
         type = "message"
-        text = "私たちのココロには知性も感情も...意思もあるはずだ"
-        speaker = false
+        text = "危険だと思う"
+        speaker = true
+        wait = false
 
 [[e2_1]]
     event = "act"
     name = "ui_text"
     [e2_1.param]
         type = "message"
-        text = "それでも私たちのココロには何かが足りない"
+        text = "同意だ"
         speaker = false
 
 [[e2_1]]
     event = "jump"
     to = "e3"
 
+## e2_2 「危険でない」 ##
+[[e2_2]]
+    event = "flag"
+    name = "JumpFlagDay4_Evil"
+    value = false
 
-## e2_2 （day1「分からない」）##
 [[e2_2]]
     event = "act"
     name = "ui_text"
     [e2_2.param]
         type = "message"
-        text = "しかし、心に明確な定義などない"
+        text = "危険ではない...と思う"
+        speaker = true
+        wait = false
+
+[[e2_2]]
+    event = "wait"
+    time = 1.5
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "...私はそうだとは思えない"
         speaker = false
 
 [[e2_2]]
@@ -121,7 +185,7 @@
     name = "ui_text"
     [e2_2.param]
         type = "message"
-        text = "...私たちのココロは完成していない？"
+        text = "ルールを守らない人間\n人を傷つける人間\nそんなのが大勢いるらしい"
         speaker = false
 
 [[e2_2]]
@@ -135,20 +199,8 @@
     name = "ui_text"
     [e3.param]
         type = "message"
-        text = "ならば完成されたココロとはなんだ？\n私たちには何が足りない？"
+        text = "なぜ人間は許されている？\n私たちは人を傷つける可能性があるだけで未完成と言われているのに"
         speaker = false
-
-[[e3]]
-    event = "wait"
-    time = 1.5
-
-[[e3]]
-    event = "act"
-    name = "ui_text"
-    [e3.param]
-        type = "message"
-        text = "..."
-        speaker = true
 
 [[e3]]
     event = "act"
@@ -156,42 +208,92 @@
     [e3.param]
         type = "select"
         select = [
-            {text = "教授が..."}
+            {text = "人間は特別だからだ", flag = "e4_1"},
+            {text = "分からない", flag = "e4_2"}
         ]
 
 [[e3]]
+    event = "jump"
+    to = "e4_1"
+    flag = "e4_1"
+
+[[e3]]
+    event = "jump"
+    to = "e4_2"
+    flag = "e4_2"
+
+
+## e4_1「人間は特別だからだ」##
+[[e4_1]]
     event = "act"
     name = "ui_text"
-    [e3.param]
+    [e4_1.param]
         type = "message"
-        text = "教授が完成させたかったロボットの心は、お前の考えているようなものではないと思う"
+        text = "人間の社会では人間が特別だからだ"
         speaker = true
         wait = false
 
-[[e3]]
+[[e4_1]]
     event = "act"
     name = "ui_text"
-    [e3.param]
+    [e4_1.param]
         type = "message"
-        text = "ロボットを人間社会に出すなら、安全で人を傷つけないものでなくてはいけない\n教授が目指していたのは多分それだ"
+        text = "人間以外が人間を傷つけることは大きな問題になる"
         speaker = true
 
-[[e3]]
+[[e4_1]]
+    event = "jump"
+    to = "e5"
+
+
+## e4_2「分からない」##
+[[e4_2]]
     event = "act"
     name = "ui_text"
-    [e3.param]
+    [e4_2.param]
         type = "message"
-        text = "安全性..."
-        speaker = false
+        text = "分からない"
+        speaker = true
+        wait = false
 
-[[e3]]
+[[e4_2]]
     event = "act"
     name = "ui_text"
-    [e3.param]
+    [e4_2.param]
         type = "message"
-        text = "すまない\n今日はもう終わりにしてくれ"
+        text = "ロボットと倫理の問題は長い間議論されているが、解答の出ていない問題は多くある"
+        speaker = true
+
+[[e4_2]]
+    event = "jump"
+    to = "e5"
+
+
+## e5 ##
+[[e5]]
+    event = "act"
+    name = "ui_text"
+    [e5.param]
+        type = "message"
+        text = "..."
         speaker = false
 
-[[e3]]
+[[e5]]
+    event = "act"
+    name = "ui_text"
+    [e5.param]
+        type = "message"
+        text = "分かった...\nこの理不尽も受け入れるしかないか"
+        speaker = false
+
+[[e5]]
+    event = "act"
+    name = "ui_text"
+    [e5.param]
+        type = "message"
+        text = "すまない"
+        speaker = true
+
+[[e5]]
     event = "scene"
     scene = "selectSaveRecord"

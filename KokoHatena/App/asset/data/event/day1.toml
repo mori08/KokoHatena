@@ -220,7 +220,7 @@
 [[e2_1]]
     event = "flag"
     name = "JumpFlagDay1_Kokoro"
-    value = 1
+    value = true
 
 [[e2_1]]
     event = "act"
@@ -270,7 +270,7 @@
 [[e2_2]]
     event = "flag"
     name = "JumpFlagDay1_Kokoro"
-    value = 0
+    value = false
 
 [[e2_2]]
     event = "act"

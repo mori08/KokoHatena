@@ -81,7 +81,8 @@
     recordJumpFlagNameList = [
         "TestJumpFlag",
         "JumpFlagDay1_Kokoro",
-        "JumpFlagDay2_Bad"
+        "JumpFlagDay2_Bad",
+        "JumpFlagDay4_Evil"
     ]
 
 [MessageEventObject]

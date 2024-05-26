@@ -5,6 +5,10 @@ namespace Kokoha
 	SaveRecordScene::SaveRecordScene(const InitData& init)
 		: LoadScene(init)
 	{
+#ifdef _DEBUG
+		getData().nowRecordSet.writeDebugText();
+#endif // _DEBUG
+
 		const std::list<RecordSet>& recordSetList = getData().recordSetList;
 
 		setLoadThread
