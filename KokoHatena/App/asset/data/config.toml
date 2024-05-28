@@ -362,6 +362,12 @@
         angularSpeed = 0.4
         angularRate = 0.001
 
+[SneakingEnemyAccessObject]
+    speed = 60
+    waitingSecond = 1.0
+    targetPosDist = 5.1
+    chaseRate = 0.1
+
 [MinionAccessObject]
     speed = 20
     lightAlpha = 0.25

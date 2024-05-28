@@ -8,9 +8,9 @@
    0 < [JumpFlagDay4_Evil]
 
 [ R ]
-  27 < [RecordDate]
-  21 < [RecordHour]
-  34 < [RecordMinute]
+  28 < [RecordDate]
+  23 < [RecordHour]
+  39 < [RecordMinute]
    5 < [RecordMonth]
   24 < [RecordYear]
 
