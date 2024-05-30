@@ -133,5 +133,37 @@
     type = "enemy_chasing"
     marker = "7"
 [[day4]]
-    type = "goal"
+    type = "goal_moving"
     marker = "G"
+
+
+[[day5]]
+    type = "player"
+    marker = "P"
+[[day5]]
+    type = "goal_moving"
+    marker = "G"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "1"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "2"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "3"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "4"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "5"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "6"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "7"
+[[day5]]
+    type = "enemy_sneaking"
+    marker = "8"

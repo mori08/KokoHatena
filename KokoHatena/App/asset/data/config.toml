@@ -190,6 +190,17 @@
             name = "walk"
             anim = [{t=0.4, x=1, y=0},{t=0.4, x=2, y=0}]
             loop = true
+    [TextureEventObject.Helper]
+        textureName = "Helper"
+        size = {x=100,y=200}
+        [[TextureEventObject.Helper.anim]]
+            name = "raise"
+            anim = [{t=0.4, x=1, y=0},{t=0.4, x=2, y=0}]
+            loop = false
+        [[TextureEventObject.Helper.anim]]
+            name = "put"
+            anim = [{t=0.4, x=1, y=0},{t=0.4, x=0, y=0}]
+            loop = false
     [TextureEventObject.BlackScreen]
         textureName = "Black"
         size = {x = 300, y = 400}
@@ -317,7 +328,7 @@
 
 [HoleAccessObject]
     enemySizeLimit = 4
-    enemyMakeTime = 2.0
+    enemyMakeTime = 4.0
     [HoleAccessObject.body]
         size = {x = 28, y = 28}
         textureName = "HoleAccessObject"
@@ -362,13 +373,19 @@
         angularSpeed = 0.4
         angularRate = 0.001
 
+[SneakingEnemyAccessObject]
+    speed = 80
+    waitingSecond = 0.5
+    targetPosDist = 5.1
+    chaseRate = 0.1
+
 [MinionAccessObject]
     speed = 20
     lightAlpha = 0.25
     trackTime = 2.0
     trackSpeedRate = 0.8
     [MinionAccessObject.Protecting]
-        playerDist = 4.5
+        playerDist = 2.5
         area = 7200
     [MinionAccessObject.Chasing]
         area = 4800
@@ -396,3 +413,8 @@
                     {t=0.2,x=2,y=0}
             ]
             loop = true
+
+[MovingGoalAccessObject]
+    speed = 25
+    maxWaitingSecond = 2.0
+    targetPosDist = 4.1

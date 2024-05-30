@@ -4,7 +4,9 @@
 #include "AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/RandomWalkingEnemyAccessObject/RandomWalkingEnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/ChasingEnemyAccessObject/ChasingEnemyAccessObject.hpp"
+#include "AccessObject/EnemyAccessObject/SneakingEnemyAccessObject/SneakingEnemyAccessObject.hpp"
 #include "AccessObject/GoalAccessObject/GoalAccessObject.hpp"
+#include "AccessObject/GoalAccessObject/MovingGoalAccessObject/MovingGoalAccessObject.hpp"
 #include "AccessObject/HoleAccessObject/HoleAccessObject.hpp"
 
 namespace
@@ -144,10 +146,12 @@ namespace Kokoha
 			makeObjSet<EnemyAccessObject>(U"enemy"),
 			makeObjSet<RandomWalkingEnemyAccessObject>(U"enemy_randomWalking"),
 			makeObjSet<ChasingEnemyAccessObject>(U"enemy_chasing"),
+			makeObjSet<SneakingEnemyAccessObject>(U"enemy_sneaking"),
 
 			makeObjSet<HoleAccessObject>(U"hole"),
 
-			makeObjSet<GoalAccessObject>(U"goal")
+			makeObjSet<GoalAccessObject>(U"goal"),
+			makeObjSet<MovingGoalAccessObject>(U"goal_moving")
 		};
 
 		// オブジェクト情報のclear

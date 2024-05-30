@@ -14,7 +14,7 @@ using namespace Kokoha;
 void Main()
 {
 	// ウィンドウの設定
-	Window::Resize(Config::get<Size>(U"Window.size"));
+	//Window::Resize(Config::get<Size>(U"Window.size"));
 	Window::SetTitle(Config::get<String>(U"Window.name"));
 
 	// 描画設定
