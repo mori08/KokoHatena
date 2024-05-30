@@ -190,6 +190,17 @@
             name = "walk"
             anim = [{t=0.4, x=1, y=0},{t=0.4, x=2, y=0}]
             loop = true
+    [TextureEventObject.Helper]
+        textureName = "Helper"
+        size = {x=100,y=200}
+        [[TextureEventObject.Helper.anim]]
+            name = "raise"
+            anim = [{t=0.4, x=1, y=0},{t=0.4, x=2, y=0}]
+            loop = false
+        [[TextureEventObject.Helper.anim]]
+            name = "put"
+            anim = [{t=0.4, x=1, y=0},{t=0.4, x=0, y=0}]
+            loop = false
     [TextureEventObject.BlackScreen]
         textureName = "Black"
         size = {x = 300, y = 400}
@@ -363,8 +374,8 @@
         angularRate = 0.001
 
 [SneakingEnemyAccessObject]
-    speed = 60
-    waitingSecond = 1.0
+    speed = 80
+    waitingSecond = 0.5
     targetPosDist = 5.1
     chaseRate = 0.1
 
@@ -374,7 +385,7 @@
     trackTime = 2.0
     trackSpeedRate = 0.8
     [MinionAccessObject.Protecting]
-        playerDist = 4.5
+        playerDist = 2.5
         area = 7200
     [MinionAccessObject.Chasing]
         area = 4800
