@@ -190,6 +190,12 @@ namespace Kokoha
 	private:
 
 		/// <summary>
+		/// 指定した座標を m_posAry に追加
+		/// </summary>
+		/// <param name="pos"> 追加したい座標 </param>
+		void addToPosAry(const Vec2& pos);
+
+		/// <summary>
 		/// 距離がm_distanceの座標を追加
 		/// </summary>
 		/// <param name="angle"> 角度 </param>

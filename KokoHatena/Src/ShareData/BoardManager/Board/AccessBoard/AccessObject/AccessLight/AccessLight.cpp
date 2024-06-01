@@ -165,6 +165,8 @@ namespace Kokoha
 
 	void AccessLight::draw() const
 	{
+		if (!m_on) { return; }
+
 		if (m_shadowMode)
 		{
 			m_polygon.draw(m_color); return;
@@ -204,6 +206,14 @@ namespace Kokoha
 		return m_polygon.contains(pos);
 	}
 
+	void AccessLight::addToPosAry(const Vec2& pos)
+	{
+		if (m_posAry.empty() || m_posAry.back().distanceFrom(pos) > EPSILON)
+		{
+			m_posAry << pos;
+		}
+	}
+
 	void AccessLight::addPoint(double angle)
 	{
 		const double minR = heapTopR(angle);
@@ -215,13 +225,13 @@ namespace Kokoha
 
 		if (m_distance < minR + EPSILON)
 		{
-			m_posAry << PolarPos(angle, m_distance).toOrthoPos(m_sourcePos, m_directionAngle);
+			addToPosAry(PolarPos(angle, m_distance).toOrthoPos(m_sourcePos, m_directionAngle));
 		}
 	}
 
 	void AccessLight::addPiePoint(double angle)
 	{
-		m_posAry << PolarPos(angle, Min(m_distance, heapTopR(angle))).toOrthoPos(m_sourcePos, m_directionAngle);
+		addToPosAry(PolarPos(angle, Min(m_distance, heapTopR(angle))).toOrthoPos(m_sourcePos, m_directionAngle));
 	}
 
 	void AccessLight::addStartPoint(size_t edgeId)
@@ -237,12 +247,12 @@ namespace Kokoha
 		}
 		else if (Abs(r - minR) < EPSILON)
 		{
-			m_posAry << m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
+			addToPosAry(m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle));
 		}
 		else if (r < minR)
 		{
-			m_posAry << PolarPos(a, minR).toOrthoPos(m_sourcePos, m_directionAngle);
-			m_posAry << m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle);
+			addToPosAry(PolarPos(a, minR).toOrthoPos(m_sourcePos, m_directionAngle));
+			addToPosAry(m_edgeAry[edgeId].p1.toOrthoPos(m_sourcePos, m_directionAngle));
 		}
 
 		// 辺をヒープに追加
@@ -265,12 +275,12 @@ namespace Kokoha
 		}
 		else if (Abs(r - minR) < EPSILON)
 		{
-			m_posAry << m_edgeAry[edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle);
+			addToPosAry(m_edgeAry[edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle));
 		}
 		else if (r < minR)
 		{
-			m_posAry << m_edgeAry[edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle);
-			m_posAry << PolarPos(a, minR).toOrthoPos(m_sourcePos, m_directionAngle);
+			addToPosAry(m_edgeAry[edgeId].p2.toOrthoPos(m_sourcePos, m_directionAngle));
+			addToPosAry(PolarPos(a, minR).toOrthoPos(m_sourcePos, m_directionAngle));
 		}
 	}
 
