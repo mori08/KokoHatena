@@ -6,11 +6,12 @@
    0 < [JumpFlagDay1_Kokoro]
    0 < [JumpFlagDay2_Bad]
    0 < [JumpFlagDay4_Evil]
+   0 < [JumpFlagDay6_Want]
 
 [ R ]
-   1 < [RecordDate]
-  22 < [RecordHour]
-  34 < [RecordMinute]
+   2 < [RecordDate]
+   0 < [RecordHour]
+  45 < [RecordMinute]
    6 < [RecordMonth]
   24 < [RecordYear]
 

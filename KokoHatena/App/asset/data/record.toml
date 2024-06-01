@@ -52,3 +52,11 @@ default = 0
 name = "JumpFlagDay4_Evil"
 digit = 1
 default = 0
+
+# EventPlayer day4 ココロを持ったロボットが欲しい
+# 1 欲しい
+# 0 いらない
+[[Record]]
+name = "JumpFlagDay6_Want"
+digit = 1
+default = 0

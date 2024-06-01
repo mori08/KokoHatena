@@ -374,8 +374,8 @@
         angularRate = 0.001
 
 [DefencingEnemyAccessObject]
-    defencingSpeed = 10
-    chasingSpeed = 25
+    defencingSpeed = 20
+    chasingSpeed = 30
     goalDist = 5.1
     [DefencingEnemyAccessObject.VisualField]
         alpha = 0.2
@@ -423,6 +423,6 @@
             loop = true
 
 [MovingGoalAccessObject]
-    speed = 25
-    maxWaitingSecond = 2.0
+    speed = 10
+    maxWaitingSecond = 4.0
     targetPosDist = 4.1
