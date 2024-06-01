@@ -5,6 +5,7 @@
 #include "AccessObject/EnemyAccessObject/RandomWalkingEnemyAccessObject/RandomWalkingEnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/ChasingEnemyAccessObject/ChasingEnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/SneakingEnemyAccessObject/SneakingEnemyAccessObject.hpp"
+#include "AccessObject/EnemyAccessObject/DefencingEnemyAccessObject/DefencingEnemyAccessObject.hpp"
 #include "AccessObject/GoalAccessObject/GoalAccessObject.hpp"
 #include "AccessObject/GoalAccessObject/MovingGoalAccessObject/MovingGoalAccessObject.hpp"
 #include "AccessObject/HoleAccessObject/HoleAccessObject.hpp"
@@ -148,7 +149,8 @@ namespace Kokoha
 			makeObjSet<ChasingEnemyAccessObject>(U"enemy_chasing"),
 			makeObjSet<SneakingEnemyAccessObject>(U"enemy_sneaking"),
 
-			makeObjSet<HoleAccessObject>(U"hole"),
+			makeObjSet<HoleAccessObject<RandomWalkingEnemyAccessObject>>(U"hole"),
+			makeObjSet<HoleAccessObject<DefencingEnemeyAccessObject>>(U"hole_defencing"),
 
 			makeObjSet<GoalAccessObject>(U"goal"),
 			makeObjSet<MovingGoalAccessObject>(U"goal_moving")

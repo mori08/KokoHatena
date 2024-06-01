@@ -373,6 +373,14 @@
         angularSpeed = 0.4
         angularRate = 0.001
 
+[DefencingEnemyAccessObject]
+    defencingSpeed = 10
+    chasingSpeed = 25
+    goalDist = 5.1
+    [DefencingEnemyAccessObject.VisualField]
+        alpha = 0.2
+        distance = 60
+
 [SneakingEnemyAccessObject]
     speed = 80
     waitingSecond = 0.5

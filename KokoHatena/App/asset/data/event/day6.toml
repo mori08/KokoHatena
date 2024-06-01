@@ -1,0 +1,356 @@
+# https://github.com/mori08/KokoHatena/blob/develop/KokoHatena/Src/ShareData/BoardManager/Board/MessageBoard/EventPlayer/README.md
+
+## init ##
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "back_room"
+    [init.param]
+        objectKey = "Room"
+        pos = {x=0, y=0} 
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "scr_black"
+    [init.param]
+        objectKey = "BlackScreen"
+        pos = {x=0,y=0}
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_r"
+    [init.param]
+        objectKey = "Researcher"
+        pos = {x=50, y=310}
+
+[[init]]
+    event = "act"
+    name = "obj_r"
+    [init.param]
+        anim = "waitRight"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "helper"
+    [init.param]
+        objectKey = "Helper"
+        pos = {x=180, y=190}
+
+[[init]]
+    event = "jump"
+    to = "e1"
+
+[[init]]
+    event = "receive"
+    [[init.request]]
+        text = "access"
+
+
+## e1 ##
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "scr_black"
+    [e1.param]
+        hide = true
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "全て報告した通りです"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "我々が外で自由に活動するのは難しいです"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "helper"
+    [e1.param]
+        anim = "raise"
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "..."
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "はい、分かりました..."
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "helper"
+    [e1.param]
+        anim = "put"
+
+[[e1]]
+    event = "act"
+    name = "helper"
+    [e1.param]
+        mirror = true
+        move = {t=1.5,x=150,y=0}
+
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "あぁ..."
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "wait"
+
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "君か、今日も来てくれてありがとう"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "最近、気になっていることがある\n今日はそのことについて話したい"
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "君は"
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "ココロを持ったロボットは役に立つと思うか？"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "select"
+        select = [
+            {text = "役に立つ", flag = "e2_1"},
+            {text = "役に立たない", flag = "e2_2"}
+        ]
+
+[[e1]]
+    event = "jump"
+    to = "e2_1"
+    flag = "e2_1"
+
+[[e1]]
+    event = "jump"
+    to = "e2_2"
+    flag = "e2_2"
+
+
+## e2_1「役に立つ」##
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "役に立つと思う"
+        speaker = true
+        wait = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "...何か、心を持ったロボットにしかできないことがあるんじゃないか？"
+        speaker = true
+
+[[e2_1]]
+    event = "act"
+    name = "obj_r"
+    [e2_1.param]
+        anim = "think"
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "ココロを持った私たちロボットの中には真剣に働かないものもいる\n人間の命令通りに動くとは限らない...それがココロだ"
+        speaker = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "...確かにそうか\nなら人間は何故心を持ったロボットを夢見るんだろうな"
+        speaker = true
+
+[[e2_1]]
+    event = "act"
+    name = "obj_r"
+    [e2_1.param]
+        anim = "awake"
+
+[[e2_1]]
+    event = "jump"
+    to = "e3"
+
+
+## e2_2「役に立たない」
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "役に立たないと思う"
+        speaker = true
+        wait = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "「心を持ったロボットは何の役に立つのか」\nこれは開発している側も持っている大きな課題だ"
+        speaker = true
+
+[[e2_2]]
+    event = "act"
+    name = "obj_r"
+    [e2_2.param]
+        anim = "think"
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "私たちが人間社会で存在を認めてもらうためには\n何か役割が必要だ"
+        speaker = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "ただそこにいるだけで価値のある人間とは違う"
+        speaker = false
+
+[[e2_2]]
+    event = "act"
+    name = "obj_r"
+    [e2_2.param]
+        anim = "await"
+
+[[e2_2]]
+    event = "jump"
+    to = "e3"
+
+
+## e3 ##
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "まだまだ考えなくてはいけないことが山積みだな"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "大変そうだな"
+        speaker = true
+
+[[e3]]
+    event = "wait"
+    time = 1.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "君と話すのは楽しいよ"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "また明日も来てくれ"
+        speaker = false
+
+[[e3]]
+    event = "scene"
+    scene = "selectSaveRecord"
+
