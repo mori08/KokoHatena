@@ -167,3 +167,25 @@
 [[day5]]
     type = "enemy_sneaking"
     marker = "8"
+
+[[day6]]
+    type = "player"
+    marker = "P"
+[[day6]]
+    type = "goal_moving"
+    marker = "G"
+[[day6]]
+    type = "hole_defencing"
+    marker = "1"
+[[day6]]
+    type = "hole_defencing"
+    marker = "2"
+[[day6]]
+    type = "hole_defencing"
+    marker = "3"
+[[day6]]
+    type = "hole_defencing"
+    marker = "4"
+[[day6]]
+    type = "hole_defencing"
+    marker = "5"

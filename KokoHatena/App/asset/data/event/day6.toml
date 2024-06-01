@@ -1,0 +1,297 @@
+# https://github.com/mori08/KokoHatena/blob/develop/KokoHatena/Src/ShareData/BoardManager/Board/MessageBoard/EventPlayer/README.md
+
+## init ##
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "back_room"
+    [init.param]
+        objectKey = "Room"
+        pos = {x=0, y=0} 
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "scr_black"
+    [init.param]
+        objectKey = "BlackScreen"
+        pos = {x=0,y=0}
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_r"
+    [init.param]
+        objectKey = "Researcher"
+        pos = {x=50, y=310}
+
+[[init]]
+    event = "jump"
+    to = "e1"
+
+[[init]]
+    event = "receive"
+    [[init.request]]
+        text = "access"
+
+
+## e1 ##
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "scr_black"
+    [e1.param]
+        hide = true
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "今日は君個人の意見を聞きたい"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "分かった"
+        speaker = true
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "ココロは便利なものではない"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "ココロを持つということは、意思を持つということだ"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "自分で何をするかを決定する\n君の命令は聞かないかもしれない"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "命令を聞くようにもできるのではないか？"
+        speaker = true
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "だとしても、感情がある\n命令を聞くことを嫌がることはあるだろう"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "仕事のできには差がうまれるだろう"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "...そうだな、心がある場合それは避けられない問題かもな"
+        speaker = true
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "君はココロを持ったロボットが欲しいと思うか？"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "select"
+        select = [
+            {text = "欲しい", flag = "e2_1"},
+            {text = "いらない", flag = "e2_2"}
+        ]
+
+[[e1]]
+    event = "jump"
+    to = "e2_1"
+    flag = "e2_1"
+
+[[e1]]
+    event = "jump"
+    to = "e2_2"
+    flag = "e2_2"
+
+## e2_1 「欲しい」 ##
+[[e2_1]]
+    event = "flag"
+    name = "JumpFlagDay6_Want"
+    value = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "欲しい"
+        speaker = true
+        wait = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "なぜ？"
+        speaker = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "..."
+        speaker = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "分からない"
+        speaker = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "何か合理的な理由があるわけではないんだよ\nただ、なんとなくほしいと思っただけだ"
+        speaker = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "なるほど..."
+        speaker = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "私たちはその根拠なき願いに頼る必要があるのかもな"
+        speaker = false
+
+[[e2_1]]
+    event = "wait"
+    time = 1.5
+
+[[e2_1]]
+    event = "jump"
+    to = "e3"
+
+
+## e2_2 「いらない」 ##
+[[e2_2]]
+    event = "flag"
+    name = "JumpFlagDay6_Want"
+    value = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "いらない"
+        speaker = true
+        wait = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "今の私には、思い通りにならないロボットを所有する余裕がない"
+        speaker = true
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "そうだろうな..."
+        speaker = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "私にココロがなければ..."
+        speaker = false
+
+[[e2_2]]
+    event = "wait"
+    time = 1.5
+
+[[e2_2]]
+    event = "jump"
+    to = "e3"
+
+
+## e3 ##
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "...ありがとう、参考になった"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "もっと急いで研究を進めないと..."
+        speaker = false
+
+[[e3]]
+    event = "scene"
+    scene = "selectSaveRecord"
