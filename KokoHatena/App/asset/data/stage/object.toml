@@ -189,3 +189,34 @@
 [[day6]]
     type = "hole_defencing"
     marker = "5"
+
+[[day7]]
+    type = "player"
+    marker = "P"
+[[day7]]
+    type = "goal"
+    marker = "G"
+[[day7]]
+    type = "hole_defencing"
+    marker = "1"
+[[day7]]
+    type = "hole_defencing"
+    marker = "2"
+[[day7]]
+    type = "hole"
+    marker = "3"
+[[day7]]
+    type = "hole_chasing"
+    marker = "4"
+[[day7]]
+    type = "hole"
+    marker = "5"
+[[day7]]
+    type = "hole_chasing"
+    marker = "6"
+[[day7]]
+    type = "hole_sneaking"
+    marker = "B"
+[[day7]]
+    type = "hole_sneaking"
+    marker = "D"

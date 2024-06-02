@@ -1,6 +1,6 @@
 ﻿
 [ D ]
-   6 < [Day]
+   7 < [Day]
 
 [ J ]
    0 < [JumpFlagDay1_Kokoro]
@@ -9,9 +9,9 @@
    0 < [JumpFlagDay6_Want]
 
 [ R ]
-   2 < [RecordDate]
+   3 < [RecordDate]
    0 < [RecordHour]
-  45 < [RecordMinute]
+   6 < [RecordMinute]
    6 < [RecordMonth]
   24 < [RecordYear]
 

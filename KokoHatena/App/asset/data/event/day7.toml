@@ -1,0 +1,331 @@
+# https://github.com/mori08/KokoHatena/blob/develop/KokoHatena/Src/ShareData/BoardManager/Board/MessageBoard/EventPlayer/README.md
+
+## init ##
+[[init]]
+    event = "object"
+    type = "message"
+    name = "ui_text"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "back_room"
+    [init.param]
+        objectKey = "Room"
+        pos = {x=0, y=0} 
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "scr_black"
+    [init.param]
+        objectKey = "BlackScreen"
+        pos = {x=0,y=0}
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_r"
+    [init.param]
+        objectKey = "Researcher"
+        pos = {x=50, y=310}
+
+[[init]]
+    event = "act"
+    name = "obj_r"
+    [init.param]
+        anim = "waitRight"
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_tako"
+    [init.param]
+        objectKey = "Tako"
+        pos = {x=160, y=310}
+
+[[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_kirin"
+    [init.param]
+        objectKey = "Kirin"
+        pos = {x=200, y=270}
+
+[[init]]
+    event = "jump"
+    to = "e1"
+
+[[init]]
+    event = "receive"
+    [[init.request]]
+        text = "access"
+
+
+## e1 ##
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "scr_black"
+    [e1.param]
+        hide = true
+
+[[e1]]
+    event = "wait"
+    time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "obj_kirin"
+    [e1.param]
+        mirror = true
+        move = {x=120, y=0, t=0.5}
+        anim = "walk"
+
+[[e1]]
+    event = "act"
+    name = "obj_tako"
+    [e1.param]
+        move = {x=-20, y=0, t=0.1}
+        anim = "walk"
+
+[[e1]]
+    event = "act"
+    name = "obj_tako"
+    [e1.param]
+        anim = "wait"
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "obj_tako"
+    [e1.param]
+        mirror = true
+        move = {x=240,y=0,t=1.0}
+        anim = "walk"
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "think"
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "もうダメかもな..."
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "awake"
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "wait"
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "あぁ...来てくれたんだな"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "申し訳ないが、これが最後になるかもしれない"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "何かあったのか？"
+        speaker = true
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "..."
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 3.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "答えてほしい..."
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.5
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "私たちと人間は共に暮らせるようになると思うか？"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "select"
+        select = [
+            {text = "思う", flag = "e2_1"},
+            {text = "思わない", flag = "e2_2"}
+        ]
+
+[[e1]]
+    event = "jump"
+    to = "e2_1"
+    flag = "e2_1"
+
+[[e1]]
+    event = "jump"
+    to = "e2_2"
+    flag = "e2_2"
+
+## e2_1 「思う」 ##
+[[e2_1]]
+    event = "flag"
+    name = "JumpFlagDay7_With"
+    value = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "共に暮らせるようになる可能性もある"
+        speaker = true
+        wait = false
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "人間の社会では権利や倫理の考え方が根本から何度も変わった"
+        speaker = true
+
+[[e2_1]]
+    event = "act"
+    name = "ui_text"
+    [e2_1.param]
+        type = "message"
+        text = "ロボットが人間社会で認められる可能性も十分ある"
+        speaker = true
+
+[[e2_1]]
+    event = "jump"
+    to = "e3"
+
+
+## e2_2「思わない」##
+[[e2_2]]
+    event = "flag"
+    name = "JumpFlagDay7_With"
+    value = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "共に暮らすのは無理だと思う"
+        speaker = true
+        wait = false
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "今まで人間以外の生物に、人間と同等の権利が認められたことはない"
+        speaker = true
+
+[[e2_2]]
+    event = "act"
+    name = "ui_text"
+    [e2_2.param]
+        type = "message"
+        text = "ロボットが人間社会で自由に生きるのは簡単ではない..."
+        speaker = true
+
+[[e2_2]]
+    event = "jump"
+    to = "e3"
+
+
+## e3 ##
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "分かった..."
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "obj_r"
+    [e3.param]
+        anim = "waitRight"
+
+[[e3]]
+    event = "wait"
+    time = 3.0
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "今までありがとう"
+        speaker = false
+
+[[e3]]
+    event = "act"
+    name = "obj_r"
+    [e3.param]
+        anim = "walkRight"
+        move = {x=200, y=0, t=2.0}
+
+[[e3]]
+    event = "scene"
+    scene = "selectSaveRecord"    
