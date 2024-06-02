@@ -328,7 +328,7 @@
 
 [HoleAccessObject]
     enemySizeLimit = 4
-    enemyMakeTime = 4.0
+    enemyMakeTime = 8.0
     [HoleAccessObject.body]
         size = {x = 28, y = 28}
         textureName = "HoleAccessObject"
@@ -394,6 +394,8 @@
     trackSpeedRate = 0.8
     [MinionAccessObject.Protecting]
         playerDist = 2.5
+        highSpeed = 50
+        speedChangeRate = 0.1
         area = 7200
     [MinionAccessObject.Chasing]
         area = 4800

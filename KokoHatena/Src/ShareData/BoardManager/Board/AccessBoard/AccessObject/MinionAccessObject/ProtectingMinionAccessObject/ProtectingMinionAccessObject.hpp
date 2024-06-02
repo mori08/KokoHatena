@@ -8,6 +8,10 @@ namespace Kokoha
 	/// </summary>
 	class ProtectingMinionAccessObject : public MinionAccessObject
 	{
+	private:
+
+		double m_speed;
+
 	public:
 
 		ProtectingMinionAccessObject(const Vec2& pos);
@@ -21,6 +25,8 @@ namespace Kokoha
 		) override;
 
 		double maxLightArea() const override;
+
+		void walkMinion(const Terrain& terrain) override;
 
 	};
 }

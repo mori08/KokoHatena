@@ -4,7 +4,7 @@
 
 namespace Kokoha
 {
-	class DefencingEnemeyAccessObject : public EnemyAccessObject
+	class DefencingEnemyAccessObject : public EnemyAccessObject
 	{
 	private:
 
@@ -16,7 +16,7 @@ namespace Kokoha
 
 	public:
 
-		DefencingEnemeyAccessObject(const Vec2& pos);
+		DefencingEnemyAccessObject(const Vec2& pos);
 
 	private:
 

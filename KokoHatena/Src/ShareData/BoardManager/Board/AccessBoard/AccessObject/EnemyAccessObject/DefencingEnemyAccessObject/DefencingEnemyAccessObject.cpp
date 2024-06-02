@@ -4,7 +4,7 @@
 
 namespace Kokoha
 {
-	DefencingEnemeyAccessObject::DefencingEnemeyAccessObject(const Vec2& pos)
+	DefencingEnemyAccessObject::DefencingEnemyAccessObject(const Vec2& pos)
 		: EnemyAccessObject(pos)
 		, m_isChasing(false)
 	{
@@ -25,7 +25,7 @@ namespace Kokoha
 		m_speed = SPEED;
 	}
 
-	void DefencingEnemeyAccessObject::update(const Terrain& terrain)
+	void DefencingEnemyAccessObject::update(const Terrain& terrain)
 	{
 		m_bodyTexture.update();
 		m_faceTexture.update();
@@ -37,13 +37,13 @@ namespace Kokoha
 		EnemyAccessObject::update(terrain);
 	}
 
-	void DefencingEnemeyAccessObject::draw() const
+	void DefencingEnemyAccessObject::draw() const
 	{
 		m_visualField.draw();
 		EnemyAccessObject::draw();
 	}
 
-	void DefencingEnemeyAccessObject::checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+	void DefencingEnemyAccessObject::checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
 		EnemyAccessObject::checkOthers(terrain, guidToObject, typeToGuidSet);
 

@@ -15,7 +15,7 @@ namespace Kokoha
 	private:
 
 		// オブジェクト生成時間(s)
-		double m_makingObjectTime = 0;
+		double m_makingObjectTime = Inf<double>;
 
 		// 生成したオブジェクトのguidの集合
 		std::list<String> m_enemyGuidList;

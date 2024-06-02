@@ -150,7 +150,9 @@ namespace Kokoha
 			makeObjSet<SneakingEnemyAccessObject>(U"enemy_sneaking"),
 
 			makeObjSet<HoleAccessObject<RandomWalkingEnemyAccessObject>>(U"hole"),
-			makeObjSet<HoleAccessObject<DefencingEnemeyAccessObject>>(U"hole_defencing"),
+			makeObjSet<HoleAccessObject<DefencingEnemyAccessObject>>(U"hole_defencing"),
+			makeObjSet<HoleAccessObject<ChasingEnemyAccessObject>>(U"hole_chasing"),
+			makeObjSet<HoleAccessObject<SneakingEnemyAccessObject>>(U"hole_sneaking"),
 
 			makeObjSet<GoalAccessObject>(U"goal"),
 			makeObjSet<MovingGoalAccessObject>(U"goal_moving")
