@@ -9,9 +9,9 @@
    0 < [JumpFlagDay6_Want]
 
 [ R ]
-   2 < [RecordDate]
-  19 < [RecordHour]
-   0 < [RecordMinute]
+   3 < [RecordDate]
+   0 < [RecordHour]
+   6 < [RecordMinute]
    6 < [RecordMonth]
   24 < [RecordYear]
 

@@ -201,6 +201,28 @@
             name = "put"
             anim = [{t=0.4, x=1, y=0},{t=0.4, x=0, y=0}]
             loop = false
+    [TextureEventObject.Tako]
+        textureName = "Tako"
+        size = {x=60, y=80}
+        [[TextureEventObject.Tako.anim]]
+            name = "wait"
+            anim = [{t=0.0, x=0, y=0}]
+            loop = false
+        [[TextureEventObject.Tako.anim]]
+            name = "walk"
+            anim = [{t=0.2, x=1, y=0},{t=0.2, x=0, y=0}]
+            loop = true
+    [TextureEventObject.Kirin]
+        textureName = "Kirin"
+        size = {x=80, y=120}
+        [[TextureEventObject.Kirin.anim]]
+            name = "wait"
+            anim = [{t=0.0, x=0, y=0}]
+            loop = false
+        [[TextureEventObject.Kirin.anim]]
+            name = "walk"
+            anim = [{t=0.2, x=1, y=0},{t=0.2, x=0, y=0}]
+            loop = true
     [TextureEventObject.BlackScreen]
         textureName = "Black"
         size = {x = 300, y = 400}
