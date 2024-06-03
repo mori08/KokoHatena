@@ -220,3 +220,16 @@
 [[day7]]
     type = "hole_sneaking"
     marker = "D"
+
+[[day8]]
+    type = "player"
+    marker = "P"
+[[day8]]
+    type = "goal_moving"
+    marker = "G"
+[[day8]]
+    type = "enemy_randomWalking"
+    marker = "1"
+[[day8]]
+    type = "enemy_randomWalking"
+    marker = "2"
