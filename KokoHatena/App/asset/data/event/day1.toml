@@ -242,7 +242,7 @@
     name = "ui_text"
     [e2_1.param]
         type = "message"
-        text = "それは心が満たすべき条件であって、定義ではないのではないか？"
+        text = "それは心に必要なものであって、定義ではないのではないか？"
         speaker = false
 
 [[e2_1]]

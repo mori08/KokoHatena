@@ -150,6 +150,10 @@
         speaker = false
 
 [[e2_1]]
+    event = "wait"
+    time = 1.0
+
+[[e2_1]]
     event = "jump"
     to = "e3"
 

@@ -116,7 +116,7 @@
     name = "ui_text"
     [e1.param]
         type = "message"
-        text = "仕事のできには差がうまれるだろう"
+        text = "仕事のできには差がうまれる"
         speaker = false
 
 [[e1]]
@@ -124,7 +124,7 @@
     name = "ui_text"
     [e1.param]
         type = "message"
-        text = "...そうだな、心がある場合それは避けられない問題かもな"
+        text = "...そうだな\n心がある場合それは避けられない問題かもしれない"
         speaker = true
 
 [[e1]]
