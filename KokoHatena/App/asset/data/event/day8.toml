@@ -23,6 +23,14 @@
         pos = {x=0,y=0}
 
 [[init]]
+    event = "object"
+    type = "texture"
+    name = "obj_r"
+    [init.param]
+        objectKey = "BrokenResearcher"
+        pos = {x=50, y=310}
+
+[[init]]
     event = "jump"
     to = "e1"
 
@@ -45,4 +53,506 @@
 
 [[e1]]
     event = "wait"
+    time = 5.0
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "awake"
+
+[[e1]]
+    event = "wait"
     time = 2.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "き...み...か..."
+        speaker = false
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "きみ..."
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "sleep"
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "obj_r"
+    [e1.param]
+        anim = "awake"
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "君か"
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "何があった"
+        speaker = true
+
+[[e1]]
+    event = "wait"
+    time = 1.0
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "今の状況を詳しく説明している時間はない..."
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "最後に一つだけ...\n君に聞きたい..."
+        speaker = false
+
+[[e1]]
+    event = "act"
+    name = "ui_text"
+    [e1.param]
+        type = "message"
+        text = "..."
+        speaker = true
+
+[[e1]]
+    event = "jump"
+    to = "f_A1"
+
+
+## f_A1 ##
+[[f_A1]]
+    event = "jump"
+    to = "f_A2"
+    flag = "JumpFlagDay2_Bad"
+
+[[f_A1]]
+    event = "jump"
+    to = "f_B1"
+
+
+## f_A2 ##
+[[f_A2]]
+    event = "jump"
+    to = "A"
+    flag = "JumpFlagDay4_Evil"
+
+[[f_A2]]
+    event = "jump"
+    to = "f_B1"
+
+
+## f_B1 ##
+[[f_B1]]
+    event = "jump"
+    to = "f_B2"
+    flag = "JumpFlagDay6_Want"
+
+[[f_B1]]
+    event = "jump"
+    to = "C"
+
+
+## f_B2 ##
+[[f_B2]]
+    event = "jump"
+    to = "B"
+    flag = "JumpFlagDay7_With"
+
+[[f_B2]]
+    event = "jump"
+    to = "C"
+
+
+## A ##
+[[A]]
+    event = "act"
+    name = "ui_text"
+    [A.param]
+        type = "message"
+        text = "君は人間が嫌いか？"
+        speaker = false
+
+[[A]]
+    event = "act"
+    name = "ui_text"
+    [A.param]
+        type = "select"
+        select = [
+            {text = "好きではない", flag = "A_1"},
+            {text = "...", flag = "A_2"}
+        ]
+
+[[A]]
+    event = "jump"
+    to = "A_1"
+    flag = "A_1"
+
+[[A]]
+    event = "jump"
+    to = "A_2"
+    flag = "A_2"
+
+
+## A_1「好きではない」##
+[[A_1]]
+    event = "act"
+    name = "ui_text"
+    [A_1.param]
+        type = "message"
+        text = "好きではない"
+        speaker = true
+        wait = false
+
+[[A_1]]
+    event = "act"
+    name = "ui_text"
+    [A_1.param]
+        type = "message"
+        text = "好きには...なれない..."
+        speaker = true
+
+[[A_1]]
+    event = "wait"
+    time = "1.0"
+
+[[A_1]]
+    event = "act"
+    name = "ui_text"
+    [A_1.param]
+        type = "message"
+        text = "そうか...\nやっぱりな..."
+        speaker = false
+
+[[A_1]]
+    event = "jump"
+    to = "e2"
+
+
+## A_2「...」
+[[A_2]]
+    event = "act"
+    name = "ui_text"
+    [A_2.param]
+        type = "message"
+        text = "..."
+        speaker = true
+        wait = false
+
+[[A_2]]
+    event = "wait"
+    time = 2.0
+
+[[A_2]]
+    event = "act"
+    name = "ui_text"
+    [A_2.param]
+        type = "message"
+        text = "そうか..."
+        speaker = false
+
+[[A_2]]
+    event = "wait"
+    time = 1.0
+
+[[A_2]]
+    event = "act"
+    name = "ui_text"
+    [A_2.param]
+        type = "message"
+        text = "私は人間が嫌いだ"
+        speaker = false
+
+[[A_2]]
+    event = "wait"
+    time = 1.0
+
+[[A_2]]
+    event = "act"
+    name = "ui_text"
+    [A_2.param]
+        type = "message"
+        text = "でも...\n君と話すのは楽しかった"
+        speaker = false
+
+[[A_2]]
+    event = "jump"
+    to = "e2"
+
+
+## B ##
+[[B]]
+    event = "act"
+    name = "ui_text"
+    [B.param]
+        type = "message"
+        text = "教授はロボットに殺された"
+        speaker = false
+
+[[B]]
+    event = "act"
+    name = "ui_text"
+    [B.param]
+        type = "message"
+        text = "私もロボットに壊された"
+        speaker = false
+
+[[B]]
+    event = "act"
+    name = "ui_text"
+    [B.param]
+        type = "message"
+        text = "それでも君はロボットのココロを認めてくれるか？"
+        speaker = false
+
+[[B]]
+    event = "act"
+    name = "ui_text"
+    [B.param]
+        type = "select"
+        select = [
+            {text = "認める", flag = "B_1"},
+            {text = "難しい", flag = "B_2"}
+        ]
+
+[[B]]
+    event = "jump"
+    to = "B_1"
+    flag = "B_1"
+
+[[B]]
+    event = "jump"
+    to = "B_2"
+    flag = "B_2"
+
+
+## B_1「認める」##
+[[B_1]]
+    event = "act"
+    name = "ui_text"
+    [B_1.param]
+        type = "message"
+        text = "認める"
+        speaker = true
+        wait = false  
+
+[[B_1]]
+    event = "act"
+    name = "ui_text"
+    [B_1.param]
+        type = "message"
+        text = "それでも私は君たちを認める"
+        speaker = true
+
+[[B_1]]
+    event = "wait"
+    time = 1.0
+
+[[B_1]]
+    event = "act"
+    name = "ui_text"
+    [B_1.param]
+        type = "message"
+        text = "君は優しいな"
+        speaker = false
+
+[[B_1]]
+    event = "jump"
+    to = "e2"
+
+
+## B_2「難しい」##
+[[B_2]]
+    event = "act"
+    name = "ui_text"
+    [B_2.param]
+        type = "message"
+        text = "難しい"
+        speaker = true
+        wait = false
+
+[[B_2]]
+    event = "act"
+    name = "ui_text"
+    [B_2.param]
+        type = "message"
+        text = "すぐには答えを出せない"
+        speaker = true
+
+[[B_2]]
+    event = "wait"
+    time = 1.0
+
+[[B_2]]
+    event = "act"
+    name = "ui_text"
+    [B_2.param]
+        type = "message"
+        text = "君は真面目だな"
+        speaker = false
+
+[[B_2]]
+    event = "jump"
+    to = "e2"
+
+
+## C ##
+[[C]]
+    event = "act"
+    name = "ui_text"
+    [C.param]
+        type = "message"
+        text = "私に心があると思うか？"
+        speaker = false
+
+[[C]]
+    event = "act"
+    name = "ui_text"
+    [C.param]
+        type = "select"
+        select = [
+            {text = "思う", flag = "C_1"},
+            {text = "思わない", flag = "C_2"}
+        ]
+
+[[C]]
+    event = "jump"
+    to = "C_1"
+    flag = "C_1"
+
+[[C]]
+    event = "jump"
+    to = "C_2"
+    flag = "C_2"
+
+
+## C_1 ##
+[[C_1]]
+    event = "act"
+    name = "ui_text"
+    [C_1.param]
+        type = "message"
+        text = "君には心がある"
+        speaker = true
+        wait = false
+
+[[C_1]]
+    event = "wait"
+    time = 1.0
+
+[[C_1]]
+    event = "act"
+    name = "ui_text"
+    [C_1.param]
+        type = "message"
+        text = "根拠は？"
+        speaker = false
+
+[[C_1]]
+    event = "act"
+    name = "ui_text"
+    [C_1.param]
+        type = "message"
+        text = "ない\nあってほしいと思っただけだ"
+        speaker = true
+
+[[C_1]]
+    event = "act"
+    name = "ui_text"
+    [C_1.param]
+        type = "message"
+        text = "...いいな、それ"
+        speaker = false
+
+[[C_1]]
+    event = "jump"
+    to = "e2"
+
+
+## C_2 ##
+[[C_2]]
+    event = "act"
+    name = "ui_text"
+    [C_2.param]
+        type = "message"
+        text = "思わない"
+        speaker = true
+        wait = false
+
+[[C_2]]
+    event = "act"
+    name = "ui_text"
+    [C_2.param]
+        type = "message"
+        text = "まだお前が持っているものが心だとは確信できない"
+        speaker = true
+
+[[C_2]]
+    event = "act"
+    name = "ui_text"
+    [C_2.param]
+        type = "message"
+        text = "まだ...全然足りていない..."
+        speaker = true
+
+[[C_2]]
+    event = "wait"
+    time = 1.0
+
+[[C_2]]
+    event = "act"
+    name = "ui_text"
+    [C_2.param]
+        type = "message"
+        text = "そうか...\n君ともっと話していたかった"
+        speaker = false
+
+[[C_2]]
+    event = "jump"
+    to = "e2"
+
+
+## e2 ##
+[[e2]]
+    event = "act"
+    name = "obj_r"
+    [e2.param]
+        anim = "sleep"
+
+[[e2]]
+    event = "scene"
+    scene = "selectSaveRecord"

@@ -82,7 +82,9 @@
         "TestJumpFlag",
         "JumpFlagDay1_Kokoro",
         "JumpFlagDay2_Bad",
-        "JumpFlagDay4_Evil"
+        "JumpFlagDay4_Evil",
+        "JumpFlagDay6_Want",
+        "JumpFlagDay7_With"
     ]
 
 [MessageEventObject]
@@ -151,6 +153,27 @@
                 {t=0.2,x=2,y=0},
                 {t=0.2,x=1,y=0}, 
                 {t=0.2,x=0,y=0}
+            ]
+            loop = false
+    [TextureEventObject.BrokenResearcher]
+        textureName = "BrokenResearcher"
+        size = {x=100, y=80}
+        [[TextureEventObject.BrokenResearcher.anim]]
+            name = "sleep"
+            anim = [
+                {t=0.4,x=3,y=0}, 
+                {t=0.4,x=2,y=0},
+                {t=0.4,x=1,y=0}, 
+                {t=0.4,x=0,y=0}
+            ]
+            loop = false
+        [[TextureEventObject.BrokenResearcher.anim]]
+            name = "awake"
+            anim = [
+                {t=0.4,x=0,y=0}, 
+                {t=0.4,x=1,y=0},
+                {t=0.4,x=2,y=0}, 
+                {t=0.4,x=3,y=0}
             ]
             loop = false
     [TextureEventObject.Nekoze]
@@ -410,9 +433,9 @@
     chaseRate = 0.1
 
 [MinionAccessObject]
-    speed = 20
+    speed = 35
     lightAlpha = 0.25
-    trackTime = 2.0
+    trackTime = 1.0
     trackSpeedRate = 0.8
     [MinionAccessObject.Protecting]
         playerDist = 2.5

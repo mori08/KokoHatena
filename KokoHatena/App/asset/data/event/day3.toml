@@ -173,8 +173,20 @@
     name = "ui_text"
     [e3.param]
         type = "message"
-        text = "ロボットを人間社会に出すなら、安全で人を傷つけないものでなくてはいけない\n教授が目指していたのは多分それだ"
+        text = "ロボットを人間社会に出すなら、安全で人を傷つけないものでなくてはいけない\nそれが教授が目指していたものだ"
         speaker = true
+
+[[e3]]
+    event = "act"
+    name = "ui_text"
+    [e3.param]
+        type = "message"
+        text = "多分な"
+        speaker = true
+
+[[e3]]
+    event = "wait"
+    time = 1.0
 
 [[e3]]
     event = "act"
@@ -183,6 +195,12 @@
         type = "message"
         text = "安全性..."
         speaker = false
+
+[[e3]]
+    event = "act"
+    name = "obj_r"
+    [e3.param]
+        anim = "think"
 
 [[e3]]
     event = "act"

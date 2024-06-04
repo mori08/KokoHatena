@@ -186,9 +186,6 @@
 [[day6]]
     type = "hole_defencing"
     marker = "4"
-[[day6]]
-    type = "hole_defencing"
-    marker = "5"
 
 [[day7]]
     type = "player"

@@ -81,7 +81,7 @@ namespace Kokoha
 	{
 		const bool posWait = m_pos.update();
 		const bool texWait = m_texture.update();
-		
+
 		if (posWait && texWait)
 		{
 			m_isWaiting = false;

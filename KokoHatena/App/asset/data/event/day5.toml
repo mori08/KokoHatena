@@ -306,7 +306,7 @@
     event = "act"
     name = "obj_r"
     [e2_2.param]
-        anim = "await"
+        anim = "awake"
 
 [[e2_2]]
     event = "jump"
@@ -319,7 +319,7 @@
     name = "ui_text"
     [e3.param]
         type = "message"
-        text = "まだまだ考えなくてはいけないことが山積みだな"
+        text = "まだまだ考えなくてはいけないことが山積みだ"
         speaker = false
 
 [[e3]]
@@ -327,7 +327,7 @@
     name = "ui_text"
     [e3.param]
         type = "message"
-        text = "大変そうだな"
+        text = "..."
         speaker = true
 
 [[e3]]
@@ -339,7 +339,7 @@
     name = "ui_text"
     [e3.param]
         type = "message"
-        text = "君と話すのは楽しいよ"
+        text = "君と話すのは楽しい"
         speaker = false
 
 [[e3]]
