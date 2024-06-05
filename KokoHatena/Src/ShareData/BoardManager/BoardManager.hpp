@@ -17,6 +17,12 @@ namespace Kokoha
 		// ボードのリスト
 		std::list<std::shared_ptr<Board>> m_boardList;
 
+		// 経過時間
+		double m_time;
+
+		// 最終日フラグ
+		bool m_isLastDay;
+
 	public:
 
 		BoardManager();
@@ -60,6 +66,11 @@ namespace Kokoha
 		/// </summary>
 		/// <param name="role"> ボードの種類 </param>
 		void hideBoard(const BoardRole& role);
+
+		/// <summary>
+		/// 最終日の処理
+		/// </summary>
+		void lastDay();
 
 	};
 }

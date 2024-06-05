@@ -19,6 +19,10 @@ namespace Kokoha
 		m_boardList.emplace_back(std::make_shared<MessageBoard>(recordSet));
 		m_boardList.emplace_back(std::make_shared<AccessBoard>(recordSet));
 		m_boardList.emplace_back(std::make_shared<SecurityBoard>(recordSet));
+
+		static const int32 LAST_DAY = Config::get<int32>(U"BoardManager.lastDay");
+		m_isLastDay = recordSet.getRecord(U"Day") == LAST_DAY;
+		m_time = 0;
 	}
 
 	Optional<SceneName> BoardManager::update(RecordSet& recordSet)
@@ -90,6 +94,8 @@ namespace Kokoha
 			displayBoard(boardRequest.first, boardRequest.second);
 		}
 
+		lastDay();
+
 		return none;
 	}
 
@@ -97,7 +103,30 @@ namespace Kokoha
 	{
 		// 背景の表示
 		static const ColorF BACKGROUND_COLOR = Config::get<ColorF>(U"DesktopScene.backgroundColor");
-		Scene::Rect().draw(BACKGROUND_COLOR);
+		static const int32 LAST_DAY = Config::get<int32>(U"BoardManager.lastDay");
+
+		if (m_isLastDay)
+		{
+			constexpr int32 CELL_SIZE = 20;
+			Scene::Rect().draw(MyWhite);
+			for (int32 x = 0; x < Scene::Width(); x += CELL_SIZE)
+			{
+				for (int32 y = 0; y < Scene::Height(); y += CELL_SIZE)
+				{
+					Point pos(x, y);
+					if (randomFrequency(0.01))
+					{
+						pos.x += Random(-1, +1);
+						pos.y += Random(-1, +1);
+					}
+					Rect(pos, CELL_SIZE).draw(BACKGROUND_COLOR);
+				}
+			}
+		}
+		else
+		{
+			Scene::Rect().draw(BACKGROUND_COLOR);
+		}
 
 		// 表示中のボードの描画
 		for (auto itr = m_boardList.rbegin(); itr != m_boardList.rend(); ++itr)
@@ -167,5 +196,18 @@ namespace Kokoha
 
 		// 末尾のボードの状態をIS_HIDINGに変更
 		m_boardList.back()->hide();
+	}
+
+	void BoardManager::lastDay()
+	{
+		static const double SECURITY_TIME = Config::get<double>(U"BoardManager.securityTime");
+		if (!m_isLastDay) { return; }
+		m_time += Scene::DeltaTime();
+
+		if (m_time > SECURITY_TIME)
+		{
+			m_time = 0;
+			displayBoard(BoardRole::SECURITY, U"last");
+		}
 	}
 }
