@@ -60,6 +60,10 @@
 [DesktopScene]
     backgroundColor = {rgb=0.2}
 
+[BoardManager]
+    lastDay = 9
+    securityTime = 5.0
+
 [Board]
     frameThickness     = 2
     controlFrameHeight = 30
@@ -277,6 +281,8 @@
                 {role="security", request="default"},
                 {role="message", request="download"}
             ]
+    [SecurityBoard.last]
+        text = "不正なアクセスを検知しました"
 
 [AccessBoard]
     name = "アクセス"
@@ -473,3 +479,8 @@
     speed = 10
     maxWaitingSecond = 4.0
     targetPosDist = 4.1
+
+[ChasingGoalAccessObject]
+    speed = 50
+    lightRadius = 40
+    lightAlpha = 0.1

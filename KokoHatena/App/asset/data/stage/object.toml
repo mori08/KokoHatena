@@ -230,3 +230,10 @@
 [[day8]]
     type = "enemy_randomWalking"
     marker = "2"
+
+[[day9]]
+    type = "player"
+    marker = "P"
+[[day9]]
+    type = "goal_chasing"
+    marker = "G"

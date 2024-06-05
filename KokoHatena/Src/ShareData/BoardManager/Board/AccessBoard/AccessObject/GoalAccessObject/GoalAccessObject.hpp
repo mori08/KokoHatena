@@ -16,11 +16,11 @@ namespace Kokoha
 
 		GoalAccessObject(const Vec2& pos);
 
-	private:
+	protected:
 
 		virtual void update(const Terrain& terrain) override;
 
-		void draw() const override;
+		virtual void draw() const override;
 
 		virtual void checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 
