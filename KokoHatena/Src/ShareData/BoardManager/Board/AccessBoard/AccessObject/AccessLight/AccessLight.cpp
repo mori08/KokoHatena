@@ -155,7 +155,8 @@ namespace Kokoha
 			eventQueue.top().func();
 			eventQueue.pop();
 		}
-		if (m_posAry.front().distanceFromSq(m_posAry.back()) < EPSILON)
+		if (m_posAry.size() > 1
+			&& m_posAry.front().distanceFromSq(m_posAry.back()) < EPSILON)
 		{
 			m_posAry.pop_back();
 		}

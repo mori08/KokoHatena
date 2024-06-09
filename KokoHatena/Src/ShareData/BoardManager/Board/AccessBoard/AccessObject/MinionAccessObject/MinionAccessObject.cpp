@@ -39,9 +39,7 @@ namespace Kokoha
 		if (m_trackTime < 0)
 		{
 			m_trackTime = trackTime();
-			Ptr trackObjPtr = std::make_shared<TrackAccessObject>(body().center, Vec2::Zero());
-			m_lightArea -= trackObjPtr->light().area();
-			makeObject(std::move(trackObjPtr));
+			makeTrack(Vec2::Zero());
 		}
 
 		if (m_lightArea < 0)
@@ -89,9 +87,7 @@ namespace Kokoha
 
 		while (m_lightArea > 0)
 		{
-			Ptr trackObjPtr = std::make_shared<TrackAccessObject>(body().center, trackSpeed * angleToVec(Random(Math::TwoPi)));
-			m_lightArea -= trackObjPtr->light().area();
-			makeObject(std::move(trackObjPtr));
+			makeTrack(trackSpeed * angleToVec(Random(Math::TwoPi)));
 		}
 	}
 
@@ -99,5 +95,12 @@ namespace Kokoha
 	{
 		static const double SPEED = Config::get<double>(U"MinionAccessObject.speed");
 		walkToGoal(SPEED, m_goal, terrain);
+	}
+
+	void MinionAccessObject::makeTrack(const Vec2& movement)
+	{
+		Ptr trackObjPtr = std::make_shared<TrackAccessObject>(body().center, movement);
+		m_lightArea -= trackObjPtr->light().area();
+		makeObject(std::move(trackObjPtr));
 	}
 }

@@ -43,4 +43,4 @@
 ## e1 ##
 [[e1]]
     event = "scene"
-    scene = "selectSaveRecord"
+    scene = "lastBattle"

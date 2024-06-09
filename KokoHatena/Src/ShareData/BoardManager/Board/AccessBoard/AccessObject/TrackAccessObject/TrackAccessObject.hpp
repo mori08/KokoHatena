@@ -11,7 +11,7 @@ namespace Kokoha
 	/// </summary>
 	class TrackAccessObject : public AccessObject
 	{
-	private:
+	protected:
 
 		Vec2 m_playerPos;
 
@@ -23,10 +23,10 @@ namespace Kokoha
 		/// <param name="movement"> 初期移動量 </param>
 		TrackAccessObject(const Vec2& pos, const Vec2& movement);
 
-	private:
+	protected:
 
-		void update(const Terrain& terrain) override;
+		virtual void update(const Terrain& terrain) override;
 
-		void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+		virtual void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 	};
 }

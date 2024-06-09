@@ -237,3 +237,43 @@
 [[day9]]
     type = "goal_chasing"
     marker = "G"
+
+[[last]]
+    type = "goal_moving"
+    marker = "G"
+[[last]]
+    type = "hole"
+    marker = "1"
+[[last]]
+    type = "hole"
+    marker = "2"
+[[last]]
+    type = "hole"
+    marker = "3"
+[[last]]
+    type = "hole"
+    marker = "4"
+[[last]]
+    type = "hole"
+    marker = "1"
+[[last]]
+    type = "hole"
+    marker = "2"
+[[last]]
+    type = "hole"
+    marker = "3"
+[[last]]
+    type = "hole"
+    marker = "4"
+[[last]]
+    type = "hole_sneaking"
+    marker = "1"
+[[last]]
+    type = "hole_sneaking"
+    marker = "2"
+[[last]]
+    type = "hole_sneaking"
+    marker = "3"
+[[last]]
+    type = "hole_sneaking"
+    marker = "4"

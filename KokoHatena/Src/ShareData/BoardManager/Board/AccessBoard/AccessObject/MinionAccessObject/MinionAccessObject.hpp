@@ -11,8 +11,6 @@ namespace Kokoha
 		// 目的地
 		Vec2 m_goal;
 
-	private:
-
 		// 光の面積
 		double m_lightArea;
 
@@ -64,5 +62,10 @@ namespace Kokoha
 		/// オブジェクトを移動する
 		/// </summary>
 		virtual void walkMinion(const Terrain& terrain);
+
+		/// <summary>
+		/// このオブジェクトを削除し、光の面積分だけTrackを作成する
+		/// </summary>
+		virtual void makeTrack(const Vec2& movement);
 	};
 }

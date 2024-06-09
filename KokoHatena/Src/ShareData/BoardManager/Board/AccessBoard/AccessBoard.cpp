@@ -1,6 +1,7 @@
 ﻿#include"AccessBoard.hpp"
 #include"AccessState/StartingAccessState/StartingAccessState.hpp"
 #include "AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
+#include "AccessObject/PlayerAccessObject/LastPlayerAccessObject/LastPlayerAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/RandomWalkingEnemyAccessObject/RandomWalkingEnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/ChasingEnemyAccessObject/ChasingEnemyAccessObject.hpp"
@@ -43,6 +44,21 @@ namespace Kokoha
 		m_typeToGuidSet[AccessObject::Type::MINION] = {};
 		m_typeToGuidSet[AccessObject::Type::TRACK]  = {};
 		m_typeToGuidSet[AccessObject::Type::GOAL]   = {};
+	}
+
+	AccessBoard::AccessBoard(const String& stageName)
+		: Board(BoardRole::ACCESS, U"AccessBoard", BoardState::IS_DISPLAYED)
+		, m_stageName(stageName)
+		, m_terrain(U"asset/data/stage/" + stageName + U".csv")
+		, m_state(std::make_shared<StartingAccessState>(stageName))
+	{
+		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
+		m_typeToGuidSet[AccessObject::Type::ENEMY] = {};
+		m_typeToGuidSet[AccessObject::Type::MINION] = {};
+		m_typeToGuidSet[AccessObject::Type::TRACK] = {};
+		m_typeToGuidSet[AccessObject::Type::GOAL] = {};
+
+		m_powerUpLevel = 0;
 	}
 
 	void AccessBoard::receiveRequest(const String& requestText)
@@ -183,6 +199,16 @@ namespace Kokoha
 
 			AccessObject::setMakingObject(
 				makeObjectMap[type](pos),
+				m_objectMap,
+				m_typeToGuidSet
+			);
+		}
+
+		if (m_stageName == U"last")
+		{
+			Print << m_powerUpLevel;
+			AccessObject::setMakingObject(
+				std::make_shared<LastPlayerAccessObject>(size() / 2, m_powerUpLevel++),
 				m_objectMap,
 				m_typeToGuidSet
 			);

@@ -455,12 +455,20 @@
     [MinionAccessObject.Rushing]
         erasingTime = 6.5
         area = 2400
+    [MinionAccessObject.Last]
+        area = 6400
+        smallArea = 2400
+        velocityRate = 0.4
+        speed = 50
+        highSpeed = 100
 
 [TrackAccessObject]
     speed = 5
     slowDownRate = 0.2
     radius = 3.0
     alpha = 0.4
+    highSpeed = 50
+    velocityRate = 0.5
 
 [GoalAccessObject]
     [GoalAccessObject.slice]

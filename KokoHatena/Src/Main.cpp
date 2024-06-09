@@ -8,6 +8,7 @@
 #include"Scene/LoadScene/LoadBoardScene/LoadBoardScene.hpp"
 #include"Scene/LoadScene/SaveRecordScene/SaveRecordScene.hpp"
 #include"Scene/SelectRecordScene/SelectRecordScene.hpp"
+#include"Scene/LastBattleScene/LastBattleScene.hpp"
 
 using namespace Kokoha;
 
@@ -37,6 +38,7 @@ void Main()
 	sceneManager.add<SaveRecordScene>(SceneName::SAVE_RECORD);
 	sceneManager.add<SelectLoadRecordScene>(SceneName::SELECT_LOAD_RECORD);
 	sceneManager.add<SelectSaveRecordScene>(SceneName::SELECT_SAVE_RECORD);
+	sceneManager.add<LastBattleScene>(SceneName::LAST_BATTLE);
 	sceneManager.setFadeColor(MyBlack);
 
 	while (System::Update())

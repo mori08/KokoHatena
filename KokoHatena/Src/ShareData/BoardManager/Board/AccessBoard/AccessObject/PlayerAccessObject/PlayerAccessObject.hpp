@@ -6,7 +6,7 @@ namespace Kokoha
 {
 	class PlayerAccessObject : public AccessObject
 	{
-	private:
+	protected:
 
 		// inputで決定する移動量
 		Vec2 m_movement;
@@ -36,14 +36,14 @@ namespace Kokoha
 
 		void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
 
-	private:
+	protected:
 
 		/// <summary>
 		/// 光の作成
 		/// </summary>
 		/// <param name="guidToObject">
 		/// <param name="typeToGuidSet">
-		void makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
+		virtual void makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
 
 	};
 }
