@@ -492,3 +492,7 @@
     speed = 50
     lightRadius = 40
     lightAlpha = 0.1
+
+[LastGoalAccessObject]
+    radius = 200
+    speed = 60

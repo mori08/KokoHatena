@@ -239,7 +239,7 @@
     marker = "G"
 
 [[last]]
-    type = "goal_moving"
+    type = "goal_last"
     marker = "G"
 [[last]]
     type = "hole"

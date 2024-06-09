@@ -144,6 +144,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\SneakingEnemyAccessObject\SneakingEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\ChasingGoalAccessObject\ChasingGoalAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\LastGoalAccessObject\LastGoalAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\MovingGoalAccessObject\MovingGoalAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject\ChasingMinionAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\LastMinonAccessObject\LastMinionAccessObject.cpp" />
@@ -303,6 +304,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\SneakingEnemyAccessObject\SneakingEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\ChasingGoalAccessObject\ChasingGoalAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\LastGoalAccessObject\LastGoalAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\MovingGoalAccessObject\MovingGoalAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject\HoleAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject\ChasingMinionAccessObject.hpp" />
