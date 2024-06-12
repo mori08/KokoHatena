@@ -140,12 +140,14 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\DefencingEnemyAccessObject\DefencingEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\LastEnemyAccessObject\LastEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\SneakingEnemyAccessObject\SneakingEnemyAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\ChasingGoalAccessObject\ChasingGoalAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\GoalAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\LastGoalAccessObject\LastGoalAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\MovingGoalAccessObject\MovingGoalAccessObject.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject\LastHoleAccessObject\LastHoleAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject\ChasingMinionAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\LastMinonAccessObject\LastMinionAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.cpp" />
@@ -300,6 +302,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\ChasingEnemyAccessObject\ChasingEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\DefencingEnemyAccessObject\DefencingEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\EnemyAccessObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\LastEnemyAccessObject\LastEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\RandomWalkingEnemyAccessObject\RandomWalkingEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\EnemyAccessObject\SneakingEnemyAccessObject\SneakingEnemyAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\ChasingGoalAccessObject\ChasingGoalAccessObject.hpp" />
@@ -307,6 +310,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\LastGoalAccessObject\LastGoalAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\GoalAccessObject\MovingGoalAccessObject\MovingGoalAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject\HoleAccessObject.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\HoleAccessObject\LastHoleAccessObject\LastHoleAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\ChasingMinionAccessObject\ChasingMinionAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\LastMinonAccessObject\LastMinionAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\MinionAccessObject\MinionAccessObject.hpp" />

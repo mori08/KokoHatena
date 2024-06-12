@@ -29,6 +29,20 @@ namespace Kokoha
 
 	protected:
 
+		virtual size_t enemySizeLimit() const
+		{
+			static const size_t ENEMY_SIZE_LIMIT = Config::get<size_t>(U"HoleAccessObject.enemySizeLimit");
+			return ENEMY_SIZE_LIMIT;
+		}
+
+		virtual double enemyMakeTime() const
+		{
+			static const double ENEMY_MAKE_TIME = Config::get<double>(U"HoleAccessObject.enemyMakeTime");
+			return ENEMY_MAKE_TIME;
+		}
+
+	protected:
+
 		virtual Ptr makeEnemy()
 		{
 			return std::make_shared<EnemyType>(body().center);
@@ -41,12 +55,8 @@ namespace Kokoha
 				[&guidToObject](const String& guid) { return !guidToObject.count(guid); }
 			);
 
-			// 生成する敵数の制限
-			static const size_t ENEMY_SIZE_LIMIT = Config::get<size_t>(U"HoleAccessObject.enemySizeLimit");
-			// 作成時間
-			static const double ENEMY_MAKE_TIME = Config::get<double>(U"HoleAccessObject.enemyMakeTime");
 			m_makingObjectTime += Scene::DeltaTime();
-			if (m_enemyGuidList.size() < ENEMY_SIZE_LIMIT && m_makingObjectTime > ENEMY_MAKE_TIME)
+			if (m_enemyGuidList.size() < enemySizeLimit() && m_makingObjectTime > enemyMakeTime())
 			{
 				m_makingObjectTime = 0;
 				Ptr ptr = makeEnemy();

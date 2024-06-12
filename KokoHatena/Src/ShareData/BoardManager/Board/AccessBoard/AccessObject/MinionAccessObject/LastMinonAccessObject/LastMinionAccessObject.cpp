@@ -17,7 +17,7 @@ namespace Kokoha
 	void LastMinionAccessObject::setGoal(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
 		double minDist = Inf<double>;
-		m_goal = getFrontObject(Type::PLAYER, guidToObject, typeToGuidSet).body().center;
+		m_goal = getFrontObject(Type::GOAL, guidToObject, typeToGuidSet).body().center;
 
 		for (const String& guid : typeToGuidSet.find(Type::ENEMY)->second)
 		{

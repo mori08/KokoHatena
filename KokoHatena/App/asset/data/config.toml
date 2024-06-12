@@ -406,7 +406,12 @@
                     {t=0.1,x=1,y=1}
             ]
             loop = true
-    
+
+[LastHoleAccessObject]
+    radius = 40
+    speed = 60
+    enemySizeLimit = 10
+    enemyMakeTime = 1.0
 
 [RandomWalkingEnemyAccessObject]
     speed = 10
@@ -438,6 +443,12 @@
     targetPosDist = 5.1
     chaseRate = 0.1
 
+[LastEnemyAccessObject]
+    radius = 100
+    speed = 100
+    rate = 0.5
+    jumpRate = 0.01
+
 [MinionAccessObject]
     speed = 35
     lightAlpha = 0.25
@@ -458,7 +469,7 @@
     [MinionAccessObject.Last]
         area = 6400
         smallArea = 2400
-        velocityRate = 0.4
+        velocityRate = 0.2
         speed = 50
         highSpeed = 100
 
@@ -468,7 +479,9 @@
     radius = 3.0
     alpha = 0.4
     highSpeed = 50
+    tooHighSpeed = 100
     velocityRate = 0.5
+    toGoalRate = 0.1
 
 [GoalAccessObject]
     [GoalAccessObject.slice]

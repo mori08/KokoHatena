@@ -1,4 +1,5 @@
 ﻿#include "LastGoalAccessObject.hpp"
+#include "../../HoleAccessObject/LastHoleAccessObject/LastHoleAccessObject.hpp"
 #include "../../../../../../../Config/Config.hpp"
 #include "../../../../../../../MyLibrary/MyLibrary.hpp"
 
@@ -9,7 +10,10 @@ namespace Kokoha
 		, m_angle(-Math::HalfPi)
 		, m_playerPos(pos)
 	{
-
+		for (int32 i = 0; i < 3; ++i)
+		{
+			makeObject(std::make_shared<LastHoleAccessObject>(pos, i * Math::OneThirdPi));
+		}
 	}
 
 	void LastGoalAccessObject::update(const Terrain& terrain)

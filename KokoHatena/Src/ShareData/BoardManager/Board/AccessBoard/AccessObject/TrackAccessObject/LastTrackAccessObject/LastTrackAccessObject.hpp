@@ -10,6 +10,8 @@ namespace Kokoha
 		// true のとき ゴールを追う , false のとき Playerを追う
 		bool m_isChasingGoal;
 
+		int32 m_powerUpLevel;
+
 	public:
 
 		LastTrackAccessObject(const Vec2& pos, const Vec2& movement, int32 powerUpLevel);
