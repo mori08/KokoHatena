@@ -1,0 +1,507 @@
+#include "../AccessObject.hpp"
+
+class TrackAccessObject : public AccessObject
+{
+protected:
+    Vec2 m_playerPos;
+    Vec2 m_movement;
+public:
+    TrackAccessObject(const Vec2& pos, const Vec2& movement);
+protected:
+    virtual void update(const Terrain& terrain) override;
+    virtual void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+};
+
+namespace
+{
+	const double& radius()
+	{
+		static const double rtn = Kokoha::Config::get<double>(U"TrackAccessObject.radius");
+		return rtn;
+	}
+}
+
+TrackAccessObject::TrackAccessObject(const Vec2& pos, const Vec2& movement)
+    : AccessObject(Type::TRACK, Circle(pos,radius()))
+    , m_playerPos(pos)
+    , m_movement(movement)
+{
+    static const double LIGHT_ALPHA = Config::get<double>(U"TrackAccessObject.alpha");
+    light()
+        .setAlpha(LIGHT_ALPHA)
+        .setDistance(radius())
+        .setCentralAngle(Math::TwoPi)
+        .setShadowMode(false)
+        .on();
+}
+
+void TrackAccessObject::update(const Terrain& terrain)
+{
+    static const double SPEED = Config::get<double>(U"TrackAccessObject.speed");
+    double speed = m_movement.length();
+    if (speed < 1e-2)
+    {
+        walkToGoal(SPEED, m_playerPos, terrain);
+    }
+    else
+    {
+        static const double SLOW_DOWN_RATE = Config::get<double>(U"TrackAccessObject.slowDownRate");
+        internalDividingPoint(speed, 0, SLOW_DOWN_RATE);
+        m_movement *= speed / m_movement.length();
+        walk(m_movement, terrain);
+    }
+    light()
+        .setSourcePos(body().center)
+        .update(terrain);
+}
+
+void TrackAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+{
+    try
+    {
+        const auto& player = getFrontObject(Type::PLAYER, guidToObject, typeToGuidSet);
+        m_playerPos = player.body().center;
+        if (player.body().intersects(body()))
+        {
+            erase();
+        }
+    }
+    catch (Error)
+    {
+        m_playerPos = body().center;
+    }
+}
+
+class LastTrackAccessObject : public TrackAccessObject
+{
+private:
+    bool m_isChasingGoal;
+    int32 m_powerUpLevel;
+public:
+    LastTrackAccessObject(const Vec2& pos, const Vec2& movement, int32 powerUpLevel);
+private:
+    void update(const Terrain& terrain) override;
+    void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+};
+
+LastTrackAccessObject::LastTrackAccessObject(const Vec2& pos, const Vec2& movement, int32 powerUpLevel)
+    : TrackAccessObject(pos, movement)
+    , m_powerUpLevel(powerUpLevel)
+{
+    static const double TO_GOAL_RATE = Config::get<double>(U"TrackAccessObject.toGoalRate");
+    m_isChasingGoal = powerUpLevel >= 7 && Random() < TO_GOAL_RATE;
+}
+
+void LastTrackAccessObject::update(const Terrain& terrain)
+{
+    walk(m_movement, terrain);
+    light()
+        .setSourcePos(body().center)
+        .update(terrain);
+}
+
+void LastTrackAccessObject::checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+{
+    const auto& goal = getFrontObject(Type::GOAL, guidToObject, typeToGuidSet);
+    const Vec2 goalPos = goal.body().center;
+    if (body().intersects(goal.body()))
+    {
+        m_isChasingGoal = false;
+    }
+    TrackAccessObject::checkOthers(terrain, guidToObject, typeToGuidSet);
+    const Vec2 targetPos = m_isChasingGoal ? goalPos : m_playerPos;
+    static const double RATE = Config::get<double>(U"TrackAccessObject.velocityRate");
+    static const double SPEED = Config::get<double>(U"TrackAccessObject.highSpeed");
+    static const double TOO_SPEED = Config::get<double>(U"TrackAccessObject.tooHighSpeed");
+    const double speed = m_powerUpLevel >= 11 ? TOO_SPEED : SPEED;
+    const Vec2 direction = targetPos - body().center;
+    const Vec2 target = direction.isZero()
+        ? direction
+        : speed * direction.normalized();
+    internalDividingPoint(m_movement, target, RATE);
+}
+
+class MinionAccessObject : public AccessObject
+{
+protected:
+    Vec2 m_goal;
+    double m_lightArea;
+    double m_trackTime;
+public:
+    MinionAccessObject(const Vec2& pos, double lightArea);
+private:
+    void update(const Terrain& terrain) override;
+    void draw() const override;
+    void checkOthers(
+        const Terrain& terrain,
+        const GuidToObject& guidToObject,
+        const TypeToGuidSet& typeToGuidSet
+    ) override;
+protected:
+    virtual void setGoal(
+        const Terrain& terrain,
+        const GuidToObject& guidToObject,
+        const TypeToGuidSet& typeToGuidSet
+    );
+    virtual double maxLightArea() const = 0;
+    void eraseAndMakeTrack();
+    virtual void walkMinion(const Terrain& terrain);
+    virtual void makeTrack(const Vec2& movement);
+};
+
+const double& trackTime()
+{
+    static const double rtn = Kokoha::Config::get<double>(U"MinionAccessObject.trackTime");
+    return rtn;
+}
+
+MinionAccessObject::MinionAccessObject(const Vec2& pos, double lightArea)
+    : AccessObject(Type::MINION, pos)
+    , m_lightArea(lightArea)
+    , m_trackTime(trackTime())
+{
+    m_goal = pos;
+    static const double LIGHT_ALPHA = Config::get<double>(U"MinionAccessObject.lightAlpha");
+    light()
+        .setAlpha(LIGHT_ALPHA)
+        .setCentralAngle(Math::TwoPi)
+        .setDistanceFromArea(m_lightArea)
+        .on();
+}
+
+void MinionAccessObject::update(const Terrain& terrain)
+{
+    walkMinion(terrain);
+    m_trackTime -= Scene::DeltaTime();
+    if (m_trackTime < 0)
+    {
+        m_trackTime = trackTime();
+        makeTrack(Vec2::Zero());
+    }
+    if (m_lightArea < 0)
+    {
+        light().off();
+        erase();
+    }
+    else
+    {
+        light()
+            .setSourcePos(body().center)
+            .setDistanceFromArea(m_lightArea)
+            .update(terrain);
+    }
+}
+
+void MinionAccessObject::draw() const
+{
+    TextureAsset(U"MinionAccessObject").drawAt(body().center);
+}
+
+void MinionAccessObject::checkOthers(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+{
+    setGoal(terrain, guidToObject, typeToGuidSet);
+    for (const auto& guid : typeToGuidSet.find(Type::ENEMY)->second)
+    {
+        if (getObject(guid, guidToObject).body().intersects(body()))
+        {
+            eraseAndMakeTrack();
+        }
+    }
+}
+
+void MinionAccessObject::setGoal(const Terrain&, const GuidToObject&, const TypeToGuidSet&)
+{
+}
+
+void MinionAccessObject::eraseAndMakeTrack()
+{
+    erase();
+    static const double TRACK_SPEED_RATE = Config::get<double>(U"MinionAccessObject.trackSpeedRate");
+    const double trackSpeed = TRACK_SPEED_RATE * Sqrt(m_lightArea);
+    while (m_lightArea > 0)
+    {
+        makeTrack(trackSpeed * angleToVec(Random(Math::TwoPi)));
+    }
+}
+
+void MinionAccessObject::walkMinion(const Terrain& terrain)
+{
+    static const double SPEED = Config::get<double>(U"MinionAccessObject.speed");
+    walkToGoal(SPEED, m_goal, terrain);
+}
+
+void MinionAccessObject::makeTrack(const Vec2& movement)
+{
+    Ptr trackObjPtr = std::make_shared<TrackAccessObject>(body().center, movement);
+    m_lightArea -= trackObjPtr->light().area();
+    makeObject(std::move(trackObjPtr));
+}
+
+class LastMinionAccessObject : public MinionAccessObject
+{
+private:
+    Vec2 m_velocity;
+    const int32 m_powerUpLevel;
+public:
+    LastMinionAccessObject(const Vec2& pos, int32 powerUpLevel);
+private:
+    void setGoal(
+        const Terrain& terrain,
+        const GuidToObject& guidToObject,
+        const TypeToGuidSet& typeToGuidSet
+    ) override;
+    double maxLightAreaFromLevel(int32 powerUpLevel) const;
+    double maxLightArea() const override;
+    void walkMinion(const Terrain& terrain) override;
+    void makeTrack(const Vec2& movement) override;
+};
+
+LastMinionAccessObject::LastMinionAccessObject(const Vec2& pos, int32 powerUpLevel)
+    : MinionAccessObject(pos, maxLightAreaFromLevel(powerUpLevel))
+    , m_powerUpLevel(powerUpLevel)
+{
+    static const double SPEED = Config::get<double>(U"MinionAccessObject.Last.speed");
+    m_velocity = SPEED * angleToVec(Random(Math::TwoPi));
+}
+
+void LastMinionAccessObject::setGoal(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+{
+    double minDist = Inf<double>;
+    m_goal = getFrontObject(Type::GOAL, guidToObject, typeToGuidSet).body().center;
+    for (const String& guid : typeToGuidSet.find(Type::ENEMY)->second)
+    {
+        const Vec2 enemyPos = guidToObject.find(guid)->second->body().center;
+        const double dist = terrain.getDist(body().center, enemyPos);
+
+        if (dist < minDist)
+        {
+            minDist = dist;
+            m_goal = enemyPos;
+        }
+    }
+    static const double SPEED = Config::get<double>(U"MinionAccessObject.Last.speed");
+    static const double HIGH_SPEED = Config::get<double>(U"MinionAccessObject.Last.highSpeed");
+    const double max_speed = m_powerUpLevel >= 9 ? HIGH_SPEED : SPEED;
+    static const double VELOCITY_RATE = Config::get<double>(U"MinionAccessObject.Last.velocityRate");
+    const Vec2 targetVelocity = max_speed * (m_goal - body().center).normalized();
+    internalDividingPoint(m_velocity, targetVelocity, VELOCITY_RATE);
+}
+
+double LastMinionAccessObject::maxLightAreaFromLevel(int32 powerUpLevel) const
+{
+    if (powerUpLevel >= 5)
+    {
+        static const double SMALL_AREA = Config::get<double>(U"MinionAccessObject.Last.smallArea");
+        return SMALL_AREA;
+    }
+    static const double AREA = Config::get<double>(U"MinionAccessObject.Last.area");
+    return AREA;
+}
+
+double LastMinionAccessObject::maxLightArea() const
+{
+    return maxLightAreaFromLevel(m_powerUpLevel);
+}
+
+void LastMinionAccessObject::walkMinion(const Terrain& terrain)
+{
+    walk(m_velocity, terrain);
+}
+
+void LastMinionAccessObject::makeTrack(const Vec2& movement)
+{
+    if (m_powerUpLevel >= 3)
+    {
+        Ptr trackObjPtr = std::make_shared<LastTrackAccessObject>(body().center, movement, m_powerUpLevel);
+        m_lightArea -= trackObjPtr->light().area();
+        makeObject(std::move(trackObjPtr));
+    }
+    else
+    {
+        MinionAccessObject::makeTrack(movement);
+    }
+}
+
+class PlayerAccessObject : public AccessObject
+{
+protected:
+    Vec2 m_movement;
+    double m_lightArea;
+    Optional<Vec2> m_makingLightPos;
+    double m_trackTime;
+    Optional<AccessObject::Ptr> m_trackPtr;
+public:
+    PlayerAccessObject(const Vec2& pos);
+private:
+    void input(const BoardArg& board) override;
+    void update(const Terrain& terrain) override;
+    void draw() const override;
+    void checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+protected:
+    virtual void makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet);
+};
+
+PlayerAccessObject::PlayerAccessObject(const Vec2& pos)
+    : AccessObject(Type::PLAYER, pos)
+    , m_movement(0, 0)
+    , m_makingLightPos(none)
+    , m_trackTime(0)
+    , m_trackPtr(none)
+{
+    static const double LIGHT_ALPHA = Config::get<double>(U"PlayerAccessObject.lightAlpha");
+    static const double LIGHT_AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
+    m_lightArea = LIGHT_AREA;
+    light()
+        .setAlpha(LIGHT_ALPHA)
+        .setCentralAngle(Math::TwoPi)
+        .on()
+    ;
+}
+
+void PlayerAccessObject::input(const BoardArg& board)
+{
+    if (KeyW.pressed()) { m_movement += Vec2::Up();    }
+    if (KeyS.pressed()) { m_movement += Vec2::Down();  }
+    if (KeyA.pressed()) { m_movement += Vec2::Left();  }
+    if (KeyD.pressed()) { m_movement += Vec2::Right(); }
+    static const double SLOW_SPEED = Config::get<double>(U"PlayerAccessObject.slowSpeed");
+    static const double FAST_SPEED = Config::get<double>(U"PlayerAccessObject.fastSpeed");
+    m_trackTime -= Scene::DeltaTime();
+    if (m_trackTime < 0 && m_trackPtr)
+    {
+        makeObject(std::move(m_trackPtr.value()));
+        m_trackPtr = none;
+    }
+    if (board.rect().rightPressed() && m_trackTime < 0)
+    {
+        static const double TRACK_TIME = Config::get<double>(U"PlayerAccessObject.trackTime");
+        static const double TRACK_SPEED = Config::get<double>(U"PlayerAccessObject.trackSpeed");
+        m_trackTime = TRACK_TIME;
+        Ptr ptr = std::make_shared<TrackAccessObject>(body().center, -m_movement * TRACK_SPEED);
+        if (ptr->light().area() < m_lightArea)
+        {
+            m_trackPtr = ptr;
+            m_lightArea -= ptr->light().area();
+        }
+    }
+    m_movement *= m_trackPtr ? FAST_SPEED : SLOW_SPEED;
+    if (board.rect().leftClicked())
+    {
+        m_makingLightPos = board.cursorPos();
+    }
+}
+
+void PlayerAccessObject::update(const Terrain& terrain)
+{
+    walk(m_movement, terrain);
+    m_movement = Vec2::Zero();
+    static const double DISTANCE_RATE = Config::get<double>(U"AccessLight.Rate.distance");
+    light()
+        .setSourcePos(body().center)
+        .setDistanceFromArea(m_lightArea, DISTANCE_RATE)
+        .update(terrain);
+}
+
+void PlayerAccessObject::draw() const
+{
+    TextureAsset(U"PlayerAccessObject").drawAt(body().center);
+}
+
+void PlayerAccessObject::checkOthers(const Terrain&, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+{
+    static const double LIGHT_AREA = Config::get<double>(U"PlayerAccessObject.lightArea");
+    static const double LIGHT_PLUS_RATE = Config::get<double>(U"PlayerAccessObject.lightPlusRate");
+    for (const auto& guid : typeToGuidSet.find(Type::TRACK)->second)
+    {
+        const auto& track = getObject(guid, guidToObject);
+        if (track.body().intersects(body()))
+        {
+            m_lightArea += LIGHT_PLUS_RATE * track.constLight().area();
+            m_lightArea = Min(m_lightArea, LIGHT_AREA);
+        }
+    }
+    if (m_makingLightPos)
+    {
+        makeLight(guidToObject, typeToGuidSet);
+        m_makingLightPos = none;
+    }
+}
+
+void PlayerAccessObject::makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+{
+    const Vec2 cursorPos = m_makingLightPos.value();
+    Optional<String> chasingGuid = none;
+    for (const auto& guid : typeToGuidSet.find(Type::ENEMY)->second)
+    {
+        if (getObject(guid, guidToObject).body().contains(cursorPos))
+        {
+            chasingGuid = guid;
+        }
+    }
+    for (const auto& guid : typeToGuidSet.find(Type::GOAL)->second)
+    {
+        if (getObject(guid, guidToObject).body().contains(cursorPos))
+        {
+            chasingGuid = guid;
+        }
+    }
+    Ptr ptr = nullptr;
+    if (chasingGuid)
+    {
+        ptr = std::make_shared<ChasingMinionAccessObject>(body().center, chasingGuid.value());
+    }
+    else if (body().contains(cursorPos))
+    {
+        ptr = std::make_shared<ProtectingMinionAccessObject>(body().center);
+    }
+    else if (light().contains(cursorPos))
+    {
+        ptr = std::make_shared<RushingMinionAccessObject>(body().center, cursorPos - body().center);
+    }
+    else
+    {
+        ptr = std::make_shared<SearchingMinionAccessObject>(body().center);
+    }
+    const double minionLightArea = ptr->light().area();
+    if (ptr != nullptr && minionLightArea < m_lightArea)
+    {
+        m_lightArea -= minionLightArea;
+        makeObject(std::move(ptr));
+    }
+}
+
+class LastPlayerAccessObject : public PlayerAccessObject
+{
+private:
+    const int32 m_powerUpLevel;
+public:
+    LastPlayerAccessObject(const Vec2& pos, int32 powerUpLevel);
+private:
+    void makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet) override;
+};
+
+LastPlayerAccessObject::LastPlayerAccessObject(const Vec2& pos, int32 powerUpLevel)
+    : PlayerAccessObject(pos)
+    , m_powerUpLevel(powerUpLevel)
+{
+}
+
+void LastPlayerAccessObject::makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
+{
+    if (m_powerUpLevel == 0)
+    {
+        PlayerAccessObject::makeLight(guidToObject, typeToGuidSet);
+        return;
+    }
+    for (int32 i = 0; i < m_powerUpLevel / 2 + 1; ++i)
+    {
+        Ptr ptr = std::make_shared<LastMinionAccessObject>(body().center, m_powerUpLevel);
+        const double minionLightArea = ptr->light().area();
+        if (minionLightArea > m_lightArea)
+        {
+            break;
+        }
+        m_lightArea -= minionLightArea;
+        makeObject(std::move(ptr));
+    }
+}

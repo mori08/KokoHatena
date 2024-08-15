@@ -160,6 +160,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\TrackAccessObject\TrackAccessObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\LastAccessState\LastAccessState.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState\SuccessAccessState.cpp" />
@@ -323,6 +324,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessObject\TrackAccessObject\TrackAccessObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\AccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\FailedAccessState\FailedAccessState.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\LastAccessState\LastAccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\PlayingAccessState\PlayingAccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\StartingAccessState\StartingAccessState.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\AccessBoard\AccessState\SuccessAccessState\SuccessAccessState.hpp" />

@@ -320,6 +320,17 @@
         "ゴール さがせ"
     ]
 
+[LastAccessState]
+    wordsPerTime = 3.5
+    textList = [
+        "初めまして",
+        "今日はあなたを試しにきました",
+        "がくしゃを救いたかったら",
+        "私に勝ってください"
+    ]
+    textPos = {x=300, y=250}
+    kiokuPos = {x=300, y=200}
+
 [AccessObject]
     radius = 10.0
     shoulderWidth = 1
@@ -411,7 +422,7 @@
     radius = 40
     speed = 60
     enemySizeLimit = 10
-    enemyMakeTime = 1.0
+    enemyMakeTime = 2.0
 
 [RandomWalkingEnemyAccessObject]
     speed = 10
@@ -508,4 +519,4 @@
 
 [LastGoalAccessObject]
     radius = 200
-    speed = 60
+    speed = 40
