@@ -1,6 +1,8 @@
 ﻿#include"AccessBoard.hpp"
 #include"AccessState/StartingAccessState/StartingAccessState.hpp"
+#include"AccessState/LastAccessState/LastAccessState.hpp"
 #include "AccessObject/PlayerAccessObject/PlayerAccessObject.hpp"
+#include "AccessObject/PlayerAccessObject/LastPlayerAccessObject/LastPlayerAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/EnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/RandomWalkingEnemyAccessObject/RandomWalkingEnemyAccessObject.hpp"
 #include "AccessObject/EnemyAccessObject/ChasingEnemyAccessObject/ChasingEnemyAccessObject.hpp"
@@ -9,6 +11,7 @@
 #include "AccessObject/GoalAccessObject/GoalAccessObject.hpp"
 #include "AccessObject/GoalAccessObject/MovingGoalAccessObject/MovingGoalAccessObject.hpp"
 #include "AccessObject/GoalAccessObject/ChasingGoalAccessObject/ChasingGoalAccessObject.hpp"
+#include "AccessObject/GoalAccessObject/LastGoalAccessObject/LastGoalAccessObject.hpp"
 #include "AccessObject/HoleAccessObject/HoleAccessObject.hpp"
 
 namespace
@@ -45,6 +48,21 @@ namespace Kokoha
 		m_typeToGuidSet[AccessObject::Type::GOAL]   = {};
 	}
 
+	AccessBoard::AccessBoard(const String& stageName)
+		: Board(BoardRole::ACCESS, U"AccessBoard", BoardState::IS_DISPLAYED)
+		, m_stageName(stageName)
+		, m_terrain(U"asset/data/stage/" + stageName + U".csv")
+		, m_state(std::make_shared<LastAccessState>())
+	{
+		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
+		m_typeToGuidSet[AccessObject::Type::ENEMY] = {};
+		m_typeToGuidSet[AccessObject::Type::MINION] = {};
+		m_typeToGuidSet[AccessObject::Type::TRACK] = {};
+		m_typeToGuidSet[AccessObject::Type::GOAL] = {};
+
+		m_powerUpLevel = 0;
+	}
+
 	void AccessBoard::receiveRequest(const String& requestText)
 	{
 	}
@@ -63,14 +81,19 @@ namespace Kokoha
 		}
 	}
 
-	void AccessBoard::updateInBoard(BoardRequest& boradRequest)
+	void AccessBoard::updateInBoard(BoardRequest& boardRequest)
 	{
+		if (m_powerUpLevel > 1)
+		{
+			boardRequest.toBoard.emplace_back(BoardRole::ACCESS, U"");
+		}
+
 		if (m_state->isInitializingObject())
 		{
 			initObjectMap();
 		}
 
-		if (auto stateOpt = m_state->update(m_objectMap, m_typeToGuidSet, boradRequest))
+		if (auto stateOpt = m_state->update(m_objectMap, m_typeToGuidSet, boardRequest))
 		{
 			m_state = stateOpt.value();
 		}
@@ -157,7 +180,8 @@ namespace Kokoha
 
 			makeObjSet<GoalAccessObject>(U"goal"),
 			makeObjSet<MovingGoalAccessObject>(U"goal_moving"),
-			makeObjSet<ChasingGoalAccessObject>(U"goal_chasing")
+			makeObjSet<ChasingGoalAccessObject>(U"goal_chasing"),
+			makeObjSet<LastGoalAccessObject>(U"goal_last")
 		};
 
 		// オブジェクト情報のclear
@@ -183,6 +207,15 @@ namespace Kokoha
 
 			AccessObject::setMakingObject(
 				makeObjectMap[type](pos),
+				m_objectMap,
+				m_typeToGuidSet
+			);
+		}
+
+		if (m_stageName == U"last")
+		{
+			AccessObject::setMakingObject(
+				std::make_shared<LastPlayerAccessObject>(size() / 2, m_powerUpLevel++),
 				m_objectMap,
 				m_typeToGuidSet
 			);

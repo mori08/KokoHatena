@@ -237,3 +237,7 @@
 [[day9]]
     type = "goal_chasing"
     marker = "G"
+
+[[last]]
+    type = "goal_last"
+    marker = "G"

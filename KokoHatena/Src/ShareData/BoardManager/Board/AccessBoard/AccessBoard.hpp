@@ -28,9 +28,14 @@ namespace Kokoha
 		// 生成するオブジェクト
 		std::list<AccessObject::Ptr> m_makeObjectList;
 
+		// 最終日用強化レベル
+		int32 m_powerUpLevel;
+
 	public:
 
 		AccessBoard(const RecordSet& recordSet);
+
+		AccessBoard(const String& stageName);
 
 	private:
 
