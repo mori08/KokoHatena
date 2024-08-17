@@ -60,7 +60,7 @@ namespace Kokoha
 		m_typeToGuidSet[AccessObject::Type::TRACK] = {};
 		m_typeToGuidSet[AccessObject::Type::GOAL] = {};
 
-		m_powerUpLevel = 0;
+		m_powerUpLevel = -1;
 	}
 
 	void AccessBoard::receiveRequest(const String& requestText)
