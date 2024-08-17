@@ -14,6 +14,7 @@ enum class SceneName
 	SELECT_LOAD_RECORD, // ロードするRecordSetを選択
 	SELECT_SAVE_RECORD, // セーブするRecordSetを選択
 	LAST_BATTLE,        // 最終線
+	ENDING,             // エンディング
 };
 
 // 文字列をSceneNameに変換する連想配列

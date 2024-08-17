@@ -13,6 +13,8 @@ namespace Kokoha
 
 		bool m_isCoding;
 
+		bool m_isEnding;
+
 		Array<String> m_allCode;
 
 		std::list<String> m_codeList;
