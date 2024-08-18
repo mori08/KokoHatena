@@ -161,6 +161,13 @@ namespace Kokoha
 			)
 		);
 
+		m_recordBoxList.emplace_back(
+			RecordBox(
+				[this]() { return SceneName::TITLE; },
+				{ U"", U"タイトルにもどる" }
+			)
+		);
+
 #ifdef _DEBUG
 
 		m_recordBoxList.emplace_back(

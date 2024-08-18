@@ -13,6 +13,7 @@ namespace Kokoha
 		MESSAGE,  // メッセージ
 		SECURITY, // セキュリティ
 		ACCESS,   // アクセス（パズルアクション部分）
+		POWER,    // タイトルへ戻る
 	};
 
 	// 文字列をBoradRoleに変換する連想配列
@@ -20,7 +21,8 @@ namespace Kokoha
 	{
 		{ U"access"  , BoardRole::ACCESS },
 		{ U"security", BoardRole::SECURITY },
-		{ U"message" , BoardRole::MESSAGE }
+		{ U"message" , BoardRole::MESSAGE },
+		{ U"power"   , BoardRole::POWER }
 	};
 
 	/// <summary>
