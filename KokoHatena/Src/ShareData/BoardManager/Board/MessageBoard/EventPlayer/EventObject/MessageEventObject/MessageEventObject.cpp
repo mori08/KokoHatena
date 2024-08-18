@@ -20,11 +20,11 @@ namespace Kokoha
 			splitTextFromWidth(subText);
 		}
 
+		m_textRectSize.x = 0;
 		for (const String& row : m_rowList)
 		{
 			m_textRectSize.x = Max(m_textRectSize.x, (int32)FontAsset(FONT_NAME)(row).region().w);
 		}
-
 		m_textRectSize.x = Min(m_textRectSize.x, MAX_TEXT_RECT_WIDTH);
 		m_textRectSize.y = FONT_HEIGHT * (int32)m_rowList.size();
 

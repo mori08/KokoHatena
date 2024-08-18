@@ -6,6 +6,7 @@ namespace Kokoha
 
 	void registerAsset(const String& dirName)
 	{
+#ifdef _DEBUG
 		// 指定されたディレクトリのファイルパスを配列に
 		Array<FilePath> contents = FileSystem::DirectoryContents(dirName, Recursive::No);
 
@@ -25,15 +26,60 @@ namespace Kokoha
 				// 拡張子がpngのとき
 				if (FileSystem::Extension(content) == U"png")
 				{
-					TextureAsset::Register(FileSystem::BaseName(content), dirName + fileName);
+					TextureAsset::Register(FileSystem::BaseName(content), Resource(dirName + fileName));
 				}
 
 				// 拡張子がmp3のとき
 				if (FileSystem::Extension(content) == U"mp3")
 				{
-					AudioAsset::Register(FileSystem::BaseName(content), dirName + fileName);
+					AudioAsset::Register(FileSystem::BaseName(content), Resource(dirName + fileName));
 				}
+			}
+		}
+		return;
+#endif // _DEBUG
 
+		TextReader reader(Resource(U"asset/list"));
+
+		while (auto line = reader.readLine())
+		{
+			String content = line.value();
+			String fileName = FileSystem::FileName(content);
+
+			// 拡張子がpngのとき
+			if (FileSystem::Extension(content) == U"png")
+			{
+				TextureAsset::Register(FileSystem::BaseName(content), Resource(content));
+			}
+
+			// 拡張子がmp3のとき
+			if (FileSystem::Extension(content) == U"mp3")
+			{
+				AudioAsset::Register(FileSystem::BaseName(content), Resource(content));
+			}
+		}
+	}
+
+	void registerResource(const String& dirName, TextWriter& rc, TextWriter& ast)
+	{
+		// 指定されたディレクトリのファイルパスを配列に
+		Array<FilePath> contents = FileSystem::DirectoryContents(dirName, Recursive::No);
+
+		for (const auto& content : contents)
+		{
+			String fileName = FileSystem::FileName(content);
+
+			// 指定されたパスがディレクトリであるとき
+			if (FileSystem::IsDirectory(content))
+			{
+				registerResource(dirName + fileName + U"/", rc, ast);
+			}
+
+			// 指定されたパスがファイルであるとき
+			else if (FileSystem::IsFile(content))
+			{
+				rc.writeln(U"Resource(" + dirName + fileName + U")");
+				ast.writeln(dirName + fileName);
 			}
 		}
 	}

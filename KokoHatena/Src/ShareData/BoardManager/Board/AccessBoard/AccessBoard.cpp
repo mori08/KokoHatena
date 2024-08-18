@@ -38,7 +38,7 @@ namespace Kokoha
 			, recordSet.getRecord(U"Day") == 0 ? BoardState::NONE : BoardState::IS_HIDING
 		)
 		, m_stageName(U"day" + ToString(recordSet.getRecord(U"Day")))
-		, m_terrain(U"asset/data/stage/" + m_stageName + U".csv")
+		, m_terrain(Resource(U"asset/data/stage/" + m_stageName + U".csv"))
 		, m_state(std::make_shared<StartingAccessState>(m_stageName))
 	{
 		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
@@ -51,7 +51,7 @@ namespace Kokoha
 	AccessBoard::AccessBoard(const String& stageName)
 		: Board(BoardRole::ACCESS, U"AccessBoard", BoardState::IS_DISPLAYED)
 		, m_stageName(stageName)
-		, m_terrain(U"asset/data/stage/" + stageName + U".csv")
+		, m_terrain(Resource(U"asset/data/stage/" + stageName + U".csv"))
 		, m_state(std::make_shared<LastAccessState>())
 	{
 		m_typeToGuidSet[AccessObject::Type::PLAYER] = {};
@@ -193,7 +193,7 @@ namespace Kokoha
 		m_makeObjectList.clear();
 
 		// オブジェクトの読み込み
-		const TOMLReader objectToml(U"asset/data/stage/object.toml");
+		const TOMLReader objectToml(Resource(U"asset/data/stage/object.toml"));
 		for (const auto object : objectToml[m_stageName].tableArrayView())
 		{
 			const String type = object[U"type"].getString();
