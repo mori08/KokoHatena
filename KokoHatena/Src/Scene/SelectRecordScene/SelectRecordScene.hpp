@@ -14,7 +14,7 @@ namespace Kokoha
 	protected:
 
 		// このシーンの説明文
-		const String m_explanation;
+		String m_explanation;
 
 		// RecordBoxのリスト
 		std::list<RecordBox> m_recordBoxList;
