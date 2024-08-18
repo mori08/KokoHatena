@@ -149,7 +149,7 @@ namespace Kokoha
 						getData().nowRecordSet = recordSet;
 						return SceneName::LOAD_BOARD;
 					},
-					{recordSet.getTimeCode(), U"Day"+ToString(recordSet.getRecord(U"Day"))}
+					{recordSet.getTimeCode(), ToString(recordSet.getRecord(U"Day")) + U"日目"}
 				)
 			);
 		}
@@ -185,9 +185,10 @@ namespace Kokoha
 	SelectSaveRecordScene::SelectSaveRecordScene(const InitData& init)
 		: SelectRecordScene(
 			init,
-			U"セーブするデータを選択してください"
+			U""
 		)
 	{
+		m_explanation = ToString(getData().nowRecordSet.getRecord(U"Day")) + U"日目の記録のセーブ先を選択してください";
 		for (auto& recordSet : getData().recordSetList)
 		{
 			m_recordBoxList.emplace_back
@@ -197,7 +198,7 @@ namespace Kokoha
 						recordSet = getData().nowRecordSet.setRecordTime();
 						return SceneName::SAVE_RECORD;
 					},
-					{ recordSet.getTimeCode(), U"Day" + ToString(recordSet.getRecord(U"Day")) }
+					{ recordSet.getTimeCode(), ToString(recordSet.getRecord(U"Day")) + U"日目"}
 				)
 			);
 		}
