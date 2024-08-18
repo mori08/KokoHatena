@@ -30,7 +30,7 @@ namespace Kokoha
 	RecordSet RecordSet::makeDebugRecordSet()
 	{
 		RecordSet rtn = RecordSet();
-		TOMLReader toml(U"asset/data/debug.toml");
+		TOMLReader toml(Resource(U"asset/data/debug.toml"));
 
 		for (const auto& record : toml[U"Record"].tableArrayView())
 		{
@@ -241,7 +241,7 @@ namespace Kokoha
 		if (isReady) { return defaultMap; }
 
 		// Recordについてのtomlファイル
-		const TOMLReader toml(U"asset/data/record.toml");
+		const TOMLReader toml(Resource(U"asset/data/record.toml"));
 		totalDigit = 0;
 
 		for (const auto& obj : toml[U"Record"].tableArrayView())

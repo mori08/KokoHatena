@@ -46,6 +46,13 @@ namespace Kokoha
 	void registerAsset(const String& dirName);
 
 	/// <summary>
+	/// リソース登録
+	/// writerにResouce.rcに追記する内容を書込
+	/// </summary>
+	/// <param name="direName"> ディレクトリの名前 </param>
+	void registerResource(const String& dirName, TextWriter& rc, TextWriter& ast);
+
+	/// <summary>
 	/// 指定された頻度でランダムに 1 を出力
 	/// </summary>
 	/// <param name="frequency"> 頻度 (times/second) </param>

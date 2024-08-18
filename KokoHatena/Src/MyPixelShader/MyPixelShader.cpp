@@ -7,7 +7,7 @@ namespace Kokoha
 		instance().m_shaderMap.try_emplace
 		(
 			U"TitleLogo",
-			std::move(HLSL{ U"asset/shader/TitleLogoShader.hlsl", U"PS" })
+			std::move(HLSL{Resource(U"asset/shader/TitleLogoShader.hlsl"), U"PS" })
 		);
 
 		for (const auto& itr : instance().m_shaderMap)

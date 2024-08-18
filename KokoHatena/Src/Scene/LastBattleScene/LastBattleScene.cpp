@@ -13,7 +13,7 @@ namespace Kokoha
 		, m_column(0)
 		, m_kioku(0)
 	{
-		TextReader reader(U"asset/data/coding.txt");
+		TextReader reader(Resource(U"asset/data/coding.txt"));
 
 		while (const auto line = reader.readLine())
 		{

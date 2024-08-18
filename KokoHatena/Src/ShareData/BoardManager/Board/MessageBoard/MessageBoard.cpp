@@ -23,7 +23,7 @@ namespace Kokoha
 					speakerName,
 					EventPlayer
 					(
-						U"asset/data/event/" + speakerName + U".toml",
+						Resource(U"asset/data/event/" + speakerName + U".toml"),
 						Rect(Point(getSpeakerNameRect(0).w, 0), Size(size().x - getSpeakerNameRect(0).w, size().y)),
 						recordSet
 					)
@@ -38,7 +38,7 @@ namespace Kokoha
 			U"ロボット",
 			EventPlayer
 			(
-				U"asset/data/event/day" + ToString(m_recordDay) + U".toml",
+				Resource(U"asset/data/event/day" + ToString(m_recordDay) + U".toml"),
 				Rect(Point(getSpeakerNameRect(0).w, 0), Size(size().x - getSpeakerNameRect(0).w, size().y)),
 				recordSet
 			)

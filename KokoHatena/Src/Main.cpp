@@ -22,6 +22,15 @@ void Main()
 	// 描画設定
 	Scene::SetBackground(MyBlack);
 
+	// リソース管理
+#ifdef _DEBUG
+	TextWriter rc(U"addResource");
+	TextWriter ast(U"asset/list");
+	registerResource(U"asset/", rc, ast);
+	rc.close();
+	ast.close();
+#endif // _DEBUG
+
 	// アセット管理
 	registerAsset(U"asset/");
 	MyPixelShader::loadPixelShader();

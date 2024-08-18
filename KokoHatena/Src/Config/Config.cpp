@@ -5,7 +5,7 @@ namespace Kokoha
 {
 
 	Config::Config()
-		: m_toml(U"asset/data/config.toml")
+		: m_toml(Resource(U"asset/data/config.toml"))
 	{
 	}
 
