@@ -8,15 +8,12 @@
     buttonSize     = {x=150, y=30}
     shiftFrequency = 0.4
     shiftLength    = 0.025
-    [TitleScene.NewGameButton]
-        name = "はじめから"
-        region = {x=325,y=375,w=150,h=30}
     [TitleScene.LoadGameButton]
-        name = "つづきから"
-        region = {x=325,y=435,w=150,h=30}
+        name = "はじめる"
+        region = {x=325,y=385,w=150,h=30}
     [TitleScene.ExitGameButton]
         name = "やめる"
-        region = {x=325,y=495,w=150,h=30}
+        region = {x=325,y=445,w=150,h=30}
 
 [LoadScene]
     loadingCircle      = {x=660,y=545,r=11}
