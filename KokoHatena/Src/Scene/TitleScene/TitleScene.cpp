@@ -25,14 +25,6 @@ namespace
 		return size;
 	}
 
-	// NEWGAMEボタン
-	const Kokoha::Button& newGameButton()
-	{
-		static const Kokoha::Button button
-			= Kokoha::Config::get<Kokoha::Button>(U"TitleScene.NewGameButton");
-		return button;
-	}
-
 	// LoadGameボタン
 	const Kokoha::Button& loadGameButton()
 	{
@@ -59,14 +51,12 @@ namespace Kokoha
 		, m_cursorLineAlpha(0)
 	{
 		// ボタンの名前
-		m_buttonSet.registerButton(newGameButton());
 		m_buttonSet.registerButton(loadGameButton());
 		m_buttonSet.registerButton(exitGameButton());
 		m_buttonSet.setSelectedButton(loadGameButton().getName());
 
-		m_buttonSet.setOnClickFunc(newGameButton().getName(), []() { Print << U"NewGameボタンが押された"; });
 		m_buttonSet.setOnClickFunc(loadGameButton().getName(), [this]() { changeScene(SceneName::LOAD_RECORD); });
-		m_buttonSet.setOnClickFunc(exitGameButton().getName(), []() { Print << U"ExitGameボタンが押された"; });
+		m_buttonSet.setOnClickFunc(exitGameButton().getName(), []() { System::Exit(); });
 	}
 
 	void TitleScene::update()
