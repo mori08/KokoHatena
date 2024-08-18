@@ -2,6 +2,7 @@
 #include"Board/MessageBoard/MessageBoard.hpp"
 #include"Board/AccessBoard/AccessBoard.hpp"
 #include"Board/SecurityBoard/SecurityBoard.hpp"
+#include"Board/PowerBoard/PowerBoard.hpp"
 #include"../../Config/Config.hpp"
 #include"../../MyLibrary/MyLibrary.hpp"
 
@@ -19,6 +20,7 @@ namespace Kokoha
 		m_boardList.emplace_back(std::make_shared<MessageBoard>(recordSet));
 		m_boardList.emplace_back(std::make_shared<AccessBoard>(recordSet));
 		m_boardList.emplace_back(std::make_shared<SecurityBoard>(recordSet));
+		m_boardList.emplace_back(std::make_shared<PowerBoard>());
 
 		static const int32 LAST_DAY = Config::get<int32>(U"BoardManager.lastDay");
 		m_isLastDay = recordSet.getRecord(U"Day") == LAST_DAY;
@@ -91,7 +93,14 @@ namespace Kokoha
 		// 他ボードへの命令
 		for (const std::pair<BoardRole, String>& boardRequest : boardRequestList)
 		{
-			displayBoard(boardRequest.first, boardRequest.second);
+			if (boardRequest.second == U"hide")
+			{
+				hideBoard(boardRequest.first);
+			}
+			else
+			{
+				displayBoard(boardRequest.first, boardRequest.second);
+			}
 		}
 
 		lastDay();

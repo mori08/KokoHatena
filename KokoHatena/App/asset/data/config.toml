@@ -284,10 +284,17 @@
     [SecurityBoard.last]
         text = "不正なアクセスを検知しました"
 
+[PowerBoard]
+    name = "電源"
+    size = {x=380,y=120}
+    iconOrder = 2
+    selectYes = {x=90, y=80, w=90, h=30}
+    selectNo  = {x=210, y=80, w=90, h=30}
+
 [AccessBoard]
     name = "アクセス"
     size = {x=600,y=450}
-    iconOrder = 2
+    iconOrder = 3
     wideArea  = 100
     skeletonAlpha = 0.5
 

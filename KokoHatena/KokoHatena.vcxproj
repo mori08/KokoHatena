@@ -175,6 +175,7 @@
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.cpp" />
+    <ClCompile Include="Src\ShareData\BoardManager\Board\PowerBoard\PowerBoard.cpp" />
     <ClCompile Include="Src\ShareData\BoardManager\Board\SecurityBoard\SecurityBoard.cpp" />
     <ClCompile Include="Src\ShareData\RecordSet\RecordSet.cpp" />
     <ClCompile Include="Src\ShareData\RecordSet\Record\Record.cpp" />
@@ -340,6 +341,7 @@
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventObject\TextureEventObject\TextureEventObject.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\EventPlayer\EventPlayer.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\MessageBoard\MessageBoard.hpp" />
+    <ClInclude Include="Src\ShareData\BoardManager\Board\PowerBoard\PowerBoard.hpp" />
     <ClInclude Include="Src\ShareData\BoardManager\Board\SecurityBoard\SecurityBoard.hpp" />
     <ClInclude Include="Src\ShareData\RecordSet\RecordSet.hpp" />
     <ClInclude Include="Src\ShareData\RecordSet\Record\Record.hpp" />
