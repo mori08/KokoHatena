@@ -268,7 +268,7 @@
     name = "ui_text"
     [e2_2.param]
         type = "message"
-        text = "確かにそうだ\nだが...私にはそれをすぐに肯定することもできない..."
+        text = "正しいのだと思う\nだが...私はそれを素直に認めることができない..."
         speaker = false
 
 [[e2_2]]

@@ -1,18 +1,18 @@
 ﻿
 [ D ]
-   0 < [Day]
+   9 < [Day]
 
 [ J ]
-   0 < [JumpFlagDay1_Kokoro]
-   0 < [JumpFlagDay2_Bad]
-   0 < [JumpFlagDay4_Evil]
-   0 < [JumpFlagDay6_Want]
-   0 < [JumpFlagDay7_With]
+   1 < [JumpFlagDay1_Kokoro]
+   1 < [JumpFlagDay2_Bad]
+   1 < [JumpFlagDay4_Evil]
+   1 < [JumpFlagDay6_Want]
+   1 < [JumpFlagDay7_With]
 
 [ R ]
   19 < [RecordDate]
-   1 < [RecordHour]
-  44 < [RecordMinute]
+  21 < [RecordHour]
+  52 < [RecordMinute]
    8 < [RecordMonth]
   24 < [RecordYear]
 

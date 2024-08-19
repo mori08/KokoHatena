@@ -10,6 +10,9 @@ namespace Kokoha
 		// 速度
 		Vec2 m_velocity;
 
+		// 生成されてからの時間
+		double m_lifeTime;
+
 		// 強化レベル
 		const int32 m_powerUpLevel;
 
