@@ -80,7 +80,7 @@ namespace Kokoha
 
 	void MinionAccessObject::eraseAndMakeTrack()
 	{
-		erase();
+		if (!erase()) { return; };
 
 		static const double TRACK_SPEED_RATE = Config::get<double>(U"MinionAccessObject.trackSpeedRate");
 		const double trackSpeed = TRACK_SPEED_RATE * Sqrt(m_lightArea);

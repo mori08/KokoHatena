@@ -177,9 +177,12 @@ namespace Kokoha
 		/// <summary>
 		/// このオブジェクトを削除する
 		/// </summary>
-		void erase()
+		bool erase()
 		{
+			if (m_isErase) { return false; }
+
 			m_isErase = true;
+			return true;
 		}
 
 		/// <summary>

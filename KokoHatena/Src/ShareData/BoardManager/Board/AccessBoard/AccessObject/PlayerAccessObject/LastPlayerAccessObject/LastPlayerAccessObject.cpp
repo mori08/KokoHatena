@@ -15,7 +15,7 @@ namespace Kokoha
 
 	void LastPlayerAccessObject::makeLight(const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
-		if (m_powerUpLevel == 0)
+		if (m_powerUpLevel <= 0)
 		{
 			PlayerAccessObject::makeLight(guidToObject, typeToGuidSet);
 			return;

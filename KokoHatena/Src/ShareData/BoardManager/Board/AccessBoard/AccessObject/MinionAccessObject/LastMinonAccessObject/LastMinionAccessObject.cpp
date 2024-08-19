@@ -8,6 +8,7 @@ namespace Kokoha
 	LastMinionAccessObject::LastMinionAccessObject(const Vec2& pos, int32 powerUpLevel)
 		: MinionAccessObject(pos, maxLightAreaFromLevel(powerUpLevel))
 		, m_powerUpLevel(powerUpLevel)
+		, m_lifeTime(0)
 	{
 		static const double SPEED
 			= Config::get<double>(U"MinionAccessObject.Last.speed");
@@ -16,6 +17,13 @@ namespace Kokoha
 
 	void LastMinionAccessObject::setGoal(const Terrain& terrain, const GuidToObject& guidToObject, const TypeToGuidSet& typeToGuidSet)
 	{
+		m_lifeTime += Scene::DeltaTime();
+
+		if (m_lifeTime > 12.0)
+		{
+			eraseAndMakeTrack();
+		}
+
 		double minDist = Inf<double>;
 		m_goal = getFrontObject(Type::GOAL, guidToObject, typeToGuidSet).body().center;
 
@@ -40,10 +48,11 @@ namespace Kokoha
 			? HIGH_SPEED
 			: SPEED
 		;
+		const double speed_rate = m_lifeTime > 8.0 ? 2.5 : 1.0;
 
 		static const double VELOCITY_RATE
 			= Config::get<double>(U"MinionAccessObject.Last.velocityRate");
-		const Vec2 targetVelocity = max_speed * (m_goal - body().center).normalized();
+		const Vec2 targetVelocity = max_speed * speed_rate * (m_goal - body().center).normalized();
 		internalDividingPoint(m_velocity, targetVelocity, VELOCITY_RATE);
 	}
 
