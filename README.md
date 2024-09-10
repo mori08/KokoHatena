@@ -1,6 +1,8 @@
 # KokoHatena
 
-Kokohaの続き
+Kokohaの続き  
+freemで「55?」として公開  
+https://www.freem.ne.jp/win/game/32846
 
 ## 環境
 Windows 10 (64-bit) / Windows 11 
